@@ -1,0 +1,4833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS FCS_INTEGRATION Integration Scheme, version 13.1, create date 24.03.2023 -->
+<xs:schema xmlns="http://zakupki.gov.ru/oos/integration/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:pp615="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:ep="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:cp="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:tp="http://zakupki.gov.ru/oos/TPtypes/1" xmlns:sm="http://zakupki.gov.ru/oos/SMTypes/1" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" xmlns:ur="http://zakupki.gov.ru/oos/URTypes/1" targetNamespace="http://zakupki.gov.ru/oos/integration/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/pprf615types/1" schemaLocation="Integration615Types.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/EPtypes/1" schemaLocation="IntegrationEPTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/CPtypes/1" schemaLocation="IntegrationCPTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/TPtypes/1" schemaLocation="IntegrationTPTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/SMTypes/1" schemaLocation="IntegrationSMTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/KOTypes/1" schemaLocation="IntegrationKOTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/URTypes/1" schemaLocation="IntegrationURTypes.xsd"/>
+	<!--Сервисные сообщения-->
+	<xs:element name="fcsSentPackageListRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Запрос списка отправленных из ЕИС пакетов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:packageListRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsSentPackageList">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Список отправленных из ЕИС пакетов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:packageListType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsReSendPackage">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Запрос на повторную отправку пакета</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:reSendPackageType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsReceivedPackageListRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Запрос списка полученных в ЕИС пакетов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:packageListRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsReceivedPackageList">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Список полученных в ЕИС пакетов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:packageListType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsDocProjectStatusRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Запрос информации о статусе размещения проектов документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:docProjectStatusRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsDocProjectStatusResponse">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Ответ на запрос информации о статусе размещения проектов документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="sm:docProjectStatusResponseType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Банковские гарантии-->
+	<xs:element name="bankGuarantee">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о выданной независимой гарантии; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о недействительности сведений о независимой гарантии</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения об отказе заказчика в принятии независимой гарантии; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeRefusalType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeRefusalInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения о недействительности отказа заказчика в принятии независимой гарантии</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeRefusalInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeTermination">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о прекращении обязательств поставщика по независимой гарантии; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeTerminationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeTerminationInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения о недействительности информации о прекращении обязательств поставщика по независимой гарантии</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeTerminationInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeReturn">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о возвращении независимой гарантии или об освобождении от обязательств по независимой гарантии; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeReturnType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bankGuaranteeReturnInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения о недействительности информации о возвращении независимой гарантии или об освобождении от обязательств по независимой гарантии</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_bankGuaranteeReturnInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="checkPlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План проверок</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_checkPlanType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="checkResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Результат контроля</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_checkResultType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="checkResultCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отмене результата контроля</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_checkResultCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="complaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по жалобе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="complaintCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отзыве жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="complaintGroup">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по групповой жалобе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintGroupType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="electronicComplaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация по жалобе, поданной в электронном виде</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_electronicComplaintType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="complaintTransfer">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о передаче жалобы по подведомственности / ведомственной принадлежности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintTransferType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventPlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: План контрольных мероприятий для ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_eventPlanType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Результат контроля для ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_eventResultType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventResultCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Информация об отмене результата контроля для ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_eventResultCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="unplannedEvent">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Информация по внеплановому контрольному мероприятию для ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedEventType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="unplannedEventCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Информация об отмене проведения внепланового контрольного мероприятия для ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedEventCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="confirmation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Уведомление о результатах обработки информационного пакета</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="oos:zfcs_confirmationType"/>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация (проект информации) о заключенном контракте</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contract2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contractCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об анулировании контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractCancel2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contractProcedure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об исполнении (расторжении) контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractProcedure2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contractProcedureCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения об отмене информации об исполнении (расторжении) контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractProcedureCancel2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contractAvailableForElAct">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Квитанция о доступности формирования документов электронного актирования по контракту</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractAvailableForElAct">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedContract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация (проект информации) о заключенном контракте (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contract2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedContractCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об анулировании контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractCancel2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedContractProcedure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об исполнении (расторжении) контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractProcedure2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedContractProcedureCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения об отмене информации об исполнении (расторжении) контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractProcedureCancel2015Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedContractAvailableForElAct">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Квитанция о доступности формирования документов электронного актирования по контракту (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractAvailableForElAct">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsClarification">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Разъяснение положений документации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_clarificationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsClarificationRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Запрос ЭП о даче разъяснений положений документации по 44-ФЗ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_clarificationRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене определения поставщика (подрядчика, исполнителя)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationCancelFailure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения об отмене определения поставщика (подрядчика, исполнителя) (в части лота);</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationCancelFailureType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationEF">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЭА (электронный аукцион); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationEFType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationEFDateChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Уведомление об изменении даты и времени проведения электронного аукциона</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationEFDateChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationEP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении закупки у ЕП (единственного поставщика); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationEPType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationISM">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении закупки многолотовым ИС (иной способ); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationISMType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationISO">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении закупки однолотовым ИС (иной способ); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationISOType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationLotCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение об отмене определения поставщика (подрядчика, исполнителя) в части лота</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationLotCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationOK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении OK (открытый конкурс); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationOKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationOKD">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении OK-Д (двухэтапный конкурс); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationOKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationOKOU">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении OK-ОУ (конкурс с ограниченным участием); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationOKOUType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationPO">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ПО (предварительный отбор)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationPOType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationZakA">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЗакА (закрытый аукцион); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationZakAType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationZakK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЗакK (закрытый конкурс); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationZakKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationZakKD">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЗакK-Д (закрытый двухэтапный конкурс); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationZakKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationZakKOU">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЗакK-ОУ (закрытый конкурс с ограниченным участием); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationZakKOUType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationZK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЗK (запрос котировок); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationZKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationZP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЗП (запроса предложений); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationZPType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationLotChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Внесение изменений в извещение в части лота</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationLotChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsNotificationOrgChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об изменении организации, осуществляющей закупку</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationOrgChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsPurchaseDocument">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о документе закупки; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchaseDocumentType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsPurchaseDocumentCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отмене документа закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchaseDocumentCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsTimeEF">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Время проведения электронного аукциона</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_timeEFType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsSecondPartAppOpening">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения о факте вскрытия вторых частей заявок</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_secondPartAppOpeningType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsPurchaseProlongationZK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение продлении срока подачи котировочных заявок</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchaseProlongationZKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsPurchaseProlongationOK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление о продлении срока рассмотрения и оценки заявок</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchaseProlongationOKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsContractSign">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о подписании государственного/муниципального контракта на ЭП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_contractSignType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsPlacementResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Результат проведения процедуры определения поставщика</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_placementResultType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене протокола</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEF1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявок на участие в электронном аукционе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEF1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEF2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол проведения электронного аукциона</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEF2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEF3">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов электронного аукциона</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEF3Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEFInvalidation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол о признании электронного аукциона несостоявшимся</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEFInvalidationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEFSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки на участие в электронном аукционе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEFSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEFSinglePart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявки единственного участника электронного аукциона</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEFSinglePartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolEvasion">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол отказа от заключения контракта; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolEvasionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolDeviation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Протокол признания участника уклонившимся от заключения контракта; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolDeviationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolPO">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол предварительного отбора в ПО; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolPOType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOK1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол вскрытия конвертов с заявками на участие в ОК; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOK1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOK2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки заявок на участие в конкурсе в ОК; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOK2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки в ОК; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKOU1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол вскрытия конвертов и открытия доступа к электронным документам заявок участников в ОК-ОУ; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKOU1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKOU2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол предквалификационного отбора в ОК-ОУ; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKOU2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKOU3">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки заявок на участие в конкурсе в ОК-ОУ; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKOU3Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKOUSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки в ОК-ОУ; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKOUSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKD1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол вскрытия конвертов и открытия доступа к электронным документам первоначальных заявок в ОК-Д; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKD1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKD2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол предквалификационного отбора в ОК-Д; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKD2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKD3">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол первого этапа в ОК-Д; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKD3Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKD4">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол вскрытия конвертов и открытия доступа к электронным документам окончательных заявок в ОК-Д; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKD4Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKD5">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки заявок на участие в конкурсе в ОК-Д; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKD5Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolOKDSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки в ОК-Д; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolOKDSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolZK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки заявок в ЗК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolZKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolZKAfterProlong">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки заявок по результатам продления срока подачи заявок; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolZKAfterProlongType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolZKBI">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Общая информация об объекте закупки и структурированный протокол  рассмотрения и оценки заявок на участие в ЗК-БИ  (запрос котировок без извещения); внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolZKBIType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolZPExtract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол выписки из протокола проведения запроса предложений в ЗП; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolZPExtractType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolZPFinal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Итоговый протокол в ЗП; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolZPFinalType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsProtocolZP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол проведения запроса предложений в ЗП; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_protocolZPType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsRequestForQuotation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Версия запроса цен товаров, работ, услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_requestForQuotationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsRequestForQuotationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена запроса цен товаров, работ, услуг</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_requestForQuotationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportContractExecution">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отчет об исполнении контракта (результатах отдельного этапа исполнения контракта)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportContractExecutionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportContractExecutionInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о недействительности сведений отчета об исполнении контракта (результатах отдельного этапа исполнения контракта)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportContractExecutionInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportSmallScaleBusiness">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отчет об объеме закупок у СМП (субъектов малого предпринимательства), СОНО (социально ориентированных некоммерческих организаций)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportSmallScaleBusinessType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportSmallScaleBusinessInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о недействительности сведений отчета об объеме закупок у СМП (субъектов малого предпринимательства), СОНО (социально ориентированных некоммерческих организаций)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportSmallScaleBusinessInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportSingleContractor">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отчет с обоснованием закупки у единственного поставщика (подрядчика, исполнителя)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportSingleContractorType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportSingleContractorInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о недействительности сведений отчета с обоснованием закупки у единственного поставщика (подрядчика, исполнителя)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportSingleContractorInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportBigProjectMonitoring">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отчет по мониторингу реализации крупных проектов с государственным участием</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportBigProjectMonitoringType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fcsCustomerReportBigProjectMonitoringInvalid">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о недействительности сведений отчета по мониторингу реализации крупных проектов с государственным участием</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_customerReportBigProjectMonitoringInvalidType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="masterData">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Набор элементов справочников и классификаторов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_masterDataType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="purchasePlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Проект плана закупок в структурированной форме</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchasePlanType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="purchasePlanExecution">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Проект исполнения плана закупок в структурированной форме</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchasePlanExecutionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="purchasePlanChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Изменение плана закупок в структурированной форме</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_purchasePlanChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План-график; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderPlanType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlan2017">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План-график с 01.01.2017; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderPlan2017Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlan2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План-график закупок с 01.01.2020; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="tp:tenderPlan2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlanChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Изменение плана-графика</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderPlanChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlanChange2017">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Изменение плана-графика с 01.01.2017</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderPlanChange2017Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlan2020Change">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Изменение плана-графика закупок с 01.01.2020</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="tp:tenderPlan2020ChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlanUnstructured">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План-график в неструктурированной форме; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderPlanUnstructuredType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderPlanCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Аннулирование плана-графика</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderPlanCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tenderSuspension">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_tenderSuspensionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="unplannedCheck">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по внеплановой проверке</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedCheckType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="unplannedCheckCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отмене проведения внеплановой проверки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedCheckCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="unplannedCheckTenderSusp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта по внеплановой проверке</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedCheckTenderSuspType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sketchPlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План закупок в неструктурированной форме</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_sketchPlanType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sketchPlanExecution">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения об исполнении плана закупок </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_sketchPlanExecutionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="control99BeginMessage">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сообщение о начале контроля</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_control99BeginMessageType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="control99RefusalMessage">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Сообщение об отказе в принятии на контроль</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_control99RefusalMessageType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="control99NoticeCompliance">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление о соответствии контролируемой информации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_control99NoticeComplianceType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="control99ProtocolMismatch">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол о несоответствии контролируемой информации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_control99ProtocolMismatchType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="control99ProtocolMismatchReductFunds">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол о несоответствии контролируемой информации в связи с уменьшением средств</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_control99ProtocolMismatchReductFundsType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--ПП РФ № 615-->
+	<xs:element name="pprf615NotificationEF">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ЭА (электронный аукцион) по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:notificationEFType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615TimeEF">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Время проведения электронного аукциона по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:timeEFType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ProtocolEF1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявок на участие в электронном аукционе по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:protocolEF1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ProtocolEF2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол проведения электронного аукциона по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:protocolEF2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ActEvasion">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Акт отказа от заключения контракта по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:actEvasionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ActDeviation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Акт признания участника уклонившимся от заключения контракта по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:actDeviationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615NotificationPO">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении ПО (предварительный отбор) по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:notificationPOType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ProtocolPO">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол предварительного отбора в ПО по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:protocolPOType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615NotificationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене закупки по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:notificationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ProtocolCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене протокола по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:protocolCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ActCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене акта по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:actCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615Clarification">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Разъяснение положений документации по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:clarificationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ClarificationRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Запрос ЭП о даче разъяснений положений документации по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:clarificationRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615QualifiedContractor">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Сведения о 
+квалифицированной 
+подрядной организации для включения в РКПО по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:qualifiedContractorType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615QualifiedContractorExclude">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения об исключении 
+квалифицированной 
+подрядной организации 
+из РКПО по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:qualifiedContractorExcludeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615QualifiedContractorExcludeCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Сведения об отмене 
+исключения 
+квалифицированной 
+подрядной организации 
+из РКПО по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:qualifiedContractorExcludeCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615Contract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Сведения о 
+договоре о проведении капитального ремонта по ПП РФ № 615; внесение изменений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:contractType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ContractProcedure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Сведения об исполнении/расторжении договора о проведении капитального ремонта по ПП РФ № 615; </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:contractProcedureType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ContractProcedureCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Сведения об отмене информации об исполнении/расторжении договора о проведении капитального ремонта по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:contractProcedureCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615ContractSign">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Сведения о заключенном в электронной форме на ЭП договоре оказания услуг и (или) выполнения работ по капитальному ремонту общего имущества в многоквартирном доме по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:contractSignType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pprf615MasterData">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Набор элементов справочников и классификаторов по ПП РФ № 615</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="pp615:masterDataType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Электронные процедуры-->
+	<xs:element name="epNoticeApplicationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об отзыве заявки участником</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:noticeApplicationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epNotificationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене определения поставщика (подрядчика, исполнителя) в электронной форме</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epNotificationCancelFailure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения об отмене определения поставщика (подрядчика, исполнителя) в электронной форме</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationCancelFailureType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене протокола электронной процедуры</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClarificationDocRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Запрос о даче разъяснений положений извещения об осуществлении закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:clarificationDocRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClarificationDoc">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Разъяснения положений извещения об осуществлении закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:clarificationDocType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClarificationResultRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Запрос о даче разъяснений результатов (не применяется для СОП EF2020, EOK2020, EZK2020, EZT2020)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:clarificationResultRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClarificationResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Разъяснение результатов (не применяется для СОП EF2020, EOK2020, EZK2020, EZT2020)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:clarificationResultType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEvasion">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол об отказе от заключения контракта с 01.04.2021</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEvasionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolDeviation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол признания участника уклонившимся от заключения контракта с 01.04.2021</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolDeviationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEvDevCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене протокола ПОК/ППУ с 01.04.2021</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEvDevCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Открытый конкурс в электронной форме (ЭOK)-->
+	<xs:element name="epNotificationEOK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEOKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOK1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки первых частей заявок на участие в ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOK1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOK2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки вторых частей заявок на участие в ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOK2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOK3">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOK3Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки на участие ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKSinglePart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявки единственного участника ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKSinglePartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationEOK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о продлении срока подачи заявок на участие в ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationEOKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationCancelEOK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения о продлении срока подачи заявок на участие в ЭOK</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationCancelEOKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Открытый конкурс с ограниченным участием в электронной форме-->
+	<xs:element name="epNotificationEOKOU">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEOKOUType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKOU1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки первых частей заявок на участие в ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKOU1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKOU2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки вторых частей заявок на участие в ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKOU2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKOU3">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKOU3Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKOUSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки на участие ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKOUSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKOUSinglePart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявки единственного участника ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKOUSinglePartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationEOKOU">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о продлении срока подачи заявок на участие в ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationEOKOUType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationCancelEOKOU">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения о продлении срока подачи заявок на участие в ЭOK-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationCancelEOKOUType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Двухэтапный конкурс в электронной форме (ЭOKД)-->
+	<xs:element name="epNotificationEOKD">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEOKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKD1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол первого этапа ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKD1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKD2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки первых частей заявок на участие в ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKD2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKD3">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки вторых частей заявок на участие в ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKD3Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKD4">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKD4Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKDSingleApp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения единственной заявки на участие ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKDSingleAppType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOKDSinglePart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявки единственного участника ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOKDSinglePartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationEOKD">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о продлении срока подачи заявок на участие в ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationEOKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationCancelEOKD">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения о продлении срока подачи заявок на участие в ЭOKД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationCancelEOKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Запрос котировок в электронной форме (ЭЗК)-->
+	<xs:element name="epNotificationEZK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZK1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения заявок на участие в ЭЗК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZK1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZK2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки заявок на участие в ЭЗК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZK2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationEZK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о продлении срока подачи заявок на участие в ЭЗК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationEZKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProlongationCancelEZK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения о продлении срока подачи заявок на участие в в ЭЗК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:prolongationCancelEOKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Запрос предложений в электронной форме (ЭЗП)-->
+	<xs:element name="epNotificationEZP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZPType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZP1Extract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Выписка из протокола проведения ЭЗП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZP1ExtractType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZP1">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол проведения ЭЗП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZP1Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZP2">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Итоговый протокол ЭЗП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZP2Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закрытый конкурс в электронном виде(ЭЗакК)-->
+	<xs:element name="epNotificationEZakK">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗакК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZakKType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закрытый конкурс с ограниченным участием в электронном виде (ЭЗакК-ОУ)-->
+	<xs:element name="epNotificationEZakKOU">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗакК-ОУ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZakKOUType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Двухэтапный закрытый конкурс в электронном виде (ЭЗакКД)-->
+	<xs:element name="epNotificationEZakKD">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗакКД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZakKDType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закрытый аукцион в электронном виде (ЭЗакА)-->
+	<xs:element name="epNotificationEZakA">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗакА</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZakAType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Способы ОППИ, актуальные с 01.01.2022-->
+	<xs:element name="fcsNotification111">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Извещение о проведении закупки способом определения поставщика (подрядчика, исполнителя), установленным Правительством Российской Федерации в соответствии со ст. 111 Федерального закона № 44-ФЗ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationI111Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Запрос котировок в электронной форме с 01.04.2021 года (ЭЗК20)-->
+	<xs:element name="epNotificationEZK2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗК20 (запрос котировок в электронной форме c 01.04.2021 года)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZK2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZK2020FinalPart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов определения поставщика (подрядчика, исполнителя) ЭЗК20 (запрос котировок в электронной форме c 01.04.2021 года) с информацией об участниках</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZK2020FinalPartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ (ЭЗТ) -->
+	<xs:element name="epNotificationEZT2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭЗТ (Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEZT2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epPreliminaryOffer">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Предварительное предложение; внесение изменений в предварительное предложение</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:preliminaryOfferType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEZT2020FinalPart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов определения поставщика ЭЗТ (Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ) с информацией об участниках</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZT2020FinalPartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epNoticeApplicationsAbsence">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об отсутствии заявок</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:noticeApplicationsAbsenceType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Аукцион в электронной форме с с даты начала действия оптимизационного законопроекта 44-ФЗ (ЭA20) -->
+	<xs:element name="epNotificationEF2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭА20 (аукцион в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEF2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEF2020SubmitOffers">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подачи ценовых предложений ЭА20 (аукцион в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEF2020SubmitOffersType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEF2020FinalPart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов определения поставщика (подрядчика, исполнителя) ЭА20 (аукцион в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ) с информацией об участниках</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEF2020FinalPartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Открытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ (ЭОК20)-->
+	<xs:element name="epNotificationEOK2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение о проведении ЭОК20 (открытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationEOK2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOK2020FirstSections">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки первых частей заявок на участие в ЭOK20 (открытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOK2020FirstSectionsType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOK2020SecondSectionsPart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения и оценки вторых частей заявок на участие в ЭOK20 (открытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ) с информацией об участниках</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOK2020SecondSectionsPartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epProtocolEOK2020FinalPart">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов ЭOK20 (открытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ) с информацией об участниках</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEOK2020FinalPartType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закрытые электронные процедуры-->
+	<xs:element name="epClosedNoticeApplicationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об отзыве заявки участником (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:noticeApplicationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedNotificationCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене определения поставщика (подрядчика, исполнителя) в электронной форме (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedNotificationCancelFailure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения об отмене определения поставщика (подрядчика, исполнителя) в электронной форме (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:notificationCancelFailureType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене протокола электронной процедуры (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolEvasion">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол об отказе от заключения контракта c даты начала действия оптимизационного законопроекта 44-ФЗ (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEvasionType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolDeviation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол признания участника уклонившимся от заключения контракта c даты начала действия оптимизационного законопроекта 44-ФЗ (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolDeviationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolEvDevCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене протокола ПОК/ППУ c даты начала действия оптимизационного законопроекта 44-ФЗ (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEvDevCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedPlacementResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Результат проведения процедуры определения поставщика (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_placementResultType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedNotificationOrgChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об изменении организации, осуществляющей закупку (закрытые электронные процедуры)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationOrgChangeType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закрытый аукцион в электронной форме с c даты начала действия оптимизационного законопроекта 44-ФЗ (ЭЗакА20)-->
+	<xs:element name="epClosedInvitationEZakA2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Приглашение принять участие в закупке ЭЗакА20 (закрытый аукцион в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ); изменение извещения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:invitationEZakA2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolEZakA2020DocRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения запросов на представление документации о закупке в ЭЗакА20 (закрытый аукцион в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZakA2020DocRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolEZakA2020Final">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов определения поставщика (подрядчика, исполнителя) в ЭЗакА20 (закрытый аукцион в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZakA2020FinalType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Закрытый конкурс в электронной форме  c даты начала действия оптимизационного законопроекта 44-ФЗ (ЭЗакК20)-->
+	<xs:element name="epClosedInvitationEZakK2020">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Приглашение принять участие в закупке ЭЗакК20 (закрытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ); изменение извещения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:invitationEZakK2020Type">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolEZakK2020DocRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол рассмотрения запросов на представление документации о закупке в ЭЗакК20 (закрытый конкурс в электронной форме c даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZakK2020DocRequestType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="epClosedProtocolEZakK2020Final">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол подведения итогов определения поставщика (подрядчика, исполнителя) в ЭЗакК20 (закрытый конкурс в электронной формеc даты начала действия оптимизационного законопроекта 44-ФЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ep:protocolEZakK2020FinalType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Проекты контрактов-->
+	<xs:element name="cpContractProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта без подписей</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpContractProjectChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Доработанный проект контракта на основании размещенного поставщиком протокола разногласий</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectChangeType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpContractProjectSign">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта, подписанный поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectSignType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpContractSign">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Подписанный контракт</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractSignType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpProtocolDisagreements">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол разногласий</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:protocolDisagreementsType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpNoticeDeviation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об уклонении от заключения контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:noticeDeviationType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpNoticeEvasion">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об отказе от заключения контракта. Устарело, не применяется</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:noticeEvasionType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpRefusalConcludeContract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отказ участника закупки от заключения контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:refusalConcludeContractType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpProcedureCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене процедуры заключения контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:procedureCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpProcedureCancelFailure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения об отмене процедуры заключения контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:procedureCancelFailureType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Проекты контрактов (непубличные данные)-->
+	<xs:element name="cpClosedContractProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта без подписей (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedContractProjectChange">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Доработанный проект контракта на основании размещенного поставщиком протокола разногласий (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectChangeType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedContractProjectSign">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта, подписанный поставщиком (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectSignType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedContractSign">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Подписанный контракт (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractSignType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedProtocolDisagreements">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол разногласий (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:protocolDisagreementsType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedNoticeDeviation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об уклонении от заключения контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:noticeDeviationType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedNoticeEvasion">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об отказе от заключения контракта (непубличные данные). Устарело не применяется</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:noticeEvasionType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedRefusalConcludeContract">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отказ участника закупки от заключения контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:refusalConcludeContractType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedProcedureCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене процедуры заключения контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:procedureCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedProcedureCancelFailure">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отмена извещения об отмене процедуры заключения контракта (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:procedureCancelFailureType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Электронное обжалование-->
+	<xs:element name="parElectronicComplaintAccept">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о принятии к рассмотрению электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintAcceptType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parElectronicComplaintRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отказе в рассмотрении электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Реестр документов исполнения контракта (РДИК)-->
+	<xs:element name="contractProcedureUnilateralRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Решение об одностороннем отказе от исполнения контракта, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:contractProcedureUnilateralRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contractProcedureUnilateralRefusalCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене решения об одностороннем отказе от исполнения контракта, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:contractProcedureUnilateralRefusalCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Электронные контракты</xs:documentation>
+	</xs:annotation>
+	<xs:element name="cpElectronicContract">
+		<xs:annotation>
+			<xs:documentation>Электронный контракт. Не применяется, добавлено на развитие</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:electronicContractType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Сервисные сообщения-->
+	<xs:element name="notificationRemoveDoc">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об удалении в ЕИС проекта документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_notificationRemoveDocType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Общие типы-->
+	<xs:complexType name="as2PacketType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Пакет данных AS2 протокола</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="index">
+				<xs:annotation>
+					<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Индексная карточка пакета данных</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="id">
+							<xs:annotation>
+								<xs:documentation>Глобальный идентификатор  информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="36"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="sender">
+							<xs:annotation>
+								<xs:documentation>Отправитель</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="200"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="receiver">
+							<xs:annotation>
+								<xs:documentation>Получатель</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="200"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="createDateTime" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="objectType" type="base:objectTypeEnum">
+							<xs:annotation>
+								<xs:documentation>Кодовое наименование объекта информационного обмена, 
+информация о котором содержится в данном пакете:
+
+94_OK - 94ФЗ Открытый конкурс;
+94_EF - 94ФЗ Открытый аукцион в электронной форме;
+94_ZK - 94ФЗ Запрос котировок;
+94_PO - 94ФЗ Предварительный отбор;
+94_SZ - 94ФЗ Сообщение о заинтересованности в проведении конкурса;
+94_DD - 94ФЗ Разные документы;
+
+EF - Электронный аукцион;
+EP - Единственный поставщик;
+ISM - Иной способ, многолотовый;
+ISO - Иной способ, однолотовый;
+OKD - Открытый конкурс, двухэтапный;
+OKOU - Открытый конкурс с ограниченным участием;
+OK - Открытый конкурс;
+PO - Предварительный отбор;
+ZAKA - Закрытый аукцион;
+ZAKKD - Закрытый конкурс, двухэтапный;
+ZAKKOU - Закрытый конкурс с ограниченным участием;
+ZAKK - Закрытый конкурс;
+ZKBI - Запрос котировок без извещения;
+ZK - Запрос котировок;
+ZP - Запрос предложений;
+ST111 - Способ определения поставщика (подрядчика, исполнителя), установленный Правительством Российской Федерации в соответствии со ст. 111 Федерального закона № 44-ФЗ;
+CT - Контракт;
+MD - Справочная информация;
+TP - План график;
+SP - План закупок;
+PP - План закупок (структурированный);
+BG - Банковская гарантия;
+ZC - Запрос цен;
+OZ - Отчет заказчика;
+DD - 44ФЗ Разные документы;
+PPM - План мероприятий для ИС ОВК;
+PRK - Результат контроля для ИС ОВК;
+PVKM - Информации по внеплановому контрольному мероприятию для ИС ОВК;
+CM - Информация по жалобе для ИС КО;
+CR - Результат контроля для ИС КО;
+UC - Внеплановая проверка для ИС КО;
+PC - Плановая проверка для ИС КО;
+99DOC - Документы контроля по 99 статье;
+615_PO - ПП РФ 615 Предварительный отбор;
+615_KPO - ПП РФ 615 Квалифицированная подрядная организация;
+615_EF - ПП РФ 615 Электронный аукцион;
+615_CT - ПП РФ 615 Договор;
+615_DD - ПП РФ 615 Разные документы;
+EOK - ЭП Открытый конкурс в электронной форме;
+EOKOU - ЭП Открытый конкурс с ограниченным участием  в электронной форме;
+EOKD - ЭП Двухэтапный конкурс в электронной форме;
+EZK - ЭП Запрос котировок в электронной форме;
+EZP - ЭП Запрос предложений в электронной форме;
+EZAKA - ЭП Закрытый аукцион в электронной форме;
+EZAKKD - ЭП Закрытый конкурс, двухэтапный в электронной форме;
+EZAKKOU - ЭП Закрытый конкурс с ограниченным участием в электронной форме;
+EZAKK - ЭП Закрытый конкурс в электронной форме;
+EZT - Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ (Закупка "с полки");
+EP_DD - ЭП Разные документы;
+CP - Проекты контрактов;
+TP2020 - План-график закупок с 01.01.2020;
+SM - Служебные сообщения;
+EC - Электронное обжалование;
+DIZK - Односторонний отказ.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="objectId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Идентификатор объекта информационного обмена (реестровый номер)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="36"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="indexNum" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Порядковый номер пакета данных в рамках передачи информации об объекте информационного обмена</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int"/>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="signature">
+							<xs:annotation>
+								<xs:documentation>ЭЦП на данные информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:base64Binary">
+										<xs:attribute name="type" type="base:signatureType" use="required"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="mode" type="indexModeType">
+							<xs:annotation>
+								<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация
+			TEST - тестовые данные</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="testCase" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:int"/>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="priority" type="priorityType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Приоритет пакета:
+			 0 - обычный приоритет;
+1 - повышенный проритет.
+
+Не заполняется в исходящих из ЕИС пакетах.
+Указание значения "1"   допустимо только на стороне ЭТП в случае передачи в подсистему размещения информации о закупках ЕИС и подсистему заключения контрактов ЕИС 
+интеграционных пакетов, относящиеся к следующим способам определения поставщика: "Запрос котировок в электронной форме с 01.04.2021 года (ЭЗК20)», «ЭЗТ (закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)»
+
+</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="indexModeType">
+		<xs:annotation>
+			<xs:documentation>Перечисление режимов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PROD"/>
+			<xs:enumeration value="TEST"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="priorityType">
+		<xs:annotation>
+			<xs:documentation>Тип: приоритет пакета:
+ 0 - обычный приоритет; 1 - повышенный проритет.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
