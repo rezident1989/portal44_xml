@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS queue-ws-api Integration Scheme, version 13.1, create date 24.03.2023 -->
+<xs:schema xmlns:q="http://zakupki.gov.ru/fz44/queue/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/queue/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:element name="getObjectRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенном документе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="q:indexType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getObjectResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о документе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="messageBody">
+					<xs:annotation>
+						<xs:documentation>Тело сообщения</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="index" type="q:objectIndexType">
+								<xs:annotation>
+									<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:any processContents="skip">
+								<xs:annotation>
+									<xs:documentation>Блок содержит XML сформированный по схеме fcsExport.xsd</xs:documentation>
+								</xs:annotation>
+							</xs:any>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="noRecords" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Отсутствуют записи в очереди</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="errorInfo" type="q:errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ackRequest">
+		<xs:annotation>
+			<xs:documentation>Подтверждение получения сообщения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="q:indexType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="data">
+					<xs:annotation>
+						<xs:documentation>Данные информационного пакета</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="refId" type="base:guidType">
+								<xs:annotation>
+									<xs:documentation>Ссылка на сообщение, получение которого подтверждается методом Ack. Сюда нужно писать id, который берётся из getObjectResponse/messageBody/index/id</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="success" type="xs:boolean" fixed="true">
+									<xs:annotation>
+										<xs:documentation>Данные обработаны успешно</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="errorInfo" type="q:errorInfoType" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Ошибка или нарушение</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ackResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на подтверждение получения сообщения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="processed" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Подтверждение обработано</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="noRecords" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Отсутствуют записи в очереди</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="errorInfo" type="q:errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--Общие типы-->
+	<xs:complexType name="errorInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Результат вызова сервиса в случае ошибки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="base:text2000Type">
+				<xs:annotation>
+					<xs:documentation>Текстовая расшифровка ошибки, включающая дополнительную информацию
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="objectIndexType">
+		<xs:annotation>
+			<xs:documentation>Тип: Индексная карточка объекта</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="q:indexType">
+				<xs:sequence>
+					<xs:element name="receiver" type="base:text200Type">
+						<xs:annotation>
+							<xs:documentation>Получатель</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="objectType" type="base:objectTypeEnum">
+						<xs:annotation>
+							<xs:documentation>Кодовое наименование объекта информационного обмена, 
+информация о котором содержится в данном пакете:
+
+94_OK - 94ФЗ Открытый конкурс;
+94_EF - 94ФЗ Открытый аукцион в электронной форме;
+94_ZK - 94ФЗ Запрос котировок;
+94_PO - 94ФЗ Предварительный отбор;
+94_SZ - 94ФЗ Сообщение о заинтересованности в проведении конкурса;
+94_DD - 94ФЗ Разные документы;
+
+EF - Электронный аукцион;
+EP - Единственный поставщик;
+ISM - Иной способ, многолотовый;
+ISO - Иной способ, однолотовый;
+OKD - Открытый конкурс, двухэтапный;
+OKOU - Открытый конкурс с ограниченным участием;
+OK - Открытый конкурс;
+PO - Предварительный отбор;
+ZAKA - Закрытый аукцион;
+ZAKKD - Закрытый конкурс, двухэтапный;
+ZAKKOU - Закрытый конкурс с ограниченным участием;
+ZAKK - Закрытый конкурс;
+ZKBI - Запрос котировок без извещения;
+ZK - Запрос котировок;
+ZP - Запрос предложений;
+ST111 - Способ определения поставщика (подрядчика, исполнителя), установленный Правительством Российской Федерации в соответствии со ст. 111 Федерального закона № 44-ФЗ;
+CT - Контракт;
+MD - Справочная информация;
+TP - План график;
+SP - План закупок;
+PP - План закупок (структурированный);
+BG - Банковская гарантия;
+ZC - Запрос цен;
+OZ - Отчет заказчика;
+DD - 44ФЗ Разные документы;
+PPM - План мероприятий для ИС ОВК;
+PRK - Результат контроля для ИС ОВК;
+PVKM - Информации по внеплановому контрольному мероприятию для ИС ОВК;
+CM - Информация по жалобе для ИС КО;
+CR - Результат контроля для ИС КО;
+UC - Внеплановая проверка для ИС КО;
+PC - Плановая проверка для ИС КО;
+99DOC - Документы контроля по 99 статье;
+615_PO - ПП РФ 615 Предварительный отбор;
+615_KPO - ПП РФ 615 Квалифицированная подрядная организация;
+615_EF - ПП РФ 615 Электронный аукцион;
+615_CT - ПП РФ 615 Договор;
+615_DD - ПП РФ 615 Разные документы;
+EOK - ЭП Открытый конкурс в электронной форме;
+EOKOU - ЭП Открытый конкурс с ограниченным участием  в электронной форме;
+EOKD - ЭП Двухэтапный конкурс в электронной форме;
+EZK - ЭП Запрос котировок в электронной форме;
+EZP - ЭП Запрос предложений в электронной форме;
+EZAKA - ЭП Закрытый аукцион в электронной форме;
+EZAKKD - ЭП Закрытый конкурс, двухэтапный в электронной форме;
+EZAKKOU - ЭП Закрытый конкурс с ограниченным участием в электронной форме;
+EZAKK - ЭП Закрытый конкурс в электронной форме;
+EZT - Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ (Закупка "с полки");
+EP_DD - ЭП Разные документы;
+CP - Проекты контрактов;
+TP2020 - План-график закупок с 01.01.2020;
+SM - Служебные сообщения.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="objectId" type="base:text100Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификатор объекта информационного обмена (реестровый номер)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="priority" type="base:priorityType">
+						<xs:annotation>
+							<xs:documentation>Тип: Приоритет отдачи документа. 1 - минимальный приоритет 5 - максимальный. Приоритет по умолчанию - 3</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="indexType">
+		<xs:annotation>
+			<xs:documentation>Тип: Индексная карточка пакета данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор  информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sender" type="base:text200Type">
+				<xs:annotation>
+					<xs:documentation>Отправитель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mode" type="base:indexModeType">
+				<xs:annotation>
+					<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация
+			TEST - тестовые данные</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

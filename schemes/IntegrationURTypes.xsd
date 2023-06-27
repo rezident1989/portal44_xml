@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS INTEGRATION_UR_TYPES Integration Scheme, version 13.1, create date 24.03.2023 -->
+<xs:schema xmlns="http://zakupki.gov.ru/oos/URTypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/oos/URTypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/common/1" schemaLocation="CommonTypes.xsd"/>
+	<!--Односторонний отказ-->
+	<xs:complexType name="contractProcedureUnilateralRefusalType">
+		<xs:annotation>
+			<xs:documentation>Тип: Решение об одностороннем отказе от исполнения контракта, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="regNumber" type="base:contractRegNumType">
+							<xs:annotation>
+								<xs:documentation>Реестровый номер контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="participantInfo" type="cmn:participantURType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Поставщик. Игнорируется при приеме, заполняется автоматически на основании реестрового номера контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docType" type="cmn:nsiURDocTypesRef" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид уведомления. Игнорируется при приеме, заполняется автоматически значением "Решение об одностороннем отказе" на основании справочника "Типы документов одностороннего отказа и претензионной переписки по результатам электронных процедур" (nsiURDocTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="noticeNum" type="base:text100Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Номер уведомления</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="estimatedEffectiveDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Предполагаемая дата вступления решения в силу</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="repeatedViolation" type="xs:boolean" fixed="true" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Признак повторного нарушения</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="terminationReason" type="base:text2000Type" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation>Причина расторжения контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы решения об одностороннем отказе </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormInfo" type="cmn:printFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormFieldsInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация для печатной формы.
+Игнорируется при приёме</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="recipientName" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Наименование получателя</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="claimsCorrespondenceNoticeType">
+		<xs:annotation>
+			<xs:documentation>Тип: Уведомление в рамках претензионной переписки, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refusalUuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа решения об одностороннем отказе от исполнения контракта (решение может быть сформировано как заказчиком, так и поставщиком), на основании которого сформировано уведомление в рамках претензионной переписки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentNoticeUuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор родительского документа уведомления в рамках претензионной переписки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="regNumber" type="base:contractRegNumType">
+							<xs:annotation>
+								<xs:documentation>Реестровый номер контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="participantInfo" type="cmn:participantURType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Поставщик. Игнорируется при приеме, заполняется автоматически на основании реестрового номера контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docType" type="cmn:nsiURDocTypesRef" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид уведомления. Игнорируется при приеме, заполняется автоматически значением "Уведомление претензионной переписки" на основании справочника "Типы документов одностороннего отказа и претензионной переписки по результатам электронных процедур" (nsiURDocTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы уведомления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormInfo" type="cmn:printFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="contractProcedureUnilateralRefusalCancelType">
+		<xs:annotation>
+			<xs:documentation>Тип: Извещение об отмене решения об одностороннем отказе от исполнения контракта, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refusalUuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа реешения об одностороннем отказе от исполнения контракта, на основании которого сформировано уведомление в рамках претензионной переписки, сформированное заказчиком</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="regNumber" type="base:contractRegNumType">
+							<xs:annotation>
+								<xs:documentation>Реестровый номер контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="participantInfo" type="cmn:participantURType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Поставщик. Игнорируется при приеме, заполняется автоматически на основании реестрового номера контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docType" type="cmn:nsiURDocTypesRef" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид уведомления. Игнорируется при приеме, заполняется автоматически значением "Извещение об отмене решения об одностороннем отказе от исполнения контракта" на основании справочника "Типы документов одностороннего отказа и претензионной переписки по результатам электронных процедур" (nsiURDocTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cancelDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Дата принятия решения об отмене</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="noticeAttachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уведомление об устранении причины одностороннего отказа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы извещения об отмене решения об одностороннем отказе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormInfo" type="cmn:printFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormFieldsInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация для печатной формы.
+Игнорируется при приёме</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="recipientName" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Наименование получателя</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="noticeNum" type="base:text100Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Номер уведомления</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="parContractProcedureUnilateralRefusalType">
+		<xs:annotation>
+			<xs:documentation>Тип: Решение об одностороннем отказе от исполнения контракта, сформированное поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lkpUuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЛКП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЕИС.
+Не заполняется при подписании поставщиком. Заполняется при размещении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="regNumber" type="base:contractRegNumType">
+							<xs:annotation>
+								<xs:documentation>Реестровый номер контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="participantInfo" type="cmn:participantURType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Поставщик. Игнорируется при приеме, заполняется автоматически на основании реестрового номера контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docType" type="cmn:nsiURDocTypesRef" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид уведомления. Игнорируется при приеме, заполняется автоматически значением "Решение об одностороннем отказе" на основании справочника "Типы документов одностороннего отказа и претензионной переписки по результатам электронных процедур" (nsiURDocTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="noticeNum" type="base:text100Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Номер уведомления</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="estimatedEffectiveDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Предполагаемая дата вступления решения в силу</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="terminationReason" type="base:text2000Type">
+							<xs:annotation>
+								<xs:documentation>Причина расторжения контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы решения об одностороннем отказе </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parPrintFormInfo" type="cmn:extPrintFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа, подписанного поставщиком.
+При передаче заполняется поле "Содержимое файла электронного документа" (content)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormFieldsInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация для печатной формы.
+Игнорируется при приёме</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="recipientName" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Наименование получателя</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="parClaimsCorrespondenceNoticeType">
+		<xs:annotation>
+			<xs:documentation>Тип: Уведомление в рамках претензионной переписки, сформированное поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lkpUuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЛКП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЕИС.
+Не заполняется при подписании поставщиком. Заполняется при размещении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refusalLkpUuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа решения об одностороннем отказе от исполнения контракта (решение может быть сформировано как заказчиком, так и поставщиком), на основании которого сформировано уведомление в рамках претензионной переписки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentNoticeLkpUuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор родительского документа уведомления в рамках претензионной переписки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="regNumber" type="base:contractRegNumType">
+							<xs:annotation>
+								<xs:documentation>Реестровый номер контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="participantInfo" type="cmn:participantURType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Поставщик. Игнорируется при приеме, заполняется автоматически на основании реестрового номера контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docType" type="cmn:nsiURDocTypesRef" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид уведомления. Игнорируется при приеме, заполняется автоматически значением "Уведомление претензионной переписки" на основании справочника "Типы документов одностороннего отказа и претензионной переписки по результатам электронных процедур" (nsiURDocTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы уведомления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parPrintFormInfo" type="cmn:extPrintFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа, подписанного поставщиком.
+При передаче заполняется поле "Содержимое файла электронного документа" (content)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="parContractProcedureUnilateralRefusalCancelType">
+		<xs:annotation>
+			<xs:documentation>Тип: Извещение об отмене решения об одностороннем отказе от исполнения контракта, сформированное поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lkpUuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЛКП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uuid" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа в ЕИС.
+Не заполняется при подписании поставщиком. Заполняется при размещении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refusalLkpUuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа реешения об одностороннем отказе от исполнения контракта, сформированное поставщиком, на основании которого сформировано извещение об отмене решения об одностороннем отказе от исполнения контракта, сформированное поставщиком</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="regNumber" type="base:contractRegNumType">
+							<xs:annotation>
+								<xs:documentation>Реестровый номер контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="participantInfo" type="cmn:participantURType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Поставщик. Игнорируется при приеме, заполняется автоматически на основании реестрового номера контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docType" type="cmn:nsiURDocTypesRef" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид уведомления. Игнорируется при приеме, заполняется автоматически значением "Извещение об отмене решения об одностороннем отказе от исполнения контракта" на основании справочника "Типы документов одностороннего отказа и претензионной переписки по результатам электронных процедур" (nsiURDocTypes)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cancelDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Дата принятия решения об отмене</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="noticeAttachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уведомление об устранении причины одностороннего отказа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы извещения об отмене решения об одностороннем отказе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parPrintFormInfo" type="cmn:extPrintFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа, подписанного поставщиком.
+При передаче заполняется поле "Содержимое файла электронного документа" (content)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormFieldsInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация для печатной формы.
+Игнорируется при приёме</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="recipientName" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Наименование получателя</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="noticeNum" type="base:text100Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Номер уведомления</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
