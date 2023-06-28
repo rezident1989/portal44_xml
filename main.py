@@ -1,7 +1,12 @@
 import datetime
-from random import randint
 import xml.etree.ElementTree as ET
 import re
+from random import randint
+
+ns = {'ns1': 'http://zakupki.gov.ru/oos/integration/1',
+      'ns2': "http://zakupki.gov.ru/oos/types/1",
+      'ns3': "http://zakupki.gov.ru/oos/TPtypes/1"
+      }
 
 
 def open_xml(path):
@@ -11,7 +16,7 @@ def open_xml(path):
 
 
 def create_xml(tree):
-    """Создает xml_bag-файл"""
+    """Создает xml-файл"""
     name_file = re.findall(r'[}]\w+', tree.getroot()[0].tag)
     a = "".join(name_file).replace('}', '')
     tree.write(
@@ -19,120 +24,118 @@ def create_xml(tree):
         xml_declaration=True)
 
 
-def confirmation(tree_template, tree_outgoing):
-    """Меняет текст тегов в дереве шаблона на текст тегов из дерева исходящего файла"""
-    ns = {'integration': 'http://zakupki.gov.ru/oos/integration/1',
-          'types': "http://zakupki.gov.ru/oos/types/1"
-          }
-    tag_list = []
-
-    id_tag = tree_template.find('.//integration:id', ns)
-    id_tag.text = id_tag.text[:-4] + str(randint(1000, 9999))
-    tag_list.append(id_tag)
-    # глобальный идентификатор информационного пакета от ЕИС
-
-    loadId_tag = tree_template.find('.//types:loadId', ns)
-    loadId_tag.text = str(randint(10000000, 99999999))
-    tag_list.append(loadId_tag)
-    # номер текущей сессии с ЕИС
-
-    refId_tag = tree_template.find('.//types:refId', ns)
-    refId_tag.text = tree_outgoing.find('.//integration:id', ns).text
-    tag_list.append(refId_tag)
-    # глобальный идентификатор информационного пакета от ИМЦ
-
-    print('\nДобавлены следующие теги:')
-    for i in tag_list:
-        print(i.tag, '\t', i.text)
-
-    return tree_template
-
-
-def tender_plan_2020(tree_template, tree_outgoing):
+def confirm(outgoing_xml):
     """Меняет текст тегов в дереве шаблона на текст тегов из дерева исходящего файла"""
 
-    ns = {'TPtypes': 'http://zakupki.gov.ru/oos/TPtypes/1',
-          'integration': 'http://zakupki.gov.ru/oos/integration/1'
-          }
-    tag_list = []
+    # Шаблон пакета
+    template = ET.ElementTree(file="templates/confirmation.xml")
 
-    id_tag = tree_template.find('.//TPtypes:id', ns)
-    id_tag.text = id_tag.text[:-4] + str(randint(1000, 9999))
-    tag_list.append(id_tag)
-    # идентификатор ревизии плана-графика от ЕИС
+    # Глобальный идентификатор информационного пакета. ЕИС
+    template.find('.//ns1:id', ns).text = template.find('.//ns1:id', ns).text[:-4] + str(randint(1000, 9999))
 
-    externalId_tag = tree_template.find('.//TPtypes:externalId', ns)
-    externalId_tag.text = tree_outgoing.find('.//TPtypes:externalId', ns).text
-    tag_list.append(externalId_tag)
-    # внешний идентификатор плана-графика от ИМЦ
+    # Номер текущей сессии. ЕИС
+    template.find('.//ns2:loadId', ns).text = str(randint(10000000, 99999999))
 
-    planNumber_tag = tree_template.find('.//TPtypes:planNumber', ns)
-    planNumber_tag.text = tree_outgoing.find('.//TPtypes:planNumber', ns).text
-    tag_list.append(planNumber_tag)
-    # реестровый номер плана-графика от ИМЦ
+    # Глобальный идентификатор информационного пакета. ИМЦ
+    template.find('.//ns2:refId', ns).text = outgoing_xml.find('.//ns1:id', ns).text
 
-    versionNumber_tag = tree_template.find('.//TPtypes:versionNumber', ns)
-    versionNumber_tag.text = tree_outgoing.find('.//TPtypes:versionNumber', ns).text
-    tag_list.append(versionNumber_tag)
-    # номер версии плана-графика от ИМЦ
+    return template
 
-    confirmDate_tag = tree_template.find('.//TPtypes:confirmDate', ns)
-    confirmDate_tag.text = tree_outgoing.find('.//integration:createDateTime', ns).text
-    tag_list.append(confirmDate_tag)
-    # дата утверждения версии плана-графика от ИМЦ
 
-    publishDate_tag = tree_template.find('.//TPtypes:publishDate', ns)
-    publishDate_tag.text = tree_outgoing.find('.//integration:createDateTime', ns).text
-    tag_list.append(publishDate_tag)
-    # дата размещения версии плана-графика от ИМЦ
+def tender_plan_2020(outgoing_xml):
+    """Меняет текст тегов в дереве шаблона на текст тегов из дерева исходящего файла"""
 
-    positionNumber_tag = tree_template.find('.//TPtypes:commonInfo//TPtypes:positionNumber', ns)
-    positionNumber_tag.text = positionNumber_tag.text[:-4] + str(randint(1000, 9999))
-    tag_list.append(positionNumber_tag)
-    # реестровый номер ПОЗИЦИИ в плане-графике от ЕИС
+    template = ET.ElementTree(file="templates/tender_plan_2020.xml")
 
-    extNumber_tag = tree_template.find('.//TPtypes:commonInfo//TPtypes:extNumber', ns)
-    extNumber_tag.text = tree_outgoing.find('.//TPtypes:commonInfo//TPtypes:extNumber', ns).text
-    tag_list.append(extNumber_tag)
-    # внешний номер ПОЗИЦИИ плана-графика от ИМЦ
+    # Идентификатор ревизии плана-графика. ЕИС
+    template.find('.//ns3:id', ns).text = template.find('.//ns3:id', ns).text[:-4] + str(randint(1000, 9999))
 
-    IKZ_tag = tree_template.find('.//TPtypes:commonInfo//TPtypes:IKZ', ns)
+    # Внешний идентификатор плана-графика. ИМЦ
+    template.find('.//ns3:externalId', ns).text = outgoing_xml.find('.//ns3:externalId', ns).text
+
+    # Реестровый номер плана-графика. ИМЦ
     try:
-        IKZ_tag.text = tree_outgoing.find('.//TPtypes:commonInfo//TPtypes:IKZ', ns).text
-        tag_list.append(IKZ_tag)
+        template.find('.//ns3:planNumber', ns).text = outgoing_xml.find('.//ns3:planNumber', ns).text
     except AttributeError:
-        print('\nТэг {IKZ_tag} удален, так как не найден во входящем'.format(IKZ_tag=IKZ_tag.tag))
-        all_tag = tree_template.find('.//TPtypes:position//TPtypes:commonInfo', ns)
-        all_tag.remove(IKZ_tag)
-    # идентификационный код закупки ПОЗИЦИИ плана-графика от ИМЦ
+        template.find('.//ns3:planNumber', ns).text = template.find('.//ns3:planNumber', ns).text[:-4] + str(
+            randint(1000, 9999))
 
-    publishYear_tag = tree_template.find('.//TPtypes:commonInfo//TPtypes:publishYear', ns)
-    publishYear_tag.text = tree_outgoing.find('.//TPtypes:commonInfo//TPtypes:publishYear', ns).text
-    tag_list.append(publishYear_tag)
-    # планируемый год размещения ПОЗИЦИИ плана-графика от ИМЦ
+    # Номер версии плана-графика. ИМЦ
+    template.find('.//ns3:versionNumber', ns).text = outgoing_xml.find('.//ns3:versionNumber', ns).text
 
-    IKU_tag = tree_template.find('.//TPtypes:commonInfo//TPtypes:IKU', ns)
-    IKU_tag.text = tree_outgoing.find('.//TPtypes:commonInfo//TPtypes:IKU', ns).text
-    tag_list.append(IKU_tag)
-    # Идентификационный код организации-владельца от ИМЦ
+    # Дата утверждения версии плана-графика. ИМЦ
+    template.find('.//ns3:confirmDate', ns).text = outgoing_xml.find('.//ns1:createDateTime', ns).text
 
-    purchaseNumber_tag = tree_template.find('.//TPtypes:commonInfo//TPtypes:purchaseNumber', ns)
-    purchaseNumber_tag.text = tree_outgoing.find('.//TPtypes:commonInfo//TPtypes:purchaseNumber', ns).text
-    tag_list.append(purchaseNumber_tag)
-    # Идентификационный код организации-владельца от ИМЦ
+    # Дата размещения версии плана-графика. ИМЦ
+    template.find('.//ns3:publishDate', ns).text = outgoing_xml.find('.//ns1:createDateTime', ns).text
 
-    print('\nДобавлены следующие теги:')
-    for i in tag_list:
-        print(i.tag, '\t', i.text)
+    count_position = len(outgoing_xml.findall('.//ns3:position', ns))
+    if count_position > 0:
+        for i in range(count_position):
 
-    return tree_templ
+            # Реестровый номер ПОЗИЦИИ в плане-графике. ЕИС
+            template.findall('.//ns3:commonInfo//ns3:positionNumber', ns)[i].text = template.findall(
+                './/ns3:commonInfo//ns3:positionNumber', ns)[i].text[:-4] + str(randint(1000, 9999))
+
+            # Внешний номер ПОЗИЦИИ плана-графика. ИМЦ
+            template.findall('.//ns3:commonInfo//ns3:extNumber', ns)[i].text = outgoing_xml.findall(
+                './/ns3:commonInfo//ns3:extNumber', ns)[i].text
+
+            # Идентификационный код закупки ПОЗИЦИИ плана-графика. ИМЦ
+            try:
+                template.findall('.//ns3:commonInfo//ns3:IKZ', ns)[i].text = outgoing_xml.findall(
+                    './/ns3:commonInfo//ns3:IKZ', ns)[i].text
+            except (AttributeError, IndexError):
+                pass
+
+            # Планируемый год размещения ПОЗИЦИИ плана-графика. ИМЦ
+            template.findall('.//ns3:commonInfo//ns3:publishYear', ns)[i].text = outgoing_xml.findall(
+                './/ns3:commonInfo//ns3:publishYear', ns)[i].text
+
+            # Идентификационный код организации-владельца. ИМЦ
+            template.findall(f'.//ns3:commonInfo//ns3:IKU', ns)[i].text = outgoing_xml.findall(
+                './/ns3:commonInfo//ns3:IKU', ns)[i].text
+
+            # Номер закупки. ИМЦ
+            template.findall(f'.//ns3:commonInfo//ns3:purchaseNumber', ns)[i].text = outgoing_xml.findall(
+                './/ns3:commonInfo//ns3:purchaseNumber', ns)[i].text
+
+    count_special_position = len(outgoing_xml.findall('.//ns3:specialPurchasePosition', ns))
+    if count_position > 0:
+        for i in range(count_special_position):
+
+            # Реестровый номер ПОЗИЦИИ в плане-графике. ЕИС
+            template.findall('.//ns3:specialPurchasePosition//ns3:positionNumber', ns)[i].text = template.findall(
+                './/ns3:specialPurchasePosition//ns3:positionNumber', ns)[i].text[:-4] + str(randint(1000, 9999))
+
+            # Внешний номер ПОЗИЦИИ плана-графика. ИМЦ
+            template.findall('.//ns3:specialPurchasePosition//ns3:extNumber', ns)[i].text = outgoing_xml.findall(
+                './/ns3:specialPurchasePosition//ns3:extNumber', ns)[i].text
+
+            # Идентификационный код закупки ПОЗИЦИИ плана-графика. ИМЦ
+            try:
+                template.findall('.//ns3:specialPurchasePosition//ns3:IKZ', ns)[i].text = outgoing_xml.findall(
+                    './/ns3:specialPurchasePosition//ns3:IKZ', ns)[i].text
+            except (AttributeError, IndexError):
+                pass
+
+            # Планируемый год размещения ПОЗИЦИИ плана-графика. ИМЦ
+            template.findall('.//ns3:specialPurchasePosition//ns3:publishYear', ns)[i].text = outgoing_xml.findall(
+                './/ns3:specialPurchasePosition//ns3:publishYear', ns)[i].text
+
+            # Идентификационный код организации-владельца. ИМЦ
+            template.findall(f'.//ns3:specialPurchasePosition//ns3:IKU', ns)[i].text = outgoing_xml.findall(
+                './/ns3:specialPurchasePosition//ns3:IKU', ns)[i].text
+
+            # Номер закупки. ИМЦ
+            template.findall(f'.//ns3:specialPurchasePosition//ns3:purchaseNumber', ns)[i].text = outgoing_xml.findall(
+                './/ns3:specialPurchasePosition//ns3:purchaseNumber', ns)[i].text
+
+    return template
 
 
 if __name__ == '__main__':
-    tree_out = open_xml('incoming/14433401_xml.xml')
 
-    tree_templ = open_xml('templates/confirmation.xml')
-    create_xml(confirmation(tree_templ, tree_out))
-
-    tree_templ = open_xml('templates/tender_plan_2020.xml')
-    create_xml(tender_plan_2020(tree_templ, tree_out))
+    file_path = 'incoming/14433406_xml.xml'
+    create_xml(confirm(open_xml(file_path)))
+    create_xml(tender_plan_2020(open_xml(file_path)))

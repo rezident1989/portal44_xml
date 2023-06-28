@@ -613,3 +613,5 @@ $RECYCLE.BIN/
 
 # my rules
 .pytest_cache
+incoming/
+outgoing/
