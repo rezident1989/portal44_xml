@@ -1,3 +1,4 @@
+import copy
 import xml.etree.ElementTree as ET
 from random import randint
 from src.helper.namespace import namespace as ns
@@ -34,6 +35,10 @@ def tender_plan_2020(outgoing_xml):
     count_position = len(tree.findall('.//ns3:position', ns))
 
     if count_position > 0:
+
+        member = copy.deepcopy(tree.find(".//ns3:specialPurchasePosition", ns))
+        for i in range(count_position-1):
+            tree.find(".//ns3:specialPurchasePositions", ns).append(member)
 
         for i in range(count_position):
             template.findall('.//ns3:commonInfo/ns3:positionNumber', ns)[i].text = template.findall(
