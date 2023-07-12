@@ -4,7 +4,7 @@ from src.helper.namespace import namespace as ns
 from src.helper.help_func import create_xml, open_xml
 
 
-def confirmation(outgoing_xml):
+def confirm(outgoing_xml):
     """
     Подтверждение
     id - Глобальный идентификатор информационного пакета. от ЕИС
@@ -13,7 +13,7 @@ def confirmation(outgoing_xml):
     """
 
     tree = open_xml(outgoing_xml)
-    template = ET.ElementTree(file="templates/confirmation.xml")
+    template = ET.ElementTree(file="templates/confirm.xml")
 
     template.find('.//ns1:id', ns).text = template.find('.//ns1:id', ns).text[:-4] + str(randint(1000, 9999))
     template.find('.//ns2:loadId', ns).text = str(randint(10000000, 99999999))
