@@ -32,13 +32,12 @@ def tender_plan_2020(outgoing_xml):
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
     template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
-    count_position = len(tree.findall('.//ns3:position', ns))
+    count_position = len(tree.findall('.//ns3:positions/ns3:position', ns))
 
     if count_position > 0:
 
-        member = copy.deepcopy(tree.find(".//ns3:specialPurchasePosition", ns))
-        for i in range(count_position-1):
-            tree.find(".//ns3:specialPurchasePositions", ns).append(member)
+        member = copy.deepcopy(template.find(".//ns4:tenderPlan2020/ns3:positions/ns3:position", ns))
+        [template.find(".//ns3:positions", ns).append(member) for i in range(count_position)]
 
         for i in range(count_position):
             template.findall('.//ns3:commonInfo/ns3:positionNumber', ns)[i].text = template.findall(
@@ -50,8 +49,8 @@ def tender_plan_2020(outgoing_xml):
             try:
                 template.findall('.//ns3:commonInfo/ns3:IKZ', ns)[i].text = tree.findall(
                     './/ns3:commonInfo/ns3:IKZ', ns)[i].text
-            except AttributeError:
-                template.findall('.//ns3:commonInfo/ns3:IKZ', ns)[i].text = tree.findall(
+            except (AttributeError, IndexError):
+                template.findall('.//ns3:commonInfo/ns3:IKZ', ns)[i].text = template.findall(
                     './/ns3:commonInfo/ns3:IKZ', ns)[i].text[:-4] + str(randint(1000, 9999))
 
             template.findall('.//ns3:commonInfo/ns3:publishYear', ns)[i].text = tree.findall(
@@ -67,8 +66,16 @@ def tender_plan_2020(outgoing_xml):
             template.findall(f'.//ns3:commonInfo/ns3:purchaseNumber', ns)[i].text = tree.findall(
                 './/ns3:commonInfo/ns3:purchaseNumber', ns)[i].text
 
+    else:
+
+        member = template.find(".//ns4:tenderPlan2020", ns)
+        member.remove(template.find(".//ns3:positions", ns))
+
     count_special_position = len(tree.findall('.//ns3:specialPurchasePosition', ns))
     if count_special_position > 0:
+
+        member = copy.deepcopy(template.find(".//ns3:specialPurchasePosition", ns))
+        [template.find(".//ns3:specialPurchasePositions", ns).append(member) for i in range(count_special_position - 1)]
 
         for i in range(count_special_position):
 
@@ -98,5 +105,9 @@ def tender_plan_2020(outgoing_xml):
 
             template.findall(f'.//ns3:specialPurchasePosition/ns3:purchaseNumber', ns)[i].text = tree.findall(
                 './/ns3:specialPurchasePosition/ns3:purchaseNumber', ns)[i].text
+    else:
+
+        member = template.find(".//ns4:tenderPlan2020", ns)
+        member.remove(template.find(".//ns3:specialPurchasePositions", ns))
 
     create_xml(template)
