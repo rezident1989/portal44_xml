@@ -24,12 +24,28 @@ def tender_plan_2020(outgoing_xml):
     """
 
     tree = open_xml(outgoing_xml)
-    template = ET.ElementTree(file="templates/tenderPlan2020.xml")
+    template = ET.ElementTree(file="templates/epNotificationEF.xml")
 
-    template.find('.//ns3:id', ns).text = template.find('.//ns3:id', ns).text[:-4] + str(randint(1000, 9999))
-    template.find('.//ns3:externalId', ns).text = tree.find('.//ns3:externalId', ns).text
-    template.find('.//ns3:planNumber', ns).text = tree.find('.//ns3:planNumber', ns).text
-    template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
+    template.find('.//ns5:id', ns).text = template.find('.//ns5:id', ns).text[:-4] + str(randint(1000, 9999))
+    template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
+
+    template.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text = template.find(
+        './/ns5:commonInfo/ns5:purchaseNumber', ns).text[:-4] + str(randint(1000, 9999))
+
+    template.find('.//ns5:plannedPublishDate', ns).text = tree.find('.//ns5:plannedPublishDate', ns).text
+    template.find('.//ns5:publishDTInEIS', ns).text = 0
+
+
+
+
+
+
+
+
+
+
+
+    template.find('//ns5:docNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
     template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
     count_position = len(tree.findall('.//ns3:positions/ns3:position', ns))
