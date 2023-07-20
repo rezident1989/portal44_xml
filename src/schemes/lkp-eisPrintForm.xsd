@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- LKP-EIS_PRINTFORM Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- LKP-EIS_PRINTFORM Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/lkp-eis/printform/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" xmlns:ur="http://zakupki.gov.ru/oos/URTypes/1" xmlns:ea="http://zakupki.gov.ru/oos/EATypes/1" targetNamespace="http://zakupki.gov.ru/lkp-eis/printform/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/KOTypes/1" schemaLocation="IntegrationKOTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/URTypes/1" schemaLocation="IntegrationURTypes.xsd"/>
@@ -13,6 +13,17 @@
 	<xs:element name="parElectronicComplaintCancel" type="ko:parElectronicComplaintCancelType">
 		<xs:annotation>
 			<xs:documentation>Информация об отзыве электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--Электронное обжалование (сокрытое)-->
+	<xs:element name="closedParElectronicComplaint" type="ko:closedParElectronicComplaintType">
+		<xs:annotation>
+			<xs:documentation>Информация об сокрытой электронной жалобе, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintCancel" type="ko:closedParElectronicComplaintCancelType">
+		<xs:annotation>
+			<xs:documentation>Информация об отзыве сокрытой электронной жалобы, сформированной в ЛКП</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<!--Односторонний отказ-->

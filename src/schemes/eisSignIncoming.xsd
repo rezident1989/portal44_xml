@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS EIS_SIGN_INCOMING Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- EIS EIS_SIGN_INCOMING Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/signIncoming/1" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:si="http://zakupki.gov.ru/oos/signIncoming/1" targetNamespace="http://zakupki.gov.ru/oos/signIncoming/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>

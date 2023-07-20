@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS FCS_INTEGRATION Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- EIS FCS_INTEGRATION Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/integration/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:pp615="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:ep="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:cp="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:tp="http://zakupki.gov.ru/oos/TPtypes/1" xmlns:sm="http://zakupki.gov.ru/oos/SMTypes/1" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" xmlns:ur="http://zakupki.gov.ru/oos/URTypes/1" targetNamespace="http://zakupki.gov.ru/oos/integration/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>
@@ -428,6 +428,101 @@
 		<xs:annotation>
 			<xs:documentation>Пакет данных:
 Информация о передаче жалобы по подведомственности / ведомственной принадлежности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintTransferType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedCheckResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Результат контроля (сокрытый)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_checkResultType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedCheckResultCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отмене сокрытого результата контроля</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_checkResultCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedComplaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по сокрытой жалобе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedComplaintCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отзыве сокрытой жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_complaintCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedComplaintTransfer">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация о передаче сокрытой жалобы по подведомственности / ведомственной принадлежности</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
@@ -2297,6 +2392,62 @@
 	<xs:element name="unplannedCheckTenderSusp">
 		<xs:annotation>
 			<xs:documentation>Пакет данных: Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта по внеплановой проверке</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedCheckTenderSuspType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedUnplannedCheck">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по сокрытой внеплановой проверке</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedCheckType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedUnplannedCheckCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отмене проведения внеплановой проверки по сокрытой жалобе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="oos:zfcs_unplannedCheckCancelType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedUnplannedCheckTenderSusp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта по сокрытой внеплановой проверке</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
@@ -4571,6 +4722,34 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="closedParElectronicComplaintAccept">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о принятии к рассмотрению сокрытой электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintAcceptType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отказе в рассмотрении сокрытой электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="as2PacketType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 	<!--Реестр документов исполнения контракта (РДИК)-->
 	<xs:element name="contractProcedureUnilateralRefusal">
 		<xs:annotation>
@@ -4605,7 +4784,7 @@
 	</xs:annotation>
 	<xs:element name="cpElectronicContract">
 		<xs:annotation>
-			<xs:documentation>Электронный контракт. Не применяется, добавлено на развитие</xs:documentation>
+			<xs:documentation>Электронный контракт</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>

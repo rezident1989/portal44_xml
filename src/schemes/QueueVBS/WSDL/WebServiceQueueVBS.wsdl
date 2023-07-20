@@ -17,7 +17,7 @@
 	<wsdl:message name="ackResponse">
 		<wsdl:part name="ackResponse" element="q:ackResponse"/>
 	</wsdl:message>
-	<wsdl:portType name="GetDataPortType">
+	<wsdl:portType name="QueueVbsFacade">
 		<wsdl:operation name="getObjects">
 			<wsdl:input name="getObjectsRequest" message="q:getObjectsRequest"/>
 			<wsdl:output name="getObjectsResponse" message="q:getObjectsResponse"/>
@@ -27,7 +27,7 @@
 			<wsdl:output name="ackResponse" message="q:ackResponse"/>
 		</wsdl:operation>
 	</wsdl:portType>
-	<wsdl:binding name="GetDataPortTypeSoap11" type="q:GetDataPortType">
+	<wsdl:binding name="QueueVbsFacadeBinding" type="q:QueueVbsFacade">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<wsdl:operation name="getObjects">
 			<soap:operation soapAction="http://zakupki.gov.ru/fz44/queue/ws/get-object-info"/>
@@ -48,8 +48,8 @@
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
-	<wsdl:service name="GetDataPortTypeService">
-		<wsdl:port name="GetDataPortTypeSoap11" binding="q:GetDataPortTypeSoap11">
+	<wsdl:service name="QueueVbsFacadeService">
+		<wsdl:port name="QueueVbsFacadePort" binding="q:QueueVbsFacadeBinding">
 			<soap:address location="${serviceLocation}"/>
 		</wsdl:port>
 	</wsdl:service>

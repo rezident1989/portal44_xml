@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS FCS_EXTEGRATION Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- EIS FCS_EXTEGRATION Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/extegration/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:pp615="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:ep="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:cp="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:tp="http://zakupki.gov.ru/oos/TPtypes/1" xmlns:ur="http://zakupki.gov.ru/oos/URTypes/1" targetNamespace="http://zakupki.gov.ru/oos/extegration/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/pprf615types/1" schemaLocation="Integration615Types.xsd"/>
@@ -758,7 +758,20 @@
 	</xs:annotation>
 	<xs:element name="cpElectronicContract" type="cp:electronicContractType">
 		<xs:annotation>
-			<xs:documentation>Электронный контракт. Не применяется, добавлено на развитие</xs:documentation>
+			<xs:documentation>Электронный контракт</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Сервис проверки платежных данных</xs:documentation>
+	</xs:annotation>
+	<xs:element name="controlPaymentDetailsRequest" type="cp:controlPaymentDetailsRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос проведения проверки платежных данных</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="controlPaymentDetailsResponse" type="cp:controlPaymentDetailsResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос проведения проверки платежных данных</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

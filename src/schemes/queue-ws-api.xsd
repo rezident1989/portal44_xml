@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS queue-ws-api Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- EIS queue-ws-api Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns:q="http://zakupki.gov.ru/fz44/queue/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/queue/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:element name="getObjectRequest">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- BASE_TYPES Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- BASE_TYPES Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/base/1" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/oos/base/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<!--Ссылки на НСИ-->
 	<!--Ссылки на общие справочники-->
@@ -267,6 +267,31 @@
 					<xs:documentation>Номер версии позиции.
 При приеме первой версии документа игнорируется при приеме, заполняется при передаче актуальным номером версии позиции.
 При приеме последующих версий допускается указание актуальной версии позиции КТРУ, либо версии из предыдущей размещенной версии документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VATRef">
+		<xs:annotation>
+			<xs:documentation>Ссылка на справочник: Ставки НДС</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VATCode" type="text10Type">
+				<xs:annotation>
+					<xs:documentation>Код ставки НДС.
+
+Допустимые значения:
+R20 - 20%;
+R18 - 18%;
+R10 - 10%;
+R0 - 0%;
+RN - Без НДС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VATName" type="text500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование ставки НДС в справочнике "Ставки НДС" (nsiVAT).
+Игнорируется при приеме, при передаче заполняется значением из справочника</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -636,6 +661,30 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="supplierStatusRef">
+		<xs:annotation>
+			<xs:documentation>Ссылка на справочник: Наименование статуса поставщика</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="name" type="text500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование статуса поставщика.
+Игнорируется при приеме. При передаче заполняется значением из справочника "Наименование статуса поставщика" (nsiSupplierStatus)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="docRejectReasonRef">
 		<xs:annotation>
 			<xs:documentation>Ссылка на справочник: Причины для отказа в предоставлении документации о закупке</xs:documentation>
@@ -729,7 +778,7 @@
 			<xs:documentation>Тип: Ссылка на справочник "Обжалуемые действия"</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="code" type="base:text10Type">
+			<xs:element name="code" type="base:text15Type">
 				<xs:annotation>
 					<xs:documentation>Код основания</xs:documentation>
 				</xs:annotation>
@@ -1053,7 +1102,7 @@ NOT_PROV_CHARS – Не предусмотрено наличие или отс�
 		<xs:annotation>
 			<xs:documentation>Тип: Текущая версия схем</xs:documentation>
 		</xs:annotation>
-		<xs:attribute name="current" type="base:schemeVersionType" fixed="13.1"/>
+		<xs:attribute name="current" type="base:schemeVersionType" fixed="13.2"/>
 	</xs:complexType>
 	<xs:complexType name="minRusRejectReasonRef">
 		<xs:annotation>
@@ -1073,6 +1122,14 @@ NOT_PROV_CHARS – Не предусмотрено наличие или отс�
 		</xs:sequence>
 	</xs:complexType>
 	<!--Простые типы-->
+	<xs:simpleType name="accountType">
+		<xs:annotation>
+			<xs:documentation>Тип: Расчетный счет</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="abandonedReasonCode">
 		<xs:annotation>
 			<xs:documentation>Тип: Код основания признания торгов несостоявшимися</xs:documentation>
@@ -1413,7 +1470,8 @@ GP3Ch23St68 - подтверждение предоставления обесп
 			acceptedBO - Принятое бюджетное обязательство;
 			contractAcceptedBO - Принятое бюджетное обязательство и сведения о контракте;
 			contractProcedureAcceptedBO - Принятое бюджетное обязательство и сведения об исполнении (расторжении) контракта;
-			monetaryObligation - Денежное обязательство.
+			monetaryObligation - Денежное обязательство;
+			ESContractProject - Проект электронного контракта.
 		</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
@@ -1433,6 +1491,7 @@ GP3Ch23St68 - подтверждение предоставления обесп
 			<xs:enumeration value="contractAcceptedBO"/>
 			<xs:enumeration value="contractProcedureAcceptedBO"/>
 			<xs:enumeration value="monetaryObligation"/>
+			<xs:enumeration value="ESContractProject"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="corrAccountNumberType">
@@ -3409,6 +3468,7 @@ TC - Орган местного самоуправления и (или) гос
 			<xs:enumeration value="12.3"/>
 			<xs:enumeration value="13.0"/>
 			<xs:enumeration value="13.1"/>
+			<xs:enumeration value="13.2"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="serviceWorkCodeType">
@@ -3521,10 +3581,11 @@ RPGZ - реестр планов графиков с 2020 года</xs:documenta
 	</xs:simpleType>
 	<xs:simpleType name="subsystemDocStoreType">
 		<xs:annotation>
-			<xs:documentation>Тип: Перечисление подсистем ЕИС, документы которых присутствуют в хранилище данных</xs:documentation>
+			<xs:documentation>Тип: Перечисление подсистем ЕИС, документы которых присутствуют в хранилище документов (ХД)</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="RPGZ"/>
+			<xs:enumeration value="RGK"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="targetArticleType">
@@ -3550,6 +3611,24 @@ RPGZ - реестр планов графиков с 2020 года</xs:documenta
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:maxLength value="10"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="text15Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Текстовое поле 15 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="text19Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Текстовое поле 19 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="19"/>
 			<xs:minLength value="1"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -3766,6 +3845,15 @@ n-без НДС.</xs:documentation>
 			<xs:enumeration value="18"/>
 			<xs:enumeration value="20"/>
 			<xs:enumeration value="n"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VATRateValueType">
+		<xs:annotation>
+			<xs:documentation>Тип: Значение ставки НДС</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="10"/>
+			<xs:fractionDigits value="2"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="yearType">

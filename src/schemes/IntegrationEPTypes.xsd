@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS INTEGRATION_EP_TYPES Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- EIS INTEGRATION_EP_TYPES Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/oos/EPtypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/common/1" schemaLocation="CommonTypes.xsd"/>
@@ -4355,6 +4355,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																			<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
 																		</xs:annotation>
 																	</xs:element>
+																	<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																		<xs:annotation>
+																			<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
 																</xs:sequence>
 															</xs:extension>
 														</xs:complexContent>
@@ -4378,6 +4383,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																<xs:element name="quantityUndefined" type="xs:boolean" minOccurs="0">
 																	<xs:annotation>
 																		<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
 															</xs:sequence>
@@ -4881,6 +4891,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																			<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
 																		</xs:annotation>
 																	</xs:element>
+																	<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																		<xs:annotation>
+																			<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
 																</xs:sequence>
 															</xs:extension>
 														</xs:complexContent>
@@ -4904,6 +4919,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																<xs:element name="quantityUndefined" type="xs:boolean" minOccurs="0">
 																	<xs:annotation>
 																		<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
 															</xs:sequence>
@@ -5446,7 +5466,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																						<xs:documentation>Стоимостной критерий оценки</xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
-																				<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK1Type" minOccurs="0">
+																				<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK12020Type" minOccurs="0">
 																					<xs:annotation>
 																						<xs:documentation>Качественный (нестоимостной) критерий оценки</xs:documentation>
 																					</xs:annotation>
@@ -5497,7 +5517,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																												<xs:documentation>Стоимостной критерий оценки</xs:documentation>
 																											</xs:annotation>
 																										</xs:element>
-																										<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK3Type">
+																										<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK32020Type">
 																											<xs:annotation>
 																												<xs:documentation>Нестоимостной критерий оценки</xs:documentation>
 																											</xs:annotation>
@@ -5731,6 +5751,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																			<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
 																		</xs:annotation>
 																	</xs:element>
+																	<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																		<xs:annotation>
+																			<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
 																</xs:sequence>
 															</xs:extension>
 														</xs:complexContent>
@@ -5760,6 +5785,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																<xs:element name="quantityUndefined" type="xs:boolean" minOccurs="0">
 																	<xs:annotation>
 																		<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
 															</xs:sequence>
@@ -6295,6 +6325,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												<xs:annotation>
 													<xs:documentation>Тип объекта закупки.
 Игнорируется при приеме и устанавливается значение PRODUCT - товар</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
 												</xs:annotation>
 											</xs:element>
 										</xs:sequence>
@@ -6918,6 +6953,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																			<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
 																		</xs:annotation>
 																	</xs:element>
+																	<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																		<xs:annotation>
+																			<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
 																</xs:sequence>
 															</xs:extension>
 														</xs:complexContent>
@@ -6941,6 +6981,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																<xs:element name="quantityUndefined" type="xs:boolean" minOccurs="0">
 																	<xs:annotation>
 																		<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
 															</xs:sequence>
@@ -7471,6 +7516,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																			<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
 																		</xs:annotation>
 																	</xs:element>
+																	<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																		<xs:annotation>
+																			<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
 																</xs:sequence>
 															</xs:extension>
 														</xs:complexContent>
@@ -7494,6 +7544,11 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																<xs:element name="quantityUndefined" type="xs:boolean" minOccurs="0">
 																	<xs:annotation>
 																		<xs:documentation>Невозможно определить количество товара, объем подлежащих выполнению работ, оказанию услуг</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="isStructuredForm" type="xs:boolean" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>По закупке предусмотрена подача заявки в структурированном виде и заключение структурированного электронного контракта</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
 															</xs:sequence>
@@ -7904,7 +7959,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																							<xs:documentation>Стоимостной критерий оценки</xs:documentation>
 																						</xs:annotation>
 																					</xs:element>
-																					<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK1Type" minOccurs="0">
+																					<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK12020Type" minOccurs="0">
 																						<xs:annotation>
 																							<xs:documentation>Качественный (нестоимостной) критерий оценки</xs:documentation>
 																						</xs:annotation>
@@ -7956,7 +8011,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 																												<xs:documentation>Стоимостной критерий оценки</xs:documentation>
 																											</xs:annotation>
 																										</xs:element>
-																										<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK3Type">
+																										<xs:element name="qualitativeCriterionInfo" type="qualitativeCriterionProtocolOK32020Type">
 																											<xs:annotation>
 																												<xs:documentation>Нестоимостной критерий оценки</xs:documentation>
 																											</xs:annotation>
@@ -14771,6 +14826,11 @@ n - Без НДС</xs:documentation>
 																<xs:documentation>Страна производителя (nsiOKSM)</xs:documentation>
 															</xs:annotation>
 														</xs:element>
+														<xs:element name="manufacturerName" type="base:drugNameType">
+															<xs:annotation>
+																<xs:documentation>Наименование прозводителя</xs:documentation>
+															</xs:annotation>
+														</xs:element>
 													</xs:sequence>
 												</xs:complexType>
 											</xs:element>
@@ -15016,6 +15076,11 @@ n - Без НДС</xs:documentation>
 													<xs:element name="manufacturerOKSMInfo" type="base:OKSMRef">
 														<xs:annotation>
 															<xs:documentation>Страна производителя (nsiOKSM)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="manufacturerName" type="base:drugNameType">
+														<xs:annotation>
+															<xs:documentation>Наименование прозводителя</xs:documentation>
 														</xs:annotation>
 													</xs:element>
 												</xs:sequence>
@@ -15282,7 +15347,7 @@ n - Без НДС</xs:documentation>
 													<xs:documentation>Характеристики, которые сформированы участником закупки с использованием справочной информации (справочник Каталог товаров, работ, услуг (КТРУ) (nsiKTRU))</xs:documentation>
 												</xs:annotation>
 											</xs:element>
-											<xs:element name="notificationСharacteristicsUsingTextForm" type="manualProtocolCharacteristicWithSidsType" minOccurs="0" maxOccurs="unbounded">
+											<xs:element name="notificationCharacteristicsUsingTextForm" type="manualProtocolCharacteristicWithSidsType" minOccurs="0" maxOccurs="unbounded">
 												<xs:annotation>
 													<xs:documentation>Характеристики, которые имеют связь с характеристиками в текстовой форме в извещении (приглашении).
 
@@ -17366,6 +17431,63 @@ QF - Качественные, функциональные и экологич�
 			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="qualitativeCriterionProtocolOK12020Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Нестоимостной критерий оценки в протоколе рассмотрения и оценки первых частей заявок на участие в  ЭOK20</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="base:qualitativeCriterionCodeEnum" fixed="QF">
+				<xs:annotation>
+					<xs:documentation>Код критерия:
+QF - Качественные, функциональные и экологические характеристики объекта закупки.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valueInfo" type="criterionValueProtocolOK1Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Значимость критерия в процентах.
+
+Устарело, не применяется начиная с версии 13.2. Оставлено для обратной совместимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="criterionValueInfo" type="criterionValueType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Значимость критерия в процентах.
+
+Обязательно для заполнения, начиная с версии 13.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация о содержании и порядке оценки по критерию </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="indicatorsInfo">
+					<xs:annotation>
+						<xs:documentation>Критерий оценки с  показателями.
+
+Блок может быть заполнен в протоколе в случае, если в извещении заполнен соотвествующий блок notificationInfo/criteriaInfo/criterionInfo/qualitativeCriterionInfo/indicatorsInfo</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="indicatorInfo" type="indicatorProtocolOKType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Показатель критерия оценки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="criterionScoringInfo" type="criterionsScoringProtocolOKType">
+					<xs:annotation>
+						<xs:documentation>Критерий оценки без показателей.
+
+Блок может быть заполнен в протоколе в случае, если в извещении не заполнены ни блок notificationInfo/criteriaInfo/criterionInfo/qualitativeCriterionInfo/indicatorsInfo ни блок notificationInfo/criteriaInfo/criterionInfo/qualitativeCriterionInfo/criterionInfo</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="qualitativeCriterionProtocolOK2Type">
 		<xs:annotation>
 			<xs:documentation>Тип: Нестоимостной критерий оценки в протоколе рассмотрения и оценки вторых частей заявок на участие в ЭOK (открытый конкурс в электронной форме)</xs:documentation>
@@ -17454,6 +17576,64 @@ QO - Квалификация участников закупки, в том ч�
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="criterionScoringInfo" type="criterionsScoringProtocolOKType" minOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Критерий оценки без показателей.
+
+Блок может быть заполнен в протоколе в случае, если в извещении не заполнены ни блок notificationInfo/criteriaInfo/criterionInfo/qualitativeCriterionInfo/indicatorsInfo ни блок notificationInfo/criteriaInfo/criterionInfo/qualitativeCriterionInfo/criterionInfo</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="qualitativeCriterionProtocolOK32020Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Нестоимостной критерий оценки в итоговом протоколе в рамках проведения ЭOK20</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="base:qualitativeCriterionCodeEnum">
+				<xs:annotation>
+					<xs:documentation>Код критерия:
+QF - Качественные, функциональные и экологические характеристики объекта закупки.
+QO - Квалификация участников закупки, в том числе наличие у них финансовых ресурсов, на праве собственности или ином законном основании оборудования и других материальных ресурсов, опыта работы, связанного с предметом контракта, и деловой репутации, специалистов и иных работников определенного уровня квалификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valueInfo" type="criterionValueProtocolFinalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Значимость критерия в процентах.
+
+Устарело, не применяется начиная с версии 13.2. Оставлено для обратной совместимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="criterionValueInfo" type="criterionValueType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Значимость критерия в процентах.
+
+Обязательно для заполнения, начиная с версии 13.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="addInfo" type="base:text4000Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация о содержании и порядке оценки по критерию </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="indicatorsInfo">
+					<xs:annotation>
+						<xs:documentation>Критерий оценки с  показателями.
+
+Блок может быть заполнен в протоколе в случае, если в извещении заполнен соотвествующий блок notificationInfo/criteriaInfo/criterionInfo/qualitativeCriterionInfo/indicatorsInfo</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="indicatorInfo" type="indicatorProtocolOKType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Показатель критерия оценки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="criterionScoringInfo" type="criterionsScoringProtocolOKType">
 					<xs:annotation>
 						<xs:documentation>Критерий оценки без показателей.
 

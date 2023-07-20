@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS FCS_PRINTFORM Integration Scheme, version 13.1, create date 24.03.2023 -->
+<!-- EIS FCS_PRINTFORM Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/printform/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:pp615="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:cp="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:ep="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:tp="http://zakupki.gov.ru/oos/TPtypes/1" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" targetNamespace="http://zakupki.gov.ru/oos/printform/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>
@@ -1126,6 +1126,51 @@ PUBL - Размещено
 			<xs:documentation>Информация об отмене результата контроля для ИС ОВК</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="closedComplaint" type="oos:zfcs_complaintType">
+		<xs:annotation>
+			<xs:documentation>Информация по сокрытой жалобе для ИС КО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedComplaintCancel" type="oos:zfcs_complaintCancelType">
+		<xs:annotation>
+			<xs:documentation>Информация об отзыве сокрытой жалобы для ИС КО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedComplaintTransfer" type="oos:zfcs_complaintTransferType">
+		<xs:annotation>
+			<xs:documentation>Информация о передаче сокрытой жалобы по подведомственности / ведомственной принадлежности</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintAccept" type="ko:parElectronicComplaintAcceptType">
+		<xs:annotation>
+			<xs:documentation>Информация о принятии к рассмотрению сокрытой электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintRefusal" type="ko:parElectronicComplaintRefusalType">
+		<xs:annotation>
+			<xs:documentation>Информация об отказе в рассмотрении сокрытой электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedCheckResult" type="oos:zfcs_checkResultType">
+		<xs:annotation>
+			<xs:documentation>Результат контроля (сокрытого) для ИС КО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedCheckResultCancel" type="oos:zfcs_checkResultCancelType">
+		<xs:annotation>
+			<xs:documentation>Информация об отмене сокрытой результата контроля для ИС КО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedUnplannedCheck" type="oos:zfcs_unplannedCheckType">
+		<xs:annotation>
+			<xs:documentation>Информация по сокрытой внеплановой проверке для ИС КО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="closedUnplannedCheckCancel" type="oos:zfcs_unplannedCheckCancelType">
+		<xs:annotation>
+			<xs:documentation>Информация об отмене проведения  внеплановой проверки для ИС КО по сокрытой жалобе</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="contract">
 		<xs:annotation>
 			<xs:documentation>Информация о заключенном контракте</xs:documentation>
@@ -1583,6 +1628,11 @@ PUBL - Размещено
 	<xs:element name="nsiRMIS" type="oos:zfcs_nsiRMISType">
 		<xs:annotation>
 			<xs:documentation>Перечень информационных систем (для формирования печатной формы)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerConsentForRMIS" type="oos:zfcs_customerConsentForRMISType">
+		<xs:annotation>
+			<xs:documentation>Cогласие заказчика на предоставление РИС информации и документов (для формирования печатной формы)</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:group name="printFormClarificationRequestFields">
@@ -3037,7 +3087,7 @@ PUBL - Размещено.</xs:documentation>
 	</xs:annotation>
 	<xs:element name="cpElectronicContract" type="cp:electronicContractType">
 		<xs:annotation>
-			<xs:documentation>Электронный контракт. Не применяется, добавлено на развитие</xs:documentation>
+			<xs:documentation>Электронный контракт</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

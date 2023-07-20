@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS queue-vbs-ws-api Integration Scheme, version 13.1, create date 07.03.2023 -->
+<!-- EIS queue-vbs-ws-api Integration Scheme, version 13.2, create date 23.06.2023 -->
 <xs:schema xmlns="http://zakupki.gov.ru/fz44/queue-vbs/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/queue-vbs/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../BaseTypes.xsd"/>
 	<xs:element name="getObjectsRequest">
@@ -52,19 +52,19 @@
 									<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-							<xs:element name="orgzanizationsDocsInfo">
+							<xs:element name="organizationsDocsInfo">
 								<xs:annotation>
 									<xs:documentation>Документы организаций</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="orgzanizationDocsInfo" maxOccurs="unbounded">
+										<xs:element name="organizationDocsInfo" maxOccurs="unbounded">
 											<xs:annotation>
 												<xs:documentation>Документы организации</xs:documentation>
 											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="orgzanizationInfo" type="base:organizationRef">
+													<xs:element name="organizationInfo" type="base:organizationRef">
 														<xs:annotation>
 															<xs:documentation>Информация об организации</xs:documentation>
 														</xs:annotation>
@@ -356,11 +356,11 @@ zkrExecuted - Сведения об исполненной заявке на к�
 			<xs:enumeration value="moSentForVerification"/>
 			<xs:enumeration value="moRegistred"/>
 			<xs:enumeration value="moDeniedRegistration"/>
-			<xs:enumeration value="acfSentForVerification"/>
-			<xs:enumeration value="acfRegistred"/>
-			<xs:enumeration value="acfDeniedRegistration"/>
-			<xs:enumeration value="acfCanceled"/>
-			<xs:enumeration value="acfExecuted"/>
+			<xs:enumeration value="zkrSentForVerification"/>
+			<xs:enumeration value="zkrRegistred"/>
+			<xs:enumeration value="zkrDeniedRegistration"/>
+			<xs:enumeration value="zkrCanceled"/>
+			<xs:enumeration value="zkrExecuted"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>
