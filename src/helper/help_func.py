@@ -11,7 +11,10 @@ def open_xml(path):
 
 def create_xml(tree):
     """Создает xml-файл"""
-    name_file = re.findall(r'[}]\w+', tree.getroot()[0].tag)
+    if 'confirmation' in tree.getroot().tag:
+        name_file = re.findall(r'[}]\w+', tree.getroot().tag)
+    else:
+        name_file = re.findall(r'[}]\w+', tree.getroot()[0].tag)
     a = "".join(name_file).replace('}', '')
     tree.write(
         f'incoming/{datetime.datetime.now().strftime("%H.%M_%d.%m.%y_")}{a}.xml', encoding='utf-8',
