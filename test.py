@@ -15,3 +15,4 @@ print()
 print()
 [print(i) for i in outgoing]
 
+print('ПРивте Амалия')
