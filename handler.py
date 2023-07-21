@@ -7,7 +7,7 @@ from src.actions.contract import contract
 
 
 if __name__ == '__main__':
-    path_xml = 'outgoing/14433490_xml.xml'
+    path_xml = 'outgoing/15104615_xml.xml'
     validate_xsd(path_xml)
     file_xml = open_xml(path_xml)
 
