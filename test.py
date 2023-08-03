@@ -2,11 +2,11 @@ from src.helper.namespace import namespace as ns
 from src.helper.help_func import open_xml
 
 
-template_xml = open_xml('templates/epProtocolEF2020SubmitOffers.xml')
-outgoing_xml = open_xml('outgoing/14433504_xml извещение ЭА.xml')
+template_xml = open_xml('templates/contract.xml')
+outgoing_xml = open_xml('outgoing/14433491_xml.xml')
 
-template = template_xml.findall('.//ns5:commonInfo/ns5:purchaseNumber', ns)
-outgoing = outgoing_xml.findall('.//ns5:commonInfo/ns5:purchaseNumber', ns)
+template = template_xml.findall('.//ns4:contract/ns2:regNum', ns)
+outgoing = outgoing_xml.findall('.//ns1:data/ns2:regNum', ns)
 
 print(len(template))
 print(len(outgoing))
