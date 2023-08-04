@@ -20,10 +20,4 @@ print('test v.2')
 print('test v.3')
 print('test v.4')
 
-print(123)
 
-print(456)
-
-print(000)
-
-print(777)
