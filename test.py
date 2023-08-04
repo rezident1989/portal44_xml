@@ -23,3 +23,7 @@ print('test v.4')
 print(123)
 
 print(456)
+
+print(000)
+
+print(777)
