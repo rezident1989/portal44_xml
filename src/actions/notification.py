@@ -8,8 +8,7 @@ purchase_number = None
 
 
 def ep_notification_ef_2020(outgoing_xml):
-    """
-    """
+    """"""
     global purchase_number
 
     tree = open_xml(outgoing_xml)
@@ -36,10 +35,25 @@ def ep_notification_ef_2020(outgoing_xml):
     create_xml(template)
 
 
+def ep_protocol_ef_2020_submit_offers(outgoing_xml):
+    """"""
+
+    tree = open_xml(outgoing_xml)
+    template = ET.ElementTree(file="templates/epProtocolEF2020SubmitOffers.xml")
+
+    template.find('.//ns5:id', ns).text = template.find('.//ns5:id', ns).text[:-4] + str(randint(1000, 9999))
+    template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
+    template.find('.//ns5:versionNumber', ns).text = tree.find('.//ns5:versionNumber', ns).text
+    template.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text = purchase_number
+    template.find('.//ns5:publishDTInETP', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    template.find('.//ns5:procedureDT', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    template.find('.//ns5:signDT', ns).text = datetime.now().strftime("%Y-%m-%d") + '+03:00'
+
+    create_xml(template)
+
 
 def ep_protocol_ef_2020_final(outgoing_xml):
-    """
-    """
+    """"""
 
     tree = open_xml(outgoing_xml)
     template = ET.ElementTree(file="templates/epProtocolEF2020Final.xml")
@@ -54,24 +68,5 @@ def ep_protocol_ef_2020_final(outgoing_xml):
 
     for el in template.findall('.//ns6:docDate', ns):
         el.text = datetime.now().isoformat()[:-3] + '+03:00'
-
-    create_xml(template)
-
-
-def ep_protocol_ef_2020_submit_offers(outgoing_xml):
-    """
-    """
-
-    tree = open_xml(outgoing_xml)
-    template = ET.ElementTree(file="templates/epProtocolEF2020SubmitOffers.xml")
-
-    template.find('.//ns5:id', ns).text = template.find('.//ns5:id', ns).text[:-4] + str(randint(1000, 9999))
-    template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
-    template.find('.//ns5:versionNumber', ns).text = tree.find('.//ns5:versionNumber', ns).text
-    template.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text = purchase_number
-    template.find('.//ns5:publishDTInETP', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns5:procedureDT', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns5:signDT', ns).text = datetime.now().strftime("%Y-%m-%d") + '+03:00'
-
 
     create_xml(template)

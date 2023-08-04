@@ -2,9 +2,7 @@ from src.helper.help_func import open_xml
 from src.helper.schema_xsd import validate_xsd
 from src.actions.confirmation import confirmation
 from src.actions.tender_plan import tender_plan_2020
-from src.actions.notification import ep_notification_ef_2020
-from src.actions.notification import ep_protocol_ef_2020_submit_offers
-from src.actions.notification import ep_protocol_ef_2020_final
+import src.actions.notification as notification
 from src.actions.contract import contract
 
 
@@ -15,9 +13,9 @@ if __name__ == '__main__':
 
     if 'epNotificationEF2020' in file_xml.getroot().tag:
         confirmation(path_xml)
-        ep_notification_ef_2020(path_xml)
-        ep_protocol_ef_2020_submit_offers(path_xml)
-        ep_protocol_ef_2020_final(path_xml)
+        notification.ep_notification_ef_2020(path_xml)
+        notification.ep_protocol_ef_2020_submit_offers(path_xml)
+        notification.ep_protocol_ef_2020_final(path_xml)
     elif 'tenderPlan2020' in file_xml.getroot().tag:
         confirmation(path_xml)
         tender_plan_2020(path_xml)
