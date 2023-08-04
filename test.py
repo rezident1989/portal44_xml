@@ -15,3 +15,4 @@ print(f'Количество тегов "{name_tag}" в исходящем фа�
 [print(i) for i in outgoing]
 print('test)
 print('test2)
+print('test3)
