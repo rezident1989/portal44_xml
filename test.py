@@ -19,3 +19,5 @@ print('test v.1')
 print('test v.2')
 print('test v.3')
 print('test v.4')
+
+print(123)
