@@ -13,3 +13,4 @@ print(f'Количество тегов "{name_tag}" в шаблоне: {len(tem
 [print(i) for i in template]
 print(f'Количество тегов "{name_tag}" в исходящем файле: {len(template)}\n')
 [print(i) for i in outgoing]
+print('test)
