@@ -1,13 +1,16 @@
 # Формирование XML пакетов 
+Название шаблона пакета: **confirmation**
 
+<details>
+<summary>Подтверждение</summary><br>
 
-<details><summary>Подтверждение</summary>
-<br>Название шаблона пакета: confirmation
+Название шаблона пакета: **confirmation**
 
     <ns:id> - 36 символов
     <ns:loadId> - 8 цифр
     <ns:refId> - текст <ns:id> исходящего файла
     </details>
+
 </details>
 
 
@@ -47,7 +50,7 @@
 __Фактический результат:__
 
 </details>
-
+Название шаблона пакета: **confirmation**
 
 <details><summary>Формирование извещения (Электронный аукцион). Подача ценовых предложений</summary>
 
