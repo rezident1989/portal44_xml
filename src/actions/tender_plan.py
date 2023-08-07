@@ -23,8 +23,8 @@ def tender_plan_2020(outgoing_xml):
     purchaseNumber -Номер закупки, включенной в план-график закупок
     """
 
-    tree = open_xml(outgoing_xml)
-    template = ET.ElementTree(file="templates/tenderPlan2020.xml")
+    tree = open_xml(outgoing_xml).getroot()
+    template = ET.ElementTree(file="templates/tenderPlan2020.xml").getroot()
 
     template.find('.//ns3:id', ns).text = template.find('.//ns3:id', ns).text[:-4] + str(randint(1000, 9999))
     template.find('.//ns3:externalId', ns).text = tree.find('.//ns3:externalId', ns).text
@@ -113,4 +113,4 @@ def tender_plan_2020(outgoing_xml):
         member = template.find(".//ns4:tenderPlan2020", ns)
         member.remove(template.find(".//ns3:specialPurchasePositions", ns))
 
-    create_xml(template)
+    create_xml(ET.ElementTree(template))
