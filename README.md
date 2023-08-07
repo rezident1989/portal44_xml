@@ -28,12 +28,14 @@ TODO
     <confirmDate> - текст <createDateTime> исходящего файла
     
     <positions> # если обычная позиция плана-графика
-        <commonInfo><positionNumber> - 24 цифр
-        <commonInfo><extNumber> - текст <extNumber> исходящего файла
-        <commonInfo><IKZ> - текст <IKZ> исходящего файла, !!! если НЕТ: 36 цифр !!!
-        <commonInfo><publishYear> - текст <publishYear> исходящего файла
-        <commonInfo><IKU> - текст <IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
-        <commonInfo><purchaseNumber> - текст <purchaseNumber> исходящего файла
+        <commonInfo>
+            <positionNumber> - 24 цифр
+            <extNumber> - текст <extNumber> исходящего файла
+            <IKZ> - текст <IKZ> исходящего файла, !!! если НЕТ: 36 цифр !!!
+            <publishYear> - текст <publishYear> исходящего файла
+            <IKU> - текст <IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
+            <purchaseNumber> - текст <purchaseNumber> исходящего файла
+        </commonInfo>
     </position>
 
     <specialPurchasePositions> # если особая позиция плана-графика
