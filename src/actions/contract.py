@@ -10,8 +10,10 @@ def contract(outgoing_xml):
     """
     """
 
-    tree = open_xml(outgoing_xml)
-    template = ET.ElementTree(file="templates/contract.xml")
+    tree = open_xml(outgoing_xml).getroot()
+    template = ET.ElementTree(file="templates/contract.xml").getroot()
+
+    remove = False
 
     template.find('.//ns2:id', ns).text = template.find('.//ns2:id', ns).text[:-4] + str(randint(1000, 9999))
     template.find('.//ns2:externalId', ns).text = tree.find('.//ns2:externalId', ns).text
@@ -28,13 +30,15 @@ def contract(outgoing_xml):
     member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:finances", ns))
     member.insert(8, copy.deepcopy(tree.find(".//ns2:finances", ns)))
-    template.find('.//ns2:protocolDate', ns).text = tree.find('.//ns2:protocolDate', ns).text
-    template.find('.//ns2:documentCode', ns).text = template.find('.//ns2:documentCode', ns).text[:-4] + str(
-        randint(1000, 9999))
-    template.find('.//ns2:signDate', ns).text = tree.find('.//ns2:signDate', ns).text
+
+    try:
+        template.find('.//ns2:protocolDate', ns).text = tree.find('.//ns2:protocolDate', ns).text
+    except AttributeError:
+        remove = True
 
     template.find('.//ns2:documentCode', ns).text = template.find('.//ns2:documentCode', ns).text[:-4] + str(
         randint(1000, 9999))
+    template.find('.//ns2:signDate', ns).text = tree.find('.//ns2:signDate', ns).text
 
     try:
         template.find('.//ns4:contract/ns2:regNum', ns).text = tree.findall(
@@ -55,7 +59,11 @@ def contract(outgoing_xml):
     member.remove(template.find(".//ns2:products", ns))
     member.insert(19, copy.deepcopy(tree.find(".//ns2:products", ns)))
     template.find('.//ns2:executionPeriod', ns).text = tree.find('.//ns2:executionPeriod', ns).text
+
     for el in template.findall('.//ns2:docRegNumber', ns):
         el.text = template.findall('.//ns2:docRegNumber', ns)[0].text[:-4] + str(randint(1000, 9999))
 
-    create_xml(template)
+    if remove:
+        member.remove(template.find(".//ns2:protocolDate", ns))
+
+    create_xml(ET.ElementTree(template))
