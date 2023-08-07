@@ -1,118 +1,127 @@
 # Формирование XML пакетов 
-Название шаблона пакета: **confirmation**
 
-<details>
-<summary>Подтверждение</summary><br>
+<details><summary>Подтверждение</summary><br>
 
-Название шаблона пакета: **confirmation**
+Шаблон: **confirmation.xml**
 
-    <ns:id> - 36 символов
-    <ns:loadId> - 8 цифр
-    <ns:refId> - текст <ns:id> исходящего файла
-    </details>
+    <id> - 36 символов
+    <loadId> - 8 цифр
+    <refId> - текст <id> исходящего файла
 
+</details>
+<details><summary>Добавление новой позиции (или особой позиции) в опубликованный в ЕИС план-график</summary><br>
+
+Шаблон: **tenderPlan2020.xml**
+
+    <id> - 8 цифр
+    <externalId> - текст <externalId> исходящего файла   
+    <planNumber> - текст <planNumber> исходящего файла
+    <versionNumber> - текст <versionNumber> исходящего файла
+    <confirmDate> - текст <createDateTime> исходящего файла
+    
+    <positions> # если обычная позиция плана-графика
+        <commonInfo><positionNumber> - 24 цифр
+        <commonInfo><extNumber> - текст <extNumber> исходящего файла
+        <commonInfo><IKZ> - текст <IKZ> исходящего файла, !!! если НЕТ: 36 цифр !!!
+        <commonInfo><publishYear> - текст <publishYear> исходящего файла
+        <commonInfo><IKU> - текст <IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
+        <commonInfo><purchaseNumber> - текст <purchaseNumber> исходящего файла
+    </position>
+
+    <specialPurchasePositions> # если особая позиция плана-графика
+        <positionNumber> - 24 цифр
+        <extNumber> - текст <extNumber> исходящего файла
+        <IKZ> - текст <IKZ> исходящего файла,  !!! если НЕТ: 36 цифр !!!
+        <publishYear> - текст <publishYear> исходящего файла
+        <IKU> - текст <IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
+        <purchaseNumber> - текст <purchaseNumber> исходящего файла
+    </specialPurchasePosition>
+
+**Ожидаемый результат:**<br>
+Статус плана-графика: "Идет отправка на контроль" -> "Опубликован в ЕИС"<br>
+Статус позиции плана-графика: "Ожидает публикации в плане-графике ЕИС" -> "Включена в опубликованный в ЕИС план-график"
+
+
+</details>
+
+<details><summary>Формирование извещения</summary>
+<details><summary>Электронный аукцион</summary>
+
+<details><summary>Подача ценовых предложений</summary><br>
+Шаблон: **epNotificationEF.xml**
+
+    <id> - 8 цифр
+    <externalId> - текст <externalId> исходящего файла
+    <ns5:commonInfo>
+        <purchaseNumber> - 19 цифр
+        <docNumber> - 19 цифр
+    </ns5:commonInfo>
+    <plannedPublishDate> - текст <plannedPublishDate> исходящего файла
+    <publishDTInEIS> - текущая дата в исходном формате
+    <purchaseObjectInfo> - текст <purchaseObjectInfo> исходящего файла  
+    <docDate> - все теги в шаблоне меняем на текущую дату в исходном формате
+
+    <endDT> - текст <endDT> исходящего файла 
+    <summarizingDate> - текст <summarizingDate> исходящего файла 
+    <stageInfo>
+        <sid> - 7 цифр
+        <externalSid> - текст <externalSid> исходящего файла
+    </stageInfo>
+
+**Ожидаемый результат:**<br>
+Статус извещение: "Подача ценовых предложений"
+
+</details>
+<details><summary>Работа комиссии (подведение итогов)</summary><br>
+
+Шаблон: **epProtocolEF2020SubmitOffers.xml**
+
+    <id> - 8 цифр
+    <externalId> - текст <externalId> исходящего файла 
+    <versionNumber> - текст <versionNumber> исходящего файла 
+    <commonInfo>
+        <purchaseNumber> - текст <purchaseNumber> пакет epNotificationEF.xml !!!
+    </commonInfo>
+    <publishDTInETP> - текущая дата в исходном формате
+    <procedureDT> - текущая дата в исходном формате
+    <signDT> - текущая дата в исходном формате
+
+
+**Ожидаемый результат:**<br>
+Статус извещение: "Работа комиссии (подведение итогов)"
+
+</details>
+<details><summary>Заключение контракта</summary><br>
+
+Шаблон: **epProtocolEF2020Final.xml**
+
+    <id> - 8 цифр
+    <externalId> - текст <externalId> исходящего файла 
+    <versionNumber> - текст <versionNumber> исходящего файла 
+    <commonInfo>
+        <purchaseNumber> - текст <purchaseNumber> пакет epNotificationEF.xml !!!
+    </commonInfo>
+    <publishDTInEIS> - текущая дата в исходном формате
+    <publishDTInETP> - текущая дата в исходном формате
+    <procedureDT> - текущая дата в исходном формате
+    <signDT> - текущая дата в исходном формате
+
+    <docDate> - все теги в шаблоне меняем на текущую дату в исходном формате
+
+**Ожидаемый результат:**<br>
+Статус извещение: "Заключение контракта"
+
+</details>
+
+</details>
 </details>
 
 
 
 
 
-<details><summary>Включение позиции/особой позиции в опубликованный в ЕИС план-график</summary>
-
-Общая информация
-
-    <ns:id> - 8 цифр
-    <ns:externalId> - текст <ns:externalId> исходящего файла   
-    <ns:planNumber> - текст <ns:planNumber> исходящего файла
-    <ns:versionNumber> - текст <ns:versionNumber> исходящего файла
-    <ns:confirmDate> - текст <ns:confirmDate> исходящего файла
-
-Если **обычная позиция** плана-графика
-
-    <ns:positions><ns:position>
-        <ns:commonInfo><ns:positionNumber> - 24 чмсла
-        <ns:commonInfo><ns:extNumber> - текст <ns:extNumber> исходящего файла
-        <ns:commonInfo><ns:IKZ> - текст <ns:IKZ> исходящего файла, если НЕТ: 36 цифр
-        <ns:commonInfo><ns:publishYear> - текст <ns:publishYear> исходящего файла
-        <ns:commonInfo><ns:IKU> - текст <ns:IKU> исходящего файла, если НЕТ: 20 цифр
-        <ns:commonInfo><ns:purchaseNumber> - текст <ns:purchaseNumber> исходящего файла
-
-Если **особая позиция** плана-графика
-
-    <ns:specialPurchasePositions><ns:specialPurchasePosition>
-        <ns:positionNumber> - случайное целое число (24)
-        <ns:extNumber> - текст <ns:extNumber> исходящего файла
-        <ns:IKZ> - текст <ns:IKZ> исходящего файла, если НЕТ: 36 цифр
-        <ns:publishYear> - текст <ns:publishYear> исходящего файла
-        <ns:IKU> - текст <ns:IKU> исходящего файла, если НЕТ: 20 цифр
-        <ns:purchaseNumber> - текст <ns:purchaseNumber> исходящего файла
-
-__Фактический результат:__
-
-</details>
-Название шаблона пакета: **confirmation**
-
-<details><summary>Формирование извещения (Электронный аукцион). Подача ценовых предложений</summary>
-
-Исходящий файл: 2.xml (должен соответствовать схеме fcsIntegration.xsd)  
-Входящий файл: 1427epNotificationEF2020_0372200000923000013_31563898.xml (должен соответствовать схеме fcsExport.xsd)
-
-    Действия с тегами во входящем файле:
-
-    Атрибуты "schemeVersion" тегов <ns2:epNotificationEF2020> входящего файла и <main:data> исходящего файл должны быть одинаковые
-
-    <ns9:id> - последние 4 цифры текста тега меняем на 4 случайные цифры
-    <ns9:externalId> - текст тега меняем на текст тега <externalId> исходящего файла   
-    <ns9:purchaseNumber>[первый тег сначала] - последние 4 цифры текста тега меняем на 4 случайные цифры
-    <ns9:docNumber> - последние 4 цифры текста тега меняем на 4 случайные цифры
-    <ns9:plannedPublishDate> - текст тега меняем на текущую дату в исходном формате
-    <ns9:publishDTInEIS> - текст тега меняем на текущую дату в исходном формате
-    <ns9:purchaseObjectInfo> - текст тега меняем на текст тега <purchaseObjectInfo> исходящего файла  
-    <ns3:docDate> - текст тега меняем на текущую дату в исходном формате
-    <ns3:docDate> - текст тега меняем на текущую дату в исходном формате
-    <ns9:endDT> - текст тега меняем на текст тега <endDT> исходящего файла 
-    <ns9:summarizingDate> - текст тега меняем на текст тега <summarizingDate> исходящего файла 
-    <ns9:sid> - последние 4 цифры текста тега меняем на 4 случайные цифры
-    <ns9:externalSid> - текст тега меняем на текст тега <externalSid> исходящего файла 
-
-    После внесения изменений входящий файл необходимо сохранить и отправить*!
-
-### Ожидаемый результат: ###
 
 
-Извещение находится в реестре: Определение поставщика -> Извещения о размещении -> В работе  
-Статус позиции: "Ожидание публикации" -> "Подача ценовых предложений"
-</details>
-
-<details><summary>Стадия "Заключение контракта</summary>
-
-Исходящий файл: 2.xml (должен соответствовать схеме fcsIntegration.xsd)  
-Входящий файл: 1051epProtocolEF2020Final_0372200280322000019_37810684.xml (должен соответствовать схеме fcsExport.xsd)
-
-    Действия с тегами во входящем файле:
-
-    Атрибуты "schemeVersion" тегов <data> входящего файла и <main:data> исходящего файл должны быть одинаковые
-
-    <ns9:id> - последние 4 цифры текста тега меняем на 4 случайные цифры
-    <ns9:externalId> - текст тега меняем на текст тега <externalId> исходящего файла   
-    <ns9:purchaseNumber> - текст тега меняем на текст тега <<ns9:purchaseNumber> входящего файла на стадии 2
-    <ns9:publishDTInEIS> - текст тега меняем на текущую дату в исходном формате
-    <ns9:publishDTInETP> - текст тега меняем на текущую дату в исходном формате
-    <ns9:procedureDT> - текст тега меняем на текущую дату в исходном формате
-    <ns9:signDT> - текст тега меняем на текущую дату в исходном формате
-    <ns3:docDate> - текст тега меняем на текущую дату в исходном формате
-    <ns3:docDate> - текст тега меняем на текущую дату в исходном формате
-
-    После внесения изменений входящий файл необходимо сохранить и отправить*!
-
-### Ожидаемый результат: ###
-
-
-
-Контракт находится в реестре: Исполнение -> Регистрация контрактов -> Контракты на этапе заключения  
-Статус позиции: "Подача ценовых предложений" -> "Заключение контракта"
-
-</details>
 
 <details><summary>Другое</summary>
 # Исполнение контракта #

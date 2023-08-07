@@ -8,7 +8,7 @@ purchase_number = None
 
 
 def ep_notification_ef_2020(outgoing_xml):
-    """"""
+    """Подача ценовых предложений"""
     global purchase_number
 
     tree = open_xml(outgoing_xml)
@@ -36,7 +36,7 @@ def ep_notification_ef_2020(outgoing_xml):
 
 
 def ep_protocol_ef_2020_submit_offers(outgoing_xml):
-    """"""
+    """Работа комиссии (подведение итогов)"""
 
     tree = open_xml(outgoing_xml)
     template = ET.ElementTree(file="templates/epProtocolEF2020SubmitOffers.xml")
@@ -53,7 +53,7 @@ def ep_protocol_ef_2020_submit_offers(outgoing_xml):
 
 
 def ep_protocol_ef_2020_final(outgoing_xml):
-    """"""
+    """Заключение контракта"""
 
     tree = open_xml(outgoing_xml)
     template = ET.ElementTree(file="templates/epProtocolEF2020Final.xml")

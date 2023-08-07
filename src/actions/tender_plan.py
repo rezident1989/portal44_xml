@@ -92,7 +92,7 @@ def tender_plan_2020(outgoing_xml):
             try:
                 template.findall('.//ns3:specialPurchasePosition/ns3:IKZ', ns)[i].text = tree.findall(
                     './/ns3:specialPurchasePosition/ns3:IKZ', ns)[i].text
-            except AttributeError:
+            except (AttributeError, IndexError):
                 template.findall('.//ns3:specialPurchasePosition/ns3:IKZ', ns)[i].text = tree.findall(
                     './/ns3:specialPurchasePosition/ns3:IKZ', ns)[i].text[:-4] + str(randint(1000, 9999))
 
