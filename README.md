@@ -1,7 +1,8 @@
 # Формирование XML пакетов 
 
 
-<details><summary>Подтверждение </summary>
+<details><summary>Подтверждение<br></summary>
+
 Название шаблона пакета: confirmation
 
     <ns:id> - 36 символов
@@ -9,6 +10,10 @@
     <ns:refId> - текст <ns:id> исходящего файла
     </details>
 </details>
+
+
+
+
 
 <details><summary>Включение позиции/особой позиции в опубликованный в ЕИС план-график</summary>
 
