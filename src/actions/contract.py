@@ -14,20 +14,19 @@ def contract(outgoing_xml):
     template = ET.ElementTree(file="templates/contract.xml").getroot()
 
     remove = False
+    member = template.find(".//ns4:contract", ns)
 
-    template.find('.//ns2:id', ns).text = template.find('.//ns2:id', ns).text[:-4] + str(randint(1000, 9999))
+    template.find('.//ns2:id', ns).text = (template.find('.//ns2:id', ns).text[:-4]
+                                           + str(randint(1000, 9999)))
     template.find('.//ns2:externalId', ns).text = tree.find('.//ns2:externalId', ns).text
     template.find('.//ns2:placementDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    member = template.find(".//ns4:contract", ns)
+
     member.remove(template.find(".//ns2:foundation", ns))
     member.insert(5, copy.deepcopy(tree.find(".//ns2:foundation", ns)))
-    member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:customer", ns))
     member.insert(6, copy.deepcopy(tree.find(".//ns2:customer", ns)))
-    member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:placer", ns))
     member.insert(7, copy.deepcopy(tree.find(".//ns2:placer", ns)))
-    member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:finances", ns))
     member.insert(8, copy.deepcopy(tree.find(".//ns2:finances", ns)))
 
@@ -49,13 +48,10 @@ def contract(outgoing_xml):
 
     template.find('.//ns2:number', ns).text = tree.find('.//ns2:number', ns).text
     template.find('.//ns2:contractSubject', ns).text = tree.find('.//ns2:contractSubject', ns).text
-    member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:priceInfo", ns))
     member.insert(17, copy.deepcopy(tree.find(".//ns2:priceInfo", ns)))
-    member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:executionPeriod", ns))
     member.insert(18, copy.deepcopy(tree.find(".//ns2:executionPeriod", ns)))
-    member = template.find(".//ns4:contract", ns)
     member.remove(template.find(".//ns2:products", ns))
     member.insert(19, copy.deepcopy(tree.find(".//ns2:products", ns)))
     template.find('.//ns2:executionPeriod', ns).text = tree.find('.//ns2:executionPeriod', ns).text

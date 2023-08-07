@@ -28,12 +28,14 @@ TODO
     <confirmDate> - текст <createDateTime> исходящего файла
     
     <positions> # если обычная позиция плана-графика
-        <commonInfo><positionNumber> - 24 цифр
-        <commonInfo><extNumber> - текст <extNumber> исходящего файла
-        <commonInfo><IKZ> - текст <IKZ> исходящего файла, !!! если НЕТ: 36 цифр !!!
-        <commonInfo><publishYear> - текст <publishYear> исходящего файла
-        <commonInfo><IKU> - текст <IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
-        <commonInfo><purchaseNumber> - текст <purchaseNumber> исходящего файла
+        <commonInfo>
+            <positionNumber> - 24 цифр
+            <extNumber> - текст <extNumber> исходящего файла
+            <IKZ> - текст <IKZ> исходящего файла, !!! если НЕТ: 36 цифр !!!
+            <publishYear> - текст <publishYear> исходящего файла
+            <IKU> - текст <IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
+            <purchaseNumber> - текст <purchaseNumber> исходящего файла
+        </commonInfo>
     </position>
 
     <specialPurchasePositions> # если особая позиция плана-графика
@@ -132,19 +134,19 @@ TODO
     <externalId> - текст <externalId> исходящего файла 
     <placementDate> - текущая дата в исходном формате
     <publishDate> - текст <publishDate> исходящего файла
-    <foundation> - заменямем на тег <foundation> исходящего файла 
-    <customer> - заменямем на тег <customer> исходящего файла 
-    <placer> - заменямем на тег <placer> исходящего файла 
-    <finances> - заменямем на тег <finances> исходящего файла 
+    <foundation> - менямем на тег <foundation> исходящего файла 
+    <customer> - менямем на тег <customer> исходящего файла 
+    <placer> - менямем на тег <placer> исходящего файла 
+    <finances> - менямем на тег <finances> исходящего файла 
     <protocolDate> - текст <protocolDate> исходящего файла 
     <documentCode> - 6 цифр
     <signDate> - текст <signDate> исходящего файла 
     <regNum> - текст <regNum> исходящего файла,  !!! если НЕТ: 19 цифр !!!
     <number> - текст <number> исходящего файла 
     <contractSubject> - текст <contractSubject> исходящего файла 
-    <priceInfo> - заменямем на тег <finances> исходящего файла 
-    <executionPeriod> - тега меняем на тег <executionPeriod> исходящего файла 
-    <products> - тега меняем на тег <products> исходящего файла 
+    <priceInfo> - менямем на тег <priceInfo> исходящего файла 
+    <executionPeriod> - меняем на тег <executionPeriod> исходящего файла 
+    <products> - меняем на тег <products> исходящего файла 
     <docDate> - все теги в шаблоне меняем на текущую дату в исходном формате
 
 **Ожидаемый результат:**<br>
