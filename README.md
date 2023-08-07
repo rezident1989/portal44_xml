@@ -1,56 +1,55 @@
 # Формирование XML пакетов 
-Название шаблона пакета: **confirmation**
 
-<details>
-<summary>Подтверждение</summary><br>
+<details><summary>Подтверждение</summary><br>
 
-Название шаблона пакета: **confirmation**
+Шаблон: **confirmation.xml**
 
     <ns:id> - 36 символов
     <ns:loadId> - 8 цифр
     <ns:refId> - текст <ns:id> исходящего файла
-    </details>
 
 </details>
 
 
 
+<details><summary>Добавление новой позиции (или особой позиции) в опубликованный в ЕИС план-график</summary><br>
 
+Шаблон: **tenderPlan2020.xml**
 
-<details><summary>Включение позиции/особой позиции в опубликованный в ЕИС план-график</summary>
-
-Общая информация
-
+    Общая информация
     <ns:id> - 8 цифр
     <ns:externalId> - текст <ns:externalId> исходящего файла   
     <ns:planNumber> - текст <ns:planNumber> исходящего файла
     <ns:versionNumber> - текст <ns:versionNumber> исходящего файла
-    <ns:confirmDate> - текст <ns:confirmDate> исходящего файла
+    <ns:confirmDate> - текст <ns:createDateTime> исходящего файла
 
-Если **обычная позиция** плана-графика
-
+    Если обычная позиция плана-графика
     <ns:positions><ns:position>
-        <ns:commonInfo><ns:positionNumber> - 24 чмсла
+        <ns:commonInfo><ns:positionNumber> - 24 цифр
         <ns:commonInfo><ns:extNumber> - текст <ns:extNumber> исходящего файла
-        <ns:commonInfo><ns:IKZ> - текст <ns:IKZ> исходящего файла, если НЕТ: 36 цифр
+        <ns:commonInfo><ns:IKZ> - текст <ns:IKZ> исходящего файла, !!! если НЕТ: 36 цифр !!!
         <ns:commonInfo><ns:publishYear> - текст <ns:publishYear> исходящего файла
-        <ns:commonInfo><ns:IKU> - текст <ns:IKU> исходящего файла, если НЕТ: 20 цифр
+        <ns:commonInfo><ns:IKU> - текст <ns:IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
         <ns:commonInfo><ns:purchaseNumber> - текст <ns:purchaseNumber> исходящего файла
 
-Если **особая позиция** плана-графика
-
+    Если особая позиция плана-графика
     <ns:specialPurchasePositions><ns:specialPurchasePosition>
-        <ns:positionNumber> - случайное целое число (24)
+        <ns:positionNumber> - 24 цифр
         <ns:extNumber> - текст <ns:extNumber> исходящего файла
-        <ns:IKZ> - текст <ns:IKZ> исходящего файла, если НЕТ: 36 цифр
+        <ns:IKZ> - текст <ns:IKZ> исходящего файла,  !!! если НЕТ: 36 цифр !!!
         <ns:publishYear> - текст <ns:publishYear> исходящего файла
-        <ns:IKU> - текст <ns:IKU> исходящего файла, если НЕТ: 20 цифр
+        <ns:IKU> - текст <ns:IKU> исходящего файла,  !!! если НЕТ: 20 цифр !!!
         <ns:purchaseNumber> - текст <ns:purchaseNumber> исходящего файла
 
-__Фактический результат:__
+**Фактический результат:**<br>
+Статус плана-графика: "Идет отправка на контроль" -> "Опубликован в ЕИС"<br>
+Статус позиции плана-графика: "Ожидает публикации в плане-графике ЕИС" -> "Включена в опубликованный в ЕИС план-график"
+
 
 </details>
-Название шаблона пакета: **confirmation**
+
+
+
 
 <details><summary>Формирование извещения (Электронный аукцион). Подача ценовых предложений</summary>
 
