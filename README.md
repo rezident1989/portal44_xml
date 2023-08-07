@@ -48,6 +48,7 @@
 <details><summary>Электронный аукцион</summary>
 
 <details><summary>Подача ценовых предложений</summary><br>
+
 Шаблон: **epNotificationEF.xml**
 
     <id> - 8 цифр
