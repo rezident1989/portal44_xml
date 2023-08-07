@@ -44,8 +44,7 @@
 
 </details>
 
-<details><summary>Формирование извещения</summary>
-<details><summary>Электронный аукцион</summary>
+<details><summary>Формирование извещения. Электронный</summary>
 
 ### Подача ценовых предложений
 
@@ -113,11 +112,6 @@
 
 
 </details>
-</details>
-
-
-
-
 
 
 
