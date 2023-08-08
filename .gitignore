@@ -617,4 +617,4 @@ incoming/
 outgoing/
 
 # my rules
-*.test.py
+test.py
