@@ -15,6 +15,7 @@ def validate_xsd(path_xml):
     xml = etree.parse(path_xml)
     a = path_xml.split('/')[1]
     b = schema_path.split('/')[2]
+
     # Проверка
     if not schema.validate(xml):
         print(schema.error_log)
