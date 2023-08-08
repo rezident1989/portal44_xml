@@ -615,4 +615,4 @@ $RECYCLE.BIN/
 .pytest_cache
 incoming/
 outgoing/
-.test.py
+test.py
