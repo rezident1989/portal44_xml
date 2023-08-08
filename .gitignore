@@ -616,4 +616,5 @@ $RECYCLE.BIN/
 incoming/
 outgoing/
 
-test.py
+# my rules
+.test.py
