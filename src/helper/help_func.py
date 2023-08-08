@@ -1,6 +1,8 @@
 import datetime
 import re
 import xml.etree.ElementTree as ET
+from random import randint
+
 from src.helper.schema_xsd import validate_xsd
 
 
@@ -21,3 +23,9 @@ def create_xml(tree):
     tree.write(path_name, encoding='utf-8', xml_declaration=True)
     if 'confirmation' not in path_name:
         validate_xsd(path_name)
+
+
+def random_number(digits):
+    lower = 10 ** (digits - 1)
+    upper = 10 ** digits - 1
+    return str(randint(lower, upper))
