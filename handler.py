@@ -20,5 +20,3 @@ if __name__ == '__main__':
         notification.ep_protocol_ef_2020_final(path_xml)
     elif 'contract' in root_tag:
         contract(path_xml)
-
-    clear_folder('outgoing')
