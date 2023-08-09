@@ -1,4 +1,4 @@
-from src.helper.help_func import open_xml
+from src.helper.help_func import open_xml, clear_folder
 from src.helper.schema_xsd import validate_xsd
 from src.actions.confirmation import confirmation
 from src.actions.tender_plan import tender_plan_2020
@@ -6,6 +6,7 @@ import src.actions.notification as notification
 from src.actions.contract import contract
 
 if __name__ == '__main__':
+    clear_folder('incoming')
     path_xml = 'outgoing/14433512_xml 07.08.xml'
     validate_xsd(path_xml)
     root_tag = open_xml(path_xml).getroot().tag
@@ -19,3 +20,5 @@ if __name__ == '__main__':
         notification.ep_protocol_ef_2020_final(path_xml)
     elif 'contract' in root_tag:
         contract(path_xml)
+
+    clear_folder('outgoing')

@@ -2,8 +2,8 @@ import datetime
 import re
 import xml.etree.ElementTree as ET
 from random import randint
-
 from src.helper.schema_xsd import validate_xsd
+import os
 
 
 def open_xml(path):
@@ -29,3 +29,8 @@ def random_number(digits):
     lower = 10 ** (digits - 1)
     upper = 10 ** digits - 1
     return str(randint(lower, upper))
+
+
+def clear_folder(folder):
+    for file in os.listdir(os.path.abspath(f'{folder}')):
+        os.remove(os.path.abspath(os.path.join(f'{folder}', file)))
