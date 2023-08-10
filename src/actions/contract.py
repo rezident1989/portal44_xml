@@ -35,7 +35,7 @@ def contract(outgoing_xml):
     template.find('.//ns2:signDate', ns).text = tree.find('.//ns2:signDate', ns).text
     try:
         template.find('.//ns4:contract/ns2:regNum', ns).text = tree.findall(
-            './/ns1:data/ns2:regNum', ns).text
+            './/ns4:contract/ns2:regNum', ns).text
     except AttributeError:
         template.find('.//ns4:contract/ns2:regNum', ns).text = random_number(19)
     template.find('.//ns2:number', ns).text = tree.find('.//ns2:number', ns).text

@@ -22,24 +22,35 @@ def tender_plan_2020(outgoing_xml):
 
         if count_position > 1:
             member = copy.deepcopy(template.find(".//ns4:tenderPlan2020/ns3:positions/ns3:position", ns))
-            [template.find(".//ns3:positions", ns).append(member) for i in range(count_position)]
+            [template.find(".//ns3:positions", ns).append(member) for i in range(count_position - 1)]
 
         for i in range(count_position):
-            template.findall('.//ns3:commonInfo/ns3:positionNumber', ns)[i].text = random_number(24)
+
+            try:
+                template.findall('.//ns3:commonInfo/ns3:positionNumber', ns)[i].text = tree.findall(
+                    './/ns3:commonInfo/ns3:positionNumber', ns)[i].text
+            except (AttributeError, IndexError):
+                template.findall('.//ns3:commonInfo/ns3:positionNumber', ns)[i].text = random_number(24)
+
             template.findall('.//ns3:commonInfo/ns3:extNumber', ns)[i].text = tree.findall(
                 './/ns3:commonInfo/ns3:extNumber', ns)[i].text
+
             try:
                 template.findall('.//ns3:commonInfo/ns3:IKZ', ns)[i].text = tree.findall(
                     './/ns3:commonInfo/ns3:IKZ', ns)[i].text
             except (AttributeError, IndexError):
                 template.findall('.//ns3:commonInfo/ns3:IKZ', ns)[i].text = random_number(36)
+
             template.findall('.//ns3:commonInfo/ns3:publishYear', ns)[i].text = tree.findall(
                 './/ns3:commonInfo/ns3:publishYear', ns)[i].text
-            try:
-                template.findall(f'.//ns3:commonInfo/ns3:IKU', ns)[i].text = tree.findall(
-                    './/ns3:commonInfo/ns3:IKU', ns)[i].text
-            except AttributeError:
-                template.findall(f'.//ns3:commonInfo/ns3:IKU', ns)[i].text = random_number(20)
+
+            # TODO
+            # try:
+            template.findall(f'.//ns3:commonInfo/ns3:IKU', ns)[i].text = tree.findall(
+                './/ns3:commonInfo/ns3:IKU', ns)[i].text
+            # except AttributeError:
+            # template.findall(f'.//ns3:commonInfo/ns3:IKU', ns)[i].text = random_number(20)
+
             template.findall(f'.//ns3:commonInfo/ns3:purchaseNumber', ns)[i].text = tree.findall(
                 './/ns3:commonInfo/ns3:purchaseNumber', ns)[i].text
 
@@ -57,7 +68,12 @@ def tender_plan_2020(outgoing_xml):
 
         for i in range(count_special_position):
 
-            template.findall('.//ns3:specialPurchasePosition/ns3:positionNumber', ns)[i].text = random_number(24)
+            try:
+                template.findall('.//ns3:specialPurchasePosition/ns3:positionNumber', ns)[i].text = tree.findall(
+                    '//ns3:specialPurchasePosition/ns3:positionNumber', ns)[i].text
+            except (AttributeError, IndexError):
+                template.findall('.//ns3:specialPurchasePosition/ns3:positionNumber', ns)[i].text = random_number(24)
+
             template.findall('.//ns3:specialPurchasePosition/ns3:extNumber', ns)[i].text = tree.findall(
                 './/ns3:specialPurchasePosition/ns3:extNumber', ns)[i].text
             try:
@@ -67,11 +83,14 @@ def tender_plan_2020(outgoing_xml):
                 template.findall('.//ns3:specialPurchasePosition/ns3:IKZ', ns)[i].text = random_number(36)
             template.findall('.//ns3:specialPurchasePosition/ns3:publishYear', ns)[i].text = tree.findall(
                 './/ns3:specialPurchasePosition/ns3:publishYear', ns)[i].text
-            try:
-                template.findall(f'.//ns3:specialPurchasePosition/ns3:IKU', ns)[i].text = tree.findall(
-                    './/ns3:specialPurchasePosition/ns3:IKU', ns)[i].text
-            except AttributeError:
-                template.findall(f'.//ns3:specialPurchasePosition/ns3:IKU', ns)[i].text = random_number(20)
+
+            # TODO
+            # try:
+            template.findall(f'.//ns3:specialPurchasePosition/ns3:IKU', ns)[i].text = tree.findall(
+                './/ns3:specialPurchasePosition/ns3:IKU', ns)[i].text
+            # except AttributeError:
+            # template.findall(f'.//ns3:specialPurchasePosition/ns3:IKU', ns)[i].text = random_number(20)
+
             template.findall(f'.//ns3:specialPurchasePosition/ns3:purchaseNumber', ns)[i].text = tree.findall(
                 './/ns3:specialPurchasePosition/ns3:purchaseNumber', ns)[i].text
 
