@@ -56,13 +56,13 @@ def ep_protocol_ef_2020_final(outgoing_xml):
     tree = open_xml(outgoing_xml).getroot()
     template = ET.ElementTree(file="templates/epProtocolEF2020Final.xml").getroot()
 
-    template.find('.//ns7:id', ns).text = random_number(8)
-    template.find('.//ns7:externalId', ns).text = tree.find('.//ns7:externalId', ns).text
-    template.find('.//ns7:commonInfo/ns7:purchaseNumber', ns).text = purchase_number
-    template.find('.//ns7:publishDTInEIS', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns7:publishDTInETP', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns7:procedureDT', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns7:signDT', ns).text = datetime.now().strftime("%Y-%m-%d") + '+03:00'
+    template.find('.//ns5:id', ns).text = random_number(8)
+    template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
+    template.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text = purchase_number
+    template.find('.//ns5:publishDTInEIS', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    template.find('.//ns5:publishDTInETP', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    template.find('.//ns5:procedureDT', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    template.find('.//ns5:signDT', ns).text = datetime.now().strftime("%Y-%m-%d") + '+03:00'
 
     for el in template.findall('.//ns6:docDate', ns):
         el.text = datetime.now().isoformat()[:-3] + '+03:00'
