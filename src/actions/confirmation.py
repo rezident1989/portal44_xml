@@ -14,4 +14,4 @@ def confirmation(outgoing_xml):
     template.find('.//ns2:loadId', ns).text = random_number(8)
     template.find('.//ns2:refId', ns).text = tree.find('.//ns1:id', ns).text
 
-    create_xml(ET.ElementTree(template))
+    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])

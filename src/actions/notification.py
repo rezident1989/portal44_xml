@@ -30,7 +30,7 @@ def ep_notification_ef_2020(outgoing_xml):
     template.find('.//ns5:sid', ns).text = random_number(7)
     template.find('.//ns5:externalSid', ns).text = tree.find('.//ns5:externalSid', ns).text
 
-    create_xml(ET.ElementTree(template))
+    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])
 
 
 def ep_protocol_ef_2020_submit_offers(outgoing_xml):
@@ -47,7 +47,7 @@ def ep_protocol_ef_2020_submit_offers(outgoing_xml):
     template.find('.//ns5:procedureDT', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
     template.find('.//ns5:signDT', ns).text = datetime.now().strftime("%Y-%m-%d") + '+03:00'
 
-    create_xml(ET.ElementTree(template))
+    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])
 
 
 def ep_protocol_ef_2020_final(outgoing_xml):
@@ -67,4 +67,4 @@ def ep_protocol_ef_2020_final(outgoing_xml):
     for el in template.findall('.//ns6:docDate', ns):
         el.text = datetime.now().isoformat()[:-3] + '+03:00'
 
-    create_xml(ET.ElementTree(template))
+    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])

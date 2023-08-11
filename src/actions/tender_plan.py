@@ -98,4 +98,4 @@ def tender_plan_2020(outgoing_xml):
         member = template.find(".//ns4:tenderPlan2020", ns)
         member.remove(template.find(".//ns3:specialPurchasePositions", ns))
 
-    create_xml(ET.ElementTree(template))
+    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])

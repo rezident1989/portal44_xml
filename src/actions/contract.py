@@ -53,4 +53,4 @@ def contract(outgoing_xml):
     if remove:
         member.remove(template.find(".//ns2:protocolDate", ns))
 
-    create_xml(ET.ElementTree(template))
+    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])
