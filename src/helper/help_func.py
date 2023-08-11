@@ -46,7 +46,7 @@ def to_sent_to_sftp(path, server):
 
     # Go!
     sftp.put(path, f'../OOC/Incoming/{path.split("/")[-1:][0]}')
-    print(path.split("/")[-1:][0], 'отправлен на', host, '\n')
+    print(path.split("/")[-1:][0], 'отправлен на', host)
     # Close a transport
     if sftp:
         sftp.close()

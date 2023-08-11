@@ -20,4 +20,4 @@ def validate_xsd(path_xml):
     if not schema.validate(xml):
         print(schema.error_log)
     else:
-        print(f'{a} соответствует схеме {b}')
+        print(f'\n{a} соответствует схеме {b}')
