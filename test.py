@@ -1,16 +1,16 @@
 from src.helper.namespace import namespace as ns
 from src.helper.help_func import open_xml
 
-outgoing_xml = open_xml('outgoing/14922461_xml.xml').getroot()
-name_tag_outgoing = './/ns1:data/ns2:regNum'
-outgoing = outgoing_xml.findall(name_tag_outgoing, ns)
-print('ИСХОДЯЩИЙ')
-print(f'Количество тегов "{name_tag_outgoing}" в исходящем файле: {len(outgoing)}')
-[print(i.text) for i in outgoing]
+xml_1 = open_xml('incoming/16.34_14.08.23_tenderPlan2020.xml').getroot()
+tag_1 = './/ns3:specialPurchasePosition/ns3:publishYear'
+tag_list_1 = xml_1.findall(xml_1, ns)
+print('ДОКУМЕНТ_1')
+print(f'Количество тегов: {len(tag_list_1)}')
+[print(i.text) for i in tag_list_1]
 
-incoming_xml = open_xml('templates/contract.xml').getroot()
-name_tag_template = './/ns4:contract/ns2:regNum'
-template = incoming_xml.findall(name_tag_template, ns)
-print('Входящий')
-print(f'Количество тегов "{name_tag_template}" в исходящем файле: {len(template)}')
-[print(i.text) for i in template]
+xml_2 = open_xml('incoming/16.34_14.08.23_tenderPlan2020.xml').getroot()
+tag_2 = './/ns3:specialPurchasePosition/ns3:publishYear'
+tag_list_2 = xml_2.findall(xml_1, ns)
+print('ДОКУМЕНТ_2')
+print(f'Количество тегов: {len(tag_list_2)}')
+[print(i.text) for i in tag_list_2]

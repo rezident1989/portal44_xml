@@ -14,7 +14,7 @@ def open_xml(path):
     return tree
 
 
-def create_xml(tree, server):
+def create_xml(tree, file_name):
     """Создает xml-файл"""
     if 'confirmation' in tree.getroot().tag:
         name_file = re.findall(r'[}]\w+', tree.getroot().tag)
@@ -28,16 +28,16 @@ def create_xml(tree, server):
     if 'confirmation' not in path_name:
         validate_xsd(path_name)
 
-    to_sent_to_sftp(path_name, server)
+    to_sent_to_sftp(path_name, file_name)
 
 
-def to_sent_to_sftp(path, server):
+def to_sent_to_sftp(path, file_name):
     # Open a transport
-    if server == '15':
+    if file_name == '15':
         host = 'testaisgz1.gz-spb.ru'
-    elif server == '14':
+    elif file_name == '14':
         host = 'testaisgz6.gz-spb.ru'
-    elif server == '68':
+    elif file_name == '68':
         host = 'testaisgz5.gz-spb.ru'
     else:
         host = 'testaisgz3.gz-spb.ru'
@@ -47,7 +47,7 @@ def to_sent_to_sftp(path, server):
     sftp = paramiko.SFTPClient.from_transport(transport)
 
     # Go!
-    if server == '68':
+    if file_name == '68':
         sftp.put(path, f'../OOC/IncomingCog/{path.split("/")[-1:][0]}')
     else:
         sftp.put(path, f'../OOC/Incoming/{path.split("/")[-1:][0]}')
