@@ -5,7 +5,7 @@ from random import randint
 from src.helper.schema_xsd import validate_xsd
 import os
 import paramiko
-
+from password import password_sftp
 
 
 def open_xml(path):
@@ -43,7 +43,7 @@ def to_sent_to_sftp(path, server):
         host = 'testaisgz3.gz-spb.ru'
     transport = paramiko.Transport(host)
 
-    transport.connect(None, username='root', password=pasword_sftp)
+    transport.connect(None, username='root', password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
 
     # Go!
