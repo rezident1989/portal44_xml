@@ -5,7 +5,7 @@ from random import randint
 from src.helper.schema_xsd import validate_xsd
 import os
 import paramiko
-from env import pasword_sftp
+
 
 
 def open_xml(path):
@@ -47,7 +47,10 @@ def to_sent_to_sftp(path, server):
     sftp = paramiko.SFTPClient.from_transport(transport)
 
     # Go!
-    sftp.put(path, f'../OOC/Incoming/{path.split("/")[-1:][0]}')
+    if server == '68':
+        sftp.put(path, f'../OOC/IncomingCog/{path.split("/")[-1:][0]}')
+    else:
+        sftp.put(path, f'../OOC/Incoming/{path.split("/")[-1:][0]}')
     print(path.split("/")[-1:][0], 'отправлен на', host)
     # Close a transport
     if sftp:
