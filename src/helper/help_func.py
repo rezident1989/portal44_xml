@@ -37,6 +37,8 @@ def to_sent_to_sftp(path, server):
         host = 'testaisgz1.gz-spb.ru'
     elif server == '14':
         host = 'testaisgz6.gz-spb.ru'
+    elif server == '68':
+        host = 'testaisgz5.gz-spb.ru'
     else:
         host = 'testaisgz3.gz-spb.ru'
     transport = paramiko.Transport(host)
