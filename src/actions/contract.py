@@ -1,15 +1,14 @@
 import copy
-import xml.etree.ElementTree as ET
 from src.helper.namespace import namespace as ns
-from src.helper.help_func import create_xml, open_xml, random_number
+from src.helper.help_func import open_xml, random_number
 from datetime import datetime
 
 
 def contract(outgoing_xml):
     """Контракт. Публикация"""
 
-    tree = open_xml(outgoing_xml).getroot()
-    template = ET.ElementTree(file="templates/contract.xml").getroot()
+    tree = open_xml(outgoing_xml)
+    template = open_xml("templates/contract.xml")
 
     remove = False
     member = template.find(".//ns4:contract", ns)
@@ -53,4 +52,4 @@ def contract(outgoing_xml):
     if remove:
         member.remove(template.find(".//ns2:protocolDate", ns))
 
-    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])
+    return template

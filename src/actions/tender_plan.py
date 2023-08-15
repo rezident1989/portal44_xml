@@ -1,14 +1,15 @@
 import copy
 import xml.etree.ElementTree as ET
 from src.helper.namespace import namespace as ns
-from src.helper.help_func import create_xml, open_xml, random_number
+from src.helper.help_func import open_xml, random_number
 
 
 def tender_plan_2020(outgoing_xml):
     """Добавление позиции (особой позиции) в опубликованный в ЕИС план-график"""
 
-    template = ET.ElementTree(file='templates/tenderPlan2020.xml').getroot()
-    tree = open_xml(outgoing_xml).getroot()
+    template = open_xml('templates/tenderPlan2020.xml')
+    tree = open_xml(outgoing_xml)
+
     count_position = len(tree.findall('.//ns3:positions/ns3:position', ns))
     count_special_position = len(tree.findall(f'.//ns3:specialPurchasePosition', ns))
 
@@ -26,9 +27,10 @@ def tender_plan_2020(outgoing_xml):
         for i in range(2, count_special_position + 1):
             template.find('.//ns3:specialPurchasePositions', ns).insert(i, member)
 
-    temp = ET.ElementTree(template)
-    temp.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
-    template = ET.ElementTree(file='venv/temp.xml').getroot()
+    # TODO
+    template = ET.ElementTree(template)
+    template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
+    template = open_xml('venv/temp.xml')
 
     template.find('.//ns3:id', ns).text = random_number(8)
     template.find('.//ns3:externalId', ns).text = tree.find('.//ns3:externalId', ns).text
@@ -79,4 +81,4 @@ def tender_plan_2020(outgoing_xml):
         template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:purchaseNumber', ns).text = tree.find(
             f'.//ns3:specialPurchasePosition[{i}]/ns3:purchaseNumber', ns).text
 
-    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])
+    return template

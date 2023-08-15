@@ -1,9 +1,9 @@
 from lxml import etree
 
 
-def validate_xsd(path_xml):
+def validate_xsd(path):
     # Загрузка xsd схемы
-    if 'outgoing' in path_xml:
+    if 'outgoing' in path:
         schema_path = r'src/schemes/fcsIntegration.xsd'
     else:
         schema_path = r'src/schemes/fcsExport.xsd'
@@ -12,8 +12,8 @@ def validate_xsd(path_xml):
     schema = etree.XMLSchema(path_xsd)
 
     # Загрузка xml
-    xml = etree.parse(path_xml)
-    a = path_xml.split('/')[1]
+    xml = etree.parse(path)
+    a = path.split('/')[1]
     b = schema_path.split('/')[2]
 
     # Проверка
