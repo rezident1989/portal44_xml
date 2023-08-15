@@ -7,7 +7,7 @@ from src.actions.contract import contract
 
 if __name__ == '__main__':
     clear_folder('incoming')
-    path_xml = 'outgoing/15104663_xml.xml'
+    path_xml = 'outgoing/15104667_xml.xml'
     validate_xsd(path_xml)
     root_tag = open_xml(path_xml).getroot().tag
 
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     if 'tenderPlan2020' in root_tag:
         tender_plan_2020(path_xml)
     elif 'epNotificationEF2020' in root_tag:
-        notification.ep_notification_ef_2020(path_xml, m)
+        notification.ep_notification_ef_2020(path_xml)
         notification.ep_protocol_ef_2020_submit_offers(path_xml)
         notification.ep_protocol_ef_2020_final(path_xml)
     elif 'contract' in root_tag:
