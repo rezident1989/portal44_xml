@@ -1,4 +1,4 @@
-from src.helper.help_func import open_xml, clear_folder
+from src.helper.help_func import clear_folder, get_type_xml
 from src.helper.schema_xsd import validate_xsd
 from src.actions.confirmation import confirmation
 from src.actions.tender_plan import tender_plan_2020
@@ -9,14 +9,16 @@ if __name__ == '__main__':
     clear_folder('incoming')
     path_xml = 'outgoing/15104667_xml.xml'
     validate_xsd(path_xml)
-    root_tag = open_xml(path_xml).getroot().tag
+    root_tag = get_type_xml(path_xml)
 
     confirmation(path_xml)
-    if 'tenderPlan2020' in root_tag:
+    if ('tenderPlan2020' == root_tag) or ('tenderPlan2020Change' == root_tag):
         tender_plan_2020(path_xml)
-    elif 'epNotificationEF2020' in root_tag:
+    elif 'epNotificationEF2020' == root_tag:
         notification.ep_notification_ef_2020(path_xml)
         notification.ep_protocol_ef_2020_submit_offers(path_xml)
         notification.ep_protocol_ef_2020_final(path_xml)
-    elif 'contract' in root_tag:
+    elif 'contract' == root_tag:
         contract(path_xml)
+    else:
+        print('Нет обработки для:', root_tag)

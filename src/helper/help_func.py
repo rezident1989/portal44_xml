@@ -10,8 +10,7 @@ from password import password_sftp
 
 def open_xml(path):
     """Открывает xml_bag-файл и возвращает его структуру(tree)"""
-    tree = ET.ElementTree(file=path)
-    return tree
+    return ET.ElementTree(file=path)
 
 
 def create_xml(tree, file_name):
@@ -28,7 +27,7 @@ def create_xml(tree, file_name):
     if 'confirmation' not in path_name:
         validate_xsd(path_name)
 
-    to_sent_to_sftp(path_name, file_name)
+    # to_sent_to_sftp(path_name, file_name)
 
 
 def to_sent_to_sftp(path, file_name):
@@ -59,12 +58,20 @@ def to_sent_to_sftp(path, file_name):
         transport.close()
 
 
-def random_number(digits):
+def random_number(digits: int) -> str:
+    """Получить случайное число
+    """
     lower = 10 ** (digits - 1)
     upper = 10 ** digits - 1
     return str(randint(lower, upper))
 
 
-def clear_folder(folder):
+def clear_folder(folder: str) -> None:
+    """Очистить папку"""
     for file in os.listdir(os.path.abspath(f'{folder}')):
         os.remove(os.path.abspath(os.path.join(f'{folder}', file)))
+
+
+def get_type_xml(path: str) -> str:
+    """Получить название пакета xml"""
+    return open_xml(path).getroot().tag.split('}')[1]
