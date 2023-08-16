@@ -615,5 +615,6 @@ $RECYCLE.BIN/
 .pytest_cache
 incoming/
 outgoing/
+archive/
 
 password.py
