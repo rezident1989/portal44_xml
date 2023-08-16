@@ -1,3 +1,4 @@
+import sys
 from lxml import etree
 
 
@@ -19,5 +20,6 @@ def validate_xsd(path):
     # Проверка
     if not schema.validate(xml):
         print(schema.error_log)
+        sys.exit(1)
     else:
-        print(f'\n{a} соответствует схеме {b}')
+        print(f'{a} соответствует схеме {b}')

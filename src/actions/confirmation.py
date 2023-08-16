@@ -1,9 +1,10 @@
 from src.helper.namespace import namespace as ns
 from src.helper.help_func import open_xml, random_number
 import secrets
+import xml.etree.ElementTree as ET
 
 
-def confirmation(outgoing_xml):
+def confirmation(outgoing_xml: str) -> ET.Element:
     """Подтверждение"""
 
     tree = open_xml(outgoing_xml)

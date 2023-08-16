@@ -6,29 +6,40 @@ from src.actions.notification import (ep_notification_ef_2020, ep_protocol_ef_20
                                       ep_protocol_ef_2020_final)
 from src.actions.contract import contract
 
-if __name__ == '__main__':
-    path = 'outgoing/15104665_xml.xml'
+
+def main(path, validation=True, send=True):
     clear_folder('incoming')
+    files = None
+    files_to_send = []
+    files_for_validation = []
     validate_xsd(path)
     server_address = get_server_address(path)
     type_xml = get_type_xml(path)
+    print(path, 'this is', type_xml)
 
-    path_confirmation = create_xml(confirmation(path))
-    to_sent_to_sftp(path_confirmation, server_address)
+    files_to_send.extend([create_xml(confirmation(path))])
 
     if ('tenderPlan2020' == type_xml) or ('tenderPlan2020Change' == type_xml):
-        create_xml(tender_plan_2020(path))
-        path_tender_plan_2020 = create_xml(tender_plan_2020(path))
-        validate_xsd(path_tender_plan_2020)
-        to_sent_to_sftp(path_tender_plan_2020, server_address)
+        files = [create_xml(tender_plan_2020(path))]
     elif 'epNotificationEF2020' == type_xml:
-        for func in [ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers, ep_protocol_ef_2020_final]:
-            path = create_xml(func(path))
-            validate_xsd(path)
-            # to_sent_to_sftp(path, server_address)
+        functions = [ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers, ep_protocol_ef_2020_final]
+        files = [create_xml(func(path)) for func in functions]
     elif 'contract' == type_xml:
-        path_contract = create_xml(contract(path))
-        validate_xsd(path_contract)
-        # to_sent_to_sftp(path_contract, server_address)
+        files = create_xml(contract(path))
     else:
         print('Нет обработки для:', type_xml)
+
+    files_to_send.extend(files)
+    files_for_validation.extend(files)
+
+    if validation:
+        for file in files_for_validation:
+            validate_xsd(file)
+
+    if send:
+        for file in files_to_send:
+            to_sent_to_sftp(file, server_address)
+
+
+if __name__ == '__main__':
+    main('outgoing/15104667_xml.xml')

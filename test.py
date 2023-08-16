@@ -1,3 +1,5 @@
+import logging
+
 from src.helper.namespace import namespace as ns
 from src.helper.help_func import open_xml
 
@@ -15,14 +17,16 @@ from src.helper.help_func import open_xml
 # print(f'Количество тегов: {len(tag_list_2)}')
 # [print(i.text) for i in tag_list_2]
 
-
+logging.getLogger('test')
+logging.basicConfig(filename='test.log')
 a = open_xml('outgoing/15104667_xml.xml')
-b = open_xml('outgoing/15104667_xml.xml').getroot()
+logging.warning('test1')
+# b = open_xml('outgoing/15104667_xml.xml').getroot()
 count = 0
-for i in a.iter():
-    count += 1
-print(count)
-count = 0
-for i in b.iter():
-    count += 1
+# for i in a.iter():
+#     count += 1
+# print(count)
+# count = 0
+# for i in b.iter():
+#     count += 1
 print(count)
