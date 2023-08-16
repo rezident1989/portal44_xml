@@ -7,7 +7,7 @@ from src.actions.notification import (ep_notification_ef_2020, ep_protocol_ef_20
 from src.actions.contract import contract
 
 
-def main(path, validation=True, send=True):
+def main(path, validation=True, send=False):
     clear_folder('incoming')
     files = None
     files_to_send = []
@@ -15,7 +15,7 @@ def main(path, validation=True, send=True):
     validate_xsd(path)
     server_address = get_server_address(path)
     type_xml = get_type_xml(path)
-    print(path, 'this is', type_xml)
+    print(path, 'this is', type_xml.upper())
 
     files_to_send.extend([create_xml(confirmation(path))])
 
@@ -25,7 +25,7 @@ def main(path, validation=True, send=True):
         functions = [ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers, ep_protocol_ef_2020_final]
         files = [create_xml(func(path)) for func in functions]
     elif 'contract' == type_xml:
-        files = create_xml(contract(path))
+        files = [create_xml(contract(path))]
     else:
         print('Нет обработки для:', type_xml)
 
@@ -42,4 +42,4 @@ def main(path, validation=True, send=True):
 
 
 if __name__ == '__main__':
-    main('outgoing/15104667_xml.xml')
+    main('outgoing/14922478_xml.xml')
