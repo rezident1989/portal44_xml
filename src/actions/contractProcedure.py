@@ -1,4 +1,4 @@
-import copy
+
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
@@ -9,11 +9,8 @@ from src.helper.help_func import create_xml, open_xml, random_number
 def contract_procedure(outgoing_xml):
     """Исполнение контракта. Публикация"""
 
-    tree = open_xml(outgoing_xml).getroot()
+    tree = open_xml(outgoing_xml)
     template = ET.ElementTree(file="templates/contractProcedure.xml").getroot()
-
-    remove = False
-    member = template.find(".//ns3:contract", ns)
 
     template.find('.//ns2:id', ns).text = random_number(9)
     template.find('.//ns4:contractProcedure/ns2:regNum', ns).text = tree.find('.//ns1:data/ns2:regNum', ns).text
@@ -46,4 +43,4 @@ def contract_procedure(outgoing_xml):
 
     template.find('.//ns2:isEDIBased', ns).text = True
 
-    create_xml(ET.ElementTree(template), outgoing_xml.split("/")[-1:][0][:2])
+    create_xml(template)

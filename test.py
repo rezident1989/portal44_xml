@@ -19,9 +19,9 @@ from src.helper.help_func import open_xml
 
 logging.getLogger('test')
 logging.basicConfig(filename='test.log')
-a = open_xml('outgoing/15104667_xml.xml')
+a = open_xml('outgoing/tenderPlan2020Change.xml')
 logging.warning('test1')
-# b = open_xml('outgoing/15104667_xml.xml').getroot()
+# b = open_xml('outgoing/tenderPlan2020Change.xml').getroot()
 count = 0
 # for i in a.iter():
 #     count += 1
