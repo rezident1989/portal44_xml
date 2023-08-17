@@ -7,7 +7,7 @@ from src.actions.tender_plan import tender_plan_2020
 from src.actions.notification import (ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers,
                                       ep_protocol_ef_2020_final)
 from src.actions.contract import contract
-from src.actions.contractProcedure import contract_procedure
+from src.actions.contract_procedure import contract_procedure
 
 
 def main(path, validation=True, send=True):
@@ -43,10 +43,10 @@ def main(path, validation=True, send=True):
 
     if send:
         for file in files_to_send:
-            to_sent_to_sftp(file, 'testaisgz4.gz-spb.ru')
+            to_sent_to_sftp(file, server_address)
 
     os.replace(path, f"archive/{path.split('/')[-1:][0]}")
 
 
 if __name__ == '__main__':
-    main('outgoing/14922507_xml.xml')
+    main('outgoing/14922514_xml.xml')
