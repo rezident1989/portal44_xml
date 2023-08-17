@@ -50,7 +50,7 @@ def to_sent_to_sftp(path, host):
     transport.connect(None, username='root', password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
 
-    if host == 'testaisgz5.gz-spb.ru':
+    if host == 'testaisgz5.gz-spb.ru' or host == 'testaisgz4.gz-spb.ru':
         sftp.put(path, f'../OOC/IncomingCog/{path.split("/")[-1:][0]}')
     else:
         sftp.put(path, f'../OOC/Incoming/{path.split("/")[-1:][0]}')

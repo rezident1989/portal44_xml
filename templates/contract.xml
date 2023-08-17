@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by GBU IMC (GBU IMC) -->
-<ns2:export xmlns:ns5="http://zakupki.gov.ru/oos/CPtypes/1" xmlns="http://zakupki.gov.ru/oos/types/1" xmlns:ns6="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:ns7="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:ns8="http://zakupki.gov.ru/oos/printform/1" xmlns:ns9="http://zakupki.gov.ru/oos/control99/1" xmlns:ns2="http://zakupki.gov.ru/oos/export/1" xmlns:ns3="http://zakupki.gov.ru/oos/common/1" xmlns:ns4="http://zakupki.gov.ru/oos/base/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://zakupki.gov.ru/oos/export/1 file:///C:/Users/gospodynko.v/Desktop/111/%d0%a1%d1%85%d0%b5%d0%bc%d1%8b/%d0%a1%d1%85%d0%b5%d0%bc%d1%8b%2013.0%20%d0%b8%d1%82%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f%203/fcsExport.xsd">
+<ns2:co xmlns:ns5="http://zakupki.gov.ru/oos/CPtypes/1" xmlns="http://zakupki.gov.ru/oos/types/1" xmlns:ns6="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:ns7="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:ns8="http://zakupki.gov.ru/oos/printform/1" xmlns:ns9="http://zakupki.gov.ru/oos/control99/1" xmlns:ns2="http://zakupki.gov.ru/oos/export/1" xmlns:ns3="http://zakupki.gov.ru/oos/common/1" xmlns:ns4="http://zakupki.gov.ru/oos/base/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://zakupki.gov.ru/oos/export/1 file:///C:/Users/gospodynko.v/Desktop/111/%d0%a1%d1%85%d0%b5%d0%bc%d1%8b/%d0%a1%d1%85%d0%b5%d0%bc%d1%8b%2013.0%20%d0%b8%d1%82%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f%203/fcsExport.xsd">
 	<ns2:contract schemeVersion="13.0">
 		<id>41221151</id>
 		<externalId>2545432</externalId>
@@ -341,4 +341,4 @@
 		<currentContractStage>E</currentContractStage>
 		<okpd2okved2>true</okpd2okved2>
 	</ns2:contract>
-</ns2:export>
+</ns2:co>

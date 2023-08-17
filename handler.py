@@ -10,7 +10,7 @@ from src.actions.contract import contract
 from src.actions.contractProcedure import contract_procedure
 
 
-def main(path, validation=True, send=False):
+def main(path, validation=True, send=True):
     clear_folder('incoming')
     files_to_send = []
     files_for_validation = []
@@ -43,10 +43,10 @@ def main(path, validation=True, send=False):
 
     if send:
         for file in files_to_send:
-            to_sent_to_sftp(file, server_address)
+            to_sent_to_sftp(file, 'testaisgz4.gz-spb.ru')
 
     os.replace(path, f"archive/{path.split('/')[-1:][0]}")
 
 
 if __name__ == '__main__':
-    main('outgoing/14433533_xml.xml')
+    main('outgoing/14922507_xml.xml')
