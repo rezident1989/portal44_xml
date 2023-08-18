@@ -27,7 +27,7 @@ def tender_plan_2020(outgoing_xml):
         for i in range(2, count_special_position + 1):
             template.find('.//ns3:specialPurchasePositions', ns).insert(i, member)
 
-    # TODO
+    # TODO Создать временный xml-файл
     template = ET.ElementTree(template)
     template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
     template = open_xml('venv/temp.xml')
@@ -41,24 +41,24 @@ def tender_plan_2020(outgoing_xml):
     for i in range(1, count_position + 1):
 
         try:
-            template.find(f'.//ns3:commonInfo[{i}]/ns3:positionNumber', ns).text = tree.find(
-                f'.//ns3:commonInfo[{i}]/ns3:positionNumber', ns).text
+            template.find(f'.//ns3:position[{i}]//ns3:positionNumber', ns).text = tree.find(
+                f'.//ns3:position[{i}]//ns3:positionNumber', ns).text
         except AttributeError:
-            template.find(f'.//ns3:commonInfo[{i}]/ns3:positionNumber', ns).text = random_number(24)
+            template.find(f'.//ns3:position[{i}]//ns3:positionNumber', ns).text = random_number(24)
         try:
-            template.find(f'.//ns3:commonInfo[{i}]/ns3:IKZ', ns).text = tree.find(
-                f'.//ns3:commonInfo[{i}]/ns3:IKZ', ns).text
+            template.find(f'.//ns3:position[{i}]//ns3:IKZ', ns).text = tree.find(
+                f'.//ns3:position[{i}]//ns3:IKZ', ns).text
         except AttributeError:
-            template.find(f'.//ns3:commonInfo[{i}]/ns3:IKZ', ns).text = random_number(36)
+            template.find(f'.//ns3:position[{i}]//ns3:IKZ', ns).text = random_number(36)
 
-        template.find(f'.//ns3:commonInfo[{i}]/ns3:extNumber', ns).text = tree.find(
-            f'.//ns3:commonInfo[{i}]/ns3:extNumber', ns).text
-        template.find(f'.//ns3:commonInfo[{i}]/ns3:publishYear', ns).text = tree.find(
-            f'.//ns3:commonInfo[{i}]/ns3:publishYear', ns).text
-        template.find(f'.//ns3:commonInfo[{i}]/ns3:IKU', ns).text = tree.find(
-            f'.//ns3:commonInfo[{i}]/ns3:IKU', ns).text
-        template.find(f'.//ns3:commonInfo[{i}]/ns3:purchaseNumber', ns).text = tree.find(
-            f'.//ns3:commonInfo[{i}]/ns3:purchaseNumber', ns).text
+        template.find(f'.//ns3:position[{i}]//ns3:extNumber', ns).text = tree.find(
+            f'.//ns3:position[{i}]//ns3:extNumber', ns).text
+        template.find(f'.//ns3:position[{i}]//ns3:publishYear', ns).text = tree.find(
+            f'.//ns3:position[{i}]//ns3:publishYear', ns).text
+        template.find(f'.//ns3:position[{i}]//ns3:IKU', ns).text = tree.find(
+            f'.//ns3:position[{i}]//ns3:IKU', ns).text
+        template.find(f'.//ns3:position[{i}]//ns3:purchaseNumber', ns).text = tree.find(
+            f'.//ns3:position[{i}]//ns3:purchaseNumber', ns).text
 
     for i in range(1, count_special_position + 1):
         try:

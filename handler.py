@@ -1,11 +1,11 @@
-import os
 import sys
-from src.helper.help_func import clear_folder, get_type_xml, get_server_address, create_xml, to_sent_to_sftp
+from src.helper.help_func import clear_folder, get_type_xml, get_server_address, create_xml, to_sent_to_sftp, \
+    remove_file
 from src.helper.schema_xsd import validate_xsd
 from src.actions.confirmation import confirmation
 from src.actions.tender_plan import tender_plan_2020
-from src.actions.notification import (ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers,
-                                      ep_protocol_ef_2020_final)
+from src.actions.notification import ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers, \
+    ep_protocol_ef_2020_final
 from src.actions.contract import contract
 from src.actions.contract_procedure import contract_procedure
 
@@ -45,8 +45,8 @@ def main(path, validation=True, send=True):
         for file in files_to_send:
             to_sent_to_sftp(file, server_address)
 
-    os.replace(path, f"archive/{path.split('/')[-1:][0]}")
+    remove_file(path)
 
 
 if __name__ == '__main__':
-    main('outgoing/14922514_xml.xml')
+    main('outgoing/14433546_xml.xml')

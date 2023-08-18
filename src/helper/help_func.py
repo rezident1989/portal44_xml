@@ -24,6 +24,11 @@ def clear_folder(folder: str) -> None:
         os.remove(os.path.abspath(os.path.join(f'{folder}', file)))
 
 
+def remove_file(path: str) -> None:
+    """Переместить папку"""
+    os.replace(path, f"archive/{path.split('/')[-1:][0]}")
+
+
 def get_type_xml(path: str) -> str:
     """Получить название пакета xml"""
 
@@ -75,4 +80,3 @@ def get_server_address(path: str) -> str:
         return 'testaisgz6.gz-spb.ru'
     else:
         return 'testaisgz3.gz-spb.ru'
-
