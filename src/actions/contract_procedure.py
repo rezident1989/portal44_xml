@@ -68,26 +68,26 @@ def contract_procedure(outgoing_xml):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:payDoc/..', ns)):
             if i1 == i2:
                 try:
-                    template.find('.//ns2:sid', ns).text = tree.find('.//ns2:sid', ns).text
+                    tag_temp.find('.//ns2:sid', ns).text = tree.find('.//ns2:sid', ns).text
                 except AttributeError:
-                    template.find('.//ns2:sid', ns).text = random_number(8)
-                template.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:externalSid', ns).text
-                template.find('.//ns2:documentName', ns).text = tree.find('.//ns2:documentName', ns).text
-                template.find('.//ns2:documentDate', ns).text = tree.find('.//ns2:documentDate', ns).text
-                template.find('.//ns2:documentNum', ns).text = tree.find('.//ns2:documentNum', ns).text
+                    tag_temp.find('.//ns2:sid', ns).text = random_number(8)
+                tag_temp.find('.//ns2:externalSid', ns).text = tag_three.find('.//ns2:externalSid', ns).text
+                tag_temp.find('.//ns2:documentName', ns).text = tag_three.find('.//ns2:documentName', ns).text
+                tag_temp.find('.//ns2:documentDate', ns).text = tag_three.find('.//ns2:documentDate', ns).text
+                tag_temp.find('.//ns2:documentNum', ns).text = tag_three.find('.//ns2:documentNum', ns).text
 
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:docAcceptance/..', ns)):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:docAcceptance/..', ns)):
             if i1 == i2:
                 try:
-                    template.find('.//ns2:sid', ns).text = tree.find('.//ns2:sid', ns).text
+                    tag_temp.find('./ns2:sid', ns).text = tag_three.find('./ns2:sid', ns).text
                 except AttributeError:
-                    template.find('.//ns2:sid', ns).text = random_number(8)
-                template.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:externalSid', ns).text
-                template.find('.//ns2:code', ns).text = tree.find('.//ns2:code', ns).text
-                template.find('.//ns2:name', ns).text = tree.find('.//ns2:name', ns).text
-                template.find('.//ns2:documentDate', ns).text = tree.find('.//ns2:documentDate', ns).text
-                template.find('.//ns2:deliveryAcceptDate', ns).text = tree.find(
+                    tag_temp.find('.//ns2:sid', ns).text = random_number(8)
+                tag_temp.find('.//ns2:externalSid', ns).text = tag_three.find('.//ns2:externalSid', ns).text
+                tag_temp.find('.//ns2:code', ns).text = tag_three.find('.//ns2:code', ns).text
+                tag_temp.find('.//ns2:name', ns).text = tag_three.find('.//ns2:name', ns).text
+                tag_temp.find('.//ns2:documentDate', ns).text = tag_three.find('.//ns2:documentDate', ns).text
+                tag_temp.find('.//ns2:deliveryAcceptDate', ns).text = tag_three.find(
                     './/ns2:deliveryAcceptDate', ns).text
 
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:docExecution/..', ns)):

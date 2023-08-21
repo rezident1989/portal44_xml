@@ -20,11 +20,11 @@ def contract(outgoing_xml):
     member.remove(template.find(".//ns2:foundation", ns))
     member.insert(5, copy.deepcopy(tree.find(".//ns2:foundation", ns)))
     member.remove(template.find(".//ns2:customer", ns))
-    member.insert(6, copy.deepcopy(tree.find(".//ns2:customer", ns)))
+    member.insert(7, copy.deepcopy(tree.find(".//ns2:customer", ns)))
     member.remove(template.find(".//ns2:placer", ns))
-    member.insert(7, copy.deepcopy(tree.find(".//ns2:placer", ns)))
+    member.insert(8, copy.deepcopy(tree.find(".//ns2:placer", ns)))
     member.remove(template.find(".//ns2:finances", ns))
-    member.insert(8, copy.deepcopy(tree.find(".//ns2:finances", ns)))
+    member.insert(9, copy.deepcopy(tree.find(".//ns2:finances", ns)))
     try:
         template.find('.//ns2:protocolDate', ns).text = tree.find('.//ns2:protocolDate', ns).text
     except AttributeError:
@@ -39,15 +39,24 @@ def contract(outgoing_xml):
     template.find('.//ns2:number', ns).text = tree.find('.//ns2:number', ns).text
     template.find('.//ns2:contractSubject', ns).text = tree.find('.//ns2:contractSubject', ns).text
     member.remove(template.find(".//ns2:priceInfo", ns))
-    member.insert(17, copy.deepcopy(tree.find(".//ns2:priceInfo", ns)))
+    member.insert(19, copy.deepcopy(tree.find(".//ns2:priceInfo", ns)))
     member.remove(template.find(".//ns2:executionPeriod", ns))
-    member.insert(18, copy.deepcopy(tree.find(".//ns2:executionPeriod", ns)))
+    member.insert(21, copy.deepcopy(tree.find(".//ns2:executionPeriod", ns)))
     member.remove(template.find(".//ns2:products", ns))
-    member.insert(19, copy.deepcopy(tree.find(".//ns2:products", ns)))
-    template.find('.//ns2:executionPeriod', ns).text = tree.find('.//ns2:executionPeriod', ns).text
+    member.insert(23, copy.deepcopy(tree.find(".//ns2:products", ns)))
 
     for el in template.findall('.//ns2:docRegNumber', ns):
         el.text = random_number(19)
+
+    if len(tree.findall('.//ns2:supplierAccountDetails/ns6:externalSid', ns)) > 0:
+        template.find('.//ns2:supplierAccountDetails/ns6:externalSid', ns).text = tree.find(
+            './/ns2:supplierAccountDetails/ns6:externalSid', ns).text
+
+        try:
+            template.find('.//ns2:supplierAccountDetails/ns6:sid', ns).text = tree.find(
+                './/ns2:supplierAccountDetails/ns6:sid', ns).text
+        except AttributeError:
+            template.find('.//ns2:supplierAccountDetails/ns6:sid', ns).text = random_number(8)
 
     if remove:
         member.remove(template.find(".//ns2:protocolDate", ns))

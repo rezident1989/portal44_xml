@@ -10,7 +10,7 @@ from src.actions.contract import contract
 from src.actions.contract_procedure import contract_procedure
 
 
-def main(path, validation=True, send=True):
+def main(path, validation=True, send=False):
     clear_folder('incoming')
     files_to_send = []
     files_for_validation = []
@@ -26,7 +26,7 @@ def main(path, validation=True, send=True):
     elif 'epNotificationEF2020' == type_xml:
         functions = [ep_notification_ef_2020, ep_protocol_ef_2020_submit_offers, ep_protocol_ef_2020_final]
         files = [create_xml(func(path)) for func in functions]
-    elif 'contract' == type_xml:
+    elif 'contract' == type_xml or 'closedContract' == type_xml:
         files = [create_xml(contract(path))]
     elif 'contractProcedure' == type_xml:
         files = [create_xml(contract_procedure(path))]
@@ -49,4 +49,4 @@ def main(path, validation=True, send=True):
 
 
 if __name__ == '__main__':
-    main('outgoing/14433546_xml.xml')
+    main('outgoing/14433566_xml (1).xml')
