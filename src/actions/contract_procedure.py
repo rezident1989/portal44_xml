@@ -61,8 +61,12 @@ def contract_procedure(outgoing_xml):
         template.find('.//ns2:stage/ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
     except AttributeError:
         template.find('.//ns2:stage/ns2:sid', ns).text = random_number(8)
-    template.find('.//ns2:stage/ns2:externalSid', ns).text = tree.find(
-        './/ns2:stage/ns2:externalSid', ns).text
+    try:
+        template.find('.//ns2:stage/ns2:externalSid', ns).text = tree.find(
+            './/ns2:stage/ns2:externalSid', ns).text
+    except AttributeError:
+        member = template.find(".//ns2:stage", ns)
+        member.remove(template.find(".//ns2:externalSid", ns))
 
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:payDoc/..', ns)):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:payDoc/..', ns)):
