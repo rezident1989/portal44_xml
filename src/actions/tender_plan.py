@@ -38,15 +38,17 @@ def tender_plan_2020(outgoing_xml):
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
     template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
-    a = template.findall('.//ns3:position/..', ns) + template.findall('.//ns3:specialPurchasePosition/..')
-    b = tree.findall('.//ns3:position/..', ns) + tree.findall('.//ns3:specialPurchasePosition/..')
+    template_purchase = (template.findall('.//ns3:position/ns3:commonInfo/..', ns)
+                         + template.findall('.//ns3:specialPurchasePosition', ns))
+    tree_purchase = (tree.findall('.//ns3:position/ns3:commonInfo/..', ns)
+                     + tree.findall('.//ns3:specialPurchasePosition', ns))
 
-    for i1, tag_temp in enumerate(a):
-        for i2, tag_three in enumerate(b):
+    for i1, tag_temp in enumerate(template_purchase):
+        for i2, tag_three in enumerate(tree_purchase):
             if i1 == i2:
                 try:
-                    tag_temp.find('.//ns3:positionNumber', ns).text = tree.find('.//ns3:positionNumber', ns).text
-                    tag_temp.remove(tag_temp.find(".//ns2:executionPeriod", ns))
+                    tag_temp.find('.//ns3:positionNumber', ns).text = tag_three.find('.//ns3:positionNumber', ns).text
+                    tag_temp.find('.//ns3:IKZ', ns).text = tag_three.find('.//ns3:IKZ', ns).text
                 except AttributeError:
                     tag_temp.find('.//ns3:positionNumber', ns).text = random_number(24)
                     tag_temp.find('.//ns3:IKZ', ns).text = random_number(36)
