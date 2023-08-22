@@ -2,6 +2,7 @@ import copy
 from src.helper.namespace import namespace as ns
 from src.helper.help_func import open_xml, random_number
 from datetime import datetime
+import xml.etree.ElementTree as ET
 
 
 def contract(outgoing_xml):
@@ -42,6 +43,14 @@ def contract(outgoing_xml):
     member.insert(19, copy.deepcopy(tree.find(".//ns2:priceInfo", ns)))
     member.remove(template.find(".//ns2:executionPeriod", ns))
     member.insert(21, copy.deepcopy(tree.find(".//ns2:executionPeriod", ns)))
+
+    list_stage = template.findall('.//ns2:executionPeriod/ns2:stages', ns)
+
+    for stages in list_stage:
+        child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
+        child.text = random_number(8)
+        stages.insert(0, child)
+
     member.remove(template.find(".//ns2:products", ns))
     member.insert(23, copy.deepcopy(tree.find(".//ns2:products", ns)))
 

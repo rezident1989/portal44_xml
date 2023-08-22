@@ -38,47 +38,64 @@ def tender_plan_2020(outgoing_xml):
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
     template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
-    for i in range(1, count_position + 1):
+    a = template.findall('.//ns3:position/..', ns) + template.findall('.//ns3:specialPurchasePosition/..')
+    b = tree.findall('.//ns3:position/..', ns) + tree.findall('.//ns3:specialPurchasePosition/..')
 
-        try:
-            template.find(f'.//ns3:position[{i}]//ns3:positionNumber', ns).text = tree.find(
-                f'.//ns3:position[{i}]//ns3:positionNumber', ns).text
-        except AttributeError:
-            template.find(f'.//ns3:position[{i}]//ns3:positionNumber', ns).text = random_number(24)
-        try:
-            template.find(f'.//ns3:position[{i}]//ns3:IKZ', ns).text = tree.find(
-                f'.//ns3:position[{i}]//ns3:IKZ', ns).text
-        except AttributeError:
-            template.find(f'.//ns3:position[{i}]//ns3:IKZ', ns).text = random_number(36)
+    for i1, tag_temp in enumerate(a):
+        for i2, tag_three in enumerate(b):
+            if i1 == i2:
+                try:
+                    tag_temp.find('.//ns3:positionNumber', ns).text = tree.find('.//ns3:positionNumber', ns).text
+                    tag_temp.remove(tag_temp.find(".//ns2:executionPeriod", ns))
+                except AttributeError:
+                    tag_temp.find('.//ns3:positionNumber', ns).text = random_number(24)
+                    tag_temp.find('.//ns3:IKZ', ns).text = random_number(36)
+                tag_temp.find('.//ns3:extNumber', ns).text = tag_three.find('.//ns3:extNumber', ns).text
+                tag_temp.find('.//ns3:publishYear', ns).text = tag_three.find('.//ns3:publishYear', ns).text
+                tag_temp.find('.//ns3:IKU', ns).text = tag_three.find('.//ns3:IKU', ns).text
+                tag_temp.find('.//ns3:purchaseNumber', ns).text = tag_three.find('.//ns3:purchaseNumber', ns).text
 
-        template.find(f'.//ns3:position[{i}]//ns3:extNumber', ns).text = tree.find(
-            f'.//ns3:position[{i}]//ns3:extNumber', ns).text
-        template.find(f'.//ns3:position[{i}]//ns3:publishYear', ns).text = tree.find(
-            f'.//ns3:position[{i}]//ns3:publishYear', ns).text
-        template.find(f'.//ns3:position[{i}]//ns3:IKU', ns).text = tree.find(
-            f'.//ns3:position[{i}]//ns3:IKU', ns).text
-        template.find(f'.//ns3:position[{i}]//ns3:purchaseNumber', ns).text = tree.find(
-            f'.//ns3:position[{i}]//ns3:purchaseNumber', ns).text
-
-    for i in range(1, count_special_position + 1):
-        try:
-            template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:positionNumber', ns).text = tree.find(
-                f'.//ns3:specialPurchasePosition[{i}]/ns3:positionNumber', ns).text
-        except AttributeError:
-            template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:positionNumber', ns).text = random_number(24)
-        try:
-            template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:IKZ', ns).text = tree.find(
-                f'.//ns3:specialPurchasePosition[{i}]/ns3:IKZ', ns).text
-        except AttributeError:
-            template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:IKZ', ns).text = random_number(36)
-
-        template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:extNumber', ns).text = tree.find(
-            f'.//ns3:specialPurchasePosition[{i}]/ns3:extNumber', ns).text
-        template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:publishYear', ns).text = tree.find(
-            f'.//ns3:specialPurchasePosition[{i}]/ns3:publishYear', ns).text
-        template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:IKU', ns).text = tree.find(
-            f'.//ns3:specialPurchasePosition[{i}]/ns3:IKU', ns).text
-        template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:purchaseNumber', ns).text = tree.find(
-            f'.//ns3:specialPurchasePosition[{i}]/ns3:purchaseNumber', ns).text
+    # for i in range(1, count_position + 1):
+    #
+    #     try:
+    #         template.find(f'.//ns3:position[{i}]//ns3:positionNumber', ns).text = tree.find(
+    #             f'.//ns3:position[{i}]//ns3:positionNumber', ns).text
+    #     except AttributeError:
+    #         template.find(f'.//ns3:position[{i}]//ns3:positionNumber', ns).text = random_number(24)
+    #     try:
+    #         template.find(f'.//ns3:position[{i}]//ns3:IKZ', ns).text = tree.find(
+    #             f'.//ns3:position[{i}]//ns3:IKZ', ns).text
+    #     except AttributeError:
+    #         template.find(f'.//ns3:position[{i}]//ns3:IKZ', ns).text = random_number(36)
+    #
+    #     template.find(f'.//ns3:position[{i}]//ns3:extNumber', ns).text = tree.find(
+    #         f'.//ns3:position[{i}]//ns3:extNumber', ns).text
+    #     template.find(f'.//ns3:position[{i}]//ns3:publishYear', ns).text = tree.find(
+    #         f'.//ns3:position[{i}]//ns3:publishYear', ns).text
+    #     template.find(f'.//ns3:position[{i}]//ns3:IKU', ns).text = tree.find(
+    #         f'.//ns3:position[{i}]//ns3:IKU', ns).text
+    #     template.find(f'.//ns3:position[{i}]//ns3:purchaseNumber', ns).text = tree.find(
+    #         f'.//ns3:position[{i}]//ns3:purchaseNumber', ns).text
+    #
+    # for i in range(1, count_special_position + 1):
+    #     try:
+    #         template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:positionNumber', ns).text = tree.find(
+    #             f'.//ns3:specialPurchasePosition[{i}]/ns3:positionNumber', ns).text
+    #     except AttributeError:
+    #         template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:positionNumber', ns).text = random_number(24)
+    #     try:
+    #         template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:IKZ', ns).text = tree.find(
+    #             f'.//ns3:specialPurchasePosition[{i}]/ns3:IKZ', ns).text
+    #     except AttributeError:
+    #         template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:IKZ', ns).text = random_number(36)
+    #
+    #     template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:extNumber', ns).text = tree.find(
+    #         f'.//ns3:specialPurchasePosition[{i}]/ns3:extNumber', ns).text
+    #     template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:publishYear', ns).text = tree.find(
+    #         f'.//ns3:specialPurchasePosition[{i}]/ns3:publishYear', ns).text
+    #     template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:IKU', ns).text = tree.find(
+    #         f'.//ns3:specialPurchasePosition[{i}]/ns3:IKU', ns).text
+    #     template.find(f'.//ns3:specialPurchasePosition[{i}]/ns3:purchaseNumber', ns).text = tree.find(
+    #         f'.//ns3:specialPurchasePosition[{i}]/ns3:purchaseNumber', ns).text
 
     return template

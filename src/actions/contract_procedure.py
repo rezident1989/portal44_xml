@@ -68,6 +68,13 @@ def contract_procedure(outgoing_xml):
         member = template.find(".//ns2:stage", ns)
         member.remove(template.find(".//ns2:externalSid", ns))
 
+    try:
+        template.find('.//ns2:stage/ns2:endDate', ns).text = tree.find(
+            './/ns2:stage/ns2:endDate', ns).text
+    except AttributeError:
+        member = template.find(".//ns2:stage", ns)
+        member.remove(template.find(".//ns2:endDate", ns))
+
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:payDoc/..', ns)):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:payDoc/..', ns)):
             if i1 == i2:
