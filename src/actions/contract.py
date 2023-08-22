@@ -17,6 +17,8 @@ def contract(outgoing_xml):
     template.find('.//ns2:id', ns).text = random_number(8)
     template.find('.//ns2:externalId', ns).text = tree.find('.//ns2:externalId', ns).text
     template.find('.//ns2:placementDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    template.find('.//ns2:publishDate', ns).text = tree.find('.//ns2:publishDate', ns).text
+    template.find('.//ns2:versionNumber', ns).text = tree.find('.//ns2:versionNumber', ns).text
 
     member.remove(template.find(".//ns2:foundation", ns))
     member.insert(5, copy.deepcopy(tree.find(".//ns2:foundation", ns)))
