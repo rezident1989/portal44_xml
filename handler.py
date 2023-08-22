@@ -10,7 +10,7 @@ from src.actions.contract import contract
 from src.actions.contract_procedure import contract_procedure
 
 
-def main(path, validation=True, send=False):
+def main(path, validation=True, send=True):
     clear_folder('incoming')
     files_to_send = []
     files_for_validation = []
@@ -49,4 +49,4 @@ def main(path, validation=True, send=False):
 
 
 if __name__ == '__main__':
-    main('outgoing/14433566_xml (1).xml')
+    main('outgoing/15104703_xml.xml')

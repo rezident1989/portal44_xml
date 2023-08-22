@@ -20,4 +20,7 @@ from src.helper.schema_xsd import validate_xsd
 # print(f'Количество тегов: {len(tag_list_2)}')
 # [print(i.text) for i in tag_list_2]
 
-validate_xsd('outgoing/contract_21.08.1.xml')
+# validate_xsd('outgoing/contract_21.08.1.xml')
+
+a = input('Как тебя зовут? ')
+print('Привет, {a}!'.format(a=a))
