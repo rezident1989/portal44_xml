@@ -27,10 +27,10 @@ def tender_plan_2020(outgoing_xml):
         for i in range(2, count_special_position + 1):
             template.find('.//ns3:specialPurchasePositions', ns).insert(i, member)
 
-    # TODO Создать временный xml-файл
-    template = ET.ElementTree(template)
-    template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
-    template = open_xml('venv/temp.xml')
+    # # TODO Создать временный xml-файл
+    # template = ET.ElementTree(template)
+    # template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
+    # template = open_xml('venv/temp.xml')
 
     template.find('.//ns3:id', ns).text = random_number(8)
     template.find('.//ns3:externalId', ns).text = tree.find('.//ns3:externalId', ns).text
