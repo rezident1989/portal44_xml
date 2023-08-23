@@ -1,4 +1,5 @@
 import datetime
+import time
 import xml.etree.ElementTree as ET
 from random import randint
 import os
@@ -54,12 +55,35 @@ def to_sent_to_sftp(path, host):
     transport = paramiko.Transport(host)
     transport.connect(None, username='root', password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
-
     if host == 'testaisgz5.gz-spb.ru' or host == 'testaisgz4.gz-spb.ru':
-        sftp.put(path, f'../OOC/IncomingCog/{path.split("/")[-1:][0]}')
+        folder = '../OOC/IncomingCog/'
     else:
-        sftp.put(path, f'../OOC/Incoming/{path.split("/")[-1:][0]}')
+        folder = '../OOC/Incoming/'
+    sftp.put(path, f'{folder}{path.split("/")[-1:][0]}')
     print(path.split("/")[-1:][0], 'отправлен на', host)
+
+    if sftp:
+        sftp.close()
+    if transport:
+        transport.close()
+
+
+def test_folder(host):
+    transport = paramiko.Transport(host)
+    transport.connect(None, username='root', password=password_sftp)
+    sftp = paramiko.SFTPClient.from_transport(transport)
+    if host == 'testaisgz5.gz-spb.ru' or host == 'testaisgz4.gz-spb.ru':
+        folder = '../OOC/IncomingCog/'
+    else:
+        folder = '../OOC/Incoming/'
+
+    count = 1
+    while sum([i.count('.xml')for i in sftp.listdir(folder)]) != 0:
+        time.sleep(1)
+        print(f'\rИдет отправка пакетов: {count * "|"}', end=' ')
+        count += 1
+
+    print(f'\nПакеты отравлены за {count} сек!')
 
     if sftp:
         sftp.close()
