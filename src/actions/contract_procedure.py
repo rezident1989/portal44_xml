@@ -49,6 +49,7 @@ def contract_procedure(outgoing_xml):
         tree.find('.//ns2:penalties', ns)
         member = template.find(".//ns4:contractProcedure", ns)
         member.insert(6, copy.deepcopy(tree.find(".//ns2:penalties", ns)))
+        member.insert(7, copy.deepcopy(tree.find(".//ns2:penalties", ns)))
     except AttributeError:
         pass
 
@@ -62,22 +63,23 @@ def contract_procedure(outgoing_xml):
     template.find('.//ns2:publishDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
     template.find('.//ns2:finalStageExecution', ns).text = tree.find('.//ns2:finalStageExecution', ns).text
 
+    member = template.find(".//ns2:stage", ns)
+
     try:
         template.find('.//ns2:stage/ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
     except AttributeError:
-        template.find('.//ns2:stage/ns2:sid', ns).text = random_number(8)
+        member.remove(template.find(".//ns2:sid", ns))
+
     try:
         template.find('.//ns2:stage/ns2:externalSid', ns).text = tree.find(
             './/ns2:stage/ns2:externalSid', ns).text
     except AttributeError:
-        member = template.find(".//ns2:stage", ns)
         member.remove(template.find(".//ns2:externalSid", ns))
 
     try:
         template.find('.//ns2:stage/ns2:endDate', ns).text = tree.find(
             './/ns2:stage/ns2:endDate', ns).text
     except AttributeError:
-        member = template.find(".//ns2:stage", ns)
         member.remove(template.find(".//ns2:endDate", ns))
 
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:payDoc/..', ns)):
