@@ -616,5 +616,7 @@ $RECYCLE.BIN/
 incoming/
 outgoing/
 archive/
+server/
+test/
 
 password.py
