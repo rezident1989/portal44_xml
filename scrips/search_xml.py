@@ -1,8 +1,10 @@
 import os
 import zipfile
+from src.helper.help_func import clear_folder
 
 
 def search_xml(text):
+    clear_folder(os.path.join(os.path.expanduser('~'), 'Desktop', 'xml'))
     count_res = 0
     byte_object = text.encode("utf-8")
 
