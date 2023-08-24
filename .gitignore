@@ -616,7 +616,6 @@ $RECYCLE.BIN/
 incoming/
 outgoing/
 archive/
-server/
-test/
+ftp_server/
 
 password.py
