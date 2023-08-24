@@ -45,7 +45,12 @@ def contract_procedure(outgoing_xml):
         for i in range(2, count_doc_execution + 1):
             template.find(".//ns2:executions", ns).append(member)
 
-    template.find('.//ns2:execution/ns2:payDoc/..', ns)
+    try:
+        tree.find('.//ns2:penalties', ns)
+        member = template.find(".//ns4:contractProcedure", ns)
+        member.insert(6, copy.deepcopy(tree.find(".//ns2:penalties", ns)))
+    except AttributeError:
+        pass
 
     # TODO Создать временный xml-файл
     template = ET.ElementTree(template)
