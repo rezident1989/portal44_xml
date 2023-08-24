@@ -1,5 +1,5 @@
 from src.helper.namespace import namespace as ns
-from src.helper.help_func import open_xml, test_folder
+from src.helper.help_func import open_xml
 
 
 xml_1 = open_xml('templates/contractProcedure.xml')
