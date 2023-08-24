@@ -78,7 +78,7 @@ def test_folder(host):
         folder = '../OOC/Incoming/'
 
     count = 1
-    while sum([i.count('.xml')for i in sftp.listdir(folder)]) != 0:
+    while sum([i.count('.xml') for i in sftp.listdir(folder)]) != 0:
         time.sleep(1)
         print(f'\rИдет отправка пакетов: {count * "|"}', end=' ')
         count += 1

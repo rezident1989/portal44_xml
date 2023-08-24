@@ -52,9 +52,12 @@ def contract(outgoing_xml):
     list_stage = template.findall('.//ns2:executionPeriod/ns2:stages', ns)
 
     for stages in list_stage:
-        child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
-        child.text = random_number(8)
-        stages.insert(0, child)
+        try:
+            stages.find('.//ns2:sid', ns)
+        except AttributeError:
+            child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
+            child.text = random_number(8)
+            stages.insert(0, child)
 
     member.remove(template.find(".//ns2:products", ns))
     member.insert(23, copy.deepcopy(tree.find(".//ns2:products", ns)))
