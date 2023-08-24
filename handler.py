@@ -10,7 +10,7 @@ from src.actions.contract import contract
 from src.actions.contract_procedure import contract_procedure
 
 
-def main(path, validation=True, send=False):
+def main(path, validation=True, send=True):
     clear_folder('incoming')
     files_to_send = []
     files_for_validation = []
@@ -45,7 +45,7 @@ def main(path, validation=True, send=False):
         for file in files_to_send:
             to_sent_to_sftp(file, server_address)
 
-    # remove_file(path)
+    remove_file(path)
     test_folder(server_address)
 
 
