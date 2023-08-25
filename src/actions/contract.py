@@ -11,47 +11,48 @@ def contract(outgoing_xml):
     tree = open_xml(outgoing_xml)
     template = open_xml("templates/contract.xml")
 
-    remove = False
-    member = template.find(".//ns4:contract", ns)
+    main = template.find(".//ns4:contract", ns)
 
-    template.find('.//ns2:id', ns).text = random_number(8)
-    template.find('.//ns2:externalId', ns).text = tree.find('.//ns2:externalId', ns).text
-    template.find('.//ns2:placementDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns2:publishDate', ns).text = tree.find('.//ns2:publishDate', ns).text
-    try:
-        template.find('.//ns2:versionNumber', ns).text = tree.find('.//ns2:versionNumber', ns).text
-    except AttributeError:
-        template.find('.//ns2:versionNumber', ns).text = '0'
+    # Заполнение блока contractProcedure
+    main.find('.//ns2:id', ns).text = random_number(8)
+    main.find('.//ns2:externalId', ns).text = tree.find('.//ns2:externalId', ns).text
+    main.find('.//ns2:placementDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
+    main.find('.//ns2:publishDate', ns).text = tree.find('.//ns2:publishDate', ns).text
+    main.find('.//ns2:documentCode', ns).text = random_number(6)
+    main.find('.//ns2:signDate', ns).text = tree.find('.//ns2:signDate', ns).text
+    template.find('.//ns2:number', ns).text = tree.find('.//ns2:number', ns).text
+    template.find('.//ns2:contractSubject', ns).text = tree.find('.//ns2:contractSubject', ns).text
 
-    member.remove(template.find(".//ns2:foundation", ns))
-    member.insert(5, copy.deepcopy(tree.find(".//ns2:foundation", ns)))
-    member.remove(template.find(".//ns2:customer", ns))
-    member.insert(7, copy.deepcopy(tree.find(".//ns2:customer", ns)))
-    member.remove(template.find(".//ns2:placer", ns))
-    member.insert(8, copy.deepcopy(tree.find(".//ns2:placer", ns)))
-    member.remove(template.find(".//ns2:finances", ns))
-    member.insert(9, copy.deepcopy(tree.find(".//ns2:finances", ns)))
-    try:
-        template.find('.//ns2:protocolDate', ns).text = tree.find('.//ns2:protocolDate', ns).text
-    except AttributeError:
-        remove = True
+    # Полная замена блоков
+    main.remove(template.find(".//ns2:foundation", ns))
+    main.insert(5, copy.deepcopy(tree.find(".//ns2:foundation", ns)))
+    main.remove(template.find(".//ns2:customer", ns))
+    main.insert(7, copy.deepcopy(tree.find(".//ns2:customer", ns)))
+    main.remove(template.find(".//ns2:placer", ns))
+    main.insert(8, copy.deepcopy(tree.find(".//ns2:placer", ns)))
+    main.remove(template.find(".//ns2:finances", ns))
+    main.insert(9, copy.deepcopy(tree.find(".//ns2:finances", ns)))
+    main.remove(template.find(".//ns2:priceInfo", ns))
+    main.insert(19, copy.deepcopy(tree.find(".//ns2:priceInfo", ns)))
+    main.remove(template.find(".//ns2:executionPeriod", ns))
+    main.insert(21, copy.deepcopy(tree.find(".//ns2:executionPeriod", ns)))
+    main.remove(template.find(".//ns2:products", ns))
+    main.insert(23, copy.deepcopy(tree.find(".//ns2:products", ns)))
+    main.remove(template.find(".//ns2:suppliersInfo", ns))
+    main.insert(24, copy.deepcopy(tree.find(".//ns2:suppliersInfo", ns)))
 
-    template.find('.//ns2:documentCode', ns).text = random_number(6)
-    template.find('.//ns2:signDate', ns).text = tree.find('.//ns2:signDate', ns).text
     try:
         template.find('.//ns4:contract/ns2:regNum', ns).text = tree.find('.//ns1:data/ns2:regNum', ns).text
     except AttributeError:
         template.find('.//ns4:contract/ns2:regNum', ns).text = random_number(19)
-    template.find('.//ns2:number', ns).text = tree.find('.//ns2:number', ns).text
-    template.find('.//ns2:contractSubject', ns).text = tree.find('.//ns2:contractSubject', ns).text
-    member.remove(template.find(".//ns2:priceInfo", ns))
-    member.insert(19, copy.deepcopy(tree.find(".//ns2:priceInfo", ns)))
-    member.remove(template.find(".//ns2:executionPeriod", ns))
-    member.insert(21, copy.deepcopy(tree.find(".//ns2:executionPeriod", ns)))
 
-    list_stage = template.findall('.//ns2:executionPeriod/ns2:stages', ns)
+    try:
+        main.find('.//ns2:versionNumber', ns).text = tree.find('.//ns2:versionNumber', ns).text
+    except AttributeError:
+        main.find('.//ns2:versionNumber', ns).text = '0'
 
-    for stages in list_stage:
+    # Добавить тег sid в блоки contract/executionPeriod/stages
+    for stages in template.findall('.//ns2:executionPeriod/ns2:stages', ns):
         try:
             stages.find('.//ns2:sid', ns)
         except AttributeError:
@@ -59,23 +60,22 @@ def contract(outgoing_xml):
             child.text = random_number(8)
             stages.insert(0, child)
 
-    member.remove(template.find(".//ns2:products", ns))
-    member.insert(23, copy.deepcopy(tree.find(".//ns2:products", ns)))
+    # Добавить тег sid в блоки contract/suppliersInfo/supplierInfo/supplierAccountsDetails/supplierAccountDetails
+    # Необязательный блок
+    if len(tree.findall('.//ns2:supplierAccountDetails', ns)) > 0:
+        for account in template.findall('.//ns2:supplierAccountDetails', ns):
+            try:
+                account.find('.//ns6:sid', ns)
+            except AttributeError:
+                child = ET.Element('{http://zakupki.gov.ru/oos/common/1}sid')
+                child.text = random_number(8)
+                account.insert(0, child)
 
-    for el in template.findall('.//ns2:docRegNumber', ns):
-        el.text = random_number(19)
-
-    if len(tree.findall('.//ns2:supplierAccountDetails/ns6:externalSid', ns)) > 0:
-        template.find('.//ns2:supplierAccountDetails/ns6:externalSid', ns).text = tree.find(
-            './/ns2:supplierAccountDetails/ns6:externalSid', ns).text
-
-        try:
-            template.find('.//ns2:supplierAccountDetails/ns6:sid', ns).text = tree.find(
-                './/ns2:supplierAccountDetails/ns6:sid', ns).text
-        except AttributeError:
-            template.find('.//ns2:supplierAccountDetails/ns6:sid', ns).text = random_number(8)
-
-    if remove:
-        member.remove(template.find(".//ns2:protocolDate", ns))
+    # Заполнение блока contractProcedure с возможным удалением
+    # Необязательный блок
+    try:
+        template.find('.//ns2:protocolDate', ns).text = tree.find('.//ns2:protocolDate', ns).text
+    except AttributeError:
+        main.remove(template.find(".//ns2:protocolDate", ns))
 
     return template

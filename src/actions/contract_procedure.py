@@ -10,78 +10,74 @@ def contract_procedure(outgoing_xml):
     template.find('.//ns2:finalStageExecution', ns).text = 'true' - контракт исполниться
     template.find('.//ns2:isEDIBased', ns).text = 'true' - электронное актирование
     """
-
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/contractProcedure.xml")
+    template = open_xml('templates/contractProcedure.xml')
 
+    # Добавление в шаблон блока Документа о приемке
     count_pay_doc = len(tree.findall('.//ns2:execution/ns2:payDoc', ns))
-    count_doc_acceptance = len(tree.findall('.//ns2:execution/ns2:docAcceptance', ns))
-    count_doc_execution = len(tree.findall('.//ns2:execution/ns2:docExecution', ns))
-
-    # Добавление в шаблон Документа о приемке
     if count_pay_doc == 0:
         template.find('.//ns2:executions', ns).remove(template.find(
             './/ns2:execution/ns2:payDoc/..', ns))
     elif count_pay_doc > 1:
         member = copy.deepcopy(template.find('.//ns2:execution/ns2:payDoc/..', ns))
-        for i in range(2, count_pay_doc + 1):
-            template.find(".//ns2:executions", ns).append(member)
+        for i in range(1, count_pay_doc):
+            template.find('.//ns2:executions', ns).append(member)
 
-    # Добавление в шаблон Платежный документ
+    # Добавление в шаблон блока Платежный документ
+    count_doc_acceptance = len(tree.findall('.//ns2:execution/ns2:docAcceptance', ns))
     if count_doc_acceptance == 0:
         template.find('.//ns2:executions', ns).remove(template.find(
             './/ns2:execution/ns2:docAcceptance/..', ns))
     elif count_doc_acceptance > 1:
         member = copy.deepcopy(template.find('.//ns2:execution/ns2:docAcceptance/..', ns))
-        for i in range(2, count_doc_acceptance + 1):
-            template.find(".//ns2:executions", ns).append(member)
+        for i in range(1, count_doc_acceptance):
+            template.find('.//ns2:executions', ns).append(member)
 
-    # Добавление в шаблон Документа об исполнении
+    # Добавление в шаблон блока Документа об исполнении контракта
+    count_doc_execution = len(tree.findall('.//ns2:execution/ns2:docExecution', ns))
     if count_doc_execution == 0:
         template.find('.//ns2:executions', ns).remove(template.find(
             './/ns2:execution/ns2:docExecution/..', ns))
     elif count_doc_execution > 1:
         member = copy.deepcopy(template.find('.//ns2:execution/ns2:docExecution/..', ns))
-        for i in range(2, count_doc_execution + 1):
-            template.find(".//ns2:executions", ns).append(member)
+        for i in range(1, count_doc_execution):
+            template.find('.//ns2:executions', ns).append(member)
 
-    try:
-        tree.find('.//ns2:penalties', ns)
-        member = template.find(".//ns4:contractProcedure", ns)
-        member.insert(6, copy.deepcopy(tree.find(".//ns2:penalties", ns)))
-        member.insert(7, copy.deepcopy(tree.find(".//ns2:penalties", ns)))
-    except AttributeError:
-        pass
+    # Добавление в шаблон блока Информация о неустойках (штрафах, пениях)
+    count_penalties = len(tree.findall('.//ns2:penalties', ns))
+    if count_penalties > 0:
+        list_penalties = tree.findall('.//ns2:penalties', ns)
+        member = template.find('.//ns4:contractProcedure', ns)
+        for i, penalties in enumerate(list_penalties):
+            member.insert(6+i, copy.deepcopy(penalties))
 
     # TODO Создать временный xml-файл
     template = ET.ElementTree(template)
     template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
     template = open_xml('venv/temp.xml')
 
+    # Заполнение блока contractProcedure
     template.find('.//ns2:id', ns).text = random_number(8)
     template.find('.//ns2:regNum', ns).text = tree.find('.//ns2:regNum', ns).text
     template.find('.//ns2:publishDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
     template.find('.//ns2:finalStageExecution', ns).text = tree.find('.//ns2:finalStageExecution', ns).text
 
-    member = template.find(".//ns2:stage", ns)
-
+    # Заполнение блока contractProcedure/execution/stage
+    member = template.find('.//ns2:stage', ns)
     try:
-        template.find('.//ns2:stage/ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
+        member.find('.//ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
     except AttributeError:
-        member.remove(template.find(".//ns2:sid", ns))
-
+        member.remove(member.find('.//ns2:sid', ns))
     try:
-        template.find('.//ns2:stage/ns2:externalSid', ns).text = tree.find(
-            './/ns2:stage/ns2:externalSid', ns).text
+        member.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:stage/ns2:externalSid', ns).text
     except AttributeError:
-        member.remove(template.find(".//ns2:externalSid", ns))
-
+        member.remove(member.find('.//ns2:externalSid', ns))
     try:
-        template.find('.//ns2:stage/ns2:endDate', ns).text = tree.find(
-            './/ns2:stage/ns2:endDate', ns).text
+        member.find('.//ns2:endDate', ns).text = tree.find('.//ns2:stage/ns2:endDate', ns).text
     except AttributeError:
-        member.remove(template.find(".//ns2:endDate", ns))
+        member.remove(member.find('.//ns2:endDate', ns))
 
+    # Заполнение блока contractProcedure/execution/stage/execution/payDoc
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:payDoc/..', ns)):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:payDoc/..', ns)):
             if i1 == i2:
@@ -94,6 +90,7 @@ def contract_procedure(outgoing_xml):
                 tag_temp.find('.//ns2:documentDate', ns).text = tag_three.find('.//ns2:documentDate', ns).text
                 tag_temp.find('.//ns2:documentNum', ns).text = tag_three.find('.//ns2:documentNum', ns).text
 
+    # Заполнение блока contractProcedure/execution/stage/execution/docAcceptance
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:docAcceptance/..', ns)):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:docAcceptance/..', ns)):
             if i1 == i2:
@@ -108,6 +105,7 @@ def contract_procedure(outgoing_xml):
                 tag_temp.find('.//ns2:deliveryAcceptDate', ns).text = tag_three.find(
                     './/ns2:deliveryAcceptDate', ns).text
 
+    # Заполнение блока contractProcedure/execution/stage/execution/docExecution
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:docExecution/..', ns)):
         for i2, tag_three in enumerate(tree.findall('.//ns2:execution/ns2:docExecution/..', ns)):
             if i1 == i2:

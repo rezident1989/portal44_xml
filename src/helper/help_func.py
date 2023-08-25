@@ -25,9 +25,9 @@ def clear_folder(folder: str) -> None:
         os.remove(os.path.abspath(os.path.join(f'{folder}', file)))
 
 
-def remove_file(path: str) -> None:
+def remove_file(file: str, folder: str) -> None:
     """Переместить папку"""
-    os.replace(path, f"archive/{path.split('/')[-1:][0]}")
+    os.replace(file, f"{folder}/{file.split('/')[-1:][0]}")
 
 
 def get_type_xml(path: str) -> str:
@@ -78,12 +78,16 @@ def test_folder(host):
         folder = '../OOC/Incoming/'
 
     count = 1
-    while sum([i.count('.xml') for i in sftp.listdir(folder)]) != 0:
-        time.sleep(1)
-        print(f'\rИдет отправка пакетов: {count * "|"}', end=' ')
-        count += 1
 
-    print(f'\nПакеты отравлены за {count} сек!')
+    count_xml = sum([i.count('.xml') for i in sftp.listdir(folder)])
+    if count_xml > 0:
+        while count_xml != 0:
+            time.sleep(1)
+            print(f'\rИдет отправка пакетов: {count * "|"}', end=' ')
+            count += 1
+        print(f'\nПакеты отравлены за {count} сек!')
+    else:
+        print('Пакеты НЕ отравлены!')
 
     if sftp:
         sftp.close()
