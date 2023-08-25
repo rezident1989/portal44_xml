@@ -49,7 +49,26 @@ def contract_procedure(outgoing_xml):
         list_penalties = tree.findall('.//ns2:penalties', ns)
         member = template.find('.//ns4:contractProcedure', ns)
         for i, penalties in enumerate(list_penalties):
-            member.insert(6+i, copy.deepcopy(penalties))
+            member.insert(6 + i, copy.deepcopy(penalties))
+
+    # TODO
+    count_penalties = len(tree.findall('.//ns2:executionObligationGuarantee', ns))
+    if count_penalties > 0:
+        list_penalties = tree.findall('.//ns2:executionObligationGuarantee', ns)
+        member = template.find('.//ns4:contractProcedure', ns)
+        for i, penalties in enumerate(list_penalties):
+            member.insert(5 + i, copy.deepcopy(penalties))
+
+        member.remove(template.find(".//ns2:executions", ns))
+
+    if len(tree.findall('.//ns2:quantityContractSubject', ns)) > 0:
+        for account in template.findall('.//ns2:quantityContractSubject', ns):
+            try:
+                account.find('.//ns6:sid', ns)
+            except AttributeError:
+                child = ET.Element('{http://zakupki.gov.ru/oos/integration/1}sid')
+                child.text = random_number(8)
+                account.insert(0, child)
 
     # TODO Создать временный xml-файл
     template = ET.ElementTree(template)
@@ -60,22 +79,22 @@ def contract_procedure(outgoing_xml):
     template.find('.//ns2:id', ns).text = random_number(8)
     template.find('.//ns2:regNum', ns).text = tree.find('.//ns2:regNum', ns).text
     template.find('.//ns2:publishDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    template.find('.//ns2:finalStageExecution', ns).text = tree.find('.//ns2:finalStageExecution', ns).text
+    # template.find('.//ns2:finalStageExecution', ns).text = tree.find('.//ns2:finalStageExecution', ns).text
 
     # Заполнение блока contractProcedure/execution/stage
-    member = template.find('.//ns2:stage', ns)
-    try:
-        member.find('.//ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
-    except AttributeError:
-        member.remove(member.find('.//ns2:sid', ns))
-    try:
-        member.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:stage/ns2:externalSid', ns).text
-    except AttributeError:
-        member.remove(member.find('.//ns2:externalSid', ns))
-    try:
-        member.find('.//ns2:endDate', ns).text = tree.find('.//ns2:stage/ns2:endDate', ns).text
-    except AttributeError:
-        member.remove(member.find('.//ns2:endDate', ns))
+    # member = template.find('.//ns2:stage', ns)
+    # try:
+    #     member.find('.//ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
+    # except AttributeError:
+    #     member.remove(member.find('.//ns2:sid', ns))
+    # try:
+    #     member.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:stage/ns2:externalSid', ns).text
+    # except AttributeError:
+    #     member.remove(member.find('.//ns2:externalSid', ns))
+    # try:
+    #     member.find('.//ns2:endDate', ns).text = tree.find('.//ns2:stage/ns2:endDate', ns).text
+    # except AttributeError:
+    #     member.remove(member.find('.//ns2:endDate', ns))
 
     # Заполнение блока contractProcedure/execution/stage/execution/payDoc
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:payDoc/..', ns)):
