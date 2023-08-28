@@ -54,8 +54,9 @@ def contract(outgoing_xml):
     # Добавить тег sid в блоки contract/executionPeriod/stages
     for stages in template.findall('.//ns2:executionPeriod/ns2:stages', ns):
         try:
-            stages.find('.//ns2:sid', ns)
+            stages.find('.//ns2:sid', ns).text
         except AttributeError:
+
             child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
             child.text = random_number(8)
             stages.insert(0, child)
@@ -65,7 +66,7 @@ def contract(outgoing_xml):
     if len(tree.findall('.//ns2:supplierAccountDetails', ns)) > 0:
         for account in template.findall('.//ns2:supplierAccountDetails', ns):
             try:
-                account.find('.//ns6:sid', ns)
+                account.find('.//ns6:sid', ns).text
             except AttributeError:
                 child = ET.Element('{http://zakupki.gov.ru/oos/common/1}sid')
                 child.text = random_number(8)

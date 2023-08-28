@@ -12,6 +12,7 @@ def contract_procedure(outgoing_xml):
     """
     tree = open_xml(outgoing_xml)
     template = open_xml('templates/contractProcedure.xml')
+    main = template.find(".//ns4:contractProcedure", ns)
 
     # Добавление в шаблон блока Документа о приемке
     count_pay_doc = len(tree.findall('.//ns2:execution/ns2:payDoc', ns))
@@ -47,54 +48,42 @@ def contract_procedure(outgoing_xml):
     count_penalties = len(tree.findall('.//ns2:penalties', ns))
     if count_penalties > 0:
         list_penalties = tree.findall('.//ns2:penalties', ns)
-        member = template.find('.//ns4:contractProcedure', ns)
         for i, penalties in enumerate(list_penalties):
-            member.insert(6 + i, copy.deepcopy(penalties))
+            main.insert(6 + i, copy.deepcopy(penalties))
 
-    # TODO
-    count_penalties = len(tree.findall('.//ns2:executionObligationGuarantee', ns))
-    if count_penalties > 0:
-        list_penalties = tree.findall('.//ns2:executionObligationGuarantee', ns)
-        member = template.find('.//ns4:contractProcedure', ns)
-        for i, penalties in enumerate(list_penalties):
-            member.insert(5 + i, copy.deepcopy(penalties))
+        # Копирование блока contractProcedure/executionObligationGuarantee
+    try:
+        a = tree.find('.//ns2:executionObligationGuarantee', ns).text
+        if a is None:
+            raise
+        main.remove(template.find(".//ns2:executions", ns))
+        main.insert(5, copy.deepcopy(tree.find(".//ns2:executionObligationGuarantee", ns)))
+    except AttributeError:
+        # Заполнение блока contractProcedure/execution/stage
+        member = template.find('.//ns2:stage', ns)
+        try:
+            member.find('.//ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
+        except AttributeError:
+            member.remove(member.find('.//ns2:sid', ns))
+        try:
+            member.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:stage/ns2:externalSid', ns).text
+        except AttributeError:
+            member.remove(member.find('.//ns2:externalSid', ns))
+        try:
+            member.find('.//ns2:endDate', ns).text = tree.find('.//ns2:stage/ns2:endDate', ns).text
+        except AttributeError:
+            member.remove(member.find('.//ns2:endDate', ns))
+        template.find('.//ns2:finalStageExecution', ns).text = tree.find('.//ns2:finalStageExecution', ns).text
 
-        member.remove(template.find(".//ns2:executions", ns))
-
-    if len(tree.findall('.//ns2:quantityContractSubject', ns)) > 0:
-        for account in template.findall('.//ns2:quantityContractSubject', ns):
-            try:
-                account.find('.//ns6:sid', ns)
-            except AttributeError:
-                child = ET.Element('{http://zakupki.gov.ru/oos/integration/1}sid')
-                child.text = random_number(8)
-                account.insert(0, child)
-
-    # TODO Создать временный xml-файл
-    template = ET.ElementTree(template)
-    template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
-    template = open_xml('venv/temp.xml')
+    # # TODO Создать временный xml-файл
+    # template = ET.ElementTree(template)
+    # template.write('venv/temp.xml', encoding='utf-8', xml_declaration=True)
+    # template = open_xml('venv/temp.xml')
 
     # Заполнение блока contractProcedure
     template.find('.//ns2:id', ns).text = random_number(8)
     template.find('.//ns2:regNum', ns).text = tree.find('.//ns2:regNum', ns).text
     template.find('.//ns2:publishDate', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
-    # template.find('.//ns2:finalStageExecution', ns).text = tree.find('.//ns2:finalStageExecution', ns).text
-
-    # Заполнение блока contractProcedure/execution/stage
-    # member = template.find('.//ns2:stage', ns)
-    # try:
-    #     member.find('.//ns2:sid', ns).text = tree.find('.//ns2:stage/ns2:sid', ns).text
-    # except AttributeError:
-    #     member.remove(member.find('.//ns2:sid', ns))
-    # try:
-    #     member.find('.//ns2:externalSid', ns).text = tree.find('.//ns2:stage/ns2:externalSid', ns).text
-    # except AttributeError:
-    #     member.remove(member.find('.//ns2:externalSid', ns))
-    # try:
-    #     member.find('.//ns2:endDate', ns).text = tree.find('.//ns2:stage/ns2:endDate', ns).text
-    # except AttributeError:
-    #     member.remove(member.find('.//ns2:endDate', ns))
 
     # Заполнение блока contractProcedure/execution/stage/execution/payDoc
     for i1, tag_temp in enumerate(template.findall('.//ns2:execution/ns2:payDoc/..', ns)):
@@ -137,5 +126,16 @@ def contract_procedure(outgoing_xml):
                 tag_temp.find('.//ns2:name', ns).text = tag_three.find('.//ns2:name', ns).text
                 tag_temp.find('.//ns2:documentDate', ns).text = tag_three.find('.//ns2:documentDate', ns).text
                 tag_temp.find('.//ns2:documentNum', ns).text = tag_three.find('.//ns2:documentNum', ns).text
+
+    # Добавить тег sid в блоки Гарантия исполнения обязательства
+    if len(tree.findall('.//ns2:quantityContractSubject', ns)) > 0:
+        for guarantee in template.findall('.//ns2:quantityContractSubject', ns):
+            try:
+                guarantee.find('.//executionObligationGuarantee//ns2:sid', ns).text
+            except AttributeError:
+                child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
+                guarantee.remove(template.find(".//ns2:externalSid", ns))
+                child.text = random_number(8)
+                guarantee.insert(0, child)
 
     return template

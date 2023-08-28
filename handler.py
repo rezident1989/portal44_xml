@@ -10,7 +10,7 @@ from src.actions.contract import contract
 from src.actions.contract_procedure import contract_procedure
 
 
-def main(path, validation=True, send=True):
+def main(path, validation=True, send=False):
     clear_folder('incoming')
     files_to_send = []
     files_for_validation = []

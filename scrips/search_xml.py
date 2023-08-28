@@ -11,11 +11,11 @@ def search_xml(*args):
     count_res = 0
     count = 0
 
-    for i in os.listdir('../ftp_server'):
-        if count_res != 0:
-            print('\nУра. Пакеты найдены!')
-            break
-        with zipfile.ZipFile(f"../ftp_server/{i}", "r") as myzip:
+    for i in os.listdir('../ftp_1'):
+        # if count_res != 0:
+        #     print('\nУра. Пакеты найдены!')
+        #     break
+        with zipfile.ZipFile(f"../ftp_1/{i}", "r") as myzip:
             for file_info in myzip.infolist():
                 if file_info.filename.endswith('.xml'):
                     count += 1
@@ -28,4 +28,4 @@ def search_xml(*args):
 
 
 if __name__ == '__main__':
-    search_xml('executionObligationGuarantee', '<isEDIBased>false</isEDIBased>', '<versionNumber>0</versionNumber>')
+    search_xml('<endDate>2023-12-31</endDate>', 'penalties')
