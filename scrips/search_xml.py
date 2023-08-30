@@ -4,18 +4,19 @@ from src.helper.help_func import clear_folder
 
 
 def search_xml(*args):
+    search_folder = 'ftp_contract'
+
     test = list(map(lambda a: a.encode("utf-8"), args))
     print(test)
-
     clear_folder(os.path.join(os.path.expanduser('~'), 'Desktop', 'xml'))
     count_res = 0
     count = 0
 
-    for i in os.listdir('../ftp_1'):
-        # if count_res != 0:
-        #     print('\nУра. Пакеты найдены!')
-        #     break
-        with zipfile.ZipFile(f"../ftp_1/{i}", "r") as myzip:
+    for i in os.listdir(f'../{search_folder}'):
+        if count_res != 0:
+            print('\nУра. Пакеты найдены!')
+            break
+        with zipfile.ZipFile(f"../{search_folder}/{i}", "r") as myzip:
             for file_info in myzip.infolist():
                 if file_info.filename.endswith('.xml'):
                     count += 1

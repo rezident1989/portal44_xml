@@ -51,7 +51,7 @@ def contract_procedure(outgoing_xml):
         for i, penalties in enumerate(list_penalties):
             main.insert(6 + i, copy.deepcopy(penalties))
 
-        # Копирование блока contractProcedure/executionObligationGuarantee
+    # Копирование блока contractProcedure/executionObligationGuarantee
     try:
         a = tree.find('.//ns2:executionObligationGuarantee', ns).text
         if a is None:
@@ -126,16 +126,5 @@ def contract_procedure(outgoing_xml):
                 tag_temp.find('.//ns2:name', ns).text = tag_three.find('.//ns2:name', ns).text
                 tag_temp.find('.//ns2:documentDate', ns).text = tag_three.find('.//ns2:documentDate', ns).text
                 tag_temp.find('.//ns2:documentNum', ns).text = tag_three.find('.//ns2:documentNum', ns).text
-
-    # Добавить тег sid в блоки Гарантия исполнения обязательства
-    if len(tree.findall('.//ns2:quantityContractSubject', ns)) > 0:
-        for guarantee in template.findall('.//ns2:quantityContractSubject', ns):
-            try:
-                guarantee.find('.//executionObligationGuarantee//ns2:sid', ns).text
-            except AttributeError:
-                child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
-                guarantee.remove(template.find(".//ns2:externalSid", ns))
-                child.text = random_number(8)
-                guarantee.insert(0, child)
 
     return template
