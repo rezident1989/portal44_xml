@@ -51,6 +51,13 @@ def contract_procedure(outgoing_xml):
         for i, penalties in enumerate(list_penalties):
             main.insert(6 + i, copy.deepcopy(penalties))
 
+    # Добавление в шаблон блока Информация об отсрочках оплаты неустоек
+    count_penalties_2 = len(tree.findall('.//ns2:delayWriteOffPenalties', ns))
+    if count_penalties_2 > 0:
+        list_penalties_2 = tree.findall('.//ns2:delayWriteOffPenalties', ns)
+        for i, penalties_2 in enumerate(list_penalties_2):
+            main.insert(6 + i, copy.deepcopy(penalties_2))
+
     # Копирование блока contractProcedure/executionObligationGuarantee
     try:
         a = tree.find('.//ns2:executionObligationGuarantee', ns).text
