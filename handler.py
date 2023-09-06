@@ -53,4 +53,4 @@ def main(path, validation=True, send=True):
 
 
 if __name__ == '__main__':
-    main('outgoing/14433668_xml.xml')
+    main('archive/14433667_xml.xml')
