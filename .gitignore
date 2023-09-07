@@ -618,5 +618,4 @@ outgoing/
 archive/
 ftp_contract/
 ftp_notification/
-
-password.py
+hidden/
