@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from random import randint
 import os
 import paramiko
-from password import password_sftp
+from hidden.sftp_connect import username_sftp, password_sftp
 
 
 def open_xml(path: str) -> ET.Element:
@@ -53,7 +53,7 @@ def create_xml(tree: ET.Element) -> str:
 
 def to_sent_to_sftp(path, host):
     transport = paramiko.Transport(host)
-    transport.connect(None, username='root', password=password_sftp)
+    transport.connect(None, username=username_sftp, password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
     if host == 'testaisgz5.gz-spb.ru' or host == 'testaisgz4.gz-spb.ru':
         folder = '../OOC/IncomingCog/'
@@ -70,7 +70,7 @@ def to_sent_to_sftp(path, host):
 
 def test_folder(host):
     transport = paramiko.Transport(host)
-    transport.connect(None, username='root', password=password_sftp)
+    transport.connect(None, username=username_sftp, password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
     if host == 'testaisgz5.gz-spb.ru' or host == 'testaisgz4.gz-spb.ru':
         folder = '../OOC/IncomingCog/'
