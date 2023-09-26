@@ -616,6 +616,5 @@ $RECYCLE.BIN/
 incoming/
 outgoing/
 archive/
-ftp_contract/
-ftp_notification/
+ftp/
 hidden/
