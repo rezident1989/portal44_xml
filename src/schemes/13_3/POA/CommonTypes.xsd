@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- COMMON_POA_TYPES Integration Scheme, version 13.3, create date 19.09.2023 -->
+<xs:schema xmlns="http://zakupki.gov.ru/cc/common/1" xmlns:base="http://zakupki.gov.ru/cc/base/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/cc/common/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/cc/base/1" schemaLocation="BaseTypes.xsd"/>
+	<!--Общие типы-->
+	<xs:complexType name="attachmentListType">
+		<xs:annotation>
+			<xs:documentation>Тип: Прикрепленные документы</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="attachmentInfo" type="attachmentType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Вложенный файл</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="attachmentType">
+		<xs:annotation>
+			<xs:documentation>Тип: Прикрепленный документ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="publishedContentId" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор контента прикрепленного документа на ЕИС. Игнорируется при приеме, автоматически заполняется при передаче</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileName" type="base:fileNameType">
+				<xs:annotation>
+					<xs:documentation>Имя файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileSize" type="base:fileSizeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Размер файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docDescription" type="base:text4000Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание прикрепляемого документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата/время прикрепления документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="url" type="base:hrefType">
+					<xs:annotation>
+						<xs:documentation>Ссылка для скачивания прикрепленного документа. Контролируется недопустимость указания значения поля при приёме в ЕИС, автоматически заполняется при передач</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="contentId" type="base:guidType">
+					<xs:annotation>
+						<xs:documentation>Уникальный идентификатор контента прикрепленного документа в ЕИС</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="content">
+					<xs:annotation>
+						<xs:documentation>Содержимое файла</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:base64Binary">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="cryptoSigns" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Электронная подпись документа</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="signatureInfo" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Электронная подпись</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="type" type="base:signatureType">
+									<xs:annotation>
+										<xs:documentation>Тип электронной подписи:
+CAdES-BES;
+CAdES-A</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="privilegesInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о полномочиях представителя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="privilegesTextInfo">
+				<xs:annotation>
+					<xs:documentation>Текстовые человекочитаемые полномочия</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="privilegeTextInfo" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Текстовые человекочитаемые полномочия</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="code" type="base:privilegeCodeType">
+										<xs:annotation>
+											<xs:documentation>Код полномочия</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="privilegeText" type="base:privilegeTextType">
+										<xs:annotation>
+											<xs:documentation>Текстовое содержание полномочия</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="isLossPrivilege" type="xs:boolean" fixed="false">
+							<xs:annotation>
+								<xs:documentation>Признак утраты полномочий при передоверии.
+
+Допустимые значения:
+false - полномочия не утрачиваются при передоверии</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="isJoinPrivilege" type="xs:boolean" fixed="false">
+							<xs:annotation>
+								<xs:documentation>Признак совместного осуществления полномочий.
+
+Допустимые значения:
+false - индивидуальные</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="printFormType">
+		<xs:annotation>
+			<xs:documentation>Тип: Печатная форма</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="url" type="base:hrefType">
+					<xs:annotation>
+						<xs:documentation>Ссылка для скачивания печатной формы</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="content">
+					<xs:annotation>
+						<xs:documentation>Содержимое файла.
+Заполняется в ЕИС содержимым печатной формы в случае передачи непубличных данных</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:base64Binary">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="dsUid" type="base:guidType">
+					<xs:annotation>
+						<xs:documentation>Идентификатор документа в Хранилище данных (ХД). Поле не заполняется при приеме  документов в ЕИС</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:sequence>
+				<xs:element name="signatureInfo" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Электронная подпись документа в Хранилище данных (ХД)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="url" type="base:hrefType">
+								<xs:annotation>
+									<xs:documentation>Ссылка для скачивания электронной подписи в ХД. Поле не заполняется при приеме  документов в ЕИС</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dsUid" type="base:guidType">
+								<xs:annotation>
+									<xs:documentation>Идентификатор электронной подписи в ХД. Поле не заполняется при приеме  документов в ЕИС</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="type" type="base:signatureType">
+							<xs:annotation>
+								<xs:documentation>Тип электронной подписи:
+CAdES-BES;
+CAdES-A</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="personType">
+		<xs:annotation>
+			<xs:documentation>Тип: ФИО</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lastName" type="base:nameType">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="firstName" type="base:nameType">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="middleName" type="base:nameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="passportForeignType">
+		<xs:annotation>
+			<xs:documentation>Тип: Паспорт иностранного гражданина</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="docCode" type="base:spdulCodeType">
+				<xs:annotation>
+					<xs:documentation>Код вида документа, удостоверяющего личность.
+
+Заполняется из справочника «Виды документов, удостоверяющих личность налогоплательщика» (nsiSPDUL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="base:passportLENumberType">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issuingStateInfo" type="OKSMRef">
+				<xs:annotation>
+					<xs:documentation>Государство выдачи.
+При приеме содержимое контролируется на присутствие в справочнике "Общероссийский классификатор стран мира (ОКСМ)" (nsiOKSM)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issuedBy" type="base:text300Type">
+				<xs:annotation>
+					<xs:documentation>Кем выдан</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validityDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Срок действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="permamentResidencyType">
+		<xs:annotation>
+			<xs:documentation>Тип: Вид на жительство РФ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="docCode" type="base:spdulCodeType">
+				<xs:annotation>
+					<xs:documentation>Код вида документа, удостоверяющего личность.
+
+Заполняется из справочника «Виды документов, удостоверяющих личность налогоплательщика» (nsiSPDUL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="series" type="base:permamentResidencySeriesType">
+				<xs:annotation>
+					<xs:documentation>Серия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="base:permamentResidencyNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issuedBy" type="base:text300Type">
+				<xs:annotation>
+					<xs:documentation>Кем выдан</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="validityDate" type="xs:date">
+					<xs:annotation>
+						<xs:documentation>Срок действия</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="indefiniteTerm" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Срок действия бессрочный</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="citizenshipInfo" type="OKSMRef">
+				<xs:annotation>
+					<xs:documentation>Гражданство.
+При приеме содержимое контролируется на присутствие в справочнике "Общероссийский классификатор стран мира (ОКСМ)" (nsiOKSM)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthPlace" type="base:text300Type">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="passportRFType">
+		<xs:annotation>
+			<xs:documentation>Тип: Паспорт гражданина РФ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="docCode" type="base:spdulCodeType">
+				<xs:annotation>
+					<xs:documentation>Код вида документа, удостоверяющего личность.
+
+Заполняется из справочника «Виды документов, удостоверяющих личность налогоплательщика» (nsiSPDUL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="series" type="base:passportRFSeriesType">
+				<xs:annotation>
+					<xs:documentation>Серия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="base:passportRFNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issuedBy" type="base:text300Type">
+				<xs:annotation>
+					<xs:documentation>Кем выдан</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="divCode" type="base:passportRFDivCodeType">
+				<xs:annotation>
+					<xs:documentation>Код подразделения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthPlace" type="base:text300Type">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Ссылки на справочник НСИ-->
+	<xs:complexType name="OKSMRef">
+		<xs:annotation>
+			<xs:documentation>Ссылка на страну</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="countryCode">
+				<xs:annotation>
+					<xs:documentation>Цифровой код страны</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="countryFullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование страны. Игнорируется при приеме. При передаче заполняется значением из справочника "Общероссийский классификатор стран мира (ОКСМ)" (nsiOKSM)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SPDULRef">
+		<xs:annotation>
+			<xs:documentation>Ссылка на справочник "Виды документов, удостоверяющих личность" (nsiSPDUL)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="base:spdulCodeType">
+				<xs:annotation>
+					<xs:documentation>Код вида документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="base:text400Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование вида документа. Игнорируется при приеме. При передаче заполняется значением из справочника "Виды документов, удостоверяющих личность" (nsiSPDUL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cancelReasonRef">
+		<xs:annotation>
+			<xs:documentation>Ссылка на справочник "Причина отмены доверенности" (nsiPOACancelReason)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="base:text2Type">
+				<xs:annotation>
+					<xs:documentation>Код действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="base:text400Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование действия. При передаче заполняется значением из справочника "Справочник: Причина отмены доверенности" (nsiPOACancelReason)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

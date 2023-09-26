@@ -1,0 +1,90 @@
+<!-- version 11.13_2, create date 23.03.2021 -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:fs="http://zakupki.gov.ru/filestore/ws/data" xmlns:ws="http://zakupki.gov.ru/filestore/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://zakupki.gov.ru/filestore/ws">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://zakupki.gov.ru/filestore/ws/data" schemaLocation="../eis-fs-ws-api.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="startRequest">
+		<wsdl:part name="startRequest" element="fs:startRequest"/>
+	</wsdl:message>
+	<wsdl:message name="startResponse">
+		<wsdl:part name="startResponse" element="fs:startResponse"/>
+	</wsdl:message>
+	<wsdl:message name="chunkRequest">
+		<wsdl:part name="chunkRequest" element="fs:chunkRequest"/>
+	</wsdl:message>
+	<wsdl:message name="chunkResponse">
+		<wsdl:part name="chunkResponse" element="fs:chunkResponse"/>
+	</wsdl:message>
+	<wsdl:message name="finishRequest">
+		<wsdl:part name="finishRequest" element="fs:finishRequest"/>
+	</wsdl:message>
+	<wsdl:message name="finishResponse">
+		<wsdl:part name="finishResponse" element="fs:finishResponse"/>
+	</wsdl:message>
+	<wsdl:message name="baseFault">
+		<wsdl:part name="baseFault" element="fs:baseFault"/>
+	</wsdl:message>
+	<wsdl:portType name="wsEisLoadFileStorePortType">
+		<wsdl:operation name="start">
+			<wsdl:input message="ws:startRequest"/>
+			<wsdl:output message="ws:startResponse"/>
+			<wsdl:fault name="startFault" message="ws:baseFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="chunk">
+			<wsdl:input message="ws:chunkRequest"/>
+			<wsdl:output message="ws:chunkResponse"/>
+			<wsdl:fault name="chunkFault" message="ws:baseFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="finish">
+			<wsdl:input message="ws:finishRequest"/>
+			<wsdl:output message="ws:finishResponse"/>
+			<wsdl:fault name="finishFault" message="ws:baseFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="wsEisLoadFileStoreBinding" type="ws:wsEisLoadFileStorePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="start">
+			<soap:operation soapAction="http://zakupki.gov.ru/filestore/ws/load/start"/>
+			<wsdl:input name="startRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="startResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="startFault">
+				<soap:fault name="baseFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="chunk">
+			<soap:operation soapAction="http://zakupki.gov.ru/filestore/ws/load/chunk"/>
+			<wsdl:input name="chunkRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="chunkResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="chunkFault">
+				<soap:fault name="baseFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="finish">
+			<soap:operation soapAction="http://zakupki.gov.ru/filestore/ws/load/finish"/>
+			<wsdl:input name="finishRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="finishResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="finishFault">
+				<soap:fault name="baseFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="wsEisLoadFileStore">
+		<wsdl:port name="wsEisLoadFileStorePort" binding="ws:wsEisLoadFileStoreBinding">
+			<soap:address location="xxxxxx/filestore"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

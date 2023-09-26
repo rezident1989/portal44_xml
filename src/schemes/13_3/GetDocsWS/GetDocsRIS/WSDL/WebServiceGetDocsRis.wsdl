@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2018 rel. 13_2 sp1 (http://www.altova.com) by user_user (altcom_altcom) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ris="http://zakupki.gov.ru/fz44/get-docs-ris/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-ris/ws">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://zakupki.gov.ru/fz44/get-docs-ris/ws" schemaLocation="../getDocsRIS-ws-api.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getPublicDocsRisRequest">
+		<wsdl:part name="getPublicDocsRisRequest" element="ris:getPublicDocsRisRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPublicDocsRisResponse">
+		<wsdl:part name="getPublicDocsRisResponse" element="ris:getPublicDocsRisResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsRisRequest">
+		<wsdl:part name="getHiddenDocsRisResponse" element="ris:getHiddenDocsRisRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsRisResponse">
+		<wsdl:part name="getHiddenDocsRisResponse" element="ris:getHiddenDocsRisResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNsiRisRequest">
+		<wsdl:part name="getNsiRisRequest" element="ris:getNsiRisRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getNsiRisResponse">
+		<wsdl:part name="getNsiRisResponse" element="ris:getNsiRisResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="GetDocsRisFacade">
+		<wsdl:operation name="getPublicDocsRis">
+			<wsdl:input name="getPublicDocsRisRequest" message="ris:getPublicDocsRisRequest"/>
+			<wsdl:output name="getPublicDocsRisResponse" message="ris:getPublicDocsRisResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocsRis">
+			<wsdl:input name="getHiddenDocsRisRequest" message="ris:getHiddenDocsRisRequest"/>
+			<wsdl:output name="getHiddenDocsRisResponse" message="ris:getHiddenDocsRisResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getNsiRis">
+			<wsdl:input name="getNsiRisRequest" message="ris:getNsiRisRequest"/>
+			<wsdl:output name="getNsiRisResponse" message="ris:getNsiRisResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="GetDocsRisFacadeBinding" type="ris:GetDocsRisFacade">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getPublicDocsRis">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-ris"/>
+			<wsdl:input name="getPublicDocsRisRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPublicDocsRisResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocsRis">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-ris"/>
+			<wsdl:input name="getHiddenDocsRisRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getHiddenDocsRisResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNsiRis">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-ris"/>
+			<wsdl:input name="getNsiRisRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getNsiRisResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="GetDocsRisFacadeService">
+		<wsdl:port name="GetDocsRisFacadePort" binding="ris:GetDocsRisFacadeBinding">
+			<soap:address location="${serviceLocation}"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

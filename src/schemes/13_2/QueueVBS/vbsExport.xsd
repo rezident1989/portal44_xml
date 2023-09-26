@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS FCS_EXPORT Integration Scheme, version 13.2, create date 23.06.2023 -->
+<xs:schema xmlns="http://zakupki.gov.ru/oos/vbs-export/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vbs="http://zakupki.gov.ru/oos/VBSTypes/1" targetNamespace="http://zakupki.gov.ru/oos/vbs-export/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/VBSTypes/1" schemaLocation="IntegrationVBSTypes.xsd"/>
+	<xs:element name="export">
+		<xs:annotation>
+			<xs:documentation>Схема данных подсистемы экспорта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="boProject" type="vbs:boProjectType">
+					<xs:annotation>
+						<xs:documentation>Проект сведений о бюджетном обязательстве (БО)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="boSentForVerification" type="vbs:boSentForVerificationType">
+					<xs:annotation>
+						<xs:documentation>Сведения о бюджетном обязательстве (БО), направленные на проверку в ТОФК</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="boRegistred" type="vbs:boRegistredType">
+					<xs:annotation>
+						<xs:documentation>Сведения о бюджетном обязательстве (БО), поставленные на учет</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="boDeniedRegistration" type="vbs:boDeniedRegistrationType">
+					<xs:annotation>
+						<xs:documentation>Сведения о бюджетном обязательстве (БО), отказанные в постановке на учет</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="boNotificationPublish" type="vbs:boNotificationPublishType">
+					<xs:annotation>
+						<xs:documentation>Сведения о бюджетном обязательстве (БО), включенные в размещенное извещение о проведении процедуры закупки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="moSentForVerification" type="vbs:moSentForVerificationType">
+					<xs:annotation>
+						<xs:documentation>Сведения о денежном обязательстве (ДО), направленные на проверку в ТОФК</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="moRegistred" type="vbs:moRegistredType">
+					<xs:annotation>
+						<xs:documentation>Сведения о денежном обязательстве (ДО), поставленные на учет</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="moDeniedRegistration" type="vbs:moDeniedRegistrationType">
+					<xs:annotation>
+						<xs:documentation>Сведения о денежном обязательстве (ДО), отказанные в постановке на учет</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="zkrProject" type="vbs:zkrProjectType">
+					<xs:annotation>
+						<xs:documentation>Проект сведений о заявке на кассовый расход (ЗКР)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="zkrSentForVerification" type="vbs:zkrSentForVerificationType">
+					<xs:annotation>
+						<xs:documentation>Сведения о направленной в ПУР/АСФК заявке на кассовый расход (ЗКР)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="zkrRegistred" type="vbs:zkrRegistredType">
+					<xs:annotation>
+						<xs:documentation>Сведения о зарегистрированной заявке на кассовый расход (ЗКР)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="zkrDeniedRegistration" type="vbs:zkrDeniedRegistrationType">
+					<xs:annotation>
+						<xs:documentation>Сведения об отказанной заявке на кассовый расход (ЗКР)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="zkrCanceled" type="vbs:zkrCanceledType">
+					<xs:annotation>
+						<xs:documentation>Сведения об аннулированной заявке на кассовый расход (ЗКР)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="zkrExecuted" type="vbs:zkrExecutedType">
+					<xs:annotation>
+						<xs:documentation>Сведения об исполненной заявке на кассовый расход (ЗКР)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

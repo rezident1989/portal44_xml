@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LKP-EIS_INTEGRATION Integration Scheme, version 13.3, create date 19.09.2023 -->
+<xs:schema xmlns="http://zakupki.gov.ru/lkp-eis/integration/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:ur="http://zakupki.gov.ru/oos/URTypes/1" xmlns:ea="http://zakupki.gov.ru/oos/EATypes/1" xmlns:ns1="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:cp="http://zakupki.gov.ru/oos/CPtypes/1" targetNamespace="http://zakupki.gov.ru/lkp-eis/integration/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/KOTypes/1" schemaLocation="IntegrationKOTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/URTypes/1" schemaLocation="IntegrationURTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/EATypes/1" schemaLocation="IntegrationEATypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/CPtypes/1" schemaLocation="IntegrationCPTypes.xsd"/>
+	<!--Сервисные сообщения-->
+	<xs:element name="confirmation">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Уведомление о результатах обработки информационного пакета</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:confirmationType">
+							<xs:annotation>
+								<xs:documentation>Данные информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Электронное обжалование. Основные документы-->
+	<xs:element name="parElectronicComplaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о размещенной в ЛКП жалобе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parElectronicComplaintCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отзыве размещенной в ЛКП жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parElectronicComplaintAccept">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о принятии к рассмотрению полученной из ЛКП жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintAcceptType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parElectronicComplaintRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отказе в рассмотрении полученной из ЛКП жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notice">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление о наступлении в ЕИС события, которое связано с жалобой, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:noticeType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о сокрытой размещенной в ЛКП жалобе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:closedParElectronicComplaintType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отзыве сокрытой размещенной в ЛКП жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:closedParElectronicComplaintCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintAccept">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о принятии к рассмотрению полученной из ЛКП сокрытой жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintAcceptType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="closedParElectronicComplaintRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отказе в рассмотрении полученной из ЛКП сокрытой жалобы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ko:parElectronicComplaintRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Односторонний отказ. Основные документы. Не применяется, добавлено на развитие-->
+	<xs:element name="contractProcedureUnilateralRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Решение об одностороннем отказе от исполнения контракта, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:contractProcedureUnilateralRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contractProcedureUnilateralRefusalCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене решения об одностороннем отказе от исполнения контракта, сформированное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:contractProcedureUnilateralRefusalCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="claimsCorrespondenceNotice">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление в рамках претензионной переписки, сформиро-ванное заказчиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:claimsCorrespondenceNoticeType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parContractProcedureUnilateralRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Решение об одностороннем отказе от исполнения контракта, сформированное поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:parContractProcedureUnilateralRefusalType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parContractProcedureUnilateralRefusalCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене решения об одностороннем отказе от исполнения контракта, сформированное поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:parContractProcedureUnilateralRefusalCancelType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parClaimsCorrespondenceNotice">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление в рамках претензионной переписки, сформированное поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:parClaimsCorrespondenceNoticeType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="supplierDataChangeNotice">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление об изменении реквизитов поставщика по контракту</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ur:supplierDataChangeNoticeType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Электронное актирование в неструктурированном виде-->
+	<xs:element name="elActUnstructuredSupplierTitle">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Документ о приемке в неструктурированной форме (информация поставщика)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ea:elActUnstructuredSupplierTitleType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="elActUnstructuredCustomerTitle">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Документ о приемке в неструктурированной форме (информация заказчика)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="ea:elActUnstructuredCustomerTitleType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Проекты контрактов. Взаимодействие с ЛКП-->
+	<xs:element name="cpContractProjectLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта без подписей для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpContractProjectChangeLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Доработанный проект контракта на основании размещенного поставщиком протокола разногласий для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectChangeLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpContractProjectSignLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта, подписанный поставщиком для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectSignLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpContractSignLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Подписанный контракт для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractSignLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpProtocolDisagreementsLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол разногласий для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:protocolDisagreementsLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpRefusalConcludeContractLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отказ участника закупки от заключения контракта для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:refusalConcludeContractLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpProcedureCancelLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене процедуры заключения контракта для взаимодействия с ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:procedureCancelLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Проекты контрактов (непубличные данные). Взаимодействие с ЛКП-->
+	<xs:element name="cpClosedContractProjectLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта без подписей для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedContractProjectSignLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект контракта, подписанный поставщиком для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectSignLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedProtocolDisagreementsLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Протокол разногласий для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:protocolDisagreementsLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedContractProjectChangeLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Доработанный проект контракта на основании размещенного поставщиком протокола разногласий для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractProjectChangeLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedContractSignLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Подписанный контракт для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:contractSignLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedRefusalConcludeContractLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Отказ участника закупки от заключения контракта для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:refusalConcludeContractLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cpClosedProcedureCancelLKP">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Извещение об отмене процедуры заключения контракта для взаимодействия с ЛКП (непубличные данные)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="packetType">
+					<xs:sequence>
+						<xs:element name="data" type="cp:procedureCancelLKPType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Общие типы-->
+	<xs:complexType name="packetType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Пакет данных AS2 протокола</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="index">
+				<xs:annotation>
+					<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Индексная карточка пакета данных</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="id" type="base:guidType">
+							<xs:annotation>
+								<xs:documentation>Глобальный идентификатор  информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="sender" type="base:text200Type">
+							<xs:annotation>
+								<xs:documentation>Отправитель</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="receiver" type="base:text200Type">
+							<xs:annotation>
+								<xs:documentation>Получатель</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="createDateTime" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="objectType" type="base:objectTypeEnum">
+							<xs:annotation>
+								<xs:documentation>Кодовое наименование объекта информационного обмена, 
+информация о котором содержится в данном пакете:
+
+EC - Электронное обжалование;
+ELACTS - Электронное актирование;
+DIZK - Односторонний отказ;  CP - Проекты контрактов</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="objectId" type="base:guidType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Идентификатор объекта информационного обмена (реестровый номер)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="mode" type="base:indexModeType">
+							<xs:annotation>
+								<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация
+			TEST - тестовые данные</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
