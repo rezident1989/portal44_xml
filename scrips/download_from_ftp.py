@@ -24,4 +24,4 @@ def download_from_ftp(folder):
 
 
 if __name__ == '__main__':
-    download_from_ftp('ftp_1')
+    download_from_ftp('ftp')

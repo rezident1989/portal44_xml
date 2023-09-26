@@ -4,7 +4,7 @@ from src.helper.help_func import clear_folder
 
 
 def search_xml(*args):
-    search_folder = 'ftp_contract'
+    search_folder = f'ftp\\contract'
 
     test = list(map(lambda a: a.encode("utf-8"), args))
     print(test)
@@ -29,4 +29,4 @@ def search_xml(*args):
 
 
 if __name__ == '__main__':
-    search_xml('<endDate>2023-12-31</endDate>', 'penalties')
+    search_xml('closedContract')

@@ -2,12 +2,12 @@ import sys
 from lxml import etree
 
 
-def validate_xsd(path):
+def validate_xsd(path, version='13_3'):
     # Загрузка xsd схемы
     if 'outgoing' in path:
-        schema_path = r'src/schemes/fcsIntegration.xsd'
+        schema_path = f'src/schemes/{version}/fcsIntegration.xsd'
     else:
-        schema_path = r'src/schemes/fcsExport.xsd'
+        schema_path = f'src/schemes/{version}/fcsExport.xsd'
 
     path_xsd = etree.parse(schema_path)
     schema = etree.XMLSchema(path_xsd)

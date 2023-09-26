@@ -42,7 +42,7 @@ def create_xml(tree: ET.Element) -> str:
         name_file = tree[0].tag.split('}')[1]
     else:
         name_file = 'confirmation'
-    date_time = datetime.datetime.now().strftime("%H.%M_%d.%m.%y_")
+    date_time = datetime.datetime.now().strftime("%H.%M.%f_%d.%m.%y_")
     name = "".join(name_file).replace('}', '')
     path_name = f'incoming/{date_time}{name}.xml'
     tree = ET.ElementTree(tree)
