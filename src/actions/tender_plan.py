@@ -22,8 +22,8 @@ def tender_plan_2020(outgoing_xml):
     if count_special_position == 0:
         template.find('.//ns4:tenderPlan2020', ns).remove(template.find('.//ns3:specialPurchasePositions', ns))
     elif count_special_position > 1:
-        member = copy.deepcopy(template.find('.//ns3:specialPurchasePosition', ns))
         for i in range(2, count_special_position + 1):
+            member = copy.deepcopy(template.find('.//ns3:specialPurchasePosition', ns))
             template.find('.//ns3:specialPurchasePositions', ns).insert(i, member)
 
     template.find('.//ns3:id', ns).text = random_number(8)
@@ -40,6 +40,7 @@ def tender_plan_2020(outgoing_xml):
     for i1, tag_temp in enumerate(template_purchase):
         for i2, tag_three in enumerate(tree_purchase):
             if i1 == i2:
+                print(tag_temp.find('.//ns3:positionNumber', ns).text)
                 try:
                     tag_temp.find('.//ns3:positionNumber', ns).text = tag_three.find('.//ns3:positionNumber', ns).text
                     tag_temp.find('.//ns3:IKZ', ns).text = tag_three.find('.//ns3:IKZ', ns).text
@@ -50,5 +51,7 @@ def tender_plan_2020(outgoing_xml):
                 tag_temp.find('.//ns3:publishYear', ns).text = tag_three.find('.//ns3:publishYear', ns).text
                 tag_temp.find('.//ns3:IKU', ns).text = tag_three.find('.//ns3:IKU', ns).text
                 tag_temp.find('.//ns3:purchaseNumber', ns).text = tag_three.find('.//ns3:purchaseNumber', ns).text
+                print(tag_temp.find('.//ns3:positionNumber', ns).text)
+                print('---------')
 
     return template
