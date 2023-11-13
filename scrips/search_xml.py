@@ -4,7 +4,7 @@ from src.helper.help_func import clear_folder
 
 
 def search_xml(*args):
-    search_folder = f'ftp\\notification'
+    search_folder = f'ftp\\contract\\currMonth'
 
     test = list(map(lambda a: a.encode("utf-8"), args))
     print(test)
@@ -15,7 +15,7 @@ def search_xml(*args):
     for i in os.listdir(f'../{search_folder}'):
         if count_res != 0:
             print('\nУра. Пакеты найдены!')
-            # break
+            break
         with zipfile.ZipFile(f"../{search_folder}/{i}", "r") as myzip:
             for file_info in myzip.infolist():
                 if file_info.filename.endswith('.xml'):
@@ -29,4 +29,4 @@ def search_xml(*args):
 
 
 if __name__ == '__main__':
-    search_xml('epNotificationEZakK')
+    search_xml('contractProcedure')
