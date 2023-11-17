@@ -41,7 +41,7 @@ def contract_procedure(outgoing_xml):
         try:
             account.remove(account.find('.//ns2:receiptDocuments', ns))
             account.insert(100, receipt_documents_template)
-        except AttributeError:
+        except (AttributeError, TypeError):
             pass
 
     # Добавление в шаблон блока Информация о неустойках (штрафах, пениях)
