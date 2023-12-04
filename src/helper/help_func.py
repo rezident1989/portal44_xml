@@ -145,7 +145,7 @@ def validate_xsd(path, version='13_3'):
         print(f'{a} соответствует схеме {b}')
 
 
-def get_path_xml():
+def get_path_xml() -> str:
 
     if os.path.isdir('outgoing') is not True:
         os.makedirs('outgoing')
