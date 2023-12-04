@@ -1,7 +1,6 @@
 import sys
 from src.helper.help_func import clear_folder, get_type_xml, get_server_address, create_xml, to_sent_to_sftp, \
-    remove_file, test_folder
-from src.helper.schema_xsd import validate_xsd
+    remove_file, test_folder, validate_xsd, get_path_xml
 from src.actions.confirmation import confirmation
 from src.actions.tender_plan import tender_plan_2020
 from src.actions.notification import ep_notification_ef_2020, ep_protocol_ef_2020_final
@@ -9,7 +8,8 @@ from src.actions.contract import contract
 from src.actions.contract_procedure import contract_procedure
 
 
-def main(path, validation=True, send=True):
+def handler(validation=True, send=True):
+    path = get_path_xml()
     clear_folder('incoming')
     files_to_send = []
     files_for_validation = []
@@ -47,7 +47,3 @@ def main(path, validation=True, send=True):
 
     remove_file(path, 'archive')
     test_folder(server_address)
-
-
-if __name__ == '__main__':
-    main('outgoing/15805899_xml (1).xml')

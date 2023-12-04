@@ -9,7 +9,7 @@ def contract(outgoing_xml):
     """Контракт. Публикация"""
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/contract.xml")
+    template = open_xml("src/templates/contract.xml")
 
     main = template.find(".//ns4:contract", ns)
 

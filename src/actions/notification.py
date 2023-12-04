@@ -11,7 +11,7 @@ def ep_notification_ef_2020(outgoing_xml):
     purchase_number = f'23{random_number(17)}'
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/epNotificationEF.xml")
+    template = open_xml("src/templates/epNotificationEF.xml")
 
     template.find('.//ns5:id', ns).text = random_number(8)
     template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text

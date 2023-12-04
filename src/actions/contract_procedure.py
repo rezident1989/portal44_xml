@@ -11,7 +11,7 @@ def contract_procedure(outgoing_xml):
     isEDIBased = 'true' - электронное актирование
     """
     tree = open_xml(outgoing_xml)
-    template = open_xml('templates/contractProcedure.xml')
+    template = open_xml('src/templates/contractProcedure.xml')
     main = template.find(".//ns4:contractProcedure", ns)
 
     receipt_documents_template = main.find('.//ns2:receiptDocuments', ns)
@@ -37,7 +37,6 @@ def contract_procedure(outgoing_xml):
             child = ET.Element('{http://zakupki.gov.ru/oos/types/1}sid')
             child.text = random_number(8)
             account.insert(0, child)
-
         try:
             account.remove(account.find('.//ns2:receiptDocuments', ns))
             account.insert(100, receipt_documents_template)

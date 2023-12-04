@@ -6,7 +6,7 @@ from src.helper.help_func import open_xml, random_number
 def tender_plan_2020(outgoing_xml):
     """Добавление позиции (особой позиции) в опубликованный в ЕИС план-график"""
 
-    template = open_xml('templates/tenderPlan2020.xml')
+    template = open_xml('src/templates/tenderPlan2020.xml')
     tree = open_xml(outgoing_xml)
 
     count_position = len(tree.findall('.//ns3:positions/ns3:position', ns))
@@ -40,7 +40,6 @@ def tender_plan_2020(outgoing_xml):
     for i1, tag_temp in enumerate(template_purchase):
         for i2, tag_three in enumerate(tree_purchase):
             if i1 == i2:
-                print(tag_temp.find('.//ns3:positionNumber', ns).text)
                 try:
                     tag_temp.find('.//ns3:positionNumber', ns).text = tag_three.find('.//ns3:positionNumber', ns).text
                     tag_temp.find('.//ns3:IKZ', ns).text = tag_three.find('.//ns3:IKZ', ns).text
@@ -51,7 +50,5 @@ def tender_plan_2020(outgoing_xml):
                 tag_temp.find('.//ns3:publishYear', ns).text = tag_three.find('.//ns3:publishYear', ns).text
                 tag_temp.find('.//ns3:IKU', ns).text = tag_three.find('.//ns3:IKU', ns).text
                 tag_temp.find('.//ns3:purchaseNumber', ns).text = tag_three.find('.//ns3:purchaseNumber', ns).text
-                print(tag_temp.find('.//ns3:positionNumber', ns).text)
-                print('---------')
 
     return template
