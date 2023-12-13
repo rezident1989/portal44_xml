@@ -36,7 +36,7 @@ def ep_protocol_ef_2020_submit_offers(outgoing_xml):
     """Работа комиссии (подведение итогов)"""
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/epProtocolEF2020SubmitOffers.xml")
+    template = open_xml("src/templates/epProtocolEF2020SubmitOffers.xml")
 
     template.find('.//ns5:id', ns).text = random_number(8)
     template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
@@ -53,7 +53,7 @@ def ep_protocol_ef_2020_final(outgoing_xml):
     """Заключение контракта"""
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/epProtocolEF2020Final.xml")
+    template = open_xml("src/templates/epProtocolEF2020Final.xml")
 
     template.find('.//ns5:id', ns).text = random_number(8)
     template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
