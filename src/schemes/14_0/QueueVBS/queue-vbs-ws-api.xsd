@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS queue-vbs-ws-api Integration Scheme, version 14.0, create date 15.12.2023 -->
+<xs:schema xmlns="http://zakupki.gov.ru/fz44/queue-vbs/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/queue-vbs/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../BaseTypes.xsd"/>
+	<xs:element name="getObjectsRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о финансовых документах</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderSystemEmail" type="base:eMailType">
+					<xs:annotation>
+						<xs:documentation>Адрес электронной почты системы, от которой осуществляется запрос</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="organizationsInfo">
+					<xs:annotation>
+						<xs:documentation>Информация об организациях, от лица которых осуществляется запрос</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="organizationInfo" type="base:organizationRef" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Информация об организации, от лица которой осуществляется запрос</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getObjectsResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о финансовых документах</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="messageBody">
+					<xs:annotation>
+						<xs:documentation>Тело сообщения</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="index" type="indexType">
+								<xs:annotation>
+									<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="organizationsDocsInfo">
+								<xs:annotation>
+									<xs:documentation>Документы организаций</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="organizationDocsInfo" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Документы организации</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="organizationInfo" type="base:organizationRef">
+														<xs:annotation>
+															<xs:documentation>Информация об организации</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="documentsInfo" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Информация о документах</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="documentInfo" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Информация о документе</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="qeueId" type="base:guidType">
+																				<xs:annotation>
+																					<xs:documentation>Глобальный идентификатор документа в очереди</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="objectType" type="objectTypeEnum">
+																				<xs:annotation>
+																					<xs:documentation>Кодовое наименование объекта информационного обмена, 
+информация о котором содержится в данном блоке:
+
+BO - Бюджетные обязательства;
+
+MO - Денежные обязательства;
+
+ZKR - Заявки на кассовый расход</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="messageType" type="messageTypeEnum">
+																				<xs:annotation>
+																					<xs:documentation>Тип сообщения:
+
+boProject - Проект сведений о бюджетном обязательстве (БО);
+
+boSentForVerification - Сведения о бюджетном обязательстве (БО), направленные на проверку в ТОФК;
+
+boRegistred - Сведения о бюджетном обязательстве (БО), поставленные на учет;
+
+boDeniedRegistration - Сведения о бюджетном обязательстве (БО), отказанные в постановке на учет;
+
+boNotificationPublish - Сведения о бюджетном обязательстве (БО), включенные в размещенное извещение о проведении процедуры закупки;
+
+moSentForVerification - Сведения о денежном обязательстве (ДО), направленные на проверку в ТОФК;
+
+moRegistred - Сведения о денежном обязательстве (ДО), поставленные на учет;
+
+moDeniedRegistration - Сведения о денежном обязательстве (ДО), отказанные в постановке на учет;
+
+zkrSentForVerification - Сведения о направленной в ПУР/АСФК заявке на кассовый расход (ЗКР);
+
+zkrRegistred - Сведения о зарегистрированной заявке на кассовый расход (ЗКР);
+
+zkrDeniedRegistration - Сведения об отказанной заявке на кассовый расход (ЗКР);
+
+zkrCanceled - Сведения об аннулированной заявке на кассовый расход (ЗКР);
+
+zkrExecuted - Сведения об исполненной заявке на кассовый расход (ЗКР)</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="objectId" type="base:text100Type">
+																				<xs:annotation>
+																					<xs:documentation>Идентификатор объекта</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:any processContents="skip">
+																				<xs:annotation>
+																					<xs:documentation>Блок содержит XML сформированный по схеме vbsExport.xsd</xs:documentation>
+																				</xs:annotation>
+																			</xs:any>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="quantityInQueue" type="xs:int">
+														<xs:annotation>
+															<xs:documentation>Количество оставшихся в очереди документов по данной организации</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="noRecords" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Отсутствуют записи в очереди.
+
+При получении ВБС данного признака повторный вызов сервиса возможен через 5 минут</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ackRequest">
+		<xs:annotation>
+			<xs:documentation>Подтверждение получения сообщения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Данные информационного пакета</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="refId" type="base:guidType">
+								<xs:annotation>
+									<xs:documentation>Ссылка на сообщение, получение которого подтверждается методом Ack. Указывается значение из поля "Глобальный идентификатор  информационного пакета" (getObjectResponse/messageBody/index/id) ответа на запрос сведений о документах ДО</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="resultInfo">
+								<xs:annotation>
+									<xs:documentation>Информация о результате обработки</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="success" type="xs:boolean" fixed="true">
+											<xs:annotation>
+												<xs:documentation>Все данные обработаны успешно</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="partiallySuccessInfo">
+											<xs:annotation>
+												<xs:documentation>Данные частично обработаны успешно.
+
+В блоке указывается информация только о тех документах, которые обработаны успешно</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="documentInfo" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Информация об обработке документа</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="qeueId" type="base:guidType">
+																	<xs:annotation>
+																		<xs:documentation>Глобальный идентификатор документа в очереди</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="success" type="xs:boolean" fixed="true">
+																	<xs:annotation>
+																		<xs:documentation>Данные обработаны успешно</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="errorInfo" type="errorInfoType" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Все данные обработаны с ошибкой</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ackResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на подтверждение получения сообщения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="processed" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Подтверждение обработано</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="noRecords" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Отсутствуют записи в очереди</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--Общие типы-->
+	<xs:complexType name="errorInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Результат вызова сервиса в случае ошибки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="base:text2000Type">
+				<xs:annotation>
+					<xs:documentation>Текстовая расшифровка ошибки, включающая дополнительную информацию
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="indexType">
+		<xs:annotation>
+			<xs:documentation>Тип: Индексная карточка пакета данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор  информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mode" type="base:indexModeType">
+				<xs:annotation>
+					<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация
+			TEST - тестовые данные</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="objectTypeEnum">
+		<xs:annotation>
+			<xs:documentation>Тип: Перечисление типов объектов:
+BO - Бюджетные обязательства; MO - Денежные обязательства; ZKR - Заявки на кассовый расход</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BO"/>
+			<xs:enumeration value="MO"/>
+			<xs:enumeration value="ZKR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="messageTypeEnum">
+		<xs:annotation>
+			<xs:documentation>Тип: Перечисление типов сообщений:
+boProject - Проект сведений о бюджетном обязательстве (БО);
+boSentForVerification - Сведения о бюджетном обязательстве (БО), направленные на проверку в ТОФК;
+boRegistred - Сведения о бюджетном обязательстве (БО), поставленные на учет;
+boDeniedRegistration - Сведения о бюджетном обязательстве (БО), отказанные в постановке на учет;
+boNotificationPublish - Сведения о бюджетном обязательстве (БО), включенные в размещенное извещение о проведении процедуры закупки;
+moSentForVerification - Сведения о денежном обязательстве (ДО), направленные на проверку в ТОФК;
+moRegistred - Сведения о денежном обязательстве (ДО), поставленные на учет;
+moDeniedRegistration - Сведения о денежном обязательстве (ДО), отказанные в постановке на учет;
+zkrSentForVerification - Сведения о направленной в ПУР/АСФК заявке на кассовый расход (ЗКР);
+zkrRegistred - Сведения о зарегистрированной заявке на кассовый расход (ЗКР);
+zkrDeniedRegistration - Сведения об отказанной заявке на кассовый расход (ЗКР);
+zkrCanceled - Сведения об аннулированной заявке на кассовый расход (ЗКР);
+zkrExecuted - Сведения об исполненной заявке на кассовый расход (ЗКР)
+</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="boProject"/>
+			<xs:enumeration value="boSentForVerification"/>
+			<xs:enumeration value="boRegistred"/>
+			<xs:enumeration value="boDeniedRegistration"/>
+			<xs:enumeration value="boNotificationPublish"/>
+			<xs:enumeration value="moSentForVerification"/>
+			<xs:enumeration value="moRegistred"/>
+			<xs:enumeration value="moDeniedRegistration"/>
+			<xs:enumeration value="zkrSentForVerification"/>
+			<xs:enumeration value="zkrRegistred"/>
+			<xs:enumeration value="zkrDeniedRegistration"/>
+			<xs:enumeration value="zkrCanceled"/>
+			<xs:enumeration value="zkrExecuted"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

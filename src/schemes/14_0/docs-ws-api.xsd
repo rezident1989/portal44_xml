@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS docs-ws-api Integration Scheme, version 14.0, create date 15.12.2023 -->
+<!-- Интеграционная схема, описывающая документы, отдаваемые сервисами отдачи ЕИС внешним региональным информационным системам (РИС), авторизовавшимся по сертификату -->
+<xs:schema xmlns="http://zakupki.gov.ru/fz44/ws/priz" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" targetNamespace="http://zakupki.gov.ru/fz44/ws/priz" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<!--Сообщения РПГ-->
+	<xs:element name="getRPGObjectListRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенных документах РПГ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sender" type="base:text200Type">
+					<xs:annotation>
+						<xs:documentation>Отправитель</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderType" type="base:wsPartnerType">
+					<xs:annotation>
+						<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="code" type="base:spzNumType">
+						<xs:annotation>
+							<xs:documentation>Реестровый номер организации в СПЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="consRegistryNum" type="base:consRegistryNumType">
+						<xs:annotation>
+							<xs:documentation>Код организации по Сводному реестру (СвР)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="documentKind" type="documentKindRPGType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Вид документа</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="regNumber" type="base:text100Type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Реестровый номер документа</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fromDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Начало временного интервала, в котором ведется поиск (включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="toDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Конец временного интервала, в котором ведется поиск (не включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getRPGObjectListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о размещенных документах РПГ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectList">
+					<xs:annotation>
+						<xs:documentation>Список кратких сведений о размещенных документах</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objectInfo" type="objectInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Краткие сведения о размещенном документе</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getRPGObjectInfoRequest" type="objectInfoRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о документе РПГ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getRPGObjectInfoResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о документе РПГ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectInfo" type="objectContentType">
+					<xs:annotation>
+						<xs:documentation>Cведения о документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="documentKindRPGType">
+		<xs:annotation>
+			<xs:documentation>Тип: Вид документа РПГ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="tenderPlan2020"/>
+			<xs:enumeration value="control99BeginMessage"/>
+			<xs:enumeration value="control99RefusalMessage"/>
+			<xs:enumeration value="control99NoticeCompliance"/>
+			<xs:enumeration value="control99ProtocolMismatch"/>
+			<xs:enumeration value="control99ProtocolMismatchReductFunds"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Сообщения РК-->
+	<xs:element name="getRKObjectListRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенных документах РК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sender" type="base:text200Type">
+					<xs:annotation>
+						<xs:documentation>Отправитель</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderType" type="base:wsPartnerType">
+					<xs:annotation>
+						<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="code" type="base:spzNumType">
+						<xs:annotation>
+							<xs:documentation>Реестровый номер организации в СПЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="consRegistryNum" type="base:consRegistryNumType">
+						<xs:annotation>
+							<xs:documentation>Код организации по Сводному реестру (СвР)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="documentKind" type="documentKindRKType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Вид документа</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="regNumber" type="base:text100Type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Реестровый номер документа</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fromDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Начало временного интервала, в котором ведется поиск (включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="toDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Конец временного интервала, в котором ведется поиск (не включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getRKObjectListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о размещенных документах РК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectList">
+					<xs:annotation>
+						<xs:documentation>Список кратких сведений о размещенных документах</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objectInfo" type="objectInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Краткие сведения о размещенном документе</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getRKObjectInfoRequest" type="objectInfoRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о документе РК</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getRKObjectInfoResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о документе РК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectInfo" type="objectContentType">
+					<xs:annotation>
+						<xs:documentation>Cведения о документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="documentKindRKType">
+		<xs:annotation>
+			<xs:documentation>Тип: Вид документа РК</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="contract"/>
+			<xs:enumeration value="contractCancel"/>
+			<xs:enumeration value="contractProcedure"/>
+			<xs:enumeration value="contractProcedureCancel"/>
+			<xs:enumeration value="control99BeginMessage"/>
+			<xs:enumeration value="control99RefusalMessage"/>
+			<xs:enumeration value="control99NoticeCompliance"/>
+			<xs:enumeration value="control99ProtocolMismatch"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Сообщения РКО-->
+	<xs:element name="getKOObjectListRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенных документах РКО</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sender" type="base:text200Type">
+					<xs:annotation>
+						<xs:documentation>Отправитель</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderType" type="base:wsPartnerType">
+					<xs:annotation>
+						<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="code" type="base:spzNumType">
+						<xs:annotation>
+							<xs:documentation>Реестровый номер организации в СПЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="consRegistryNum" type="base:consRegistryNumType">
+						<xs:annotation>
+							<xs:documentation>Код организации по Сводному реестру (СвР)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="documentKind" type="documentKindKOType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Вид документа.
+			Допустимые значения:
+			checkPlan - План проверок для ИС КО;		
+			checkResult - Результат контроля для ИС КО;		
+			checkResultCancel - Информация об отмене результата контроля для ИС КО;
+			complaint - Информация по жалобе для ИС КО;	
+			complaintCancel - Информация об отзыве жалобы для ИС КО;
+			complaintGroup - Информация по групповой жалобе для ИС КО;
+			electronicComplaint - Информация по жалобе, поданной в электронном виде для ИС КО;
+			eventPlan - План контрольных мероприятий для ИС ОВК;
+			eventResult - Результат контроля для ИС ОВК;
+			eventResultCancel - Информация об отмене результата контроля для ИС ОВК;
+			unplannedEvent - Информация по внеплановому контрольному мероприятию для ИС ОВК;
+			unplannedEventCancel - Информация об отмене проведения внепланового контрольного мероприятия для ИС ОВК;
+			complaintTransfer - Информация о передаче жалобы по подведомственности / ведомственной принадлежности;
+			parElectronicComplaintAccept - Информация о принятии к рассмотрению электронной жалобы, сформированной в ЛКП;
+			parElectronicComplaintRefusal - Информация об отказе в рассмотрении электронной жалобы, сформированной в ЛКП;
+			tenderSuspension - Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта;
+			unplannedCheck - Информация по внеплановой проверке;
+			unplannedCheckCancel - Информация об отмене проведения внеплановой проверки;
+			unplannedCheckTenderSusp - Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта по внеплановой проверке</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fromDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Начало временного интервала, в котором ведется поиск (включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="toDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Конец временного интервала, в котором ведется поиск (не включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getKOObjectListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о размещенных документах РКО</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectList">
+					<xs:annotation>
+						<xs:documentation>Список кратких сведений о размещенных документах</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objectInfo" type="objectInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Краткие сведения о размещенном документе</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getKOObjectInfoRequest" type="objectInfoRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о документе РКО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getKOObjectInfoResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о документе РКО</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectInfo" type="objectContentType">
+					<xs:annotation>
+						<xs:documentation>Cведения о документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="kppType">
+		<xs:annotation>
+			<xs:documentation>Тип: КПП поставщика</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="9"/>
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Сообщения РНП-->
+	<xs:element name="getRNPObjectListRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенных документах РНП. Устарело, не применяется с 01.04.2022</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sender" type="base:text200Type">
+					<xs:annotation>
+						<xs:documentation>Отправитель</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderType" type="base:wsPartnerType">
+					<xs:annotation>
+						<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+OOKZ - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="INN" type="innType">
+					<xs:annotation>
+						<xs:documentation>ИНН поставщика</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="KPP" type="kppType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>КПП поставщика</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getRNPObjectListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о размещенных документах РНП. Устарело, не применяется с 01.04.2022</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectList">
+					<xs:annotation>
+						<xs:documentation>Список сведений о размещенных документах</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objectInfo" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Cведения о размещенном документе</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="RNPObjectInfoType">
+											<xs:sequence>
+												<xs:element name="content" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>Содержимое документа</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="RNPObjectInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о размещенном документе РНП. Устарело, не применяется с 01.04.2022</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="publishDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время размещения документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="versionNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер последнего изменения документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regNumber" type="base:text100Type">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemeVersion" type="base:schemeVersionType">
+				<xs:annotation>
+					<xs:documentation>Версия схемы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Сообщения РНП с 01.04.2021-->
+	<xs:element name="getUnfairSupplier2022ObjectListRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенных документах Реестра недобросовестных поставщиков (РНП) с 01.04.2022</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sender" type="base:text200Type">
+					<xs:annotation>
+						<xs:documentation>Отправитель</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderType" type="base:wsPartnerType">
+					<xs:annotation>
+						<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+OOKZ - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="requestInfo">
+					<xs:annotation>
+						<xs:documentation>Параметры запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="supplierRFInfo">
+								<xs:annotation>
+									<xs:documentation>Параметры запроса в случае если поставщик (иное лицо, включаемое в РНП) - юридическое или физическое лицо РФ</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="INN" type="base:innType">
+											<xs:annotation>
+												<xs:documentation>ИНН</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="KPP" type="kppType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>КПП поставщика</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="supplierForeignStateInfo">
+								<xs:annotation>
+									<xs:documentation>Параметры запроса в случае поставщик (иное лицо, включаемое в РНП) - юридическое или физическое лицо иностранного государства</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="taxPayerCode" type="base:ERUZTaxPayerCode">
+											<xs:annotation>
+												<xs:documentation>Код налогоплательщика в стране регистрации или его аналог</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getUnfairSupplier2022ObjectListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о размещенных документах  Реестра недобросовестных поставщиков (РНП) с 01.04.2022</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectListInfo">
+					<xs:annotation>
+						<xs:documentation>Список сведений о размещенных документах</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objectInfo" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Cведения о размещенных документах "Запись Реестра недобросовестных поставщиков (РНП) с 01.04.2022" (unfairSupplier2022) и "Исключение записи Реестра недобросовестных поставщиков (РНП) с 01.04.2022" (unfairSupplier2022Exclude)</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="publishDT" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Дата размещения текущей версии документа</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="versionNumber">
+											<xs:annotation>
+												<xs:documentation>Номер версии</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="base:versionNumberType">
+													<xs:minInclusive value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="regNumber" type="base:unfairSupplier2022RegNumType">
+											<xs:annotation>
+												<xs:documentation>Номер реестровой записи</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="schemeVersion" type="base:schemeVersionType">
+											<xs:annotation>
+												<xs:documentation>Версия схемы</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="unfairSupplier2022Content" type="xs:base64Binary">
+											<xs:annotation>
+												<xs:documentation>Содержимое документа "Запись Реестра недобросовестных поставщиков (РНП) с 01.04.2022" (unfairSupplier2022)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="unfairSupplier2022ExcludeContent" type="xs:base64Binary" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Содержимое документа "Исключение записи Реестра недобросовестных поставщиков (РНП) с 01.04.2022" (unfairSupplier2022Exclude)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--Сообщения РОКО-->
+	<xs:element name="getROKOObjectListRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о размещенных документах РОКО</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sender" type="base:text200Type">
+					<xs:annotation>
+						<xs:documentation>Отправитель</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="senderType" type="base:wsPartnerType">
+					<xs:annotation>
+						<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="code" type="base:spzNumType">
+						<xs:annotation>
+							<xs:documentation>Реестровый номер организации в СПЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="consRegistryNum" type="base:consRegistryNumType">
+						<xs:annotation>
+							<xs:documentation>Код организации по Сводному реестру (СвР)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="documentKind" type="documentKindROKOType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Вид документа.
+
+Допустимые значения:
+
+approval -  Обращение в контрольный орган;
+approvalTransfer - Информация о передаче обращения в другой контрольный орган;
+approvalMismatch - Уведомление о выявленных в обращении несоответствиях</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fromDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Начало временного интервала, в котором ведется поиск (включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="toDate" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Конец временного интервала, в котором ведется поиск (не включается)
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getROKOObjectListResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о размещенных документах РОКО</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectList">
+					<xs:annotation>
+						<xs:documentation>Список кратких сведений о размещенных документах</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objectInfo" type="objectInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Краткие сведения о размещенном документе</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getROKOObjectInfoRequest" type="objectInfoRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о документе РОКО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getROKOObjectInfoResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о документе РОКО</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="errorInfo" type="errorInfoType">
+					<xs:annotation>
+						<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="objectInfo" type="objectContentType">
+					<xs:annotation>
+						<xs:documentation>Cведения о документе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--Общие типы-->
+	<xs:complexType name="objectInfoRequestType">
+		<xs:annotation>
+			<xs:documentation>Тип: Запрос сведения о размещённых документах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sender" type="base:text200Type">
+				<xs:annotation>
+					<xs:documentation>Отправитель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="senderType" type="base:wsPartnerType">
+				<xs:annotation>
+					<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная (муниципальная) информационная система (РМИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС);
+SMEV3 - Подсистема взаимодействия со СМЭВ3.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentUid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentKind" type="base:text100Type">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="objectInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Краткие сведения об опубликованном документе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="documentUid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentKind" type="base:text100Type">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="documentStatusType">
+				<xs:annotation>
+					<xs:documentation>Статус сведений о документе:
+
+Допустимые значения:
+P - опубликован;
+I - недействителен;
+A - аннулирован.                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publishDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время публикации документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="versionNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер последнего изменения документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regNumber" type="base:text100Type">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemeVersion" type="base:schemeVersionType">
+				<xs:annotation>
+					<xs:documentation>Версия схемы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extPartnerType" type="extPartnerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип внешнего контрагента, от которого ЕИС получила документ (проект документа)
+
+VSRZ - Внешняя система размещения заказов;
+RMIS - Региональная муниципальная информационная система;
+FAS - Федеральная антимонопольная служба;
+ETP - Электронная торговая площадка;
+BANK - Банк;
+GIIS_EB - ГИИС Электронный бюджет;
+OA - Информационные системы органов аудита;
+OVK - Информационные системы органов внутреннего контроля;
+IKO - Информационные системы контрольных органов.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="objectContentType">
+		<xs:annotation>
+			<xs:documentation>Тип: Краткие сведения об опубликованном документе с контентом</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="objectInfoType">
+				<xs:sequence>
+					<xs:element name="content" type="xs:base64Binary">
+						<xs:annotation>
+							<xs:documentation>Содержимое документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="errorInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Результат вызова сервиса в случае ошибки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="base:text2000Type">
+				<xs:annotation>
+					<xs:documentation>Текстовая расшифровка ошибки, включающая дополнительную информацию
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="getErrorResponse" type="errorInfoType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений с описанием ошибки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="documentStatusType">
+		<xs:annotation>
+			<xs:documentation>Тип: Статус документа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="P">
+				<xs:annotation>
+					<xs:documentation>Опубликован</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="I">
+				<xs:annotation>
+					<xs:documentation>Недействителен</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>Аннулирован</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="extPartnerType">
+		<xs:annotation>
+			<xs:documentation>Тип: Тип внешнего контрагента документа:
+	VSRZ   - Внешняя система размещения заказов; 
+	RMIS - Региональная муниципальная информационная система;
+    FAS - Федеральная антимонопольная служба;
+    ETP - Электронная торговая площадка;
+    BANK - Банк;
+    GIIS_EB - ГИИС Электронный бюджет,
+    OA - Информационные системы органов аудита,
+    OVK - Информационные системы органов внутреннего контроля,
+    IKO - Информационные системы контрольных органов.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VSRZ">
+				<xs:annotation>
+					<xs:documentation>Внешняя система размещения заказов</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RMIS">
+				<xs:annotation>
+					<xs:documentation>Региональная муниципальная информационная система</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAS">
+				<xs:annotation>
+					<xs:documentation>Федеральная антимонопольная служба</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ETP">
+				<xs:annotation>
+					<xs:documentation>Электронная торговая площадка</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BANK">
+				<xs:annotation>
+					<xs:documentation>Банк</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GIIS_EB">
+				<xs:annotation>
+					<xs:documentation>ГИИС Электронный бюджет</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OA">
+				<xs:annotation>
+					<xs:documentation>Информационные системы органов аудита</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OVK">
+				<xs:annotation>
+					<xs:documentation>Информационные системы органов внутреннего контроля</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IKO">
+				<xs:annotation>
+					<xs:documentation>Информационные системы контрольных органов</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="innType">
+		<xs:annotation>
+			<xs:documentation>Тип: ИНН (или аналог ИНН для иностранного поставщика)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="documentKindKOType">
+		<xs:annotation>
+			<xs:documentation>Тип: Вид документа РКО
+Допустимые значения:
+checkPlan - План проверок для ИС КО;
+checkResult - Результат контроля для ИС КО;
+checkResultCancel - Информация об отмене результата контроля для ИС КО;
+complaint - Информация по жалобе для ИС КО;
+complaintCancel - Информация об отзыве жалобы для ИС КО;
+complaintGroup - Информация по групповой жалобе для ИС КО;
+electronicComplaint - Информация по жалобе, поданной в электронном виде для ИС КО;
+eventPlan - План контрольных мероприятий для ИС ОВК;
+eventResult - Результат контроля для ИС ОВК;
+eventResultCancel - Информация об отмене результата контроля для ИС ОВК;
+unplannedEvent - Информация по внеплановому контрольному мероприятию для ИС ОВК;
+unplannedEventCancel - Информация об отмене проведения внепланового контрольного мероприятия для ИС ОВК;
+complaintTransfer - Информация о передаче жалобы по подведомственности / ведомственной принадлежности;
+parElectronicComplaintAccept - Информация о принятии к рассмотрению электронной жалобы, сформированной в ЛКП;
+parElectronicComplaintRefusal - Информация об отказе в рассмотрении электронной жалобы, сформированной в ЛКП;
+tenderSuspension - Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта;
+unplannedCheck - Информация по внеплановой проверке;
+unplannedCheckCancel - Информация об отмене проведения внеплановой проверки;
+unplannedCheckTenderSusp - Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта по внеплановой проверке</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="checkPlan"/>
+			<xs:enumeration value="checkResult"/>
+			<xs:enumeration value="checkResultCancel"/>
+			<xs:enumeration value="complaint"/>
+			<xs:enumeration value="complaintCancel"/>
+			<xs:enumeration value="complaintGroup"/>
+			<xs:enumeration value="electronicComplaint"/>
+			<xs:enumeration value="eventPlan"/>
+			<xs:enumeration value="eventResult"/>
+			<xs:enumeration value="eventResultCancel"/>
+			<xs:enumeration value="unplannedEvent"/>
+			<xs:enumeration value="unplannedEventCancel"/>
+			<xs:enumeration value="complaintTransfer"/>
+			<xs:enumeration value="parElectronicComplaintAccept"/>
+			<xs:enumeration value="parElectronicComplaintRefusal"/>
+			<xs:enumeration value="tenderSuspension"/>
+			<xs:enumeration value="unplannedCheck"/>
+			<xs:enumeration value="unplannedCheckCancel"/>
+			<xs:enumeration value="unplannedCheckTenderSusp"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="documentKindROKOType">
+		<xs:annotation>
+			<xs:documentation>Тип: Вид документа РОКО
+Допустимые значения:
+approval -  Обращение в контрольный орган;
+approvalTransfer - Информация о передаче обращения в другой контрольный орган;
+approvalMismatch - Уведомление о выявленных в обращении несоответствиях</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="approval"/>
+			<xs:enumeration value="approvalTransfer"/>
+			<xs:enumeration value="approvalMismatch"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
