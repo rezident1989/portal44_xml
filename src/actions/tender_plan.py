@@ -28,7 +28,12 @@ def tender_plan_2020(outgoing_xml):
 
     template.find('.//ns3:id', ns).text = random_number(8)
     template.find('.//ns3:externalId', ns).text = tree.find('.//ns3:externalId', ns).text
-    template.find('.//ns3:planNumber', ns).text = tree.find('.//ns3:planNumber', ns).text
+
+    try:
+        template.find('.//ns3:planNumber', ns).text = tree.find('.//ns3:planNumber', ns).text
+    except AttributeError:
+        template.find('.//ns3:planNumber', ns).text = '2024' + str(random_number(14))
+
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
     template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
