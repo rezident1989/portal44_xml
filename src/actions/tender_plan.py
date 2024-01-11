@@ -36,6 +36,7 @@ def tender_plan_2020(outgoing_xml):
 
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
     template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
+    template.find('.//ns3:publishDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
     template_purchase = (template.findall('.//ns3:position/ns3:commonInfo/..', ns)
                          + template.findall('.//ns3:specialPurchasePosition', ns))
