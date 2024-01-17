@@ -50,8 +50,8 @@ def tender_plan_2020(outgoing_xml):
                     tag_temp.find('.//ns3:positionNumber', ns).text = tag_three.find('.//ns3:positionNumber', ns).text
                     tag_temp.find('.//ns3:IKZ', ns).text = tag_three.find('.//ns3:IKZ', ns).text
                 except AttributeError:
-                    tag_temp.find('.//ns3:positionNumber', ns).text = f'23{random_number(22)}'
-                    tag_temp.find('.//ns3:IKZ', ns).text = f'23{random_number(34)}'
+                    tag_temp.find('.//ns3:positionNumber', ns).text = f'2024{random_number(20)}'
+                    tag_temp.find('.//ns3:IKZ', ns).text = f'24{random_number(34)}'
                 tag_temp.find('.//ns3:extNumber', ns).text = tag_three.find('.//ns3:extNumber', ns).text
                 tag_temp.find('.//ns3:publishYear', ns).text = tag_three.find('.//ns3:publishYear', ns).text
                 tag_temp.find('.//ns3:IKU', ns).text = tag_three.find('.//ns3:IKU', ns).text
