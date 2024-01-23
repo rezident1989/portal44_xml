@@ -68,7 +68,7 @@ def tender_plan_2020(outgoing_xml):
             except AttributeError:
                 child = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}positionNumber')
                 child.text = f'2024{random_number(20)}'
-                special_position.insert(0, child)
+                special_position.insert(1, child)
     except TypeError:
         pass
 
