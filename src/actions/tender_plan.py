@@ -26,6 +26,8 @@ def tender_plan_2020(outgoing_xml):
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
 
     # Заполнить блок commonInfo
+    confirm_contact_info = copy.deepcopy(main.find('.//ns3:confirmContactInfo', ns))
+
     path = './/ns3:commonInfo'
     main.remove(template.find(path, ns))
     main.insert(number_position, copy.deepcopy(tree.find(path, ns)))
@@ -37,6 +39,8 @@ def tender_plan_2020(outgoing_xml):
     publish_date = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}publishDate')
     publish_date.text = tree.find('.//ns1:createDateTime', ns).text
     template.find(path, ns).insert(3, publish_date)
+
+    main.find(path, ns).insert(6, confirm_contact_info)
 
     # Заполнить необязательный блок positions
     try:

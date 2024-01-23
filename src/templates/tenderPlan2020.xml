@@ -78,10 +78,10 @@
                 <ns5:ownerRole>CU</ns5:ownerRole>
             </ns5:ownerInfo>
             <ns5:confirmContactInfo>
-                <ns5:lastName>ЦВИЛИХ</ns5:lastName>
-                <ns5:firstName>ИРИНА</ns5:firstName>
-                <ns5:middleName>ВИКТОРОВНА</ns5:middleName>
-                <ns5:position>ДИРЕКТОР</ns5:position>
+                <ns5:lastName>Лазарев</ns5:lastName>
+                <ns5:firstName>Алексей</ns5:firstName>
+                <ns5:middleName>Викторович</ns5:middleName>
+                <ns5:position>Тестировщик</ns5:position>
             </ns5:confirmContactInfo>
         </ns5:commonInfo>
         <ns5:positions>
