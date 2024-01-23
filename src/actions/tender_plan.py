@@ -1,6 +1,7 @@
 import copy
 from src.helper.namespace import namespace as ns
 from src.helper.help_func import open_xml, random_number
+import xml.etree.ElementTree as ET
 
 
 def tender_plan_2020(outgoing_xml):
@@ -9,23 +10,11 @@ def tender_plan_2020(outgoing_xml):
     template = open_xml('src/templates/tenderPlan2020.xml')
     tree = open_xml(outgoing_xml)
 
-    count_position = len(tree.findall('.//ns3:positions/ns3:position', ns))
-    count_special_position = len(tree.findall(f'.//ns3:specialPurchasePosition', ns))
+    main = template.find(".//ns4:tenderPlan2020", ns)
+    number_position = 4
 
-    if count_position == 0:
-        template.find('.//ns4:tenderPlan2020', ns).remove(template.find('.//ns3:positions', ns))
-    elif count_position > 1:
-        member = copy.deepcopy(template.find('.//ns4:tenderPlan2020/ns3:positions/ns3:position', ns))
-        for i in range(2, count_position + 1):
-            template.find(".//ns3:positions", ns).insert(i, member)
-
-    if count_special_position == 0:
-        template.find('.//ns4:tenderPlan2020', ns).remove(template.find('.//ns3:specialPurchasePositions', ns))
-    elif count_special_position > 1:
-        for i in range(2, count_special_position + 1):
-            member = copy.deepcopy(template.find('.//ns3:specialPurchasePosition', ns))
-            template.find('.//ns3:specialPurchasePositions', ns).insert(i, member)
-
+    # Заполнение блока tenderPlan2020
+    main.attrib['schemeVersion'] = tree.find('.//ns1:data', ns).attrib.get('schemeVersion')
     template.find('.//ns3:id', ns).text = random_number(8)
     template.find('.//ns3:externalId', ns).text = tree.find('.//ns3:externalId', ns).text
 
@@ -35,26 +24,47 @@ def tender_plan_2020(outgoing_xml):
         template.find('.//ns3:planNumber', ns).text = '2024' + str(random_number(14))
 
     template.find('.//ns3:versionNumber', ns).text = tree.find('.//ns3:versionNumber', ns).text
-    template.find('.//ns3:confirmDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
-    template.find('.//ns3:publishDate', ns).text = tree.find('.//ns1:createDateTime', ns).text
 
-    template_purchase = (template.findall('.//ns3:position/ns3:commonInfo/..', ns)
-                         + template.findall('.//ns3:specialPurchasePosition', ns))
-    tree_purchase = (tree.findall('.//ns3:position/ns3:commonInfo/..', ns)
-                     + tree.findall('.//ns3:specialPurchasePosition', ns))
+    # Заполнение блока commonInfo
+    main.remove(template.find(".//ns3:commonInfo", ns))
+    main.insert(number_position, copy.deepcopy(tree.find(".//ns3:commonInfo", ns)))
 
-    for i1, tag_temp in enumerate(template_purchase):
-        for i2, tag_three in enumerate(tree_purchase):
-            if i1 == i2:
-                try:
-                    tag_temp.find('.//ns3:positionNumber', ns).text = tag_three.find('.//ns3:positionNumber', ns).text
-                    tag_temp.find('.//ns3:IKZ', ns).text = tag_three.find('.//ns3:IKZ', ns).text
-                except AttributeError:
-                    tag_temp.find('.//ns3:positionNumber', ns).text = f'2024{random_number(20)}'
-                    tag_temp.find('.//ns3:IKZ', ns).text = f'24{random_number(34)}'
-                tag_temp.find('.//ns3:extNumber', ns).text = tag_three.find('.//ns3:extNumber', ns).text
-                tag_temp.find('.//ns3:publishYear', ns).text = tag_three.find('.//ns3:publishYear', ns).text
-                tag_temp.find('.//ns3:IKU', ns).text = tag_three.find('.//ns3:IKU', ns).text
-                tag_temp.find('.//ns3:purchaseNumber', ns).text = tag_three.find('.//ns3:purchaseNumber', ns).text
+    confirm_date = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}confirmDate')
+    confirm_date.text = tree.find('.//ns1:createDateTime', ns).text
+    template.find('.//ns3:commonInfo', ns).insert(2, confirm_date)
+
+    publish_date = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}publishDate')
+    publish_date.text = tree.find('.//ns1:createDateTime', ns).text
+    template.find('.//ns3:commonInfo', ns).insert(3, publish_date)
+
+    # Заполнение необязательного блока positions
+    try:
+        main.remove(template.find(".//ns3:positions", ns))
+        main.insert(number_position + 1, copy.deepcopy(tree.find(".//ns3:positions", ns)))
+    except TypeError:
+        number_position = number_position - 1
+
+    for position in template.findall('.//ns3:positions/ns3:position/ns3:commonInfo', ns):
+        try:
+            position.find('.//ns3:positionNumber', ns).text
+        except AttributeError:
+            child = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}positionNumber')
+            child.text = f'2024{random_number(20)}'
+            position.insert(0, child)
+
+    # Заполнение необязательного блока specialPurchasePositions
+    try:
+        main.remove(template.find(".//ns3:specialPurchasePositions", ns))
+        main.insert(number_position, copy.deepcopy(tree.find(".//ns3:specialPurchasePositions", ns)))
+    except TypeError:
+        pass
+
+    for special_position in template.findall('.//ns3:specialPurchasePositions/ns3:specialPurchasePosition', ns):
+        try:
+            special_position.find('.//ns3:positionNumber', ns).text
+        except AttributeError:
+            child = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}positionNumber')
+            child.text = f'2024{random_number(20)}'
+            special_position.insert(0, child)
 
     return template
