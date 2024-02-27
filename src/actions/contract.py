@@ -39,7 +39,11 @@ def contract(outgoing_xml):
     main.remove(template.find(".//ns2:products", ns))
     main.insert(23, copy.deepcopy(tree.find(".//ns2:products", ns)))
     main.remove(template.find(".//ns2:suppliersInfo", ns))
-    main.insert(24, copy.deepcopy(tree.find(".//ns2:suppliersInfo", ns)))
+
+    try:
+        main.insert(24, copy.deepcopy(tree.find(".//ns2:suppliersInfo", ns)))
+    except TypeError:
+        main.insert(24, copy.deepcopy(tree.find(".//ns2:suppliers", ns)))
 
     try:
         template.find('.//ns4:contract/ns2:regNum', ns).text = tree.find('.//ns1:data/ns2:regNum', ns).text
@@ -65,6 +69,15 @@ def contract(outgoing_xml):
     # Необязательный блок
     if len(tree.findall('.//ns2:supplierAccountDetails', ns)) > 0:
         for account in template.findall('.//ns2:supplierAccountDetails', ns):
+            try:
+                account.find('.//ns6:sid', ns).text
+            except AttributeError:
+                child = ET.Element('{http://zakupki.gov.ru/oos/common/1}sid')
+                child.text = random_number(8)
+                account.insert(0, child)
+
+    if len(tree.findall('.//ns2:customerAccountsDetails', ns)) > 0:
+        for account in template.findall('.//ns2:customerAccountDetails', ns):
             try:
                 account.find('.//ns6:sid', ns).text
             except AttributeError:
