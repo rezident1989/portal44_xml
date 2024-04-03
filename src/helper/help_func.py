@@ -109,9 +109,9 @@ def test_folder(host):
 def get_server_address(path: str) -> str:
     """Получить адрес сервера"""
     number = path.split('\\')[-1:][0][:5]
-    if number == '16267':
+    if number == '16640':
         return 'testaisgz1.gz-spb.ru'
-    elif number == '16268':
+    elif number == '16641':
         return 'testaisgz6.gz-spb.ru'
     # elif number == '684':
     #     return 'testaisgz5.gz-spb.ru'
@@ -121,7 +121,7 @@ def get_server_address(path: str) -> str:
         return 'testaisgz3.gz-spb.ru'
 
 
-def validate_xsd(path, version='14_0'):
+def validate_xsd(path, version='14_1'):
     # Загрузка xsd схемы
     if 'outgoing' in path:
         schema_path = f'src\\schemes\\{version}\\fcsIntegration.xsd'

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS INTEGRATION_VBS_TYPES Integration Scheme, version 14.1, create date 26.03.2024 -->
+<xs:schema xmlns="http://zakupki.gov.ru/oos/VBSTypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/oos/VBSTypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/common/1" schemaLocation="../CommonTypes.xsd"/>
+	<!--Бюджетные обязательства. Документы-->
+	<xs:complexType name="boProjectType">
+		<xs:annotation>
+			<xs:documentation>Тип: Проект сведений о бюджетном обязательстве (БО)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="boCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="boSentForVerificationType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о бюджетном обязательстве (БО), направленные на проверку в ТОФК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="boCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="boRegistredType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о бюджетном обязательстве (БО), поставленные на учет</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="boCommonType">
+				<xs:sequence>
+					<xs:element name="registrationDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата постановки на учет БО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="budgetObligationNumber" type="base:BONumber">
+						<xs:annotation>
+							<xs:documentation>Учетный номер бюджетного обязательства, присвоенный в ПУР</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="boDeniedRegistrationType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о бюджетном обязательстве (БО), отказанные в постановке на учет</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="boCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="boNotificationPublishType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о бюджетном обязательстве (БО), включенные в размещенное извещение о проведении процедуры закупки</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="boCommonType">
+				<xs:sequence>
+					<xs:element name="purchaseNumber" type="base:purchaseNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Реестровый номер закупки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="notificationPublishDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата размещения извещения (изменения извещения) в ЕИС</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="registrationDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата постановки на учет БО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="budgetObligationNumber" type="base:BONumber">
+						<xs:annotation>
+							<xs:documentation>Учетный номер бюджетного обязательства, присвоенный в ПУР</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Бюджетные обязательства. Общие типы-->
+	<xs:complexType name="boCommonType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о бюджетном обязательстве (БО). Общий тип</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Бизнес-идентификатор БО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="versionNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер версии БО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primaryId" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Бизнес-идентификатор первичных сведений о БО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDT" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата-время перехода в соответствующий статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="addAgreementInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация о дополнительном соглашении</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="agreementNumber" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Номер соглашения</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="agreementDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Дата соглашения</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="linkedDocumentType" type="linkedDocumentType">
+				<xs:annotation>
+					<xs:documentation>Тип связанного документа:
+
+CONTRACT - Первичное СГК;
+
+MOD_CONTRACT - Изменение СГК с типом «Изменение контракта»;
+
+COR_CONTRACT - Изменение СГК с типом «Исправление сведений»;
+
+COMPL_SVIK - Контракт исполнен;
+
+CLOSE_SVIK - Контракт прекращен;
+
+MOD_SBO - Изменение БО без изменения связанного документа;
+
+NOTICE - Извещение/приглашение;
+
+MOD_NOTICE - Извещение об изменении закупки;
+
+CAN_NOTICE - Закупка отменена;
+
+MOD_PBO - Изменение БО без изменения связанного документа;
+
+ONE_CONTRACT - Проект контракта с единственным поставщиком.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="purchaseCode" type="base:ikzCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификационный код закупки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о БО, сформированные в соответствии с внешними формулярами ПУР</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any>
+							<xs:annotation>
+								<xs:documentation>Блок содержит XML, сформированный по внешней схеме ПУР</xs:documentation>
+							</xs:annotation>
+						</xs:any>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вложенные файлы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--Бюджетные обязательства. Простые типы типы-->
+	<xs:simpleType name="linkedDocumentType">
+		<xs:annotation>
+			<xs:documentation>Тип: Тип связанного документа: CONTRACT - Первичное СГК; MOD_CONTRACT - Изменение СГК с типом «Изменение контракта»; COR_CONTRACT - Изменение СГК с типом «Исправление сведений»; COMPL_SVIK - Контракт исполнен; CLOSE_SVIK - Контракт прекращен; MOD_SBO - Изменение БО без изменения связанного документа; NOTICE - Извещение/приглашение; MOD_NOTICE - Извещение об изменении закупки; CAN_NOTICE - Закупка отменена; MOD_PBO - Изменение БО без изменения связанного документа; ONE_CONTRACT - Проект контракта с единственным поставщиком</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CONTRACT"/>
+			<xs:enumeration value="MOD_CONTRACT"/>
+			<xs:enumeration value="COR_CONTRACT"/>
+			<xs:enumeration value="COMPL_SVIK"/>
+			<xs:enumeration value="CLOSE_SVIK"/>
+			<xs:enumeration value="MOD_SBO"/>
+			<xs:enumeration value="NOTICE"/>
+			<xs:enumeration value="MOD_NOTICE"/>
+			<xs:enumeration value="CAN_NOTICE"/>
+			<xs:enumeration value="MOD_PBO"/>
+			<xs:enumeration value="ONE_CONTRACT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Денежные обязательства. Документы-->
+	<xs:complexType name="moSentForVerificationType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о денежном обязательстве (ДО), направленные на проверку в ТОФК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="moCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="moRegistredType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о денежном обязательстве (ДО), поставленные на учет</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="moCommonType">
+				<xs:sequence>
+					<xs:element name="registrationDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата постановки на учет ДО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="monetaryObligationNumber" type="base:MONumber">
+						<xs:annotation>
+							<xs:documentation>Учетный номер денежного обязательства, присвоенный в ПУР</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="moDeniedRegistrationType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о денежном обязательстве (ДО), отказанные в постановке на учет</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="moCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Денежные обязательства. Общие типы-->
+	<xs:complexType name="moCommonType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о денежном обязательстве (ДО). Общий тип</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Бизнес-идентификатор ДО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="versionNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер версии ДО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primaryId" type="base:guidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Бизнес-идентификатор первичных сведений о ДО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDT" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата-время перехода в соответствующий статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stageSid" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор этапа контракта в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accDocSid" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа о приемке в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о ДО, сформированные в соответствии с внешними формулярами ПУР</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any>
+							<xs:annotation>
+								<xs:documentation>Блок содержит XML, сформированный по внешней схеме ПУР</xs:documentation>
+							</xs:annotation>
+						</xs:any>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вложенные файлы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--Заявки на кассовый расход. Документы-->
+	<xs:complexType name="zkrProjectType">
+		<xs:annotation>
+			<xs:documentation>Тип: Проект сведений о заявке на кассовый расход (ЗКР)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="zkrCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="zkrSentForVerificationType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о направленной в ПУР/АСФК заявке на кассовый расход (ЗКР)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="zkrCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="zkrRegistredType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о зарегистрированной заявке на кассовый расход (ЗКР)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="zkrCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="zkrDeniedRegistrationType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения об отказанной заявке на кассовый расход (ЗКР)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="zkrCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="zkrCanceledType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения об аннулированной заявке на кассовый расход (ЗКР)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="zkrCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="zkrExecutedType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения об исполненной заявке на кассовый расход (ЗКР)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="zkrCommonType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Заявки на кассовый расход. Общие типы-->
+	<xs:complexType name="zkrCommonType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о заявке на кассовый расход (ЗКР). Общий тип</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Бизнес-идентификатор ЗКР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDT" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата-время перехода в соответствующий статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о ЗКР, сформированные в соответствии с внешними формулярами ПУР</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any>
+							<xs:annotation>
+								<xs:documentation>Блок содержит XML, сформированный по внешней схеме ПУР</xs:documentation>
+							</xs:annotation>
+						</xs:any>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вложенные файлы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

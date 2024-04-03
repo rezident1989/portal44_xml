@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS INTEGRATION_EA_TYPES Integration Scheme, version 14.1, create date 26.03.2024  -->
+<xs:schema xmlns="http://zakupki.gov.ru/oos/EATypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/oos/EATypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/common/1" schemaLocation="CommonTypes.xsd"/>
+	<!--Электронное актирование в неструктурированном виде. Документы-->
+	<xs:complexType name="elActUnstructuredSupplierTitleType">
+		<xs:annotation>
+			<xs:documentation>Тип: Документ о приемке в неструктурированной форме (информация поставщика)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="documentNumber" type="base:text1000Type">
+							<xs:annotation>
+								<xs:documentation>Номер документа о приемке</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="correctionInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Информация об исправлении</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="correctionNumber" type="xs:int">
+										<xs:annotation>
+											<xs:documentation>Номер исправления</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="parentDocUuid" type="base:guidType">
+										<xs:annotation>
+											<xs:documentation>Уникальный идентификатор документа, на основании которого сформировано исправление</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="parentDocDate" type="xs:date">
+										<xs:annotation>
+											<xs:documentation>Дата документа, на основании которого сформировано исправление</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="contractInfo">
+							<xs:annotation>
+								<xs:documentation>Информация о контракте</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="regNumber" type="base:contractRegNumType">
+										<xs:annotation>
+											<xs:documentation>Реестровый номер контракта</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="id" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>Идентификатор версии контракта</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="versionNumber" type="base:versionNumberType">
+										<xs:annotation>
+											<xs:documentation>Номер версии контракта</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageInfo">
+										<xs:annotation>
+											<xs:documentation>Информация об этапе контракта, на основании которого сформирован документ</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="sid" type="xs:long">
+													<xs:annotation>
+														<xs:documentation>Уникальный идентификатор этапа контракта в ЕИС.</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="externalSid" type="base:externalIdType" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Внешний идентификатор этапа</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="guid" type="base:guidType">
+													<xs:annotation>
+														<xs:documentation>GUID этапа контракта</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="industrySpecialization" type="base:industrySpecializationType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Отраслевая специализация:
+			CONSTRUCTION_WORKS - Строительство;
+			DRUGS_PURCHASE - Лекарственные препараты;
+			RESIDENTIAL_PREMISES_PURCHASE - Приобретение жилых помещений</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="customerInfo">
+							<xs:annotation>
+								<xs:documentation>Информация о заказчике</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="cmn:organizationRefType">
+										<xs:sequence>
+											<xs:element name="INN" type="base:innOrganizationType">
+												<xs:annotation>
+													<xs:documentation>ИНН</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="KPP" type="base:kppType">
+												<xs:annotation>
+													<xs:documentation>КПП</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="address" type="base:text2000Type">
+												<xs:annotation>
+													<xs:documentation>Адрес организации</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="participantInfo" type="supplierInfoType">
+							<xs:annotation>
+								<xs:documentation>Информация о поставщике</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="sum" type="base:moneyMaxLengthToPoint18Type">
+							<xs:annotation>
+								<xs:documentation>Сумма документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="transferDate" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата передачи товаров (результатов выполненных работ, оказанных услуг)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="deliveryStartDate" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата начала периода поставки товаров (выполнения работ, оказания услуг)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="deliveryEndDate" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата окончания периода поставки товаров (выполнения работ, оказания услуг)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="additionalInfo" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="elActDocsInfo" type="cmn:attachmentListType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Файлы документа о приемке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="additionalDocsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные документы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parPrintFormInfo" type="cmn:extPrintFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа, подписанного поставщиком.
+При передаче заполняется поле "Содержимое файла электронного документа" (content)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="elActUnstructuredCustomerTitleType">
+		<xs:annotation>
+			<xs:documentation>Тип: Документ о приемке в неструктурированной форме (информация заказчика)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="supplierTitleInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о документе, содержащем инфомацию поставщика</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="uuid" type="base:guidType">
+							<xs:annotation>
+								<xs:documentation>Уникальный идентификатор документа поставщика</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="contractInfo">
+							<xs:annotation>
+								<xs:documentation>Информация о контракте</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="regNumber" type="base:contractRegNumType">
+										<xs:annotation>
+											<xs:documentation>Реестровый номер контракта</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="acceptanceResultCode" type="acceptanceResultCodeType">
+							<xs:annotation>
+								<xs:documentation>Итог приемки/рассмотрения.
+
+Допустимые значения:
+0 - Возвращено для уточнения;
+1 - Товары (работы, услуги) приняты без расхождений (претензий);
+2 - Товары (работы, услуги) приняты с расхождениями (претензией);
+3 - Товары (работы, услуги) не приняты</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acceptedSum" type="base:moneyMaxLengthToPoint18Type">
+							<xs:annotation>
+								<xs:documentation>Принятая сумма по документу</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acceptanceDate" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата получения товаров</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="additionalInfo" type="base:text2000Type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="elActDocsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файлы документа о приемке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="additionalDocsInfo" type="cmn:attachmentListWithEAKindType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные документы заказчика</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormInfo" type="cmn:extPrintFormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа, подписанного заказчиком.
+При передаче заполняется поле "Содержимое файла электронного документа" (content)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="elActSpendingFundsInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о направлениях расходования средств</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="contractInfo">
+					<xs:annotation>
+						<xs:documentation>Сведения о государственном контракте</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="regNumber" type="base:contractRegNumType">
+								<xs:annotation>
+									<xs:documentation>Реестровый номер контракта</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="number" type="base:text100Type">
+								<xs:annotation>
+									<xs:documentation>Номер контракта</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="startDate" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата начала исполнения контракта</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="endDate" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата завершения исполнения контракта</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="price" type="base:moneyMaxLengthToPoint18Type">
+								<xs:annotation>
+									<xs:documentation>Цена контракта</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="purchaseCode" type="base:ikzCodeType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Идентификационный код закупки из контракта</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="subcontractInfo">
+					<xs:annotation>
+						<xs:documentation>Сведения о субподрядном договоре</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="numberSC" type="base:text100Type">
+								<xs:annotation>
+									<xs:documentation>Номер субподрядного договора</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="startDateSC" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата начала исполнения договора</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="endDateSC" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Дата завершения исполнения договора</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="priceSC" type="base:moneyMaxLengthToPoint18Type">
+								<xs:annotation>
+									<xs:documentation>Цена договора</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="spendingFundsInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о направлениях расходования средств</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="description" type="base:text2000Type">
+							<xs:annotation>
+								<xs:documentation>Описание сведений о направлениях расходования средств</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signDT" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата подписания документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="additionalDocsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные документы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="printFormInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="content" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Содержимое файла электронного документа. Контролируется заполнение поля content или contentID при приёме. Поле не заполняется при передаче</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="contentId" type="base:guidType">
+								<xs:annotation>
+									<xs:documentation>Уникальный идентификатор контента прикрепленного документа в ЕИС. Поле не заполняется при передаче</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="url" type="base:hrefType">
+								<xs:annotation>
+									<xs:documentation>Ссылка для скачивания электронного документа. При приеме в ЕИС контролируется недопустимость заполнения данного поля. Поле заполняется при передаче</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+						<xs:element name="signature" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Электронная подпись электронного документа</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:base64Binary">
+										<xs:attribute name="type" type="base:signatureType">
+											<xs:annotation>
+												<xs:documentation>Тип электронной подписи:
+CAdES-BES;
+CAdES-A</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="fileType" type="base:printFormFileType">
+							<xs:annotation>
+								<xs:documentation>Тип файла электронного документа</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--Электронное актирование в неструктурированном виде. Сложные типы-->
+	<xs:complexType name="supplierInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Информация о поставщике</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="legalEntityRFInfo">
+					<xs:annotation>
+						<xs:documentation>Юридическое лицо РФ</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="fullName" type="base:text1000Type">
+								<xs:annotation>
+									<xs:documentation>Полное наименование организации</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="INN" type="base:innOrganizationType">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="KPP" type="base:kppType">
+								<xs:annotation>
+									<xs:documentation>КПП</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="isMajorTaxPayerKPP" type="xs:boolean" fixed="true" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Признак указания КПП крупнейшего налогоплательщика</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="filialLegalEntityRFInfo">
+					<xs:annotation>
+						<xs:documentation>Филиал юридического лица РФ</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="fullName" type="base:text1000Type">
+								<xs:annotation>
+									<xs:documentation>Полное наименование организации</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="INN" type="base:innOrganizationType">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="KPP" type="base:kppType">
+								<xs:annotation>
+									<xs:documentation>КПП</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="individualPersonRFInfo">
+					<xs:annotation>
+						<xs:documentation>Физическое лицо РФ</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nameInfo" type="cmn:personType">
+								<xs:annotation>
+									<xs:documentation>ФИО</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="INN" type="base:innIndividualType">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="legalEntityForeignStateInRAFPInfo">
+					<xs:annotation>
+						<xs:documentation>Аккредитованный филиал или представительство иностранного юридического лица</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="fullName" type="base:text1000Type">
+								<xs:annotation>
+									<xs:documentation>Полное наименование организации</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="INN" type="base:innOrganizationType">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="KPP" type="base:kppType">
+								<xs:annotation>
+									<xs:documentation>КПП</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="individualPersonForeignStateInfo">
+					<xs:annotation>
+						<xs:documentation>Физическое лицо иностранного государства</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nameInfo" type="cmn:personType">
+								<xs:annotation>
+									<xs:documentation>ФИО</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="INN" type="base:innIndividualType">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="eruzRegistryNum" type="base:eruzRegistryNumType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер реестровой записи в ЕРУЗ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Электронное актирование в неструктурированном виде. Простые типы-->
+	<xs:simpleType name="acceptanceResultCodeType">
+		<xs:annotation>
+			<xs:documentation>Тип: Код итога приемки:
+0 - Возвращено для уточнения;
+1 - Товары (работы, услуги) приняты без расхождений (претензий);
+2 - Товары (работы, услуги) приняты с расхождениями (претензией);
+3 - Товары (работы, услуги) не приняты</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

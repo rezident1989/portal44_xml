@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2018 rel. 2 sp1 (http://www.altova.com) by user_user (altcom_altcom) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:le="http://zakupki.gov.ru/fz44/get-docs-le/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-le/ws">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://zakupki.gov.ru/fz44/get-docs-le/ws" schemaLocation="../getDocsLE-ws-api.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getDocsByReestrNumberRequest">
+		<wsdl:part name="getDocsByReestrNumberRequest" element="le:getDocsByReestrNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getDocsByReestrNumberResponse">
+		<wsdl:part name="getDocsByReestrNumberResponse" element="le:getDocsByReestrNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getDocsByOrgRegionRequest">
+		<wsdl:part name="getDocsByOrgRegionRequest" element="le:getDocsByOrgRegionRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getDocsByOrgRegionResponse">
+		<wsdl:part name="getDocsByOrgRegionResponse" element="le:getDocsByOrgRegionResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNsiRequest">
+		<wsdl:part name="getNsiOrgRequest" element="le:getNsiRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getNsiResponse">
+		<wsdl:part name="getNsiResponse" element="le:getNsiResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="GetDocsLEFacade">
+		<wsdl:operation name="getDocsByReestrNumber">
+			<wsdl:input name="getDocsByReestrNumberRequest" message="le:getDocsByReestrNumberRequest"/>
+			<wsdl:output name="getDocsByReestrNumberResponse" message="le:getDocsByReestrNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getDocsByOrgRegion">
+			<wsdl:input name="getDocsByOrgRegionRequest" message="le:getDocsByOrgRegionRequest"/>
+			<wsdl:output name="getDocsByOrgRegionResponse" message="le:getDocsByOrgRegionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getNsi">
+			<wsdl:input name="getNsiRequest" message="le:getNsiRequest"/>
+			<wsdl:output name="getNsiResponse" message="le:getNsiResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="GetDocsLEFacadeBinding" type="le:GetDocsLEFacade">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getDocsByReestrNumber">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/queue/ws/get-docs-le"/>
+			<wsdl:input name="getDocsByReestrNumberRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocsByReestrNumberResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocsByOrgRegion">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/queue/ws/get-docs-le"/>
+			<wsdl:input name="getDocsByOrgRegionRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocsByOrgRegionResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNsi">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/queue/ws/get-docs-le"/>
+			<wsdl:input name="getNsiRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getNsiResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="GetDocsLEFacadeService">
+		<wsdl:port name="GetDocLEFacadePort" binding="le:GetDocsLEFacadeBinding">
+			<soap:address location="${serviceLocation}"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

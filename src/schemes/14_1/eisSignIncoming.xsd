@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS EIS_SIGN_INCOMING Integration Scheme, version 14.1, create date 26.03.2024 -->
+<xs:schema xmlns="http://zakupki.gov.ru/oos/signIncoming/1" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:si="http://zakupki.gov.ru/oos/signIncoming/1" targetNamespace="http://zakupki.gov.ru/oos/signIncoming/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/oos/KOTypes/1" schemaLocation="IntegrationKOTypes.xsd"/>
+	<xs:element name="processingResult" type="processingResultType">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление о результатах обработки информационного пакета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="processingProjectResult" type="processingProjectResultType">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Уведомление о результатах обработки информационного пакета  для принятых проектов документов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="processingResultType">
+		<xs:annotation>
+			<xs:documentation>Тип:
+Уведомление о результатах обработки информационного пакета</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_signIncomingConfirmationType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="processingProjectResultType">
+		<xs:annotation>
+			<xs:documentation>Тип:
+Уведомление о результатах обработки информационного пакета для принятых проектов документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_projectIncomingConfirmationType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="processingResultRequest">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Запрос уведомления о результатах обработки информационного пакета</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_signIncomingReqConfirmationType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--ИС ОВК-->
+	<xs:complexType name="eventPlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+План контрольных мероприятий для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventPlanType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="eventPlanSuspension">
+		<xs:annotation>
+			<xs:documentation>Информации о приостановке/возобновлении планового контрольного мероприятия</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventPlanSuspensionType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="eventResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Результат контроля для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventResultType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="eventResultCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене результата контроля для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventResultCancelType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedEvent">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по внеплановому контрольному мероприятию для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedEventType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedEventCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отмене проведения внепланового контрольного мероприятия для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedEventCancelType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedEventSuspension">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информации о приостановке/возобновлении внепланового контрольного мероприятия</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedEventSuspensionType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="eventPlanProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Проект плана контрольных мероприятий для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventPlanProjectType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="eventResultProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Проект результата контроля для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventResultProjectType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="eventResultCancelProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Проект информации об отмене результата контроля для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_eventResultCancelProjectType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedEventProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Проект информации по внеплановому контрольному мероприятию для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedEventProjectType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedEventCancelProject">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Проект информации об отмене проведения внепланового контрольного мероприятия для ИС ОВК</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedEventCancelProjectType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--ИС контрольных органов-->
+	<xs:complexType name="complaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по жалобе для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_complaintType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="complaintCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация об отзыве жалобы для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_complaintCancelType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="complaintGroup">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:
+Информация по групповой жалобе для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_complaintGroupType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="electronicComplaint">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация по жалобе, поданной в электронном виде для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_electronicComplaintType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="checkResult">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Результат контроля для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_checkResultType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="checkResultCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене результата контроля для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_checkResultCancelType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="checkPlan">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:План проверок для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_checkPlanType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedCheck">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Внеплановая проверка для ИС КО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedCheckType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedCheckCancel">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отмене проведения внеплановой проверки</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedCheckCancelType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="parElectronicComplaintAccept">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о принятии к рассмотрению электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="ko:parElectronicComplaintAcceptType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="parElectronicComplaintRefusal">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация об отказе в рассмотрении электронной жалобы, сформированной в ЛКП</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="ko:parElectronicComplaintRefusalType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="complaintTransfer">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о передаче жалобы по подведомственности / ведомственной принадлежности</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_complaintTransferType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="tenderSuspension">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_tenderSuspensionType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="approvalTransfer">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Информация о передаче обращения в другой контрольный орган</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="ko:approvalTransferType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="approvalMismatch">
+		<xs:annotation>
+			<xs:documentation>Пакет данных: Уведомление о выявленных в обращении несоответствиях</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="ko:approvalMismatchType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unplannedCheckTenderSusp">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Информация о приостановке определения поставщика (подрядчика, исполнителя) в части заключения контракта по внеплановой проверке</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_unplannedCheckTenderSuspType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nsiBusinessControl">
+		<xs:annotation>
+			<xs:documentation>Пакет данных:Правила бизнес-контролей</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="packetType">
+				<xs:sequence>
+					<xs:element name="data" type="oos:zfcs_nsiBusinessControlsType">
+						<xs:annotation>
+							<xs:documentation>Данные информационного пакета</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="packetType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Информационный пакет</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="index">
+				<xs:annotation>
+					<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Индексная карточка пакета данных</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="packetUid" type="base:guidType">
+							<xs:annotation>
+								<xs:documentation>Глобальный идентификатор  информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="sender">
+							<xs:annotation>
+								<xs:documentation>Отправитель</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="200"/>
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="senderType" type="partnerType">
+							<xs:annotation>
+								<xs:documentation>Тип отправителя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная информационная система (РИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС).</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="receiver">
+							<xs:annotation>
+								<xs:documentation>Получатель</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="200"/>
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="receiverType" type="partnerType">
+							<xs:annotation>
+								<xs:documentation>Тип получателя:
+
+OOS - Единая информационная система;
+GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+RMIS - Региональная информационная система (РИС);
+OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+OA - Информационная система органа аудита (ИС ОА);
+KO - Информационная система контрольного органа (ИС КО);
+FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС).</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="createDateTime" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="objectType" type="indexObjectTypeEnum">
+							<xs:annotation>
+								<xs:documentation>Кодовое наименование объекта информационного обмена, 
+информация о котором содержится в данном пакете:
+TP - План график;
+PP - План закупок (структурированный);
+EF - Электронный аукцион;
+EP - Единственный поставщик;
+OK - Открытый конкурс;
+OKD - Открытый конкурс, двухэтапный;
+OKOU - Открытый конкурс с ограниченным участием;
+PO - Предварительный отбор;
+ZAKA - Закрытый аукцион;
+ZAKK - Закрытый конкурс;
+ZAKKD - Закрытый конкурс, двухэтапный;
+ZAKKOU - Закрытый конкурс с ограниченным участием;
+ZKBI - Запрос котировок без извещения;
+ZK - Запрос котировок;
+ZP - Запрос предложений;
+ST111 - Способ определения поставщика (подрядчика, исполнителя), установленный Правительством Российской Федерации в соответствии со ст. 111 Федерального закона № 44-ФЗ;
+CT - Контракт;
+BG - Банковская гарантия;
+OOKZ - Общественное обсуждение крупных закупок;
+OZ - Отчет заказчика;
+DIZK - Дополнительная информация о закупках, контрактах;
+ZC - Запрос цен товаров, работ и услуг;
+RA - Результат аудита;
+PPM - План мероприятий для ИС ОВК;
+PRK - Результат контроля для ИС ОВК;
+PVKM - Информации по внеплановому контрольному мероприятию для ИС ОВК;
+BC - Бизнес-контроль;
+CM - Информация по жалобе для ИС КО;
+CR - Результат контроля для ИС КО;
+UC - Внеплановая проверка для ИС КО;
+PC - Плановая проверка для ИС КО;
+DD - 44ФЗ Разные документы.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="regNumber" type="oos:zfcs_signIncomingRegNumberType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Идентификатор объекта информационного обмена (реестровый номер)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="mode" type="indexModeType">
+							<xs:annotation>
+								<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация;
+TEST - тестовые данные</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="signature" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Электронная подпись информационного пакета</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:base64Binary">
+										<xs:attribute name="type" type="base:signatureType" use="required"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="violationType">
+		<xs:annotation>
+			<xs:documentation>Нарушение приема</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="errCode">
+				<xs:annotation>
+					<xs:documentation>Код ошибки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="level" type="violationLevelType">
+				<xs:annotation>
+					<xs:documentation>Тип:
+error - Ошибка
+warning - Предупреждение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Название</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="description" type="oos:zfcs_longTextMinType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="violationLevelType">
+		<xs:annotation>
+			<xs:documentation>Тип нарушения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="error"/>
+			<xs:enumeration value="warning"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="indexModeType">
+		<xs:annotation>
+			<xs:documentation>Тип: Перечисление режимов:
+			PROD - промышленная эксплуатация;
+			TEST - тестовые данные/</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PROD"/>
+			<xs:enumeration value="TEST"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="indexObjectTypeEnum">
+		<xs:annotation>
+			<xs:documentation>Тип: Перечисление типов объектов: 
+TP - План график;
+PP - План закупок (структурированный);
+EF - Электронный аукцион;
+EP - Единственный поставщик;
+OK - Открытый конкурс;
+OKD - Открытый конкурс, двухэтапный;
+OKOU - Открытый конкурс с ограниченным участием;
+PO - Предварительный отбор;
+ZAKA - Закрытый аукцион;
+ZAKK - Закрытый конкурс;
+ZAKKD - Закрытый конкурс, двухэтапный;
+ZAKKOU - Закрытый конкурс с ограниченным участием;
+ZKBI - Запрос котировок без извещения;
+ZK - Запрос котировок;
+ZP - Запрос предложений;
+ST111 - Способ определения поставщика (подрядчика, исполнителя), установленный Правительством Российской Федерации в соответствии со ст. 111 Федерального закона № 44-ФЗ;
+CT - Контракт;
+BG - Банковская гарантия;
+OOKZ - Общественное обсуждение крупных закупок;
+OZ - Отчет заказчика;
+DIZK - Дополнительная информация о закупках, контрактах;
+ZC - Запрос цен товаров, работ и услуг;
+RA - Результат аудита;
+PPM - План мероприятий для ИС ОВК;
+PRK - Результат контроля для ИС ОВК;
+PVKM - Информация по внеплановому контрольному мероприятию для ИС ОВК;
+BC - Бизнес-контроль;
+CM - Информация по жалобе для ИС КО;
+CR - Результат контроля для ИС КО;
+UC - Внеплановая проверка для ИС КО;
+PC - Плановая проверка для ИС КО;
+DD - 44ФЗ Разные документы.
+ </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TP"/>
+			<xs:enumeration value="PP"/>
+			<xs:enumeration value="EF"/>
+			<xs:enumeration value="EP"/>
+			<xs:enumeration value="OK"/>
+			<xs:enumeration value="OKD"/>
+			<xs:enumeration value="OKOU"/>
+			<xs:enumeration value="PO"/>
+			<xs:enumeration value="ZAKA"/>
+			<xs:enumeration value="ZAKK"/>
+			<xs:enumeration value="ZAKKD"/>
+			<xs:enumeration value="ZAKKOU"/>
+			<xs:enumeration value="ZKBI"/>
+			<xs:enumeration value="ZK"/>
+			<xs:enumeration value="ZP"/>
+			<xs:enumeration value="ST111"/>
+			<xs:enumeration value="CT"/>
+			<xs:enumeration value="BG"/>
+			<xs:enumeration value="OOKZ"/>
+			<xs:enumeration value="OZ"/>
+			<xs:enumeration value="DIZK"/>
+			<xs:enumeration value="ZC"/>
+			<xs:enumeration value="RA"/>
+			<xs:enumeration value="PPM"/>
+			<xs:enumeration value="PRK"/>
+			<xs:enumeration value="PVKM"/>
+			<xs:enumeration value="BC"/>
+			<xs:enumeration value="CM"/>
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="UC"/>
+			<xs:enumeration value="PC"/>
+			<xs:enumeration value="DD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="partnerType">
+		<xs:annotation>
+			<xs:documentation>Тип: Перечисление контрагентов:
+			OOS - Единая информационная система;
+			GIIS_EB - Государственная интегрированная информационная система Электронный бюджет (ГИИС ЭБ);
+			RMIS - Региональная информационная система (РИС);
+			OVK - Информационная система органа внутреннего контроля (ИС ОВК);
+			OA - Информационная система органа аудита (ИС ОА);
+			KO - Информационная система контрольного органа (ИС КО);
+			FAS - Информационная система Федеральной антимонопольной службы (ИС ФАС).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OOS"/>
+			<xs:enumeration value="GIIS_EB"/>
+			<xs:enumeration value="RMIS"/>
+			<xs:enumeration value="OVK"/>
+			<xs:enumeration value="OA"/>
+			<xs:enumeration value="KO"/>
+			<xs:enumeration value="FAS"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

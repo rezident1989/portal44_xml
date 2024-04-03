@@ -1,0 +1,2124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by VI (GNIVC FNS RF) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn://x-artefacts/EMCHD_1" targetNamespace="urn://x-artefacts/EMCHD_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Доверенность">
+		<xs:annotation>
+			<xs:documentation>Сведения о доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ИнСвед" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Иные сведения</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="5000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Документ">
+					<xs:annotation>
+						<xs:documentation>Состав и структура документа</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="Довер">
+								<xs:annotation>
+									<xs:documentation>Доверенность</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="СвДов" type="СвДовТип">
+											<xs:annotation>
+												<xs:documentation>Сведения о доверенности</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвДоверит" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о доверителе (доверителях)</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Доверит">
+														<xs:annotation>
+															<xs:documentation>Сведения о доверителе</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="РосОргДовер" type="РосОргДоверТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения о юридическом лице</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="ИнОргДовер" type="ИнОргДоверТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения об иностранном юридическом лице</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="ИПДовер" type="СведИПТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения об индивидуальном предпринимателе</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="ФЛДовер" type="ФЛДоверТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения о физическом лице</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="ТипДоверит" use="required">
+													<xs:annotation>
+														<xs:documentation>Тип доверителя</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="1"/>
+															<xs:enumeration value="1"/>
+															<xs:enumeration value="2"/>
+															<xs:enumeration value="3"/>
+															<xs:enumeration value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="СвУпПред" type="СвУпПредТип" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о представителе (представителях)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвПолн" type="СвПолнТип">
+											<xs:annotation>
+												<xs:documentation>Сведения о полномочиях представителя (представителей)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвНотУд" type="СвНотУдТип" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Сведения о нотариальном удостоверении</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Передов">
+								<xs:annotation>
+									<xs:documentation>Передоверие</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="СвПервДовер" type="СвПервДоверТип">
+											<xs:annotation>
+												<xs:documentation>Сведения о первоначальной доверенности</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвПередов" type="СвПервДоверТип" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Сведения о доверенности, на основании которой осуществляется передоверие</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвПереДовер" type="СвДовТип">
+											<xs:annotation>
+												<xs:documentation>Сведения о доверенности</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвПередПолн" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о лице (лицах), передавшем (передавших) полномочия</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ПередПолн">
+														<xs:annotation>
+															<xs:documentation>Сведения о лице, передавшем полномочия</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="РосОргПерПолн" type="РосОргДоверТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения о юридическом лице</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="ИППерПолн" type="СведИПТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения об индивидуальном предпринимателе</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="ФЛПерПолн" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения о физическом лице</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="СведРукоп" type="СвФЛТип" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Сведения о рукоприкладчике</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="СведФЛ" type="СведФЛТип">
+																				<xs:annotation>
+																					<xs:documentation>Сведения о физическом лице</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="СтУчНД" use="optional">
+																			<xs:annotation>
+																				<xs:documentation>Статус участника нотариального действия</xs:documentation>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:length value="3"/>
+																					<xs:enumeration value="101"/>
+																					<xs:enumeration value="102"/>
+																					<xs:enumeration value="299"/>
+																					<xs:enumeration value="301"/>
+																					<xs:enumeration value="303"/>
+																					<xs:enumeration value="399"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="ПрНалРук" use="optional">
+																			<xs:annotation>
+																				<xs:documentation>Признак наличия рукоприкладчика</xs:documentation>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:length value="1"/>
+																					<xs:enumeration value="0"/>
+																					<xs:enumeration value="1"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="ИННФЛ" type="ИННФЛТип" use="required">
+																			<xs:annotation>
+																				<xs:documentation>ИНН физического лица</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
+																		<xs:attribute name="СНИЛС" type="СНИЛСТип" use="required">
+																			<xs:annotation>
+																				<xs:documentation>СНИЛС</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="ФилПерПолн" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения о филиале (обособленном подразделении) юридического лица</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="СвФил" type="СвОргТип">
+																				<xs:annotation>
+																					<xs:documentation>Сведения о филиале (обособленном подразделении) юридического лица</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="СвРукФил" type="СвФЛТип">
+																				<xs:annotation>
+																					<xs:documentation>Сведения о руководителе филиала (обособленном подразделении) юридического лица</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="ИнПерПолн" type="ИнОргДоверТип" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Сведения о филиале (аккредитованном представительстве) иностранного юридического лица</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="ТипПерПолн" use="required">
+													<xs:annotation>
+														<xs:documentation>Тип лица, передавшего полномочия</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="1"/>
+															<xs:enumeration value="1"/>
+															<xs:enumeration value="2"/>
+															<xs:enumeration value="3"/>
+															<xs:enumeration value="4"/>
+															<xs:enumeration value="5"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="СвПолучПолн" type="СвУпПредТип" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Сведения о лице (лицах), получившем (получивших) полномочия</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвПолн" type="СвПолнТип">
+											<xs:annotation>
+												<xs:documentation>Сведения о передаваемом (передаваемых) полномочии (полномочиях)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="СвНотУд" type="СвНотУдТип" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Сведения о нотариальном удостоверении</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="ПрНалПередов" use="required">
+										<xs:annotation>
+											<xs:documentation>Признак наличия доверенности, выданной в порядке передоверия</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="КНД" use="optional">
+							<xs:annotation>
+								<xs:documentation>Код формы по КНД</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="7"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ВерсФорм" use="required">
+				<xs:annotation>
+					<xs:documentation>Версия формата</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="10"/>
+						<xs:enumeration value="EMCHD_1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ПрЭлФорм" use="required">
+				<xs:annotation>
+					<xs:documentation>Флаг обязательности элементов </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="8"/>
+						<xs:pattern value="[0-1]{8}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ИдФайл" use="required">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ИдФайлНО" use="optional">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла для представления интересов в налоговом органе</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="OID" use="optional">
+				<xs:annotation>
+					<xs:documentation>Внешний идентификатор объекта ЕСИА</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="РосОргДоверТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о юридическом лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СвРосОрг" type="СвОргТип">
+				<xs:annotation>
+					<xs:documentation>Сведения о юридическом лице</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ЛицоБезДов" type="ЛицоБезДовТип" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о лице (лицах), действующем (действующих) от имени юридического лица без доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ЕИОУК" use="required">
+			<xs:annotation>
+				<xs:documentation>Единоличным исполнительным органом выступает управляющая компания</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ЕИОФЛ" use="required">
+			<xs:annotation>
+				<xs:documentation>Единоличным исполнительным органом выступает физическое лицо</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ЕИОИП" use="required">
+			<xs:annotation>
+				<xs:documentation>Единоличным исполнительным органом выступает индивидуальный предприниматель</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ЛицоБезДовТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о лице (лицах), в том числе законном представителе, действующем (действующих) без доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СВЮЛ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о единоличном исполнительном органе – управляющей компании</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="СвЮЛЕИО" type="СвОргТип">
+							<xs:annotation>
+								<xs:documentation>Сведения о юридическом лице</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СвФЛ" type="СвФЛТип" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Сведения о физическом лице (физических лицах), действующем (действующих) от имени юридического лица без доверенности</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="СвФЛ" type="СвФЛТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о единоличном исполнительном органе - физическом лице</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СвИП" type="СведИПТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о единоличном исполнительном органе - индивидуальном предпринимателе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ПолнЮЛ" use="required">
+			<xs:annotation>
+				<xs:documentation>Вид полномочий единоличного исполнительного органа</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвФЛТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о физическом лице / руководителе юридического лица (иностранного юридического лица (или филиала (аккредитованного представительства) иностранного юридического лица))</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ДокПдтв" type="ДокПдтвТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ, подтверждающий полномочия лица, действующего без доверенности / руководителя иностранного юридического лица / руководителя филиала (аккредитованного представительства) иностранного юридического лица / руководителя филиала (обособленного подразделения) юридического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СведФЛ" type="СведФЛТип">
+				<xs:annotation>
+					<xs:documentation>Сведения о физическом лице</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="СтУчНД" use="optional">
+			<xs:annotation>
+				<xs:documentation>Статус участника нотариального действия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="3"/>
+					<xs:enumeration value="101"/>
+					<xs:enumeration value="102"/>
+					<xs:enumeration value="299"/>
+					<xs:enumeration value="301"/>
+					<xs:enumeration value="303"/>
+					<xs:enumeration value="399"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ИННФЛ" type="ИННФЛТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>ИНН физического лица</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="СНИЛС" type="СНИЛСТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>СНИЛС</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Должность" use="optional">
+			<xs:annotation>
+				<xs:documentation>Должность</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ИнОргДоверТип">
+		<xs:annotation>
+			<xs:documentation>Сведения об иностранном юридическом лице (или филиале (аккредитованном представительстве) иностранного юридического лица)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СвИнОрг" type="СвИнОргТип">
+				<xs:annotation>
+					<xs:documentation>Сведения об иностранном юридическом лице / Сведения о филиале (аккредитованном представительстве) иностранного юридического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СвРукОП" type="СвФЛТип" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о руководителе иностранного юридического лица / Сведения о руководителе филиала (аккредитованного представительства) иностранного юридического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="СведИПТип">
+		<xs:annotation>
+			<xs:documentation>Сведения об индивидуальном предпринимателе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ДокПдтв" type="ДокПдтвТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ, подтверждающий полномочия единоличного исполнительного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СведФЛ" type="СведФЛТип">
+				<xs:annotation>
+					<xs:documentation>Сведения о физическом лице</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="СтУчНД" use="optional">
+			<xs:annotation>
+				<xs:documentation>Статус участника нотариального действия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="3"/>
+					<xs:enumeration value="101"/>
+					<xs:enumeration value="102"/>
+					<xs:enumeration value="299"/>
+					<xs:enumeration value="301"/>
+					<xs:enumeration value="303"/>
+					<xs:enumeration value="399"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НаимИП" use="optional">
+			<xs:annotation>
+				<xs:documentation>Наименование индивидуального предпринимателя</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ОГРНИП" type="ОГРНИПТип" use="required">
+			<xs:annotation>
+				<xs:documentation>ОГРНИП </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ИННФЛ" type="ИННФЛТип" use="required">
+			<xs:annotation>
+				<xs:documentation>ИНН индивидуального предпринимателя</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="СНИЛС" type="СНИЛСТип" use="required">
+			<xs:annotation>
+				<xs:documentation>СНИЛС</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвПервДоверТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о первоначальной доверенности (или доверенности, на основании которой осуществляется передоверие)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СвДоверПерв" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о доверителе (доверителях) первоначальной доверенности</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ДоверитПерв">
+							<xs:annotation>
+								<xs:documentation>Сведения о доверителе первоначальной доверенности</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="РосОргДовер" type="СвОргТип" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Сведения о юридическом лице</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ИнОргДовер" type="СвИнОргТип" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Сведения об иностранном юридическом лице</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ИПДовер" type="СведИПТип" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Сведения об индивидуальном предпринимателе</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ФЛДовер" type="ФЛДоверТип" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Сведения о физическом лице</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ТипДоверит" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип доверителя</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:length value="1"/>
+								<xs:enumeration value="1"/>
+								<xs:enumeration value="2"/>
+								<xs:enumeration value="3"/>
+								<xs:enumeration value="4"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="СвНотДейств" type="СвНотДействТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о нотариусе, совершившем нотариальное действие</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ВриоНот" type="ВриоНотТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ВРИО нотариуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ПрДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Признак доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ФормДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Форма доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДатаВыдДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата совершения (выдачи) доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:date">
+					<xs:minInclusive value="1900-01-01"/>
+					<xs:maxInclusive value="2100-12-31"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="СрокДейст" use="required">
+			<xs:annotation>
+				<xs:documentation>Срок действия доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:date">
+					<xs:minInclusive value="1900-01-01"/>
+					<xs:maxInclusive value="2100-12-31"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ВнНомДоверПерв" use="optional">
+			<xs:annotation>
+				<xs:documentation>Внутренний номер первоначальной доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ВнНомДоверN" use="optional">
+			<xs:annotation>
+				<xs:documentation>Внутренний номер доверенности, на основании которой осуществляется передоверие</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомДоверПерв" use="optional">
+			<xs:annotation>
+				<xs:documentation>Единый регистрационный номер первоначальной доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="36"/>
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомДоверN" use="optional">
+			<xs:annotation>
+				<xs:documentation>Единый регистрационный номер доверенности, на основании которой осуществляется передоверие</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="36"/>
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомРНДПерв" use="optional">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер первоначальной доверенности в реестре нотариальных действий</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="28"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомРНДN" use="optional">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер доверенности в реестре нотариальных действий, на основании которой осуществляется передоверие</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="28"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвДовТип">
+		<xs:annotation>
+			<xs:documentation>Сведения доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="КодНОДейст" type="СОНОТип" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Код налогового органа, в отношении которого действует доверенность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СведСист">
+				<xs:annotation>
+					<xs:documentation>Сведения об информационной системе, которая предоставляет техническую возможность получения информации о доверенности, досрочном прекращении действия доверенности, в том числе в силу ее отмены доверителем</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Безотзыв" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о безотзывной доверенности</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ОписУслОт" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Описание условия отзыва безотзывной доверенности</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="1000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ПрПерБезДов" use="required">
+						<xs:annotation>
+							<xs:documentation>Признак передоверия безотзывной доверенности</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:length value="1"/>
+								<xs:enumeration value="1"/>
+								<xs:enumeration value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="УслОтзыва" use="required">
+						<xs:annotation>
+							<xs:documentation>Условие отзыва безотзывной доверенности</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:length value="1"/>
+								<xs:enumeration value="1"/>
+								<xs:enumeration value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ВидДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Вид доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПрПередов" use="required">
+			<xs:annotation>
+				<xs:documentation>Признак возможности оформления передоверия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ВнНомДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Внутренний номер доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Единый регистрационный номер доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="36"/>
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомРНДДовер" use="optional">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер доверенности в реестре нотариальных действий</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="28"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДопИдДовер" use="optional">
+			<xs:annotation>
+				<xs:documentation>Дополнительный идентификатор доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДатаВнРегДовер" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation>Дата внутренней регистрации доверенности</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ДатаВыдДовер" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата совершения (выдачи) доверенности</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="СрокДейст" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Срок действия доверенности</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="КодНО" type="СОНОТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>Код налогового органа, в который представляется доверенность</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвУпПредТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о представителе (представителях)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Пред">
+				<xs:annotation>
+					<xs:documentation>Сведения о представителе</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="СведОрг" type="СвОргТип" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Сведения о юридическом лице</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СведИП" type="СведИПТип" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Сведения об индивидуальном предпринимателе</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СведФизЛ" type="СвФЛТип" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Сведения о физическом лице</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СведФилиал" type="СвОргТип" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Сведения о филиале (обособленном подразделении) юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="СведИО" type="СвИнОргТип" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Сведения о филиале (аккредитованном представительстве) иностранного юридического лица</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ТипПред" use="required">
+			<xs:annotation>
+				<xs:documentation>Тип представителя</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+					<xs:enumeration value="4"/>
+					<xs:enumeration value="5"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвПолнТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о полномочиях представителя (представителей)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ТекстПолн" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текстовое содержание полномочия</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="10000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="МашПолн" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о машиночитаемом полномочии (машиночитаемых полномочиях)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ОгрСвПолн" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Сведения об ограничении (ограничениях) к полномочию</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="КодЗначОгр">
+										<xs:annotation>
+											<xs:documentation>Код значения для ограничения</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ТексЗначОгр">
+										<xs:annotation>
+											<xs:documentation>Текстовое значение для ограничения</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="ИдОгр" use="required">
+									<xs:annotation>
+										<xs:documentation>Порядковый номер ограничения</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:integer">
+											<xs:totalDigits value="3"/>
+											<xs:minInclusive value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="КодОгр" use="required">
+									<xs:annotation>
+										<xs:documentation>Код ограничения</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1"/>
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="НаимОгр" use="required">
+									<xs:annotation>
+										<xs:documentation>Наименование ограничения</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1"/>
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="НаимЗначОгр" use="optional">
+									<xs:annotation>
+										<xs:documentation>Наименование значения для ограничения</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1"/>
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="МнПолн" use="optional">
+						<xs:annotation>
+							<xs:documentation>Мнемоника полномочия</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="6"/>
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="КодПолн" use="required">
+						<xs:annotation>
+							<xs:documentation>Код полномочия</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="6"/>
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="НаимПолн" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование полномочия</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ТипПолн" use="required">
+			<xs:annotation>
+				<xs:documentation>Тип полномочия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПрСовмПолн" use="required">
+			<xs:annotation>
+				<xs:documentation>Признак совместного осуществления полномочий</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПрУтрПолн" use="optional">
+			<xs:annotation>
+				<xs:documentation>Признак утраты полномочий при передоверии</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвНотУдТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о нотариальном удостоверении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ИнСвУдНадпис" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Иные сведения удостоверительной надписи</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="2500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="СвНотДейств" type="СвНотДействТип">
+				<xs:annotation>
+					<xs:documentation>Сведения о нотариусе, совершившем нотариальное действие</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ПодпРукопис" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Рукописная подпись</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ХешPDFДок">
+							<xs:annotation>
+								<xs:documentation>Хеш PDF документа</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="16000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ПодпИзобр">
+							<xs:annotation>
+								<xs:documentation>Изображение подписи</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="16000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ХешПодп">
+							<xs:annotation>
+								<xs:documentation>Хеш подписи</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="16000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ДатаВремПодп">
+							<xs:annotation>
+								<xs:documentation>Дата и время подписи</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:totalDigits value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ФИООтв" type="ФИОТип">
+							<xs:annotation>
+								<xs:documentation>ФИО лица, подписавшего доверенность</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ВриоНот" type="ВриоНотТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ВРИО нотариуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="МестоДовер" use="required">
+			<xs:annotation>
+				<xs:documentation>Место совершения доверенности</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="250"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НапрДокДовЕПГУ" use="optional">
+			<xs:annotation>
+				<xs:documentation>Направление сформированного электронного документа в ЛК доверителя на сайте ЕПГУ</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НапрДокПовЕПГУ" use="optional">
+			<xs:annotation>
+				<xs:documentation>Направление сформированного электронного документа в ЛК поверенного на сайте ЕПГУ</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НапрДокЗвлФНП" use="optional">
+			<xs:annotation>
+				<xs:documentation>Направление сформированного электронного документа в ЛК заявителя на сайте ФНП</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НапрДокПовФНП" use="optional">
+			<xs:annotation>
+				<xs:documentation>Направление сформированного электронного документа в ЛК поверенного на сайте ФНП</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="УплНотДейст" use="required">
+			<xs:annotation>
+				<xs:documentation>Сведения об уплате за совершение нотариального действия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:totalDigits value="10"/>
+					<xs:fractionDigits value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ЛьготаСум" use="optional">
+			<xs:annotation>
+				<xs:documentation>Предоставленная льгота на сумму</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:totalDigits value="10"/>
+					<xs:fractionDigits value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДрИнфСист" use="optional">
+			<xs:annotation>
+				<xs:documentation>Способ выдачи электронного нотариального документа</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДрСпосВыд" use="optional">
+			<xs:annotation>
+				<xs:documentation>Иной способ выдачи</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДопСвНотДовер" use="optional">
+			<xs:annotation>
+				<xs:documentation>Дополнительные сведения</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="2500"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвНотДействТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о нотариусе, совершившем нотариальное действие</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ФИОНотДейств" type="ФИОТип">
+				<xs:annotation>
+					<xs:documentation>ФИО нотариуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Должность" use="required">
+			<xs:annotation>
+				<xs:documentation>Должность</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="РегНомНот" use="required">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер нотариуса в Минюсте</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="5"/>
+					<xs:maxLength value="13"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ВриоНотТип">
+		<xs:annotation>
+			<xs:documentation>ВРИО нотариуса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ФИОВриоНот" type="ФИОТип">
+				<xs:annotation>
+					<xs:documentation>ФИО ВРИО нотариуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Должность" use="required">
+			<xs:annotation>
+				<xs:documentation>Должность</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="РегНомНот" use="required">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер лица, сдавшего квалификационный экзамен в Минюсте</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="3"/>
+					<xs:maxLength value="8"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвОргТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о юридическом лице (или филиале (обособленном подразделении) юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ДокПдтв" type="ДокПдтвТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ, подтверждающий полномочия лица, действующего без доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="АдрРег" type="АдрТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес юридического лица / филиала (обособленного подразделения) юридического лица в Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="СтУчНД" use="optional">
+			<xs:annotation>
+				<xs:documentation>Статус участника нотариального действия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="3"/>
+					<xs:enumeration value="101"/>
+					<xs:enumeration value="102"/>
+					<xs:enumeration value="299"/>
+					<xs:enumeration value="301"/>
+					<xs:enumeration value="303"/>
+					<xs:enumeration value="399"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НаимОрг" use="required">
+			<xs:annotation>
+				<xs:documentation>Наименование юридического лица / Наименование филиала (обособленного подразделения) юридического лица</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ИННЮЛ" type="ИННЮЛТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>ИНН юридического лица / филиала (обособленного подразделения) юридического лица</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="КПП" type="КППТип" use="required">
+			<xs:annotation>
+				<xs:documentation>КПП юридического лица / филиала (обособленного подразделения) юридического лица</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ОГРН" type="ОГРНТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>ОГРН</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="РегНомер" use="optional">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер филиала (обособленного подразделения)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="80"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НаимУчрДок" use="optional">
+			<xs:annotation>
+				<xs:documentation>Наименование учредительного документа</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="КонтактТлф" use="optional">
+			<xs:annotation>
+				<xs:documentation>Контактный телефон</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="АдрЭлПочт" use="optional">
+			<xs:annotation>
+				<xs:documentation>Адрес электронной почты</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="3"/>
+					<xs:maxLength value="129"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СвИнОргТип">
+		<xs:annotation>
+			<xs:documentation>Сведения об иностранном юридическом лице (или филиале (аккредитованном представительстве) иностранного юридического лица)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="АдрМНФакт" type="АдрТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес (место нахождения) на территории Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="СтУчНД" use="optional">
+			<xs:annotation>
+				<xs:documentation>Статус участника нотариального действия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="3"/>
+					<xs:enumeration value="101"/>
+					<xs:enumeration value="102"/>
+					<xs:enumeration value="299"/>
+					<xs:enumeration value="301"/>
+					<xs:enumeration value="303"/>
+					<xs:enumeration value="399"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НаимИО" use="required">
+			<xs:annotation>
+				<xs:documentation>Наименование иностранного юридического лица / филиала (аккредитованного представительства) иностранного юридического лица</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ИННЮЛ" type="ИННЮЛТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>ИНН иностранного юридического лица / филиала (аккредитованного представительства) иностранного юридического лица</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="КПП" type="КППТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>КПП филиала (аккредитованного представительства) иностранного юридического лица</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="НЗА" use="optional">
+			<xs:annotation>
+				<xs:documentation>Номер записи об аккредитации</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="11"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="СтрРег" type="ОКСМТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>Страна регистрации (инкорпорации)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="НаимРегОрг" use="optional">
+			<xs:annotation>
+				<xs:documentation>Наименование регистрирующего органа</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="РегНомер" use="optional">
+			<xs:annotation>
+				<xs:documentation>Регистрационный номер в стране регистрации (инкорпорации)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="80"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="КодНПРег" use="optional">
+			<xs:annotation>
+				<xs:documentation>Код налогоплательщика в стране регистрации (инкорпорации) или аналог</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="80"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="КонтактТлф" use="optional">
+			<xs:annotation>
+				<xs:documentation>Контактный телефон</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="АдрЭлПочт" use="optional">
+			<xs:annotation>
+				<xs:documentation>Адрес электронной почты</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="3"/>
+					<xs:maxLength value="129"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="АдрСтрРег" use="optional">
+			<xs:annotation>
+				<xs:documentation>Адрес юридического лица на территории государства, в котором оно зарегистрировано</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ФЛДоверТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о физическом лице (доверителе)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="СведФЛ" type="СведФЛТип">
+				<xs:annotation>
+					<xs:documentation>Сведения о физическом лице</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="СвЗакПредРук" type="ЛицоБезДовТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о законном представителе физического лица / Сведения о рукоприкладчике</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="СтУчНД" use="optional">
+			<xs:annotation>
+				<xs:documentation>Статус участника нотариального действия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="3"/>
+					<xs:enumeration value="101"/>
+					<xs:enumeration value="102"/>
+					<xs:enumeration value="299"/>
+					<xs:enumeration value="301"/>
+					<xs:enumeration value="303"/>
+					<xs:enumeration value="399"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПрДеесп" use="optional">
+			<xs:annotation>
+				<xs:documentation>Признак наличия полной гражданской дееспособности доверителя</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПрНалРук" use="optional">
+			<xs:annotation>
+				<xs:documentation>Признак наличия рукоприкладчика</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДокНедеесп" use="optional">
+			<xs:annotation>
+				<xs:documentation>Документ, подтверждающий недееспособность доверителя</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ИННФЛ" type="ИННФЛТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>ИНН физического лица</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="СНИЛС" type="СНИЛСТип" use="required">
+			<xs:annotation>
+				<xs:documentation>СНИЛС</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="СведФЛТип">
+		<xs:annotation>
+			<xs:documentation>Сведения о физическом лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ФИО" type="ФИОТип">
+				<xs:annotation>
+					<xs:documentation>ФИО доверителя (или представителя)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="АдрМЖ" type="АдрТип" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес места жительства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="УдЛичнФЛ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о документе, удостоверяющем личность физического лица</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="expDate" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата истечения срока действия документа, удостоверяющего личность</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="КодВидДок" use="required">
+						<xs:annotation>
+							<xs:documentation>Код вида документа</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="СПДУЛТип"/>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="СерНомДок" type="СПДУЛШТип" use="required">
+						<xs:annotation>
+							<xs:documentation>Серия и номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="ДатаДок" type="xs:date" use="required">
+						<xs:annotation>
+							<xs:documentation>Дата выдачи документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="ВыдДок" use="optional">
+						<xs:annotation>
+							<xs:documentation>Наименование органа, выдавшего документ</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="4000"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="КодВыдДок" use="optional">
+						<xs:annotation>
+							<xs:documentation>Код подразделения органа, выдавшего документ</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:length value="7"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Пол" use="optional">
+			<xs:annotation>
+				<xs:documentation>Пол физического лица</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ПрГражд" use="optional">
+			<xs:annotation>
+				<xs:documentation>Признак наличия гражданства</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="НомЕРН" type="ЕРНТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>Номер записи единого регистра населения</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ДатаРожд" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation>Дата рождения</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="МестоРожд" use="optional">
+			<xs:annotation>
+				<xs:documentation>Место рождения</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="250"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Гражданство" type="ОКСМТип" use="optional">
+			<xs:annotation>
+				<xs:documentation>Гражданство</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="КонтактТлф" use="optional">
+			<xs:annotation>
+				<xs:documentation>Контактный телефон</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="АдрЭлПочт" use="optional">
+			<xs:annotation>
+				<xs:documentation>Адрес электронной почты</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="3"/>
+					<xs:maxLength value="129"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ДокПдтвТип">
+		<xs:annotation>
+			<xs:documentation>Документ, подтверждающий полномочия лица, действующего без доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="НаимДокПдтв" use="optional">
+			<xs:annotation>
+				<xs:documentation>Наименование документа</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="120"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ДатаВыд" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation>Дата выдачи документа</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="КемВыд" use="optional">
+			<xs:annotation>
+				<xs:documentation>Наименование органа, выдавшего документ</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="СвУдДок" use="optional">
+			<xs:annotation>
+				<xs:documentation>Сведения об удостоверении документа</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="АдрТип">
+		<xs:annotation>
+			<xs:documentation>Сведения об адресе</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="АдрРФ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес в Российской Федерации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ФИАСАдрРФ" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФИАС адрес в Российской Федерации </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="Регион" type="CCРФТип" use="required">
+			<xs:annotation>
+				<xs:documentation>Субъект Российской Федерации</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ИдФИАС" use="optional">
+			<xs:annotation>
+				<xs:documentation>Идентификатор адреса по ФИАС</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="36"/>
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ФИОТип">
+		<xs:annotation>
+			<xs:documentation>ФИО доверителя (или представителя)</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Фамилия" use="required">
+			<xs:annotation>
+				<xs:documentation>Фамилия</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Имя" use="required">
+			<xs:annotation>
+				<xs:documentation>Имя</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Отчество" use="optional">
+			<xs:annotation>
+				<xs:documentation>Отчество (при наличии)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="ИННФЛТип">
+		<xs:annotation>
+			<xs:documentation>Идентификационный номер налогоплательщика - физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ИННЮЛТип">
+		<xs:annotation>
+			<xs:documentation>Идентификационный номер налогоплательщика - организации</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="КППТип">
+		<xs:annotation>
+			<xs:documentation>Код причины постановки на учет (КПП) - 5 и 6 знаки от 0-9 и A-Z</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="9"/>
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})([0-9]{2})([0-9A-Z]{2})([0-9]{3})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="КНДТип">
+		<xs:annotation>
+			<xs:documentation>Код из Классификатора налоговой документации</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="7"/>
+			<xs:pattern value="[0-9]{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СОНОТип">
+		<xs:annotation>
+			<xs:documentation>Коды из Классификатора системы обозначений налоговых органов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="4"/>
+			<xs:pattern value="[0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ЕРНТип">
+		<xs:annotation>
+			<xs:documentation>Номер записи федерального регистра сведений о населении</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОГРНТип">
+		<xs:annotation>
+			<xs:documentation>Основной государственный регистрационный номер юридического лица  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="13"/>
+			<xs:pattern value="[0-9]{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОГРНИПТип">
+		<xs:annotation>
+			<xs:documentation>Основной государственный регистрационный номер индивидуального предпринимателя</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="15"/>
+			<xs:pattern value="[0-9]{15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОКСМТип">
+		<xs:annotation>
+			<xs:documentation>Код из Общероссийского классификатора стран мира</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+			<xs:pattern value="[0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОКВТип">
+		<xs:annotation>
+			<xs:documentation>Код из Общероссийского классификатора валют</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+			<xs:pattern value="[0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СНИЛСТип">
+		<xs:annotation>
+			<xs:documentation>Страховой номер индивидуального лицевого счета</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="14"/>
+			<xs:pattern value="[0-9]{3}\-[0-9]{3}\-[0-9]{3}\-[0-9]{2}"/>
+			<xs:pattern value="[0-9]{3}\-[0-9]{3}\-[0-9]{3} [0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CCРФТип">
+		<xs:annotation>
+			<xs:documentation>Код из Справочника субъекта Российской Федерации </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СПДУЛТип">
+		<xs:annotation>
+			<xs:documentation>Коды Справочника видов документов, удостоверяющих личность налогоплательщика</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СПДУЛШТип">
+		<xs:annotation>
+			<xs:documentation>Шаблон серии, номера из Справочника видов документов, удостоверяющих личность налогоплательщика</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
