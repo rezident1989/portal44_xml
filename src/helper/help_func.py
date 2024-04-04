@@ -65,7 +65,7 @@ def to_sent_to_sftp(path, host):
     transport = paramiko.Transport(host)
     transport.connect(None, username=username_sftp, password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
-    if host == 'testaisgz5.gz-spb.ru' or host == 'testaisgz4.gz-spb.ru':
+    if host == 'testaisgz4.gz-spb.ru':
         folder = '../OOC/IncomingCog/'
     else:
         folder = '../OOC/Incoming/'
