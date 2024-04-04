@@ -115,8 +115,6 @@ def get_server_address(path: str) -> str:
         return 'testaisgz6.gz-spb.ru'
     elif number == '68435':
         return 'testaisgz5.gz-spb.ru'
-    # elif number == '149':
-    #     return 'testaisgz4.gz-spb.ru'
     else:
         return 'testaisgz3.gz-spb.ru'
 
