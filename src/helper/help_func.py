@@ -109,7 +109,7 @@ def test_folder(host):
 def get_server_address(path: str) -> str:
     """Получить адрес сервера"""
     number = path.split('\\')[-1:][0][:5]
-    if number == '16640':
+    if number == '16767':
         return 'testaisgz1.gz-spb.ru'
     elif number == '16641':
         return 'testaisgz6.gz-spb.ru'
