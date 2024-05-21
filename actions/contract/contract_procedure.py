@@ -6,12 +6,13 @@ import xml.etree.ElementTree as ET
 
 
 def contract_procedure(outgoing_xml):
-    """Контракт. Публикация
+    """Исполнение контракта
     finalStageExecution = 'true' - контракт исполниться
     isEDIBased = 'true' - электронное актирование
     """
+
     tree = open_xml(outgoing_xml)
-    template = open_xml('src/templates/contractProcedure.xml')
+    template = open_xml('templates/contract/contractProcedure.xml')
     main = template.find(".//ns4:contractProcedure", ns)
 
     receipt_documents_template = main.find('.//ns2:receiptDocuments', ns)

@@ -1,12 +1,13 @@
 import sys
 from src.helper.help_func import clear_folder, get_type_xml, get_server_address, create_xml, to_sent_to_sftp, \
     remove_file, test_folder, validate_xsd, get_path_xml
-from src.actions.confirmation import confirmation
-from src.actions.tender_plan import tender_plan_2020
-from src.actions.notification import ep_notification_ef_2020, ep_protocol_ef_2020_final, ep_notification_ezt_2020, \
-    ep_protocol_ezt_2020_final
-from src.actions.contract import contract
-from src.actions.contract_procedure import contract_procedure
+from actions.confirmation import confirmation
+from actions.tander_plan.tender_plan import tender_plan_2020
+from actions.notification.ef_2020 import ef_notification, ef_final_protocol
+from actions.notification.ezt_2020 import ezt_notification, ezt_final_protocol
+from actions.notification.eok_2020 import eok_notification, eok_final_protocol
+from actions.contract.contract import contract
+from actions.contract.contract_procedure import contract_procedure
 
 
 def handler(validation=True, send=True):
@@ -24,11 +25,14 @@ def handler(validation=True, send=True):
 
     if ('tenderPlan2020' == type_xml) or ('tenderPlan2020Change' == type_xml):
         files = [create_xml(tender_plan_2020(path))]
-    elif 'epNotificationEF2020' == type_xml:  # or ('epNotificationEOK2020' == type_xml):
-        functions = [ep_notification_ef_2020, ep_protocol_ef_2020_final]
+    elif 'epNotificationEF2020' == type_xml:
+        functions = [ef_notification, ef_final_protocol]
         files = [create_xml(func(path)) for func in functions]
     elif 'epNotificationEZT2020' == type_xml:
-        functions = [ep_notification_ezt_2020, ep_protocol_ezt_2020_final]
+        functions = [ezt_notification, ezt_final_protocol]
+        files = [create_xml(func(path)) for func in functions]
+    elif 'epNotificationEOK2020' == type_xml:
+        functions = [eok_notification, eok_final_protocol]
         files = [create_xml(func(path)) for func in functions]
     elif 'contract' == type_xml or 'closedContract' == type_xml:
         files = [create_xml(contract(path))]

@@ -3,21 +3,19 @@ import time
 import random
 import os
 import sys
-import xml.etree.ElementTree as ET
-
 import paramiko
+import xml.etree.ElementTree as ET
 from lxml import etree
-
 from hidden.sftp_connect import username_sftp, password_sftp
 
 
 def open_xml(path: str) -> ET.Element:
-    """Открывает xml"""
+    """Открыть xml"""
     return ET.ElementTree(file=path).getroot()
 
 
 def random_number(digits: int) -> str:
-    """Генерация случайное число"""
+    """Сгенерировать случайное число, int количество цифр в числе"""
     if digits < 1:
         return 'Ошибка. Необходимо целое число, больше нуля'
     return str(random.randint(10 ** (digits - 1), 10 ** digits - 1))
@@ -45,7 +43,7 @@ def get_type_xml(path: str) -> str:
 
 
 def create_xml(tree: ET.Element) -> str:
-    """Создает xml"""
+    """Создать xml"""
     if 'export' == tree.tag.split('}')[1]:
         name_file = tree[0].tag.split('}')[1]
     else:
@@ -62,6 +60,7 @@ def create_xml(tree: ET.Element) -> str:
 
 
 def to_sent_to_sftp(path, host):
+    """Отравить xml на сервер"""
     transport = paramiko.Transport(host)
     transport.connect(None, username=username_sftp, password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
@@ -80,6 +79,7 @@ def to_sent_to_sftp(path, host):
 
 
 def test_folder(host):
+    """Проверить есть ли xml в очереди на обработку"""
     transport = paramiko.Transport(host)
     transport.connect(None, username=username_sftp, password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
@@ -120,7 +120,7 @@ def get_server_address(path: str) -> str:
 
 
 def validate_xsd(path, version='14_1'):
-    # Загрузка xsd схемы
+    """Валидация схемы"""
     if 'outgoing' in path:
         schema_path = f'src\\schemes\\{version}\\fcsIntegration.xsd'
     else:
@@ -144,7 +144,7 @@ def validate_xsd(path, version='14_1'):
 
 
 def get_path_xml() -> str:
-
+    """Проверка папки 'outgoing'"""
     if os.path.isdir('outgoing') is not True:
         os.makedirs('outgoing')
 

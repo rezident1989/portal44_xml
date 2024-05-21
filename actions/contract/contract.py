@@ -6,10 +6,10 @@ import xml.etree.ElementTree as ET
 
 
 def contract(outgoing_xml):
-    """Контракт. Публикация"""
+    """Публикация и редактирование контракта"""
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("src/templates/contract.xml")
+    template = open_xml("templates/contract/contract.xml")
 
     main = template.find(".//ns4:contract", ns)
 
