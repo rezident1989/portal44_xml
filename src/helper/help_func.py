@@ -111,7 +111,7 @@ def get_server_address(path: str) -> str:
     number = path.split('\\')[-1:][0][:5]
     if number == '16767':
         return 'testaisgz1.gz-spb.ru'
-    elif number == '16641':
+    elif number == '16893':
         return 'testaisgz6.gz-spb.ru'
     elif number == '68435':
         return 'testaisgz5.gz-spb.ru'

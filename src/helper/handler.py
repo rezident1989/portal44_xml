@@ -24,15 +24,12 @@ def handler(validation=True, send=True):
 
     if ('tenderPlan2020' == type_xml) or ('tenderPlan2020Change' == type_xml):
         files = [create_xml(tender_plan_2020(path))]
-    elif 'epNotificationEF2020' == type_xml:
+    elif 'epNotificationEF2020' == type_xml:  # or ('epNotificationEOK2020' == type_xml):
         functions = [ep_notification_ef_2020, ep_protocol_ef_2020_final]
         files = [create_xml(func(path)) for func in functions]
-
     elif 'epNotificationEZT2020' == type_xml:
         functions = [ep_notification_ezt_2020, ep_protocol_ezt_2020_final]
         files = [create_xml(func(path)) for func in functions]
-
-
     elif 'contract' == type_xml or 'closedContract' == type_xml:
         files = [create_xml(contract(path))]
     elif 'contractProcedure' == type_xml:
