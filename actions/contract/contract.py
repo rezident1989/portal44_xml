@@ -92,4 +92,4 @@ def contract(outgoing_xml):
     except AttributeError:
         main.remove(template.find(".//ns2:protocolDate", ns))
 
-    return template
+    return [template]

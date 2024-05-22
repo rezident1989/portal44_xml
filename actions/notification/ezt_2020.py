@@ -49,4 +49,4 @@ def ezt_final_protocol(outgoing_xml):
     for el in template.findall('.//ns6:docDate', ns):
         el.text = datetime.now().isoformat()[:-3] + '+03:00'
 
-    return template
+    return [template]

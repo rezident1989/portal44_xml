@@ -58,4 +58,4 @@ def contract_procedure(outgoing_xml):
         for i, penalties_2 in enumerate(list_penalties_2):
             main.insert(6 + i, copy.deepcopy(penalties_2))
 
-    return template
+    return [template]

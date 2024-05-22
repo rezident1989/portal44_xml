@@ -42,21 +42,24 @@ def get_type_xml(path: str) -> str:
     return open_xml(path).tag.split('}')[1]
 
 
-def create_xml(tree: ET.Element) -> str:
+def create_xml(tree: []) -> []:
     """Создать xml"""
-    if 'export' == tree.tag.split('}')[1]:
-        name_file = tree[0].tag.split('}')[1]
-    else:
-        name_file = 'confirmation'
-    date_time = datetime.datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
-    name = "".join(name_file).replace('}', '')
-    if os.path.isdir('incoming') is not True:
-        os.makedirs('incoming')
-    path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
-    tree = ET.ElementTree(tree)
-    tree.write(path_name, encoding='utf-8', xml_declaration=True)
+    a = []
+    for i in tree:
+        if 'export' == i.tag.split('}')[1]:
+            name_file = i[0].tag.split('}')[1]
+        else:
+            name_file = 'confirmation'
+        date_time = datetime.datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
+        name = "".join(name_file).replace('}', '')
+        if os.path.isdir('incoming') is not True:
+            os.makedirs('incoming')
+        path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
+        a.append(path_name)
+        i = ET.ElementTree(i)
+        i.write(path_name, encoding='utf-8', xml_declaration=True)
 
-    return path_name
+    return a
 
 
 def to_sent_to_sftp(path, host):

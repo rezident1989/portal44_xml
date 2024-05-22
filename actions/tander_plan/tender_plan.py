@@ -72,4 +72,4 @@ def tender_plan_2020(outgoing_xml):
     except TypeError:
         pass
 
-    return template
+    return [template]

@@ -53,7 +53,7 @@ def ef_notification(outgoing_xml):
     except TypeError:
         number_position -= 1
 
-    return template
+    return [template]
 
 
 def ef_submit_offers(outgoing_xml):
@@ -71,7 +71,7 @@ def ef_submit_offers(outgoing_xml):
     template.find('.//ns5:procedureDT', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
     template.find('.//ns5:signDT', ns).text = datetime.now().strftime("%Y-%m-%d") + '+03:00'
 
-    return template
+    return [template]
 
 
 def ef_final_protocol(outgoing_xml):
@@ -92,4 +92,4 @@ def ef_final_protocol(outgoing_xml):
     for el in template.findall('.//ns6:docDate', ns):
         el.text = datetime.now().isoformat()[:-3] + '+03:00'
 
-    return template
+    return [template]
