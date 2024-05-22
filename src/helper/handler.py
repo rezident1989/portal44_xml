@@ -32,7 +32,7 @@ def handler(validation=True, send=True):
         functions = [ezt_notification, ezt_final_protocol]
         files = [create_xml(func(path)) for func in functions]
     elif 'epNotificationEOK2020' == type_xml:
-        files = [*(create_xml(eok_sop(path)))]
+        files = create_xml(eok_sop(path))
     elif 'contract' == type_xml or 'closedContract' == type_xml:
         files = [create_xml(contract(path))]
     elif 'contractProcedure' == type_xml:
