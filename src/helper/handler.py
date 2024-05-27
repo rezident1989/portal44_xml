@@ -13,6 +13,7 @@ from actions.contract.contract_procedure import contract_procedure
 def handler(validation=True, send=True):
     path = get_path_xml()
     clear_folder('incoming')
+    files = []
     files_to_send = []
     files_for_validation = []
 
@@ -24,19 +25,19 @@ def handler(validation=True, send=True):
     files_to_send.extend(create_xml(confirmation(path)))
 
     if ('tenderPlan2020' == type_xml) or ('tenderPlan2020Change' == type_xml):
-        files = [create_xml(tender_plan_2020(path))]
+        files.extend(create_xml(tender_plan_2020(path)))
     elif 'epNotificationEF2020' == type_xml:
-        functions = [ef_notification, ef_final_protocol]
-        files = [create_xml(func(path)) for func in functions]
+        files.extend(create_xml(ef_notification(path)))
+        files.extend(create_xml(ef_final_protocol(path)))
     elif 'epNotificationEZT2020' == type_xml:
-        functions = [ezt_notification, ezt_final_protocol]
-        files = [create_xml(func(path)) for func in functions]
+        files.extend(create_xml(ezt_notification(path)))
+        files.extend(create_xml(ezt_final_protocol(path)))
     elif 'epNotificationEOK2020' == type_xml:
-        files = create_xml(eok_sop(path))
+        files.extend(create_xml(eok_sop(path)))
     elif 'contract' == type_xml or 'closedContract' == type_xml:
-        files = [create_xml(contract(path))]
+        files.extend(create_xml(contract(path)))
     elif 'contractProcedure' == type_xml:
-        files = [create_xml(contract_procedure(path))]
+        files.extend(create_xml(contract_procedure(path)))
     else:
         print('Нет обработки для пакета:', type_xml)
         sys.exit(1)
