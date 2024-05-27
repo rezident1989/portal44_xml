@@ -22,21 +22,21 @@ def handler(validation=True, send=True):
     type_xml = get_type_xml(path)
     print(path, 'this is', type_xml)
 
-    files_to_send.extend(create_xml(confirmation(path)))
+    files_to_send.extend(create_xml(confirmation(path)))   # Confirm
 
-    if ('tenderPlan2020' == type_xml) or ('tenderPlan2020Change' == type_xml):
+    if ('tenderPlan2020' == type_xml) or ('tenderPlan2020Change' == type_xml):  # Тендер-план
         files.extend(create_xml(tender_plan_2020(path)))
-    elif 'epNotificationEF2020' == type_xml:
+    elif 'epNotificationEF2020' == type_xml:  # Электронный аукцион
         files.extend(create_xml(ef_notification(path)))
         files.extend(create_xml(ef_final_protocol(path)))
-    elif 'epNotificationEZT2020' == type_xml:
+    elif 'epNotificationEZT2020' == type_xml:  # "Закупка с полки" (или Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)
         files.extend(create_xml(ezt_notification(path)))
         files.extend(create_xml(ezt_final_protocol(path)))
-    elif 'epNotificationEOK2020' == type_xml:
+    elif 'epNotificationEOK2020' == type_xml:  # Открытый конкурс в электронной форме
         files.extend(create_xml(eok_sop(path)))
-    elif 'contract' == type_xml or 'closedContract' == type_xml:
+    elif 'contract' == type_xml or 'closedContract' == type_xml:  # Контракт
         files.extend(create_xml(contract(path)))
-    elif 'contractProcedure' == type_xml:
+    elif 'contractProcedure' == type_xml:  # Исполнение контракта
         files.extend(create_xml(contract_procedure(path)))
     else:
         print('Нет обработки для пакета:', type_xml)
