@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 def tender_plan_2020(outgoing_xml):
     """Добавление или редактирование позиции (особой позиции) в опубликованный в ЕИС план-график"""
 
-    template = open_xml('src/templates/tenderPlan2020.xml')
+    template = open_xml('templates/tender_plan/tenderPlan2020.xml')
     main = template.find(".//ns4:tenderPlan2020", ns)
 
     tree = open_xml(outgoing_xml)
