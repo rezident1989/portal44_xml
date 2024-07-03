@@ -122,7 +122,7 @@ def get_server_address(path: str) -> str:
         return 'testaisgz3.gz-spb.ru'
 
 
-def validate_xsd(path, version='14_1'):
+def validate_xsd(path, version='14_2'):
     """Валидация схемы"""
     if 'outgoing' in path:
         schema_path = f'src\\schemes\\{version}\\fcsIntegration.xsd'

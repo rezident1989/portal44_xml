@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://zakupki.gov.ru/fz44/ws/priz" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/fz44/ws/priz">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://zakupki.gov.ru/fz44/ws/priz" schemaLocation="../docs-ws-api.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getRNPObjectListRequest">
+		<wsdl:part name="getRNPObjectListRequest" element="sch:getRNPObjectListRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getRNPObjectListResponse">
+		<wsdl:part name="getRNPObjectListResponse" element="sch:getRNPObjectListResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="GetDataPortType">
+		<wsdl:operation name="getRNPObjectList">
+			<wsdl:input name="getRNPObjectListRequest" message="sch:getRNPObjectListRequest"/>
+			<wsdl:output name="getRNPObjectListResponse" message="sch:getRNPObjectListResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="GetDataPortTypeSoap11" type="sch:GetDataPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getRNPObjectList">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/priz/get-rnp-object-list"/>
+			<wsdl:input name="getRNPObjectListRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getRNPObjectListResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="GetDataPortTypeService">
+		<wsdl:port name="GetDataPortTypeSoap11" binding="sch:GetDataPortTypeSoap11">
+			<soap:address location="${serviceLocation}"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

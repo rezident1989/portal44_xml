@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS INTEGRATION_POA_TYPES Integration Scheme, version 14.2, create date 21.06.2024 -->
+<xs:schema xmlns="http://zakupki.gov.ru/cc/POATypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/cc/base/1" xmlns:cmn="http://zakupki.gov.ru/cc/common/1" xmlns:ns1="http://zakupki.gov.ru/сс/POATypes/1" targetNamespace="http://zakupki.gov.ru/cc/POATypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/cc/base/1" schemaLocation="BaseTypes.xsd"/>
+	<xs:import namespace="http://zakupki.gov.ru/cc/common/1" schemaLocation="CommonTypes.xsd"/>
+	<!--Типы документов Единого Реестра Доверенностей-->
+	<xs:complexType name="powerOfAttorneyType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="commonInfo">
+				<xs:annotation>
+					<xs:documentation>Общая информация</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="powerOfAttorneyInfo" type="mainPOAInfoType">
+							<xs:annotation>
+								<xs:documentation>Сведения о доверенности / документе, подтверждающем полномочия</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="representativeInfo" type="representativeInfoType">
+							<xs:annotation>
+								<xs:documentation>Сведения о представителе</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="privilegesInfo" type="cmn:privilegesInfoType">
+							<xs:annotation>
+								<xs:documentation>Сведения о полномочиях представителя</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="docConfirmAuthorityInfo">
+					<xs:annotation>
+						<xs:documentation>Документ, подтверждающий полономочия.
+
+Блок заполняется в случае, когда руководитель выдает документ, подтверждающий полномочия</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="principalInfo" type="firstTrustPrincipalInfoType">
+								<xs:annotation>
+									<xs:documentation>Сведения о доверителе, который выдал доверенность.
+
+[Довер/СвДоверит]</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="firstTrustPOAInfo" type="firstTrustPOAInfoType">
+					<xs:annotation>
+						<xs:documentation>Доверенность.
+
+Блок заполняется в двух случаях:
+1. Доверенность выдается руководителем
+2. Доверенность выдается не руководителем на основании Документа, подтверждающего полномочия</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="retrustPOAInfo" type="retrustPOAInfoType">
+					<xs:annotation>
+						<xs:documentation>Доверенность в рамках передоверия.
+
+Блок заполняется в случае, если доверенность выдается не руководителем на основании МЧД с правом передоверия</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="printFormsInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа.
+Элемент игнорируется при приёме. При передаче заполняется ссылкой на печатную форму и электронную подпись размещенного в ЕИС документа</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="printFormEISInfo" type="cmn:printFormType">
+							<xs:annotation>
+								<xs:documentation>Печатная форма документа по формату ЕИС</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="printFormFNSInfo" type="cmn:printFormType">
+							<xs:annotation>
+								<xs:documentation>Печатная форма документа по формату ФНС</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вложенные файлы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="requiredElements" type="base:requiredPOAElementsType" use="required">
+			<xs:annotation>
+				<xs:documentation>Флаг обязательности элементов по формату ФНС.
+
+В ЕИС заполняется значением: 00000000</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="id" type="base:text255Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор файла по формату ФНС</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="powerOfAttorneyInvalidType">
+		<xs:annotation>
+			<xs:documentation>Тип: Информация о недействительности сведений о доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="regNumber" type="base:regNumberType">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docNumber" type="base:docNumberType">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер документа отмены доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cancelDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата/время отмены доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cancelReasonInfo" type="cmn:cancelReasonRef">
+				<xs:annotation>
+					<xs:documentation>Причина отмены доверенности.
+
+Ссылка на  "Справочник: Причина отмены доверенности" (nsiPOACancelReason)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reasonInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание отмены доверенности в текстовом виде</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="reasonText" type="base:text4000Type">
+							<xs:annotation>
+								<xs:documentation>Основание отмены доверенности</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="invalidPOAInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения об отменяемой доверенности</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="uuid" type="base:guidType">
+							<xs:annotation>
+								<xs:documentation>Внешний номер отменяемой доверенности (GUID)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="docNumber" type="base:docNumberType">
+							<xs:annotation>
+								<xs:documentation>Уникальный номер документа отменяемой доверенности</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="createDate" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Дата совершения (выдачи) отменяемой доверенности</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="canceledPOAInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения об отменяемых доверенностях, выданных в рамках передоверия</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="canceledDocNumber" type="base:docNumberType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Номер уникального документа отменяемой передоверенной доверенности </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="principalOrgInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения об организации доверителя</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="legalEntityRFInfo" type="legalEntityRFInfoType">
+							<xs:annotation>
+								<xs:documentation>Юридическое лицо РФ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="legalEntityForeignStateInfo" type="legalEntityForeignStateInfoType">
+							<xs:annotation>
+								<xs:documentation>Юридическое лицо иностранного государства</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="individualPersonIndEntrInfo" type="individualPersonIndEntrInfoType">
+							<xs:annotation>
+								<xs:documentation>Индивидуальный предприниматель</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="representativeInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о представителе</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="individualPersonRFInfo">
+							<xs:annotation>
+								<xs:documentation>Сведения о физическом лице</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="individualPersonInfoType">
+										<xs:sequence>
+											<xs:element name="birthDate" type="xs:date">
+												<xs:annotation>
+													<xs:documentation>Дата рождения</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="signerInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о подписанте</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="individualPersonInfoType">
+							<xs:sequence>
+								<xs:element name="birthDate" type="xs:date">
+									<xs:annotation>
+										<xs:documentation>Дата рождения</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="printFormsInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Печатная форма документа.
+Элемент игнорируется при приёме. При передаче заполняется ссылкой на печатную форму и электронную подпись размещенного в ЕИС документа</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="printFormEISInfo" type="cmn:printFormType">
+							<xs:annotation>
+								<xs:documentation>Печатная форма документа по формату ЕИС</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="attachmentsInfo" type="cmn:attachmentListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вложенные файлы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemeVersion" type="base:schemeVersionType" use="required">
+			<xs:annotation>
+				<xs:documentation>Версия схемы</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--Вспомогательные типы-->
+	<xs:complexType name="firstTrustPrincipalInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о доверителе, который выдал доверенность</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="headLegalEntityRFInfo">
+				<xs:annotation>
+					<xs:documentation>Доверенность выдана руководителем юридического лица</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="legalEntityRFInfo">
+							<xs:annotation>
+								<xs:documentation>Информация о юридическом лице РФ</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="legalEntityRFInfoType">
+										<xs:sequence>
+											<xs:element name="addressInfo">
+												<xs:annotation>
+													<xs:documentation>Адрес</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="kladrCode" type="base:kladrShortCodeType">
+															<xs:annotation>
+																<xs:documentation>Субъект Российской Федерации по КЛАДР</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="addressText" type="base:text1000Type">
+															<xs:annotation>
+																<xs:documentation>Адрес в Российской Федерации</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="headInfo" type="individualPersonInfoType">
+							<xs:annotation>
+								<xs:documentation>Информация о руководителе</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addInfo">
+							<xs:annotation>
+								<xs:documentation>Дополнительная информация</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="isSingleExecutivePrivilege" type="xs:boolean" fixed="true">
+										<xs:annotation>
+											<xs:documentation>Признак вида полномочий единоличного исполнительного органа.
+
+Признак заполняется при указании единственного лица, действующего от имени юридического лица без доверенности</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="headLegalEntityForeignStateInfo">
+				<xs:annotation>
+					<xs:documentation>Доверенность выдана руководителем иностранного юридического лица</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="legalEntityForeignStateInfo" type="legalEntityForeignStateInfoType">
+							<xs:annotation>
+								<xs:documentation>Информация о юридическом лице иностранного государства</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="headInfo" type="individualPersonInfoType">
+							<xs:annotation>
+								<xs:documentation>Информация о руководителе</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="headIndividualPersonIndEntrInfo">
+				<xs:annotation>
+					<xs:documentation>Доверенность выдана индивидуальным предпринимателем</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="individualPersonIndEntrInfo">
+							<xs:annotation>
+								<xs:documentation>Информация об индивидуальном предпринимателе</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="OGRN" type="base:ogrnipCodeType">
+										<xs:annotation>
+											<xs:documentation>ОГРН индивидуального предпринимателя</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="headInfo" type="individualPersonInfoType">
+							<xs:annotation>
+								<xs:documentation>Информация о руководителе</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="individualPersonRFInfo" type="individualPersonInfoType">
+				<xs:annotation>
+					<xs:documentation>Доверенность выдана физическим лицом, которое не является руководителем (на основании документа, подтверждающего полномочия)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="individualPersonInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Информация о физическом лице, которое выдало доверенность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="base:SNILSType">
+				<xs:annotation>
+					<xs:documentation>СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="base:innIndividualType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameInfo" type="cmn:personType">
+				<xs:annotation>
+					<xs:documentation>ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="identityDocInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Информация документа, удостоверяющего личность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="docCodeInfo" type="cmn:SPDULRef">
+				<xs:annotation>
+					<xs:documentation>Код вида документа, удостоверяющего личность.
+
+Заполняется из справочника «Виды документов, удостоверяющих личность налогоплательщика» (nsiSPDUL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="base:text25Type">
+				<xs:annotation>
+					<xs:documentation>Серия и номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issuedBy" type="base:text4000Type">
+				<xs:annotation>
+					<xs:documentation>Кем выдан</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="divCode" type="base:passportRFDivCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код подразделения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="validityDate" type="xs:date">
+					<xs:annotation>
+						<xs:documentation>Срок действия</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="indefiniteTerm" type="xs:boolean" fixed="true">
+					<xs:annotation>
+						<xs:documentation>Срок действия бессрочный</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="legalEntityRFInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Юридическое лицо РФ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fullName" type="base:text1000Type">
+				<xs:annotation>
+					<xs:documentation>Полное наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="base:innOrganizationType">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KPP" type="base:kppType">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OGRN" type="base:ogrnCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="legalEntityForeignStateInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Юридическое лицо иностранного государства</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fullName" type="base:text1000Type">
+				<xs:annotation>
+					<xs:documentation>Полное наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="addressInfo">
+				<xs:annotation>
+					<xs:documentation>Адрес организации</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OKSMInfo" type="cmn:OKSMRef">
+							<xs:annotation>
+								<xs:documentation>Страна регистрации (инкорпорации)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="addressText" type="base:text1000Type">
+							<xs:annotation>
+								<xs:documentation>Адрес в стране регистрации </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="orgRegNumber">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер в стране регистрации (инкорпорации)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="taxPayerCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код налогоплательщика в стране регистрации или его аналог</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="individualPersonIndEntrInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Индивидуальный предприниматель РФ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OGRN" type="base:ogrnipCodeType">
+				<xs:annotation>
+					<xs:documentation>ОГРН индивидуального предпринимателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SNILS" type="base:SNILSType">
+				<xs:annotation>
+					<xs:documentation>СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="base:innIndividualType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameInfo" type="cmn:personType">
+				<xs:annotation>
+					<xs:documentation>ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mainPOAInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Основная информация о выданной доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Внешний номер (GUID)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regNumber" type="base:regNumberType">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер доверенности.
+
+Номер формируется и присваивается в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docNumber" type="base:docNumberType">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер документа доверенности.
+
+Номер формируется и присваивается в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attorneyType">
+				<xs:annotation>
+					<xs:documentation>Вид доверенности.
+
+Допустимые значения:
+1 - обычная доверенность (с возможностью отзыва)
+</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="retrustOpportunity">
+				<xs:annotation>
+					<xs:documentation>Возможность передоверия.
+ 
+Допустимые значения:
+1 – без права передоверия;
+2 – однократное передоверие;
+3 – с правом последующего передоверия</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="createDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата совершения (выдачи) доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата истечения срока действия доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="storageAttorneyInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения об информационной системе, в которой хранится и отменяется доверенность (документ)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="storageAttorneyText" type="base:text1000Type">
+							<xs:annotation>
+								<xs:documentation>Сведения об информационной системе, в которой хранится и отменяется доверенность (документ)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="additionalInfo" type="base:text1000Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Иные сведения о доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="firstTrustPOAInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о доверенности / документе, подтверждающем полномочия</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="firstTrustPrincipalInfo" type="firstTrustPrincipalInfoType">
+				<xs:annotation>
+					<xs:documentation>Сведения о доверителе, который выдал доверенность.
+
+[Довер/СвДоверит]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docConfirmAuthorityInfo" type="previousPOAType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ, подтверждающий полномочия.
+
+Блок заполняется в случае, если доверенность выдается не руководителем на основании Документа, подтверждающего полномочия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="previousPOAType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о доверенности, на основании которой осуществляется передоверие</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="base:guidType">
+				<xs:annotation>
+					<xs:documentation>Внешний номер доверенности (GUID).
+
+Номер формируется и присваивается в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docNumber" type="base:docNumberType">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер документа доверенности.
+
+Номер формируется и присваивается в ЕИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата совершения (выдачи) доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата истечения срока действия доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="representativeInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о представителе, которому выдана доверенность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="individualPersonRFInfo" type="individualPersonInfoType">
+				<xs:annotation>
+					<xs:documentation>Доверенность выдана физическому лицу</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="identityDocInfo" type="identityDocInfoType">
+				<xs:annotation>
+					<xs:documentation>Информация документа, удостоверяющего личность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="retrustPOAInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Сведения о доверенности в рамках передоверия</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="retrustPrincipalInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о доверителе, который выдал доверенность.
+
+[Передов/СвПередПолн]</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="individualPersonRFInfo" type="individualPersonInfoType">
+							<xs:annotation>
+								<xs:documentation>Доверенность выдана физическим лицом</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="firstPOAInfo">
+				<xs:annotation>
+					<xs:documentation>Сведения о первоначальной доверенности.
+
+[Передов/СвПервДовер]</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="previousPOAType">
+							<xs:sequence>
+								<xs:element name="formFirstAttorney" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Форма доверенности.
+
+Допустимые значения:
+1 – в электронной форме в машиночитаемом виде</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="previousPOAInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о доверенности, на основании которой осуществляется передоверие.
+
+[Передов/СвПередов]</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="previousPOAType">
+							<xs:sequence>
+								<xs:element name="formFirstAttorney">
+									<xs:annotation>
+										<xs:documentation>Форма доверенности.
+
+Допустимые значения:
+1 – в электронной форме в машиночитаемом виде</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

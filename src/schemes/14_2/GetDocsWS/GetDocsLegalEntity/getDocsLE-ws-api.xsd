@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EIS getDocsOrganization-ws-api Integration Scheme, version 14.2, create date 21.06.2024 -->
+<xs:schema xmlns="http://zakupki.gov.ru/fz44/get-docs-le/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-le/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../../BaseTypes.xsd"/>
+	<!--Метод для получения документов по реестровому номеру-->
+	<xs:element name="getDocsByReestrNumberRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с документами по реестровому номеру</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexRequestType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="selectionParams">
+					<xs:annotation>
+						<xs:documentation>Параметры отбора документов</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="subsystemType" type="commonSubsystemType">
+								<xs:annotation>
+									<xs:documentation>Тип подсистемы для отбора документов.
+
+
+Подсистемы 44-ФЗ:
+Актуальные значения для передачи:
+BTK - Библиотека типовых контрактов;
+PRIZ - подсистема размещения извещений (без протоколов со сведениями об участниках);
+PRIZP - подсистема размещения извещений (протоколы со сведениями об участниках);
+RPEC - подсистема заключения контрактов;
+RPGZ - реестр планов графиков с 2020 года;
+RPNZ - Реестр правил нормирования закупок;
+RDI - Реестр дополнительной информации о закупках и контрактах;
+RGK - реестр контрактов;
+RBG - реестр независимой гарантий;
+EA - Электронное актирование;
+RJ - Реестр жалоб;
+RPP - Реестр плановых проверок;
+RVP - Реестр внеплановых проверок;
+RRK - Реестр результатов контроля;
+RRA - Реестр результатов аудита;
+RNP - Реестр недобросовестных поставщиков;
+RKPO - Реестр квалифицированных подрядных организаций;
+PPRF615 - Реестр извещений и протоколов 615;
+RD615 - Реестр договоров 615;
+LKOK - Личный кабинет органа контроля;
+OZ - Отчеты заказчика.
+
+Подсистемы 223-ФЗ:
+RD223 - Реестр договоров;
+RJ223 - Реестр жалоб;
+RPP223 - Реестр плановых проверок;
+RPZ223 - Реестр планов закупок;
+RI223 - Реестр извещений о закупках;
+RZ223 - Реестр заказчиков;
+OV223 - Информация об объеме выручки;
+TPOZ223 - Типовые положения о закупках;
+POZ223 - Положения о закупках;
+RNP223 - Реестр недобросовестных поставщиков;
+POM223 - Подсистема оценки и мониторинга;
+RBG223 - Реестр независимых гарантий</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="reestrNumber" type="regNumType">
+								<xs:annotation>
+									<xs:documentation>Реестровый номер в подсистеме.
+
+Особенности заполнения:
+1.Если subsystemType = EA, то в данном поле указывается "Идентификатор цепочки документов" (ИдОбъект);
+
+2. Если subsystemType = LKOK, то:
+- для поиска control99UniversalExtract указывается «Идентификатор объекта в ЕИС» (controlObjects/controlObject/ id);
+- для поиска control99NotificationExtract указывается «Идентификатор извещения в ЕИС» (id);
+- для поиска control99BeginMessage / control99RefusalMessage / control99NoticeCompliance / control99ProtocolMismatch / control99ProtocolMismatchReductFunds указывается «Идентификатор документа, направленного на контроль» (refId)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocsByReestrNumberResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с документами по реестровому номеру</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexResponseType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Результат обработки запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="10">
+								<xs:annotation>
+									<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="noData" type="xs:boolean" fixed="true">
+								<xs:annotation>
+									<xs:documentation>Документы отсутствуют</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="errorInfo" type="errorInfoType">
+								<xs:annotation>
+									<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--Метод для получения документов по региону заказчика и типу документа-->
+	<xs:element name="getDocsByOrgRegionRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexRequestType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="selectionParams">
+					<xs:annotation>
+						<xs:documentation>Параметры отбора документов</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orgRegion" type="orgRegionKladrType">
+								<xs:annotation>
+									<xs:documentation>Регион организации по КЛАДР</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:choice>
+								<xs:annotation>
+									<xs:documentation>Допускается указание типов документа из справочника nsiDocumentTypes или nsiDocumentTypes223, для которых признак isDistributedPublicly = true</xs:documentation>
+								</xs:annotation>
+								<xs:element name="documentType44" type="documentType">
+									<xs:annotation>
+										<xs:documentation>Тип документа 44-ФЗ.
+
+Для получения справочника с допустимыми значениями необходимо вызывать метод getNsi и указать в поле "Код справочника" (nsiCode44) значение "nsiDocumentTypes"
+</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="documentType223" type="documentType">
+									<xs:annotation>
+										<xs:documentation>Тип документа 223-ФЗ.
+
+Для получения справочника с допустимыми значениями необходимо вызывать метод getNsi и указать в поле "Код справочника" (nsiCode223) значение "nsiDocumentTypes223"
+</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="periodInfo">
+								<xs:annotation>
+									<xs:documentation>Период для отбора документов</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="exactDate" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата.
+
+Указанное смещение часового пояса учитывается при отборе документов.
+
+Пример корректного указания даты для 50-го региона:
+2023-02-10T00:00:00 +03:00;
+Пример корректного указания даты для 63-го региона:
+2023-02-10T00:00:00 +04:00;
+Пример корректного указания даты для 75-го региона:
+2023-02-10T00:00:00 +09:00</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="reestrNumber" type="regNumType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Реестровый номер в подсистеме.
+
+Особенности заполнения:
+1. При поиске документов электронного актирования в данном поле указывается "Идентификатор цепочки документов" (ИдОбъект).
+
+2. При поиске документов, размещенных в личном кабинете органа контроля (ЛК ОК):
+- для поиска control99UniversalExtract в данном поле указывается «Идентификатор объекта в ЕИС» (controlObjects/controlObject/ id);
+- для поиска control99NotificationExtract в данном поле указывается «Идентификатор извещения в ЕИС» (id);
+- для поиска control99BeginMessage / control99RefusalMessage / control99NoticeCompliance / control99ProtocolMismatch / control99ProtocolMismatchReductFunds в данном поле указывается «Идентификатор документа, направленного на контроль» (refId)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocsByOrgRegionResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexResponseType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Результат обработки запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="1000">
+								<xs:annotation>
+									<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="noData" type="xs:boolean" fixed="true">
+								<xs:annotation>
+									<xs:documentation>Документы отсутствуют</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="errorInfo" type="errorInfoType">
+								<xs:annotation>
+									<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getNsiRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос в ХД данных справочника</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexRequestType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="selectionParams">
+					<xs:annotation>
+						<xs:documentation>Параметры запрашиваемого справочника</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:annotation>
+									<xs:documentation>Сервисом поддерживается отдача публичных справочников, которые присутствуют в справочнике "Перечень справочников ЕИС" (nsiAllList) в актуальном статусе.
+
+Примечание: справочники, которые находятся в неактуальном статусе, также доступны через сервис, но могут содержать устаревшие данные. Рекомендуется не использовать неактуальные справочники.
+
+Допустимые значения:
+1. nsiAllList для получения перечня справочников ЕИС
+2. значения nsiCode из справочника nsiAllList</xs:documentation>
+								</xs:annotation>
+								<xs:element name="nsiCode44" type="base:nsiAllListCodeType">
+									<xs:annotation>
+										<xs:documentation>Код справочника 44-ФЗ</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="nsiCode223" type="base:nsiAllListCodeType">
+									<xs:annotation>
+										<xs:documentation>Код справочника 223-ФЗ</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="nsiKind" type="nsiKindType">
+								<xs:annotation>
+									<xs:documentation>Вид выгрузки.
+
+Допустимые значения:
+all - полная выгрузка справочника
+inc - инкрементальная выгрузка справочника</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getNsiResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос в ХД данных справочника</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexResponseType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Результат обработки запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="nsiArchiveInfo" maxOccurs="1000">
+								<xs:annotation>
+									<xs:documentation>Справочники найдены</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="archiveUrl" type="base:hrefType">
+											<xs:annotation>
+												<xs:documentation>Ссылка для скачивания архива со справочной информацией</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="archiveName" type="fileNameType">
+											<xs:annotation>
+												<xs:documentation>Наименование архива</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="noData" type="xs:boolean" fixed="true">
+								<xs:annotation>
+									<xs:documentation>Справочники не найдены</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="errorInfo" type="errorInfoType">
+								<xs:annotation>
+									<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--Общие типы-->
+	<xs:complexType name="errorInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип: Результат вызова сервиса в случае ошибки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="base:text2000Type">
+				<xs:annotation>
+					<xs:documentation>Текстовая расшифровка ошибки, включающая дополнительную информацию
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="indexRequestType">
+		<xs:annotation>
+			<xs:documentation>Тип: Индексная карточка пакета данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mode" type="base:indexModeType">
+				<xs:annotation>
+					<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация
+			TEST - тестовые данные</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="indexResponseType">
+		<xs:annotation>
+			<xs:documentation>Тип: Индексная карточка пакета данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор ответа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refId" type="guidType">
+				<xs:annotation>
+					<xs:documentation>Глобальный идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время формирования информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mode" type="base:indexModeType">
+				<xs:annotation>
+					<xs:documentation>Режим передачи информации
+			PROD - промышленная эксплуатация
+			TEST - тестовые данные</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="commonSubsystemType">
+		<xs:annotation>
+			<xs:documentation>Тип: Перечисление подсистем ЕИС (44-ФЗ и 223-ФЗ), документы которых присутствуют в хранилище документов (ХД)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BTK"/>
+			<xs:enumeration value="PRIZ"/>
+			<xs:enumeration value="PRIZP"/>
+			<xs:enumeration value="RPEC"/>
+			<xs:enumeration value="RPGZ"/>
+			<xs:enumeration value="RPNZ"/>
+			<xs:enumeration value="RDI"/>
+			<xs:enumeration value="RGK"/>
+			<xs:enumeration value="RBG"/>
+			<xs:enumeration value="EA"/>
+			<xs:enumeration value="RJ"/>
+			<xs:enumeration value="RPP"/>
+			<xs:enumeration value="RVP"/>
+			<xs:enumeration value="RRK"/>
+			<xs:enumeration value="RRA"/>
+			<xs:enumeration value="RNP"/>
+			<xs:enumeration value="RKPO"/>
+			<xs:enumeration value="PPRF615"/>
+			<xs:enumeration value="RD615"/>
+			<xs:enumeration value="LKOK"/>
+			<xs:enumeration value="OZ"/>
+			<xs:enumeration value="RD223"/>
+			<xs:enumeration value="RJ223"/>
+			<xs:enumeration value="RPP223"/>
+			<xs:enumeration value="RPZ223"/>
+			<xs:enumeration value="RI223"/>
+			<xs:enumeration value="RZ223"/>
+			<xs:enumeration value="OV223"/>
+			<xs:enumeration value="TPOZ223"/>
+			<xs:enumeration value="POZ223"/>
+			<xs:enumeration value="RNP223"/>
+			<xs:enumeration value="POM223"/>
+			<xs:enumeration value="RBG223"/>
+			<xs:enumeration value="ZC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="documentType">
+		<xs:annotation>
+			<xs:documentation>Тип: Тип документа </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fileNameType">
+		<xs:annotation>
+			<xs:documentation>Тип: Наименование файла при отдаче</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="150"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="guidType">
+		<xs:annotation>
+			<xs:documentation>Тип: Глобальный идентификатор</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nsiKindType">
+		<xs:annotation>
+			<xs:documentation>Тип: Вид выгрузки справочника</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="all"/>
+			<xs:enumeration value="inc"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="orgRegionKladrType">
+		<xs:annotation>
+			<xs:documentation>Тип: Регион организации по КЛАДР</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="regNumType">
+		<xs:annotation>
+			<xs:documentation>Тип: Реестровый номер в подсистеме</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

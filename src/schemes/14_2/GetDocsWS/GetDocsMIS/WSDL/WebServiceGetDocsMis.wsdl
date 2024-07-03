@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2018 rel. 2 sp1 (http://www.altova.com) by user_user (altcom_altcom) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mis="http://zakupki.gov.ru/fz44/get-docs-mis/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://zakupki.gov.ru/oos/base/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-mis/ws">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://zakupki.gov.ru/fz44/get-docs-mis/ws" schemaLocation="../getDocsMIS-ws-api.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getPublicDocsRequest">
+		<wsdl:part name="getPublicDocsMisRequest" element="mis:getPublicDocsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPublicDocsResponse">
+		<wsdl:part name="getPublicDocsResponse" element="mis:getPublicDocsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsRequest">
+		<wsdl:part name="getHiddenDocsResponse" element="mis:getHiddenDocsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsResponse">
+		<wsdl:part name="getHiddenDocsResponse" element="mis:getHiddenDocsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPublicDocsByReestrNumberRequest">
+		<wsdl:part name="getPublicDocsByReestrNumberRequest" element="mis:getPublicDocsByReestrNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPublicDocsByReestrNumberResponse">
+		<wsdl:part name="getPublicDocsByReestrNumberResponse" element="mis:getPublicDocsByReestrNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsByReestrNumberRequest">
+		<wsdl:part name="getHiddenDocsByReestrNumberRequest" element="mis:getHiddenDocsByReestrNumberRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsByReestrNumberResponse">
+		<wsdl:part name="getHiddenDocsByReestrNumberResponse" element="mis:getHiddenDocsByReestrNumberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenBankDocsRequest">
+		<wsdl:part name="getHiddenBankDocsRequest" element="mis:getHiddenBankDocsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenBankDocsResponse">
+		<wsdl:part name="getHiddenBankDocsResponse" element="mis:getHiddenBankDocsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getAnalyticalReportsRequest">
+		<wsdl:part name="getAnalyticalReportsRequest" element="mis:getAnalyticalReportsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getAnalyticalReportsResponse">
+		<wsdl:part name="getAnalyticalReportsResponse" element="mis:getAnalyticalReportsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNsiRequest">
+		<wsdl:part name="getNsiRequest" element="mis:getNsiRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getNsiResponse">
+		<wsdl:part name="getNsiResponse" element="mis:getNsiResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="GetDocsMisFacade">
+		<wsdl:operation name="getPublicDocs">
+			<wsdl:input name="getPublicDocsRequest" message="mis:getPublicDocsRequest"/>
+			<wsdl:output name="getPublicDocsResponse" message="mis:getPublicDocsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocs">
+			<wsdl:input name="getHiddenDocsRequest" message="mis:getHiddenDocsRequest"/>
+			<wsdl:output name="getHiddenDocsResponse" message="mis:getHiddenDocsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPublicDocsByReestrNumber">
+			<wsdl:input name="getPublicDocsByReestrNumberRequest" message="mis:getPublicDocsByReestrNumberRequest"/>
+			<wsdl:output name="getPublicDocsByReestrNumberResponse" message="mis:getPublicDocsByReestrNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocsByReestrNumber">
+			<wsdl:input name="getHiddenDocsByReestrNumberRequest" message="mis:getHiddenDocsByReestrNumberRequest"/>
+			<wsdl:output name="getHiddenDocsByReestrNumberResponse" message="mis:getHiddenDocsByReestrNumberResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenBankDocs">
+			<wsdl:input name="getHiddenBankDocsRequest" message="mis:getHiddenBankDocsRequest"/>
+			<wsdl:output name="getHiddenBankDocsResponse" message="mis:getHiddenBankDocsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getAnalyticalReports">
+			<wsdl:input name="getAnalyticalReportsRequest" message="mis:getAnalyticalReportsRequest"/>
+			<wsdl:output name="getAnalyticalReportsResponse" message="mis:getAnalyticalReportsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getNsi">
+			<wsdl:input name="getNsiRequest" message="mis:getNsiRequest"/>
+			<wsdl:output name="getNsiResponse" message="mis:getNsiResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="GetDocsMisFacadeBinding" type="mis:GetDocsMisFacade">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getPublicDocs">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getPublicDocsRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPublicDocsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocs">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getHiddenDocsRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getHiddenDocsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPublicDocsByReestrNumber">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getPublicDocsByReestrNumberRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPublicDocsByReestrNumberResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocsByReestrNumber">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getHiddenDocsByReestrNumberRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getHiddenDocsByReestrNumberResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenBankDocs">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getHiddenBankDocsRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getHiddenBankDocsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAnalyticalReports">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getAnalyticalReportsRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getAnalyticalReportsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNsi">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getNsiRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getNsiResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="GetDocsMisFacadeService">
+		<wsdl:port name="GetDocsMisFacadePort" binding="mis:GetDocsMisFacadeBinding">
+			<soap:address location="${serviceLocation}"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
