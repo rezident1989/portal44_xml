@@ -78,9 +78,9 @@
                 <ns5:ownerRole>CU</ns5:ownerRole>
             </ns5:ownerInfo>
             <ns5:confirmContactInfo>
-                <ns5:lastName>Лазарев</ns5:lastName>
-                <ns5:firstName>Алексей</ns5:firstName>
-                <ns5:middleName>Викторович</ns5:middleName>
+                <ns5:lastName>Фамилия</ns5:lastName>
+                <ns5:firstName>Имя</ns5:firstName>
+                <ns5:middleName>Отчество</ns5:middleName>
                 <ns5:position>Тестировщик</ns5:position>
             </ns5:confirmContactInfo>
         </ns5:commonInfo>
