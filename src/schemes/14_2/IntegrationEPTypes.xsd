@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS INTEGRATION_EP_TYPES Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- EIS INTEGRATION_EP_TYPES Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/oos/EPtypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/common/1" schemaLocation="CommonTypes.xsd"/>
@@ -4372,7 +4372,26 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												<xs:element name="notDrugPurchaseObjectsInfo">
 													<xs:annotation>
 														<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты.
-Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков</xs:documentation>
+Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:complexContent>
@@ -4397,14 +4416,43 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												</xs:element>
 												<xs:element name="notDrugPurchaseParentObjectsInfo" type="cmn:purchaseParentObjects2020Type" minOccurs="0">
 													<xs:annotation>
-														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты</xs:documentation>
+														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 											</xs:sequence>
 											<xs:element name="drugPurchaseObjectsInfo">
 												<xs:annotation>
 													<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются лекарственные препараты.
-Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20</xs:documentation>
+
+Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Всего» (total);
+o	поля «Общая сумма позиций в валюте контракта» (totalSumCurrency);
+o	поля «Цена за единицу в основном варианте поставки» (pricePerUnit);
+o	поля «Стоимость позиции в основном варианте поставки» (positionPrice);
+o	поля «Всего» (drugQuantityCustomersInfo/total);
+o	поля «Количество» (quantity);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 												</xs:annotation>
 												<xs:complexType>
 													<xs:complexContent>
@@ -4736,9 +4784,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -4930,7 +4976,26 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												<xs:element name="notDrugPurchaseObjectsInfo">
 													<xs:annotation>
 														<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты.
-Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков</xs:documentation>
+Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:complexContent>
@@ -4955,14 +5020,44 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												</xs:element>
 												<xs:element name="notDrugPurchaseParentObjectsInfo" type="cmn:purchaseParentObjects2020Type" minOccurs="0">
 													<xs:annotation>
-														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты</xs:documentation>
+														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 											</xs:sequence>
 											<xs:element name="drugPurchaseObjectsInfo">
 												<xs:annotation>
 													<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются лекарственные препараты.
-Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20</xs:documentation>
+
+Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Всего» (total);
+o	поля «Общая сумма позиций в валюте контракта» (totalSumCurrency);
+o	поля «Цена за единицу в основном варианте поставки» (pricePerUnit);
+o	поля «Стоимость позиции в основном варианте поставки» (positionPrice);
+o	поля «Всего» (drugQuantityCustomersInfo/total);
+o	поля «Количество» (quantity);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 												</xs:annotation>
 												<xs:complexType>
 													<xs:complexContent>
@@ -5228,9 +5323,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -5374,9 +5467,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -5644,9 +5735,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -5826,7 +5915,26 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												<xs:element name="notDrugPurchaseObjectsInfo">
 													<xs:annotation>
 														<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты.
-Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков</xs:documentation>
+Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:complexContent>
@@ -5851,14 +5959,44 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												</xs:element>
 												<xs:element name="notDrugPurchaseParentObjectsInfo" type="cmn:purchaseParentObjects2020Type" minOccurs="0">
 													<xs:annotation>
-														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты</xs:documentation>
+														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid);
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 											</xs:sequence>
 											<xs:element name="drugPurchaseObjectsInfo">
 												<xs:annotation>
 													<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются лекарственные препараты.
-Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20</xs:documentation>
+
+Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Всего» (total);
+o	поля «Общая сумма позиций в валюте контракта» (totalSumCurrency);
+o	поля «Цена за единицу в основном варианте поставки» (pricePerUnit);
+o	поля «Стоимость позиции в основном варианте поставки» (positionPrice);
+o	поля «Всего» (drugQuantityCustomersInfo/total);
+o	поля «Количество» (quantity);
+o	поля «Уникальный идентификатор в ЕИС» (sid);
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 												</xs:annotation>
 												<xs:complexType>
 													<xs:complexContent>
@@ -6120,9 +6258,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -6443,7 +6579,24 @@ CU5CH26 - Заказчик как орган исполнительной вла
 						</xs:element>
 						<xs:element name="purchaseObjectsInfo">
 							<xs:annotation>
-								<xs:documentation>Объекты закупки. Для каждого объекта закупки необходимо указание кода КТРУ (purchaseObject/KTRU) </xs:documentation>
+								<xs:documentation>Объекты закупки. Для каждого объекта закупки необходимо указание кода КТРУ (purchaseObject/KTRU) 
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid);
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 							</xs:annotation>
 							<xs:complexType>
 								<xs:complexContent>
@@ -7110,7 +7263,26 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												<xs:element name="notDrugPurchaseObjectsInfo">
 													<xs:annotation>
 														<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты.
-Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков</xs:documentation>
+Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:complexContent>
@@ -7135,14 +7307,44 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												</xs:element>
 												<xs:element name="notDrugPurchaseParentObjectsInfo" type="cmn:purchaseParentObjects2020Type" minOccurs="0">
 													<xs:annotation>
-														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты</xs:documentation>
+														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 											</xs:sequence>
 											<xs:element name="drugPurchaseObjectsInfo">
 												<xs:annotation>
 													<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются лекарственные препараты.
-Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20</xs:documentation>
+
+Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Всего» (total);
+o	поля «Общая сумма позиций в валюте контракта» (totalSumCurrency);
+o	поля «Цена за единицу в основном варианте поставки» (pricePerUnit);
+o	поля «Стоимость позиции в основном варианте поставки» (positionPrice);
+o	поля «Всего» (drugQuantityCustomersInfo/total);
+o	поля «Количество» (quantity);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 												</xs:annotation>
 												<xs:complexType>
 													<xs:complexContent>
@@ -7616,9 +7818,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -7706,7 +7906,26 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												<xs:element name="notDrugPurchaseObjectsInfo">
 													<xs:annotation>
 														<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты.
-Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков</xs:documentation>
+Не все позиции ТРУ по ОКПД2 из базовой позиции плана-графика закупок с 01.01.2020 должны быть представлены в полном объеме. Позиция ТРУ по ОКПД2 из базовой позиции плана-графика может иметь несколько потомков
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:complexContent>
@@ -7731,14 +7950,44 @@ CU5CH26 - Заказчик как орган исполнительной вла
 												</xs:element>
 												<xs:element name="notDrugPurchaseParentObjectsInfo" type="cmn:purchaseParentObjects2020Type" minOccurs="0">
 													<xs:annotation>
-														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты</xs:documentation>
+														<xs:documentation>Сведения об родительских объектах закупки в том случае, когда объектами закупки являются нелекарственные препараты
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги» (totalSum);
+o	поля «Общая сумма позиций/Начальная сумма цен единиц товара, работы, услуги в валюте контракт»( totalSumCurrency);
+o	блока «Единица измерения» (OKEI);
+o	блока «Общее количество по объекту закупки» (quantity);
+o	поля «Количество для заказчика» (customerQuantities/customerQuantity/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantities/customerQuantity/volumeTextForm);
+o	поля «Количество для заказчика» (customerQuantitiesCH/customerQuantityCH/quantity);
+o	поля «Объем работы, услуги (указание объема в текстовом виде)» (customerQuantitiesCH/customerQuantityCH/volumeTextForm);
+o	поля «Цена за единицу измерения» (price);
+o	блока «Информация о товарном знаке» (trademarkInfo);
+o	поля «Знаки обслуживания, фирменные наименования, патенты, полезные модели, промышленные образцы» (serviceMarks);
+o	поля «Стоимость позиции» (sum);
+o	блока «Характеристики товара, работы, услуги позиции ОКПД2» (OKPD2/characteristics);
+o	блока «Характеристики товара, работы, услуги позиции КТРУ» (KTRU/characteristics);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 											</xs:sequence>
 											<xs:element name="drugPurchaseObjectsInfo">
 												<xs:annotation>
 													<xs:documentation>Сведения об объектах закупки в том случае, когда объектами закупки являются лекарственные препараты.
-Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20</xs:documentation>
+
+Контролируется обязательность заполнения, если извещение сформировано на основании позиции плана-графика с 01.01.2020 и в такой позиции указан код ОКПД2 21.20
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), игнорируется при приеме и заполняется из предыдущей версии извещения за исключением:
+o	поля «Всего» (total);
+o	поля «Общая сумма позиций в валюте контракта» (totalSumCurrency);
+o	поля «Цена за единицу в основном варианте поставки» (pricePerUnit);
+o	поля «Стоимость позиции в основном варианте поставки» (positionPrice);
+o	поля «Всего» (drugQuantityCustomersInfo/total);
+o	поля «Количество» (quantity);
+o	поля «Уникальный идентификатор в ЕИС» (sid)
+o	поля «Внешний идентификатор объекта закупки» (externalSid)
+</xs:documentation>
 												</xs:annotation>
 												<xs:complexType>
 													<xs:complexContent>
@@ -8294,9 +8543,7 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								</xs:element>
 								<xs:element name="customerPOAInfo" type="cmn:POAttorneyWithLogType" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол. 
-
-При приеме необязателен для заполнения до 01.09.2024, начиная с 01.09.2024 блок обязателен для заполнения</xs:documentation>
+										<xs:documentation>Сведения о доверенности уполномоченного специалиста организации, разместившей протокол</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 							</xs:sequence>
@@ -8376,9 +8623,13 @@ CU5CH26 - Заказчик как орган исполнительной вла
 								<xs:documentation>Электронная торговая площадка. При приеме код контролируется на  присутствие в справочнике "Справочник: Электронные торговые площадки" (nsiETP)</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="purchaseObjectInfo" type="base:text2000Type">
+						<xs:element name="purchaseObjectInfo" type="base:text2000Type" minOccurs="0">
 							<xs:annotation>
-								<xs:documentation>Наименование объекта закупки</xs:documentation>
+								<xs:documentation>Наименование объекта закупки.
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то игнорируется при приеме, заполняется из предыдущей версии извещения.
+
+Иначе контролируется на обязательность заполнения</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 					</xs:sequence>
@@ -8636,9 +8887,13 @@ CU5CH26 - Заказчик как орган исполнительной вла
 					<xs:complexContent>
 						<xs:extension base="notification2020CommonInfoType">
 							<xs:sequence>
-								<xs:element name="purchaseObjectInfo" type="base:text2000Type">
+								<xs:element name="purchaseObjectInfo" type="base:text2000Type" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation>Наименование объекта закупки</xs:documentation>
+										<xs:documentation>Наименование объекта закупки.
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то игнорируется при приеме, заполняется из предыдущей версии извещения.
+
+Иначе контролируется на обязательность заполнения</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 								<xs:element name="isBudgetUnionState" type="xs:boolean" fixed="true" minOccurs="0">
@@ -12373,7 +12628,9 @@ CU5CH26 - Заказчик как орган исполнительной вла
 		<xs:sequence>
 			<xs:element name="customer" type="base:organizationRef">
 				<xs:annotation>
-					<xs:documentation>Организация заказчика данных требований</xs:documentation>
+					<xs:documentation>Организация заказчика данных требований
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то контролируется, что значения полей в блоке идентичны значениям аналогичных полей в предыдущей версии извещения </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!--<xs:element name="applicationGuarantee" type="paymentInfoType" minOccurs="0">
@@ -12703,7 +12960,9 @@ RO - Специализированная некоммерческая орга�
 		<xs:sequence>
 			<xs:element name="customer" type="base:organizationRef">
 				<xs:annotation>
-					<xs:documentation>Организация заказчика данных требований</xs:documentation>
+					<xs:documentation>Организация заказчика данных требований
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то контролируется, что значения полей в блоке идентичны значениям аналогичных полей в предыдущей версии извещения </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!--<xs:element name="applicationGuarantee" type="paymentInfoType" minOccurs="0">
@@ -13033,7 +13292,9 @@ RO - Специализированная некоммерческая орга�
 		<xs:sequence>
 			<xs:element name="customer" type="base:organizationRef">
 				<xs:annotation>
-					<xs:documentation>Организация заказчика данных требований</xs:documentation>
+					<xs:documentation>Организация заказчика данных требований
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то контролируется, что значения полей в блоке идентичны значениям аналогичных полей в предыдущей версии извещения </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!--<xs:element name="applicationGuarantee" type="paymentInfoType" minOccurs="0">
@@ -13336,7 +13597,9 @@ RO - Специализированная некоммерческая орга�
 		<xs:sequence>
 			<xs:element name="customer" type="base:organizationRef">
 				<xs:annotation>
-					<xs:documentation>Организация заказчика данных требований</xs:documentation>
+					<xs:documentation>Организация заказчика данных требований
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то контролируется, что значения полей в блоке идентичны значениям аналогичных полей в предыдущей версии извещения </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!--<xs:element name="applicationGuarantee" type="paymentInfoType" minOccurs="0">
@@ -13911,7 +14174,9 @@ RO - Специализированная некоммерческая орга�
 		<xs:sequence>
 			<xs:element name="customer" type="base:organizationRef">
 				<xs:annotation>
-					<xs:documentation>Организация заказчика данных требований</xs:documentation>
+					<xs:documentation>Организация заказчика данных требований
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то контролируется, что значения полей в блоке идентичны значениям аналогичных полей в предыдущей версии извещения </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!--<xs:element name="applicationGuarantee" type="paymentInfoType" minOccurs="0">
@@ -14512,7 +14777,9 @@ RO - Специализированная некоммерческая орга�
 		<xs:sequence>
 			<xs:element name="customer" type="base:organizationRef">
 				<xs:annotation>
-					<xs:documentation>Организация заказчика данных требований</xs:documentation>
+					<xs:documentation>Организация заказчика данных требований
+
+Если заполнен блок «По решению заказчика (организации, осуществляющей определение поставщика для заказчика)» (modificationInfo/reasonInfo/responsibleDecisionInfo), то контролируется, что значения полей в блоке идентичны значениям аналогичных полей в предыдущей версии извещения </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!--<xs:element name="applicationGuarantee" type="paymentInfoType" minOccurs="0">

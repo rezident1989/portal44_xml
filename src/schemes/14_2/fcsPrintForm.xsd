@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS FCS_PRINTFORM Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- EIS FCS_PRINTFORM Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/printform/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:oos="http://zakupki.gov.ru/oos/types/1" xmlns:pp615="http://zakupki.gov.ru/oos/pprf615types/1" xmlns:cp="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:ep="http://zakupki.gov.ru/oos/EPtypes/1" xmlns:tp="http://zakupki.gov.ru/oos/TPtypes/1" xmlns:ko="http://zakupki.gov.ru/oos/KOTypes/1" targetNamespace="http://zakupki.gov.ru/oos/printform/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/types/1" schemaLocation="IntegrationTypes.xsd"/>

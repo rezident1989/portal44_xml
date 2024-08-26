@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ERUZ EXPORT TYPES Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- ERUZ EXPORT TYPES Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/cc/export/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:poa="http://zakupki.gov.ru/cc/POATypes/1" targetNamespace="http://zakupki.gov.ru/cc/export/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/cc/POATypes/1" schemaLocation="IntegrationPOATypes.xsd"/>
 	<xs:element name="export">

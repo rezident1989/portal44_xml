@@ -14,7 +14,7 @@ def ef_notification(outgoing_xml):
     Новый статус: Подача ценовых предложений"""
 
     global purchase_number
-    purchase_number = f'23{random_number(17)}'
+    purchase_number = f'24{random_number(17)}'
 
     tree = open_xml(outgoing_xml)
     template = open_xml("templates/notification/EF2020/epNotificationEF.xml")

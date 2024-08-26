@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS getDocsOrganization-ws-api Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- EIS getDocsOrganization-ws-api Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/fz44/get-docs-org/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-org/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../../BaseTypes.xsd"/>
 	<xs:element name="getDocsOrgRequest" type="getDocsOrgRequestType">
@@ -21,6 +21,74 @@
 		<xs:annotation>
 			<xs:documentation>Ответ на запрос формирования в ХД архивов с документами по реестровому номеру</xs:documentation>
 		</xs:annotation>
+	</xs:element>
+	<xs:element name="getDocSignaturesByUrlRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с подписями документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexRequestType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="250">
+					<xs:annotation>
+						<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocSignaturesByUrlResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с подписями документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexResponseType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Результат обработки запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="docSignaturesInfo" maxOccurs="250">
+								<xs:annotation>
+									<xs:documentation>Информация о найденных подписях к документам</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="archiveUrl" type="base:hrefType">
+											<xs:annotation>
+												<xs:documentation>Ссылка для скачивания архива с документами, которая была получена в запросе</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="archiveWithSignaturesUrl" type="base:hrefType">
+											<xs:annotation>
+												<xs:documentation>Ссылка для скачивания архива с подписями.
+
+Поиск подписей выполняется асинхронно. В случае, если подписи не будут найдены с помощью асинхронного поиска, то по данной ссылке будет скачан архив, содержащий пустой файл с наименованием noData</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="errorInfo" type="errorInfoType">
+								<xs:annotation>
+									<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="getNsiOrgRequest">
 		<xs:annotation>
@@ -138,7 +206,7 @@ inc - инкрементальная выгрузка справочника</xs
 					<xs:sequence>
 						<xs:element name="subsystemType" type="base:subsystemDocStoreType">
 							<xs:annotation>
-									<xs:documentation>Тип подсистемы для отбора документов.
+								<xs:documentation>Тип подсистемы для отбора документов.
 
 Актуальные значения для передачи:
 BTK - Библиотека типовых контрактов;

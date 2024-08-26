@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2018 rel. 2 sp1 (http://www.altova.com) by user_user (altcom_altcom) -->
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ris="http://zakupki.gov.ru/fz44/get-docs-ris/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://zakupki.gov.ru/oos/base/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-ris/ws">
 	<wsdl:types>
 		<xsd:schema>
@@ -30,6 +29,19 @@
 	<wsdl:message name="getHiddenDocsRisByReestrNumberResponse">
 		<wsdl:part name="getHiddenDocsRisByReestrNumberResponse" element="ris:getHiddenDocsRisByReestrNumberResponse"/>
 	</wsdl:message>
+	
+	
+	
+		<wsdl:message name="getDocSignaturesByUrlRequest">
+		<wsdl:part name="getDocSignaturesByUrlRequest" element="ris:getDocSignaturesByUrlRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getDocSignaturesByUrlResponse">
+		<wsdl:part name="getDocSignaturesByUrlResponse" element="ris:getDocSignaturesByUrlResponse"/>
+	</wsdl:message>
+	
+	
+	
+	
 	<wsdl:message name="getNsiRisRequest">
 		<wsdl:part name="getNsiRisRequest" element="ris:getNsiRisRequest"/>
 	</wsdl:message>
@@ -53,6 +65,16 @@
 			<wsdl:input name="getHiddenDocsRisByReestrNumberRequest" message="ris:getHiddenDocsRisByReestrNumberRequest"/>
 			<wsdl:output name="getHiddenDocsRisByReestrNumberResponse" message="ris:getHiddenDocsRisByReestrNumberResponse"/>
 		</wsdl:operation>
+		
+		
+				
+		<wsdl:operation name="getDocSignaturesByUrl">
+			<wsdl:input name="getDocSignaturesByUrlRequest" message="ris:getDocSignaturesByUrlRequest"/>
+			<wsdl:output name="getDocSignaturesByUrlResponse" message="ris:getDocSignaturesByUrlResponse"/>
+		</wsdl:operation>
+		
+		
+		
 		<wsdl:operation name="getNsiRis">
 			<wsdl:input name="getNsiRisRequest" message="ris:getNsiRisRequest"/>
 			<wsdl:output name="getNsiRisResponse" message="ris:getNsiRisResponse"/>
@@ -96,6 +118,24 @@
 				<soap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
+		
+		
+		
+		
+				<wsdl:operation name="getDocSignaturesByUrl">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-ris"/>
+			<wsdl:input name="getDocSignaturesByUrlRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocSignaturesByUrlResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		
+		
+		
+		
 		<wsdl:operation name="getNsiRis">
 			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-ris"/>
 			<wsdl:input name="getNsiRisRequest">

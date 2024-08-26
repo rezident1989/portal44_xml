@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2018 rel. 2 sp1 (http://www.altova.com) by user_user (altcom_altcom) -->
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mis="http://zakupki.gov.ru/fz44/get-docs-mis/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://zakupki.gov.ru/oos/base/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-mis/ws">
 	<wsdl:types>
 		<xsd:schema>
@@ -29,6 +28,28 @@
 	</wsdl:message>
 	<wsdl:message name="getHiddenDocsByReestrNumberResponse">
 		<wsdl:part name="getHiddenDocsByReestrNumberResponse" element="mis:getHiddenDocsByReestrNumberResponse"/>
+	</wsdl:message>
+	
+	
+		<wsdl:message name="getPublicDocsByOrgRegionRequest">
+		<wsdl:part name="getPublicDocsByOrgRegionRequest" element="mis:getPublicDocsByOrgRegionRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPublicDocsByOrgRegionResponse">
+		<wsdl:part name="getPublicDocsByOrgRegionResponse" element="mis:getPublicDocsByOrgRegionResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsByOrgRegionRequest">
+		<wsdl:part name="getHiddenDocsByOrgRegionRequest" element="mis:getHiddenDocsByOrgRegionRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getHiddenDocsByOrgRegionResponse">
+		<wsdl:part name="getHiddenDocsByOrgRegionResponse" element="mis:getHiddenDocsByOrgRegionResponse"/>
+	</wsdl:message>
+	
+	
+	<wsdl:message name="getDocSignaturesByUrlRequest">
+		<wsdl:part name="getDocSignaturesByUrlRequest" element="mis:getDocSignaturesByUrlRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getDocSignaturesByUrlResponse">
+		<wsdl:part name="getDocSignaturesByUrlResponse" element="mis:getDocSignaturesByUrlResponse"/>
 	</wsdl:message>
 	<wsdl:message name="getHiddenBankDocsRequest">
 		<wsdl:part name="getHiddenBankDocsRequest" element="mis:getHiddenBankDocsRequest"/>
@@ -64,6 +85,22 @@
 		<wsdl:operation name="getHiddenDocsByReestrNumber">
 			<wsdl:input name="getHiddenDocsByReestrNumberRequest" message="mis:getHiddenDocsByReestrNumberRequest"/>
 			<wsdl:output name="getHiddenDocsByReestrNumberResponse" message="mis:getHiddenDocsByReestrNumberResponse"/>
+		</wsdl:operation>
+		
+		
+				<wsdl:operation name="getPublicDocsByOrgRegion">
+			<wsdl:input name="getPublicDocsByOrgRegionRequest" message="mis:getPublicDocsByOrgRegionRequest"/>
+			<wsdl:output name="getPublicDocsByOrgRegionResponse" message="mis:getPublicDocsByOrgRegionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocsByOrgRegion">
+			<wsdl:input name="getHiddenDocsByOrgRegionRequest" message="mis:getHiddenDocsByOrgRegionRequest"/>
+			<wsdl:output name="getHiddenDocsByOrgRegionResponse" message="mis:getHiddenDocsByOrgRegionResponse"/>
+		</wsdl:operation>
+		
+		
+		<wsdl:operation name="getDocSignaturesByUrl">
+			<wsdl:input name="getDocSignaturesByUrlRequest" message="mis:getDocSignaturesByUrlRequest"/>
+			<wsdl:output name="getDocSignaturesByUrlResponse" message="mis:getDocSignaturesByUrlResponse"/>
 		</wsdl:operation>
 		<wsdl:operation name="getHiddenBankDocs">
 			<wsdl:input name="getHiddenBankDocsRequest" message="mis:getHiddenBankDocsRequest"/>
@@ -113,6 +150,36 @@
 				<soap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="getHiddenDocsByReestrNumberResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getPublicDocsByOrgRegion">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getPublicDocsByOrgRegionRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPublicDocsByOrgRegionResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHiddenDocsByOrgRegion">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getHiddenDocsByOrgRegionRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getHiddenDocsByOrgRegionResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+				
+		
+		<wsdl:operation name="getDocSignaturesByUrl">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/ws/get-docs-mis"/>
+			<wsdl:input name="getDocSignaturesByUrlRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocSignaturesByUrlResponse">
 				<soap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>

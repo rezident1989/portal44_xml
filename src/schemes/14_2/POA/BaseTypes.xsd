@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- BASE_TYPES Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- BASE_TYPES Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/cc/base/1" xmlns:base="http://zakupki.gov.ru/cc/base/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zakupki.gov.ru/cc/base/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<!--Простые типы-->
 	<xs:simpleType name="docNumberType">
@@ -292,6 +292,15 @@
 		<xs:restriction base="xs:string">
 			<xs:minLength value="1"/>
 			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="text2000Type">
+		<xs:annotation>
+			<xs:documentation>Тип: Текстовое поле 2000 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2000"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="text4000Type">

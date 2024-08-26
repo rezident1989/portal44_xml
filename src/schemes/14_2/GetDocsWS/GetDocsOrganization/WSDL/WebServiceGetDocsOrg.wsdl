@@ -17,6 +17,18 @@
 	<wsdl:message name="getDocsOrgByReestrNumberResponse">
 		<wsdl:part name="getDocsOrgByReestrNumberResponse" element="org:getDocsOrgByReestrNumberResponse"/>
 	</wsdl:message>
+	
+	
+	
+		<wsdl:message name="getDocSignaturesByUrlRequest">
+		<wsdl:part name="getDocSignaturesByUrlRequest" element="org:getDocSignaturesByUrlRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getDocSignaturesByUrlResponse">
+		<wsdl:part name="getDocSignaturesByUrlResponse" element="org:getDocSignaturesByUrlResponse"/>
+	</wsdl:message>
+	
+	
+	
 	<wsdl:message name="getNsiOrgRequest">
 		<wsdl:part name="getNsiOrgRequest" element="org:getNsiOrgRequest"/>
 	</wsdl:message>
@@ -32,6 +44,16 @@
 			<wsdl:input name="getDocsOrgByReestrNumberRequest" message="org:getDocsOrgByReestrNumberRequest"/>
 			<wsdl:output name="getDocsOrgByReestrNumberResponse" message="org:getDocsOrgByReestrNumberResponse"/>
 		</wsdl:operation>
+		
+		
+				<wsdl:operation name="getDocSignaturesByUrl">
+			<wsdl:input name="getDocSignaturesByUrlRequest" message="org:getDocSignaturesByUrlRequest"/>
+			<wsdl:output name="getDocSignaturesByUrlResponse" message="org:getDocSignaturesByUrlResponse"/>
+		</wsdl:operation>
+		
+		
+		
+		
 		<wsdl:operation name="getNsiOrg">
 			<wsdl:input name="getNsiOrgRequest" message="org:getNsiOrgRequest"/>
 			<wsdl:output name="getNsiOrgResponse" message="org:getNsiOrgResponse"/>
@@ -57,6 +79,22 @@
 				<soap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
+		
+		
+		
+		
+				<wsdl:operation name="getDocSignaturesByUrl">
+			<soap:operation soapAction="http://zakupki.gov.ru/fz44/queue/ws/get-docs-org"/>
+			<wsdl:input name="getDocSignaturesByUrlRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocSignaturesByUrlResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		
+		
+		
 		<wsdl:operation name="getNsiOrg">
 			<soap:operation soapAction="http://zakupki.gov.ru/fz44/queue/ws/get-docs-org"/>
 			<wsdl:input name="getNsiOrgRequest">
