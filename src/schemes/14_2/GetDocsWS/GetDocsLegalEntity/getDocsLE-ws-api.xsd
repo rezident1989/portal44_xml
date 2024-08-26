@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS getDocsOrganization-ws-api Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- EIS getDocsOrganization-ws-api Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/fz44/get-docs-le/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-le/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../../BaseTypes.xsd"/>
 	<!--Метод для получения документов по реестровому номеру-->
@@ -144,6 +144,49 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 									<xs:documentation>Регион организации по КЛАДР</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+							<xs:element name="subsystemType" type="commonSubsystemType">
+								<xs:annotation>
+									<xs:documentation>Тип подсистемы для отбора документов.
+
+Подсистемы 44-ФЗ:
+Актуальные значения для передачи:
+BTK - Библиотека типовых контрактов;
+PRIZ - подсистема размещения извещений (без протоколов со сведениями об участниках);
+PRIZP - подсистема размещения извещений (протоколы со сведениями об участниках);
+RPEC - подсистема заключения контрактов;
+RPGZ - реестр планов графиков с 2020 года;
+RPNZ - Реестр правил нормирования закупок;
+RDI - Реестр дополнительной информации о закупках и контрактах;
+RGK - реестр контрактов;
+RBG - реестр независимой гарантий;
+EA - Электронное актирование;
+RJ - Реестр жалоб;
+RPP - Реестр плановых проверок;
+RVP - Реестр внеплановых проверок;
+RRK - Реестр результатов контроля;
+RRA - Реестр результатов аудита;
+RNP - Реестр недобросовестных поставщиков;
+RKPO - Реестр квалифицированных подрядных организаций;
+PPRF615 - Реестр извещений и протоколов 615;
+RD615 - Реестр договоров 615;
+LKOK - Личный кабинет органа контроля;
+OZ - Отчеты заказчика.
+
+Подсистемы 223-ФЗ:
+RD223 - Реестр договоров;
+RJ223 - Реестр жалоб;
+RPP223 - Реестр плановых проверок;
+RPZ223 - Реестр планов закупок;
+RI223 - Реестр извещений о закупках;
+RZ223 - Реестр заказчиков;
+OV223 - Информация об объеме выручки;
+TPOZ223 - Типовые положения о закупках;
+POZ223 - Положения о закупках;
+RNP223 - Реестр недобросовестных поставщиков;
+POM223 - Подсистема оценки и мониторинга;
+RBG223 - Реестр независимых гарантий</xs:documentation>
+								</xs:annotation>
+							</xs:element>
 							<xs:choice>
 								<xs:annotation>
 									<xs:documentation>Допускается указание типов документа из справочника nsiDocumentTypes или nsiDocumentTypes223, для которых признак isDistributedPublicly = true</xs:documentation>
@@ -233,6 +276,74 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 								<xs:annotation>
 									<xs:documentation>Документы отсутствуют</xs:documentation>
 								</xs:annotation>
+							</xs:element>
+							<xs:element name="errorInfo" type="errorInfoType">
+								<xs:annotation>
+									<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocSignaturesByUrlRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с подписями документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexRequestType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="30">
+					<xs:annotation>
+						<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocSignaturesByUrlResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с подписями документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexResponseType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Результат обработки запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="docSignaturesInfo" maxOccurs="30">
+								<xs:annotation>
+									<xs:documentation>Информация о найденных подписях к документам</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="archiveUrl" type="base:hrefType">
+											<xs:annotation>
+												<xs:documentation>Ссылка для скачивания архива с документами, которая была получена в запросе</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="archiveWithSignaturesUrl" type="base:hrefType">
+											<xs:annotation>
+												<xs:documentation>Ссылка для скачивания архива с подписями.
+
+Поиск подписей выполняется асинхронно. В случае, если подписи не будут найдены с помощью асинхронного поиска, то по данной ссылке будет скачан архив, содержащий пустой файл с наименованием noData</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
 							</xs:element>
 							<xs:element name="errorInfo" type="errorInfoType">
 								<xs:annotation>

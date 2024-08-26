@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS getDocsMIS-ws-api Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- EIS getDocsMIS-ws-api Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/fz44/get-docs-mis/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/fz44/get-docs-mis/ws" elementFormDefault="unqualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="../../BaseTypes.xsd"/>
-	<!--Методы для получения документов Заказчиков-->
+	<!--Методы для получения публичных документов Заказчиков-->
 	<xs:element name="getPublicDocsRequest" type="getDocsRequestType">
 		<xs:annotation>
 			<xs:documentation>Запрос формирования в ХД архивов с публичными документами по набору параметров</xs:documentation>
@@ -11,16 +11,6 @@
 	<xs:element name="getPublicDocsResponse" type="getDocsResponseType">
 		<xs:annotation>
 			<xs:documentation>Ответ на запрос формирования в ХД архивов с публичными документами по набору параметров</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="getHiddenDocsRequest" type="getDocsRequestType">
-		<xs:annotation>
-			<xs:documentation>Запрос формирования в ХД архивов с сокрытыми документами по набору параметров</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="getHiddenDocsResponse" type="getDocsResponseType">
-		<xs:annotation>
-			<xs:documentation>Ответ на запрос формирования в ХД архивов с сокрытыми документами по набору параметров</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="getPublicDocsByReestrNumberRequest" type="getDocsByReestrNumberRequestType">
@@ -33,6 +23,27 @@
 			<xs:documentation>Ответ на запрос формирования в ХД архивов с публичными документами по реестровому номеру</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="getPublicDocsByOrgRegionRequest" type="getDocsByOrgRegionRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с публичными документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getPublicDocsByOrgRegionResponse" type="getDocsByOrgRegionResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с публичными документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--Методы для получения сокрытых документов Заказчиков-->
+	<xs:element name="getHiddenDocsRequest" type="getDocsRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с сокрытыми документами по набору параметров</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getHiddenDocsResponse" type="getDocsResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с сокрытыми документами по набору параметров</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="getHiddenDocsByReestrNumberRequest" type="getDocsByReestrNumberRequestType">
 		<xs:annotation>
 			<xs:documentation>Запрос формирования в ХД архивов с сокрытыми документами по рестровому номеру</xs:documentation>
@@ -41,6 +52,93 @@
 	<xs:element name="getHiddenDocsByReestrNumberResponse" type="getDocsByReestrNumberResponseType">
 		<xs:annotation>
 			<xs:documentation>Ответ на запрос формирования в ХД архивов с сокрытыми документами по реестровому номеру</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getDocSignaturesByUrlRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с подписями документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexRequestType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="1000">
+					<xs:annotation>
+						<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDocSignaturesByUrlResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с подписями документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="index" type="indexResponseType">
+					<xs:annotation>
+						<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataInfo">
+					<xs:annotation>
+						<xs:documentation>Результат обработки запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="docSignaturesInfo" maxOccurs="1000">
+								<xs:annotation>
+									<xs:documentation>Информация о найденных подписях к документам</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="archiveUrl" type="base:hrefType">
+											<xs:annotation>
+												<xs:documentation>Ссылка для скачивания архива с документами, которая была получена в запросе</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:choice>
+											<xs:element name="archiveWithSignaturesUrl" type="base:hrefType">
+												<xs:annotation>
+													<xs:documentation>Ссылка для скачивания архива с подписями.
+
+Ссылка отдатся сервисом в двух случаях:
+1. подписи найдены
+2. подписи не найдены за время синхронного запроса и продолжается асинхронный поиск. В случае, если подписи не будут найдены с помощью асинхронного поиска, то по данной ссылке будет скачан архив, содержащий пустой файл с наименованием noData</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="noData" type="xs:boolean" fixed="true">
+												<xs:annotation>
+													<xs:documentation>Подписи отсутствуют</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="errorInfo" type="errorInfoType">
+								<xs:annotation>
+									<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getHiddenDocsByOrgRegionRequest" type="getDocsByOrgRegionRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос формирования в ХД архивов с сокрытыми документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getHiddenDocsByOrgRegionResponse" type="getDocsByOrgRegionResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос формирования в ХД архивов с сокрытыми документами по региону заказчика и типу документа</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<!--Методы для получения документов Банков-->
@@ -649,8 +747,7 @@ RKPO - Реестр квалифицированных подрядных орг
 PPRF615 - Реестр извещений и протоколов 615;
 RD615 - Реестр договоров 615;
 LKOK - Личный кабинет органа контроля;
-OZ - Отчеты заказчика;
-ZC - Запрос цен</xs:documentation>
+OZ - Отчеты заказчика</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:element name="periodInfo">
@@ -721,35 +818,27 @@ ZC - Запрос цен</xs:documentation>
 									</xs:choice>
 								</xs:complexType>
 							</xs:element>
-							<xs:choice minOccurs="0">
+							<xs:element name="organizations44Info" minOccurs="0">
 								<xs:annotation>
-									<xs:documentation>Может быть не заполнен только в том случае, если запрашиваются публичные документы и в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
+									<xs:documentation>Организации для отбора документов.
+
+Блок может быть не заполнен только в том случае, если запрашиваются публичные документы и в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
 - RRA
 - RNP
 - RKPO</xs:documentation>
 								</xs:annotation>
-								<xs:element name="isAllOrganizations44" type="xs:boolean" fixed="true">
-									<xs:annotation>
-										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-								<xs:element name="organizations44Info">
-									<xs:annotation>
-										<xs:documentation>Организации для отбора документов</xs:documentation>
-									</xs:annotation>
-									<xs:complexType>
-										<xs:sequence>
-											<xs:element name="organization44Info" type="organizationInfo44Type" maxOccurs="1000">
-												<xs:annotation>
-													<xs:documentation>Варианты заполнения блока:
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="organization44Info" type="organizationInfo44Type" maxOccurs="1000">
+											<xs:annotation>
+												<xs:documentation>Варианты заполнения блока:
 1. В каждом элементе коллекции заполнено поле "Код по СПЗ" (reqNum)
 2. В каждом элементе коллекции заполнено поле "Код по Сводному Реестру" (consRegistryNum)</xs:documentation>
-												</xs:annotation>
-											</xs:element>
-										</xs:sequence>
-									</xs:complexType>
-								</xs:element>
-							</xs:choice>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="reestrNumber" type="regNumType" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>Реестровый номер в подсистеме.
@@ -858,31 +947,23 @@ TRU223 - Перечни ТРУ</xs:documentation>
 									</xs:choice>
 								</xs:complexType>
 							</xs:element>
-							<xs:choice minOccurs="0">
+							<xs:element name="organizations223Info" minOccurs="0">
 								<xs:annotation>
-									<xs:documentation>Может быть не заполнен только в том случае, если в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
+									<xs:documentation>Организации для отбора документов.
+
+Блок может быть не заполнен только в том случае, если в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
 - RNP223</xs:documentation>
 								</xs:annotation>
-								<xs:element name="isAllOrganizations223" type="xs:boolean" fixed="true">
-									<xs:annotation>
-										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-								<xs:element name="organizations223Info">
-									<xs:annotation>
-										<xs:documentation>Организации для отбора документов</xs:documentation>
-									</xs:annotation>
-									<xs:complexType>
-										<xs:sequence>
-											<xs:element name="organization223Info" type="organizationInfo223Type" maxOccurs="1000">
-												<xs:annotation>
-													<xs:documentation>В блоке должны быть указаны организации, которые являются владельцами докуементов</xs:documentation>
-												</xs:annotation>
-											</xs:element>
-										</xs:sequence>
-									</xs:complexType>
-								</xs:element>
-							</xs:choice>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="organization223Info" type="organizationInfo223Type" maxOccurs="1000">
+											<xs:annotation>
+												<xs:documentation>В блоке должны быть указаны организации, которые являются владельцами докуементов</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="reestrNumber" type="regNumType" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>Реестровый номер в подсистеме</xs:documentation>
@@ -1043,19 +1124,15 @@ OZ - Отчеты заказчика</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:choice minOccurs="0">
-								<xs:element name="isAllOrganizations44" type="xs:boolean" fixed="true">
-									<xs:annotation>
-										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-								<xs:element name="organizations44Info" minOccurs="0">
-									<xs:annotation>
-										<xs:documentation>Организации для отбора документов.
-
-Блок может быть не заполнен только в том случае, если запрашиваются публичные документы и в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
+								<xs:annotation>
+									<xs:documentation>Может быть не заполнен только в том случае, если запрашиваются публичные документы и в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
 - RRA
 - RNP
 - RKPO</xs:documentation>
+								</xs:annotation>
+								<xs:element name="organizations44Info">
+									<xs:annotation>
+										<xs:documentation>Организации для отбора документов</xs:documentation>
 									</xs:annotation>
 									<xs:complexType>
 										<xs:sequence>
@@ -1068,6 +1145,11 @@ OZ - Отчеты заказчика</xs:documentation>
 											</xs:element>
 										</xs:sequence>
 									</xs:complexType>
+								</xs:element>
+								<xs:element name="isAllOrganizations44" type="xs:boolean" fixed="true">
+									<xs:annotation>
+										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
+									</xs:annotation>
 								</xs:element>
 							</xs:choice>
 						</xs:sequence>
@@ -1101,17 +1183,13 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:choice minOccurs="0">
-								<xs:element name="isAllOrganizations223" type="xs:boolean" fixed="true">
-									<xs:annotation>
-										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-								<xs:element name="organizations223Info" minOccurs="0">
-									<xs:annotation>
-										<xs:documentation>Организации для отбора документов.
-
-Блок может быть не заполнен только в том случае, если в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
+								<xs:annotation>
+									<xs:documentation>Может быть не заполнен только в том случае, если в поле "Тип подсистемы для отбора документов" (subsystemType) указано одно из значений:
 - RNP223</xs:documentation>
+								</xs:annotation>
+								<xs:element name="organizations223Info">
+									<xs:annotation>
+										<xs:documentation>Организации для отбора документов</xs:documentation>
 									</xs:annotation>
 									<xs:complexType>
 										<xs:sequence>
@@ -1122,6 +1200,11 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 											</xs:element>
 										</xs:sequence>
 									</xs:complexType>
+								</xs:element>
+								<xs:element name="isAllOrganizations223" type="xs:boolean" fixed="true">
+									<xs:annotation>
+										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
+									</xs:annotation>
 								</xs:element>
 							</xs:choice>
 						</xs:sequence>
@@ -1194,6 +1277,405 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 										<xs:complexType>
 											<xs:sequence>
 												<xs:element name="orgzanization223Info" type="organizationInfo223Type">
+													<xs:annotation>
+														<xs:documentation>Информация об организации</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:choice>
+													<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="1000">
+														<xs:annotation>
+															<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="noData" type="xs:boolean" fixed="true">
+														<xs:annotation>
+															<xs:documentation>Документы отсутствуют</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:choice>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="errorInfo" type="errorInfoType">
+							<xs:annotation>
+								<xs:documentation>Результат вызова сервиса в случае ошибки</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDocsByOrgRegionRequestType">
+		<xs:annotation>
+			<xs:documentation>Тип: Запрос формирования в ХД архивов с документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="index" type="indexRequestType">
+				<xs:annotation>
+					<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="selectionParams44">
+					<xs:annotation>
+						<xs:documentation>Параметры отбора документов 44ФЗ</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orgRegion" type="orgRegionKladrType">
+								<xs:annotation>
+									<xs:documentation>Регион организации по КЛАДР</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="subsystemType" type="base:subsystemDocStoreType">
+								<xs:annotation>
+									<xs:documentation>Тип подсистемы для отбора документов.
+
+Актуальные значения для передачи:
+BTK - Библиотека типовых контрактов;
+PRIZ - Подсистема размещения извещений (без протоколов со сведениями об участниках);
+PRIZP - Подсистема размещения извещений (протоколы со сведениями об участниках);
+RPEC - Подсистема заключения контрактов;
+RPGZ - Реестр планов графиков с 2020 года;
+RPNZ - Реестр правил нормирования закупок;
+RDI - Реестр дополнительной информации о закупках и контрактах;
+RGK - реестр контрактов;
+RBG - реестр независимой гарантий;
+EA - Электронное актирование;
+UR - Односторонний отказ;
+RJ - Реестр жалоб;
+RPP - Реестр плановых проверок;
+RVP - Реестр внеплановых проверок;
+RRK - Реестр результатов контроля;
+RRA - Реестр результатов аудита;
+RNP - Реестр недобросовестных поставщиков;
+RKPO - Реестр квалифицированных подрядных организаций;
+PPRF615 - Реестр извещений и протоколов 615;
+RD615 - Реестр договоров 615;
+LKOK - Личный кабинет органа контроля;
+OZ - Отчеты заказчика</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="documentType" type="documentType">
+								<xs:annotation>
+									<xs:documentation>Тип документа 44-ФЗ.
+
+Для получения справочника с допустимыми значениями необходимо вызывать метод getNsi и указать в поле "Код справочника" (nsiCode44) значение "nsiDocumentTypes"
+</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="periodInfo">
+								<xs:annotation>
+									<xs:documentation>Период для отбора документов</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="monthInfo">
+											<xs:annotation>
+												<xs:documentation>Месяц</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="monthNumber" type="base:monthType">
+														<xs:annotation>
+															<xs:documentation>Номер месяца</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="yearNumber" type="base:yearNewType">
+														<xs:annotation>
+															<xs:documentation>Год для выбора месяца</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="offsetTimeZone" type="base:timeZoneDifferenceType">
+														<xs:annotation>
+															<xs:documentation>Смещение часового пояса</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="exactDate" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата.
+
+Смещение часового учитывается при отборе документов</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="todayInfo">
+											<xs:annotation>
+												<xs:documentation>Период в течение суток.
+
+Поиск производится по опубликованным в заданном интервале документам.
+
+Вследствие задержки между публикацией и обработкой документов отдача последних опубликованных документов не гарантируется, если указанное значение конца периода отстает от текущего времени менее чем на 1 час</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="fromHour" type="hourType">
+														<xs:annotation>
+															<xs:documentation>Час начала периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="toHour" type="hourType">
+														<xs:annotation>
+															<xs:documentation>Час конца периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="offsetTimeZone" type="base:timeZoneDifferenceType">
+														<xs:annotation>
+															<xs:documentation>Смещение часового пояса</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="organizations44Info">
+									<xs:annotation>
+										<xs:documentation>Организации для отбора документов</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="organization44Info" type="organizationInfo44Type" maxOccurs="1000">
+												<xs:annotation>
+													<xs:documentation>Варианты заполнения блока:
+1. В каждом элементе коллекции заполнено поле "Код по СПЗ" (reqNum)
+2. В каждом элементе коллекции заполнено поле "Код по Сводному Реестру" (consRegistryNum)</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="isAllOrganizations44" type="xs:boolean" fixed="true">
+									<xs:annotation>
+										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="reestrNumber" type="regNumType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Реестровый номер в подсистеме.
+
+1.Если subsystemType = EA, то в данном поле указывается "Идентификатор цепочки документов" (ИдОбъект);
+2.Если subsystemType = UR, то данное поле не заполняется</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="selectionParams223">
+					<xs:annotation>
+						<xs:documentation>Параметры отбора документов 223ФЗ</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orgRegion" type="orgRegionKladrType">
+								<xs:annotation>
+									<xs:documentation>Регион организации по КЛАДР</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="subsystemType" type="subsystem223Type">
+								<xs:annotation>
+									<xs:documentation>Тип подсистемы для отбора документов.
+
+Актуальные значения для передачи:
+RD223 - Реестр договоров;
+RJ223 - Реестр жалоб;
+RPP223 - Реестр плановых проверок;
+RPZ223 - Реестр планов закупок;
+RI223 - Реестр извещений о закупках;
+RZ223 - Реестр заказчиков;
+OV223 - Информация об объеме выручки;
+TPOZ223 - Типовые положения о закупках;
+POZ223 - Положения о закупках;
+RNP223 - Реестр недобросовестных поставщиков;
+OD223 - Отчетность по договорам;
+IPVP223 - Годовые отчеты ИПВП;
+MSP223 - Годовые отчеты МСП;
+POM223 - Подсистема оценки и мониторинга;
+RBG223 - Реестр независимых гарантий;
+TRU223 - Перечни ТРУ</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="documentType" type="documentType">
+								<xs:annotation>
+									<xs:documentation>Тип документа 223-ФЗ.
+
+Для получения справочника с допустимыми значениями необходимо вызывать метод getNsi и указать в поле "Код справочника" (nsiCode223) значение "nsiDocumentTypes223"
+</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="periodInfo">
+								<xs:annotation>
+									<xs:documentation>Период для отбора документов</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="monthInfo">
+											<xs:annotation>
+												<xs:documentation>Месяц</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="monthNumber" type="base:monthType">
+														<xs:annotation>
+															<xs:documentation>Номер месяца</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="yearNumber" type="base:yearNewType">
+														<xs:annotation>
+															<xs:documentation>Год для выбора месяца</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="offsetTimeZone" type="base:timeZoneDifferenceType">
+														<xs:annotation>
+															<xs:documentation>Смещение часового пояса</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="exactDate" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Дата.
+
+Смещение часового учитывается при отборе документов</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="todayInfo">
+											<xs:annotation>
+												<xs:documentation>Период в течение суток.
+
+Поиск производится по опубликованным в заданном интервале документам.
+
+Вследствие задержки между публикацией и обработкой документов отдача последних опубликованных документов не гарантируется, если указанное значение конца периода отстает от текущего времени менее чем на 1 час</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="fromHour" type="hourType">
+														<xs:annotation>
+															<xs:documentation>Час начала периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="toHour" type="hourType">
+														<xs:annotation>
+															<xs:documentation>Час конца периода</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="offsetTimeZone" type="base:timeZoneDifferenceType">
+														<xs:annotation>
+															<xs:documentation>Смещение часового пояса</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="organizations223Info">
+									<xs:annotation>
+										<xs:documentation>Организации для отбора документов</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="organization223Info" type="organizationInfo223Type" maxOccurs="1000">
+												<xs:annotation>
+													<xs:documentation>В блоке должны быть указаны организации, которые являются владельцами докуементов</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="isAllOrganizations223" type="xs:boolean" fixed="true">
+									<xs:annotation>
+										<xs:documentation>Признак запроса документов по всем организациям</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="reestrNumber" type="regNumType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Реестровый номер в подсистеме</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDocsByOrgRegionResponseType">
+		<xs:annotation>
+			<xs:documentation>Тип: Ответ на запрос формирования в ХД архивов с документами по региону заказчика и типу документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="index" type="indexResponseType">
+				<xs:annotation>
+					<xs:documentation>Индексная карточка информационного пакета</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataInfo">
+				<xs:annotation>
+					<xs:documentation>Результат обработки запроса</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="orgzanizations44DocsInfo">
+							<xs:annotation>
+								<xs:documentation>Документы организаций</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="orgzanization44DocsInfo" maxOccurs="1000">
+										<xs:annotation>
+											<xs:documentation>Документы организации</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="orgzanization44Info" type="organizationInfo44Type" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Информация об организации</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:choice>
+													<xs:element name="archiveUrl" type="base:hrefType" maxOccurs="1000">
+														<xs:annotation>
+															<xs:documentation>Ссылка для скачивания архива с документами</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="noData" type="xs:boolean" fixed="true">
+														<xs:annotation>
+															<xs:documentation>Документы отсутствуют</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:choice>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="orgzanizations223DocsInfo">
+							<xs:annotation>
+								<xs:documentation>Документы организаций</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="orgzanization223DocsInfo" maxOccurs="1000">
+										<xs:annotation>
+											<xs:documentation>Документы организации</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="orgzanization223Info" type="organizationInfo223Type" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Информация об организации</xs:documentation>
 													</xs:annotation>
@@ -1337,6 +1819,15 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 			<xs:maxLength value="30"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="documentType">
+		<xs:annotation>
+			<xs:documentation>Тип: Тип документа </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="fileNameType">
 		<xs:annotation>
 			<xs:documentation>Тип: Наименование файла при отдаче</xs:documentation>
@@ -1387,6 +1878,14 @@ RBG223 - Реестр независимых гарантий</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="\d{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="orgRegionKladrType">
+		<xs:annotation>
+			<xs:documentation>Тип: Регион организации по КЛАДР</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="regNumType">

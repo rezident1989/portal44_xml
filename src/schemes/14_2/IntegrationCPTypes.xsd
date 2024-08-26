@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EIS INTEGRATION_CP_TYPES Integration Scheme, version 14.2, create date 21.06.2024 -->
+<!-- EIS INTEGRATION_CP_TYPES Integration Scheme, version 14.2.5, create date 12.08.2024 -->
 <xs:schema xmlns="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:base="http://zakupki.gov.ru/oos/base/1" xmlns:cmn="http://zakupki.gov.ru/oos/common/1" targetNamespace="http://zakupki.gov.ru/oos/CPtypes/1" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://zakupki.gov.ru/oos/base/1" schemaLocation="BaseTypes.xsd"/>
 	<xs:import namespace="http://zakupki.gov.ru/oos/common/1" schemaLocation="CommonTypes.xsd"/>
@@ -1178,7 +1178,7 @@ OA - частью 6</xs:documentation>
 Принимается из пакета</xs:documentation>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="paymentsSumInfo">
+												<xs:element name="paymentsSumInfo" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Сумма платежей по этапу контракта</xs:documentation>
 													</xs:annotation>
@@ -4859,11 +4859,18 @@ QO - Квалификация участников закупки, в том ч�
 																	<xs:documentation>Наименование детализирующего показателя</xs:documentation>
 																</xs:annotation>
 															</xs:element>
-															<xs:element name="offer" type="base:indicatorValueType" minOccurs="0">
-																<xs:annotation>
-																	<xs:documentation>Предложение участника по детализирующему показателю</xs:documentation>
-																</xs:annotation>
-															</xs:element>
+															<xs:choice minOccurs="0">
+																<xs:element name="offer" type="base:indicatorValueType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Предложение участника по детализирующему показателю</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="offerAvailability" type="xs:boolean" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Наличие предложения участника по показателю</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:choice>
 															<xs:element name="offerText" type="base:text2000Type" minOccurs="0">
 																<xs:annotation>
 																	<xs:documentation>Информация о предложении участника</xs:documentation>
