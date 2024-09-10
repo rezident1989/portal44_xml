@@ -11,7 +11,7 @@ def ezt_notification(outgoing_xml):
     """Извещение о проведении ЭЗТ"""
 
     global purchase_number
-    purchase_number = f'23{random_number(17)}'
+    purchase_number = f'24{random_number(17)}'
 
     tree = open_xml(outgoing_xml)
     template = open_xml("templates/notification/EZT2020/epNotificationEZT2020.xml")
