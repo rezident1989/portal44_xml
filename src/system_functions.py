@@ -2,8 +2,8 @@ import os
 import random
 import sys
 import time
-import xml.etree.ElementTree as ET
 from datetime import datetime
+from xml.etree.ElementTree import ElementTree, Element
 
 import paramiko
 from lxml import etree
@@ -11,16 +11,46 @@ from lxml import etree
 from hidden.sftp_connect import username_sftp, password_sftp
 
 
-def open_xml(path: str) -> ET.Element:
+def open_xml(path: str) -> Element:
     """Открыть xml"""
-    return ET.ElementTree(file=path).getroot()
+    return ElementTree(file=path).getroot()
 
 
-def random_number(digits: int) -> str:
-    """Сгенерировать случайное число, int количество цифр в числе"""
-    if digits < 1:
+def get_type_xml(path: str) -> str:
+    """Получить название пакета xml"""
+    return open_xml(path).tag.split('}')[1]
+
+
+def create_xml(elem_list: [Element]) -> [str]:
+    """Создать xml файлы и вернуть список их путей """
+    path_xml_list = []
+    date_time = datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
+
+    if os.path.isdir('incoming') is not True:
+        os.makedirs('incoming')
+
+    for elem in elem_list:
+
+        if 'export' == elem.tag.split('}')[1]:
+            name_file = elem[0].tag.split('}')[1]
+        else:
+            name_file = 'confirmation'
+
+        name = "".join(name_file).replace('}', '')
+
+        path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
+        path_xml_list.append(path_name)
+
+        ElementTree(elem).write(path_name, encoding='utf-8', xml_declaration=True)
+
+    return path_xml_list
+
+
+def random_number(number: int) -> str:
+    """Сгенерировать случайное число, number количество цифр в числе"""
+    if number < 1:
         return 'Ошибка. Необходимо целое число, больше нуля'
-    return str(random.randint(10 ** (digits - 1), 10 ** digits - 1))
+    return str(random.randint(10 ** (number - 1), 10 ** number - 1))
 
 
 def clear_folder(folder: str) -> None:
@@ -39,32 +69,7 @@ def remove_file(file: str, folder: str) -> None:
     os.replace(file, f'{folder}\\{a}')
 
 
-def get_type_xml(path: str) -> str:
-    """Получить название пакета xml"""
-    return open_xml(path).tag.split('}')[1]
-
-
-def create_xml(tree: []) -> []:
-    """Создать xml"""
-    a = []
-    for i in tree:
-        if 'export' == i.tag.split('}')[1]:
-            name_file = i[0].tag.split('}')[1]
-        else:
-            name_file = 'confirmation'
-        date_time = datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
-        name = "".join(name_file).replace('}', '')
-        if os.path.isdir('incoming') is not True:
-            os.makedirs('incoming')
-        path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
-        a.append(path_name)
-        i = ET.ElementTree(i)
-        i.write(path_name, encoding='utf-8', xml_declaration=True)
-
-    return a
-
-
-def to_sent_to_sftp(path, host):
+def to_sent_to_sftp(path: str, host: str) -> None:
     """Отравить xml на сервер"""
     transport = paramiko.Transport(host)
     transport.connect(None, username=username_sftp, password=password_sftp)
@@ -83,7 +88,7 @@ def to_sent_to_sftp(path, host):
         transport.close()
 
 
-def test_folder(host):
+def test_folder(host: str) -> None:
     """Проверить есть ли xml в очереди на обработку"""
     transport = paramiko.Transport(host)
     transport.connect(None, username=username_sftp, password=password_sftp)
@@ -125,7 +130,7 @@ def get_server_address(path: str) -> str:
         sys.exit(1)
 
 
-def validate_xsd(path, version='14_2'):
+def validate_xsd(path: str, version='14_2') -> None:
     """Валидация схемы"""
     if 'outgoing' in path:
         schema_path = f'src\\schemes\\{version}\\fcsIntegration.xsd'
@@ -138,15 +143,15 @@ def validate_xsd(path, version='14_2'):
     # Загрузка xml
     xml = etree.parse(path)
 
-    a = path.split('\\')[1]
-    b = schema_path.split('\\')[2]
+    file_name = path.split('\\')[1]
+    schema_number = schema_path.split('\\')[2]
 
     # Проверка
     if not schema.validate(xml):
         print(schema.error_log)
         sys.exit(1)
     else:
-        print(f'{a} соответствует схеме {b}')
+        print(f'{file_name} соответствует схеме {schema_number}')
 
 
 def get_path_xml() -> str:
@@ -160,18 +165,16 @@ def get_path_xml() -> str:
         return os.path.relpath(os.path.join('outgoing', os.listdir('outgoing')[0]))
     elif a == 1 and not os.listdir('outgoing')[0].endswith('.xml'):
         print(f'В папке "outgoing" нет XML-файла! Необходимо добавить 1 XML-файл, остальные файлы удалить!')
-        sys.exit(1)
     elif a == 0:
         print(f'Папка "outgoing" пустая! Необходимо добавить 1 XML-файл!')
-        sys.exit(1)
     else:
         print(f'В папке "outgoing" больше 1 файла ({a})! Необходимо оставить 1 XML-файл, остальные файлы удалить!')
-        sys.exit(1)
+    sys.exit(1)
 
 
-def current_date_and_time_iso():
+def current_date_and_time_iso() -> str:
     return f'{datetime.now().isoformat()[:-3]}+03:00'
 
 
-def current_year():
+def current_year() -> str:
     return f'{datetime.now().year}'

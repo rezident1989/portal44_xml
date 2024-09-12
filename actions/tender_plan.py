@@ -1,8 +1,8 @@
 from copy import deepcopy
 from xml.etree.ElementTree import Element
 
-from src.helper.help_func import open_xml, random_number, current_date_and_time_iso, current_year
-from src.helper.namespace import namespace as ns
+from src.system_functions import open_xml, random_number, current_date_and_time_iso, current_year
+from src.namespace import namespace as ns
 
 
 def tender_plan_2020(path_xml: str) -> list[Element]:

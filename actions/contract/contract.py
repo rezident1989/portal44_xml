@@ -1,6 +1,6 @@
 import copy
-from src.helper.namespace import namespace as ns
-from src.helper.help_func import open_xml, random_number
+from src.namespace import namespace as ns
+from src.system_functions import open_xml, random_number
 from datetime import datetime
 import xml.etree.ElementTree as ET
 

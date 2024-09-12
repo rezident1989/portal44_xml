@@ -7,7 +7,7 @@ from actions.notification.ef_2020 import ef_notification, ef_final_protocol
 from actions.notification.eok_2020 import eok_sop
 from actions.notification.ezt_2020 import ezt_notification, ezt_final_protocol
 from actions.tender_plan import tender_plan_2020
-from src.helper.help_func import clear_folder, get_type_xml, get_server_address, create_xml, to_sent_to_sftp, \
+from src.system_functions import clear_folder, get_type_xml, get_server_address, create_xml, to_sent_to_sftp, \
     remove_file, test_folder, validate_xsd, get_path_xml
 
 

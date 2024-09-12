@@ -1,8 +1,8 @@
 from secrets import token_hex
 from xml.etree.ElementTree import Element, SubElement
 
-from src.helper.help_func import open_xml, random_number, current_date_and_time_iso
-from src.helper.namespace import namespace as ns
+from src.system_functions import open_xml, random_number, current_date_and_time_iso
+from src.namespace import namespace as ns
 
 
 def confirmation(path_xml: str) -> list[Element]:
