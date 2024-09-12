@@ -1,4 +1,4 @@
-from src.helper.handler import handler
+from actions.handler import handler
 
 
 if __name__ == '__main__':

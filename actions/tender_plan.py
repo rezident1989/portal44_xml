@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from copy import deepcopy
 
-from src.helper.help_func import open_xml, random_number, current_date_and_time_iso
+from src.helper.help_func import open_xml, random_number, current_date_and_time_iso, current_year
 from src.helper.namespace import namespace as ns
 
 
@@ -26,7 +26,7 @@ def tender_plan_2020(doc_xml):
         main_elem.find('./ns3:planNumber', ns).text  # planNumber
     except AttributeError:
         child = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}planNumber')
-        child.text = '2024' + str(random_number(14))
+        child.text = current_year() + str(random_number(14))
         main_elem.insert(2, child)
 
     elem = main_elem.find('./ns3:commonInfo', ns)
@@ -39,15 +39,23 @@ def tender_plan_2020(doc_xml):
     child.text = current_date_and_time_iso()
     elem.insert(3, child)
 
-    all_positions = (main_elem.findall('.//ns3:position/ns3:commonInfo', ns) +
-                     main_elem.findall('.//ns3:specialPurchasePosition', ns))
+    positions = main_elem.findall('.//ns3:position/ns3:commonInfo', ns)
+    special_positions = main_elem.findall('.//ns3:specialPurchasePosition', ns)
 
-    for position in all_positions:
+    for position in positions:
         try:
             position.find('.//ns3:positionNumber', ns).text
         except AttributeError:
             child = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}positionNumber')  # positionNumber
-            child.text = f'2024{random_number(20)}'
+            child.text = f'{current_year()}{random_number(20)}'
             position.insert(0, child)
+
+    for position in special_positions:
+        try:
+            position.find('.//ns3:positionNumber', ns).text
+        except AttributeError:
+            child = ET.Element('{http://zakupki.gov.ru/oos/TPtypes/1}positionNumber')  # positionNumber
+            child.text = f'{current_year()}{random_number(20)}'
+            position.insert(1, child)
 
     return [root]

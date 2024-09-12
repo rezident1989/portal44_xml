@@ -79,7 +79,7 @@ def ef_final_protocol(outgoing_xml):
     Новый статус: Заключение контракта"""
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/notification/EF2020/epProtocolEF2020Final.xml")
+    template = open_xml("templates/notification/EF2020/epProtocolEF2020FinalPart.xml")
 
     template.find('.//ns5:id', ns).text = random_number(8)
     template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text

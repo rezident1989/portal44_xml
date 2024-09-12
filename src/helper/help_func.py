@@ -1,11 +1,13 @@
-import datetime
-import time
-import random
 import os
+import random
 import sys
-import paramiko
+import time
 import xml.etree.ElementTree as ET
+from datetime import datetime
+
+import paramiko
 from lxml import etree
+
 from hidden.sftp_connect import username_sftp, password_sftp
 
 
@@ -50,7 +52,7 @@ def create_xml(tree: []) -> []:
             name_file = i[0].tag.split('}')[1]
         else:
             name_file = 'confirmation'
-        date_time = datetime.datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
+        date_time = datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
         name = "".join(name_file).replace('}', '')
         if os.path.isdir('incoming') is not True:
             os.makedirs('incoming')
@@ -168,4 +170,8 @@ def get_path_xml() -> str:
 
 
 def current_date_and_time_iso():
-    return f'{datetime.datetime.now().isoformat()[:-3]}+03:00'
+    return f'{datetime.now().isoformat()[:-3]}+03:00'
+
+
+def current_year():
+    return f'{datetime.now().year}'
