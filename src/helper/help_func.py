@@ -165,3 +165,7 @@ def get_path_xml() -> str:
     else:
         print(f'В папке "outgoing" больше 1 файла ({a})! Необходимо оставить 1 XML-файл, остальные файлы удалить!')
         sys.exit(1)
+
+
+def current_date_and_time_iso():
+    return f'{datetime.datetime.now().isoformat()[:-3]}+03:00'

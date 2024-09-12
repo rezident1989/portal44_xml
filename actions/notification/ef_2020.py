@@ -22,7 +22,7 @@ def ef_notification(outgoing_xml):
     template.find('.//ns5:id', ns).text = random_number(8)
     template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
     template.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text = purchase_number
-    template.find('.//ns5:docNumber', ns).text = f'23{random_number(17)}'
+    template.find('.//ns5:docNumber', ns).text = f'24{random_number(17)}'
     template.find('.//ns5:plannedPublishDate', ns).text = tree.find('.//ns5:plannedPublishDate', ns).text
     template.find('.//ns5:publishDTInEIS', ns).text = datetime.now().isoformat()[:-3] + '+03:00'
     template.find('.//ns5:purchaseObjectInfo', ns).text = tree.find('.//ns5:purchaseObjectInfo', ns).text
