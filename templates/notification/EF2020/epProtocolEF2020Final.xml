@@ -559,10 +559,10 @@
 					</ns2:admittedInfo>
 				</ns2:applicationInfo>
 			</ns2:applicationsInfo>
-			<ns2:abandonedReason>
-				<ns4:code>EA20IEAOR</ns4:code>
-				<ns4:name>По окончании срока подачи заявок подана только одна заявка на участие в закупке (п. 1 ч. 1 ст. 52 Закона № 44-ФЗ). Заявка соответствует требованиям</ns4:name>
-			</ns2:abandonedReason>
+<!--			<ns2:abandonedReason>-->
+<!--				<ns4:code>EA20IEAOR</ns4:code>-->
+<!--				<ns4:name>По окончании срока подачи заявок подана только одна заявка на участие в закупке (п. 1 ч. 1 ст. 52 Закона № 44-ФЗ). Заявка соответствует требованиям</ns4:name>-->
+<!--			</ns2:abandonedReason>-->
 		</ns2:protocolInfo>
 	</ns0:epProtocolEF2020Final>
 </ns0:export>

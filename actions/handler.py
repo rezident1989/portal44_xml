@@ -3,7 +3,7 @@ import sys
 from actions.confirmation import confirmation
 from actions.contract.contract import contract
 from actions.contract.contract_procedure import contract_procedure
-from actions.notification.ef_2020 import ef_notification, ef_final_protocol
+from actions.notification.ef_2020 import ef_notification, ef_final_protocol, ef_submit_offers
 from actions.notification.eok_2020 import eok_sop
 from actions.notification.ezt_2020 import ezt_notification, ezt_final_protocol
 from actions.tender_plan import tender_plan_2020
@@ -29,7 +29,7 @@ def handler(validation=True, send=True):
         files.extend(create_xml(tender_plan_2020(path)))
     elif type_xml == 'epNotificationEF2020':  # Электронный аукцион
         files.extend(create_xml(ef_notification(path)))
-        # files.extend(create_xml(ef_submit_offers(path)))
+        files.extend(create_xml(ef_submit_offers(path)))
         files.extend(create_xml(ef_final_protocol(path)))
     elif type_xml == 'epNotificationEZT2020':  # "Закупка с полки" (или Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)
         files.extend(create_xml(ezt_notification(path)))
