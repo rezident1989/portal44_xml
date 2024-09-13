@@ -29,7 +29,7 @@ def handler(validation=True, send=True):
         files.extend(create_xml(tender_plan_2020(path)))
     elif type_xml == 'epNotificationEF2020':  # Электронный аукцион
         files.extend(create_xml(ef_notification(path)))
-        files.extend(create_xml(ef_submit_offers(path)))
+        # files.extend(create_xml(ef_submit_offers(path)))
         files.extend(create_xml(ef_final_protocol(path)))
     elif type_xml == 'epNotificationEZT2020':  # "Закупка с полки" (или Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)
         files.extend(create_xml(ezt_notification(path)))
@@ -59,5 +59,5 @@ def handler(validation=True, send=True):
         for file in files_to_send:
             to_sent_to_sftp(file, server_address)
 
-    # remove_file(path, 'archive')
+    remove_file(path, 'archive')
     test_folder(server_address)
