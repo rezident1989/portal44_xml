@@ -176,5 +176,9 @@ def current_date_and_time_iso() -> str:
     return f'{datetime.now().isoformat()[:-3]}+03:00'
 
 
+def current_date_and_time() -> str:
+    return f'{datetime.now().strftime("%Y-%m-%d")}+03:00'
+
+
 def current_year() -> str:
     return f'{datetime.now().year}'

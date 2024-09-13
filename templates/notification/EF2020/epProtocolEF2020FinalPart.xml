@@ -165,10 +165,6 @@
 					</ep:admittedInfo>
 				</ep:applicationInfo>
 			</ep:applicationsInfo>
-			<ep:abandonedReason>
-				<base:code>a</base:code>
-				<base:name>a</base:name>
-			</ep:abandonedReason>
 			<ep:customerPOAInfo>
 				<cmn:uuid>a</cmn:uuid>
 				<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>
