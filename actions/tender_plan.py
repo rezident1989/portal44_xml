@@ -1,12 +1,15 @@
 from copy import deepcopy
 from xml.etree.ElementTree import Element
 
-from src.system_functions import open_xml, random_number, current_date_and_time_iso, current_year
+from src.system_functions import open_xml, random_number, current_date_and_time_iso, current_year, get_server_address, \
+    create_xml, validate_xsd, to_sent_to_sftp
 from src.namespace import namespace as ns
 
 
-def tender_plan_2020(path_xml: str) -> list[Element]:
+def tender_plan_2020(path_xml: str):
     """Добавление или редактирование позиции (особой позиции) в опубликованный в ЕИС план-график"""
+
+    server_address = get_server_address(path_xml)
 
     our_xml = open_xml(path_xml)
 
@@ -58,4 +61,6 @@ def tender_plan_2020(path_xml: str) -> list[Element]:
             child.text = f'{current_year()}{random_number(20)}'
             position.insert(1, child)
 
-    return [root]
+    xml = create_xml(root)
+    validate_xsd(xml)
+    to_sent_to_sftp(xml, server_address)

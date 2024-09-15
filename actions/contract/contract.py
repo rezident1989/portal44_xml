@@ -1,12 +1,15 @@
 import copy
-from src.namespace import namespace as ns
-from src.system_functions import open_xml, random_number
-from datetime import datetime
 import xml.etree.ElementTree as ET
+from datetime import datetime
+
+from src.namespace import namespace as ns
+from src.system_functions import open_xml, random_number, create_xml, validate_xsd, to_sent_to_sftp, get_server_address
 
 
 def contract(outgoing_xml):
     """Публикация и редактирование контракта"""
+
+    a = get_server_address(outgoing_xml)
 
     tree = open_xml(outgoing_xml)
     template = open_xml("templates/contract/contract.xml")
@@ -92,4 +95,6 @@ def contract(outgoing_xml):
     except AttributeError:
         main.remove(template.find(".//ns2:protocolDate", ns))
 
-    return [template]
+    xml = create_xml(main)
+    validate_xsd(xml)
+    to_sent_to_sftp(xml, a)

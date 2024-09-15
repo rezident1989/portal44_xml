@@ -21,7 +21,7 @@ def get_type_xml(path: str) -> str:
     return open_xml(path).tag.split('}')[1]
 
 
-def create_xml(elem_list: [Element]) -> [str]:
+def create_xml(elem: Element) -> str:
     """Создать xml файлы и вернуть список их путей """
     path_xml_list = []
     date_time = datetime.now().strftime("%H.%M.%S___%d.%m.%y___")
@@ -29,21 +29,19 @@ def create_xml(elem_list: [Element]) -> [str]:
     if os.path.isdir('incoming') is not True:
         os.makedirs('incoming')
 
-    for elem in elem_list:
+    if 'export' == elem.tag.split('}')[1]:
+        name_file = elem[0].tag.split('}')[1]
+    else:
+        name_file = 'confirmation'
 
-        if 'export' == elem.tag.split('}')[1]:
-            name_file = elem[0].tag.split('}')[1]
-        else:
-            name_file = 'confirmation'
+    name = "".join(name_file).replace('}', '')
 
-        name = "".join(name_file).replace('}', '')
+    path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
+    path_xml_list.append(path_name)
 
-        path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
-        path_xml_list.append(path_name)
+    ElementTree(elem).write(path_name, encoding='utf-8', xml_declaration=True)
 
-        ElementTree(elem).write(path_name, encoding='utf-8', xml_declaration=True)
-
-    return path_xml_list
+    return path_name
 
 
 def random_number(number: int) -> str:
@@ -86,6 +84,7 @@ def to_sent_to_sftp(path: str, host: str) -> None:
         sftp.close()
     if transport:
         transport.close()
+    test_folder(host)
 
 
 def test_folder(host: str) -> None:
@@ -104,11 +103,11 @@ def test_folder(host: str) -> None:
     if count_xml > 0:
         while sum([i.count('.xml') for i in sftp.listdir(folder)]) != 0:
             time.sleep(1)
-            print(f'\rИдет отправка пакетов: {count * "|"}', end=' ')
+            print(f'\rЖдем пока XML обработает КРОН: {count * "|"}', end=' ')
             count += 1
-        print(f'\nПакеты отравлены за {count} сек!')
+        print(f'\rXML обработан за {count} сек!')
     else:
-        print('Пакеты НЕ отравлены!')
+        print('XML НЕ отравлен!')
 
     if sftp:
         sftp.close()
