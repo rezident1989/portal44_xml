@@ -158,13 +158,17 @@ def ef_final_part_protocol(notification, send=True):
         template.find(
             './/ns5:productInfo/ns5:notificationExternalSId', ns).text = notification.purchase_objects[0]
     except (AttributeError, IndexError):
-        pass
+        a = template.find('.//ns5:drugProposalsInfo/..', ns)
+        b = template.find('.//ns5:drugProposalsInfo', ns)
+        a.remove(b)
 
     try:
-        template.find(
-            './/ns5:drugPurchaseObjectInfo/ns5:notificationExternalSId', ns).text = notification.drug_purchase_objects[0]
+        template.find('.//ns5:drugPurchaseObjectInfo/ns5:notificationExternalSId', ns).text = (
+            notification.drug_purchase_objects)[0]
     except (AttributeError, IndexError):
-        pass
+        a = template.find('.//ns5:notDrugProposalsInfo/..', ns)
+        b = template.find('.//ns5:notDrugProposalsInfo', ns)
+        a.remove(b)
 
     xml = create_xml(template)
     validate_xsd(xml)
