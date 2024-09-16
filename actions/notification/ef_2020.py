@@ -157,13 +157,13 @@ def ef_final_part_protocol(notification, send=True):
     try:
         template.find(
             './/ns5:productInfo/ns5:notificationExternalSId', ns).text = notification.purchase_objects[0]
-    except AttributeError:
+    except (AttributeError, IndexError):
         pass
 
     try:
         template.find(
             './/ns5:drugPurchaseObjectInfo/ns5:notificationExternalSId', ns).text = notification.drug_purchase_objects[0]
-    except AttributeError:
+    except (AttributeError, IndexError):
         pass
 
     xml = create_xml(template)
