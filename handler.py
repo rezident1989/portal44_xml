@@ -3,9 +3,7 @@ import sys
 from actions.confirmation import confirmation
 from actions.contract.contract import contract
 from actions.contract.contract_procedure import contract_procedure
-from actions.notification.ef_2020 import ef_notification, ef_final_protocol, ef_submit_offers
-from actions.notification.eok_2020 import eok_sop
-from actions.notification.ezt_2020 import ezt_notification, ezt_final_protocol
+from actions.notification.ef_2020 import ef_notification, ef_submit_offers, ef_final_part_protocol
 from actions.tender_plan import tender_plan_2020
 from src.system_functions import clear_folder, get_type_xml, validate_xsd, get_path_xml
 
@@ -16,15 +14,14 @@ def handler():
 
     validate_xsd(path)
     type_xml = get_type_xml(path)
-    print(type_xml)
 
     if type_xml == 'tenderPlan2020Change':  # Тендер-план
         tender_plan_2020(path)
     elif type_xml == 'epNotificationEF2020':  # Электронный аукцион
-        confirmation(path)
-        data = ef_notification(path)
-        ef_submit_offers(path, data)
-        ef_final_protocol(path, data)
+        confirmation(path, send=False)
+        data = ef_notification(path, send=False)
+        ef_submit_offers(data, send=False)
+        ef_final_part_protocol(data, send=False)
     # elif type_xml == 'epNotificationEZT2020':  # "Закупка с полки" (или Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)
     #     confirmation(path)
     #     ezt_notification(path)

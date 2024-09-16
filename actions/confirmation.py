@@ -6,7 +6,7 @@ from src.system_functions import open_xml, random_number, current_date_and_time_
 from src.namespace import namespace as ns
 
 
-def confirmation(path_xml: str):
+def confirmation(path_xml: str, send=True):
     """Подтверждение"""
 
     server_address = get_server_address(path_xml)
@@ -33,4 +33,5 @@ def confirmation(path_xml: str):
 
     xml = create_xml(root)
     # validate_xsd(xml)
-    to_sent_to_sftp(xml, server_address)
+    if send:
+        to_sent_to_sftp(xml, server_address)
