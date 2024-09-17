@@ -1,8 +1,9 @@
 import copy
+import xml.etree.ElementTree as ET
+from datetime import datetime
+
 from src.namespace import namespace as ns
 from src.system_functions import open_xml, random_number
-from datetime import datetime
-import xml.etree.ElementTree as ET
 
 
 #  Открытый конкурс в электронной форме

@@ -1,6 +1,7 @@
+from datetime import datetime
+
 from src.namespace import namespace as ns
 from src.system_functions import open_xml, random_number
-from datetime import datetime
 
 #  "Закупка с полки" (или Закупка товаров согласно ч.12 ст. 93 № 44-ФЗ)
 

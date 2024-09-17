@@ -1,9 +1,9 @@
 from secrets import token_hex
 from xml.etree.ElementTree import Element, SubElement
 
+from src.namespace import namespace as ns
 from src.system_functions import open_xml, random_number, current_date_and_time_iso, get_server_address, create_xml, \
     to_sent_to_sftp
-from src.namespace import namespace as ns
 
 
 def confirmation(path_xml: str, send=True):
@@ -32,6 +32,6 @@ def confirmation(path_xml: str, send=True):
         text = our_xml.find('.//ns1:id', ns).text
 
     xml = create_xml(root)
-    # validate_xsd(xml)
+
     if send:
         to_sent_to_sftp(xml, server_address)

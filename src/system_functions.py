@@ -32,11 +32,15 @@ def create_xml(elem: Element) -> str:
     if 'export' == elem.tag.split('}')[1]:
         name_file = elem[0].tag.split('}')[1]
     else:
-        name_file = 'confirmation'
+        name_file = elem.tag.split('}')[1]
 
     name = "".join(name_file).replace('}', '')
 
-    path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
+    if name_file == 'cpElectronicContract':
+        path_name = os.path.relpath(os.path.join('incoming', '10_CpElectronicContract.xml'))
+    else:
+        path_name = os.path.relpath(os.path.join('incoming', f'{date_time}{name}.xml'))
+
     path_xml_list.append(path_name)
 
     ElementTree(elem).write(path_name, encoding='utf-8', xml_declaration=True)
@@ -72,8 +76,11 @@ def to_sent_to_sftp(path: str, host: str) -> None:
     transport = paramiko.Transport(host)
     transport.connect(None, username=username_sftp, password=password_sftp)
     sftp = paramiko.SFTPClient.from_transport(transport)
-    if host == 'testaisgz4.gz-spb.ru':
-        folder = '../OOC/IncomingCog/'
+
+    if 'CpElectronicContract' in path.split('\\')[-1:][0]:
+        folder = '/castle/www/gpospb/cometp/data/CpElectronicContractsTest/'
+    elif host == 'testaisgz4.gz-spb.ru':
+        folder = '/OOC/IncomingCog/'
     else:
         folder = '../OOC/Incoming/'
     a = path.split('\\')[-1:][0]

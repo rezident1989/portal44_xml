@@ -1,9 +1,9 @@
 from copy import deepcopy
 from xml.etree.ElementTree import Element
 
+from src.namespace import namespace as ns
 from src.system_functions import open_xml, random_number, current_date_and_time_iso, current_year, get_server_address, \
     create_xml, validate_xsd, to_sent_to_sftp
-from src.namespace import namespace as ns
 
 
 def tender_plan_2020(path_xml: str):

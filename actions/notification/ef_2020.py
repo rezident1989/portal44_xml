@@ -7,10 +7,6 @@ from src.namespace import namespace as ns
 from src.system_functions import (open_xml, random_number, create_xml, validate_xsd, to_sent_to_sftp,
                                   get_server_address, current_year, current_date_and_time)
 
-#  Электронный аукцион (или Аукцион в электронной форме)
-
-purchase_number = None
-
 
 def ef_notification(outgoing_xml, send=True):
     """Извещение о проведении ЭА20.
