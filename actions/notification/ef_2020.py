@@ -30,9 +30,9 @@ def ef_notification(outgoing_xml, send=True):
     notification.publish_in_eis = datetime.now().isoformat()[:-3] + '+03:00'
     notification.stages = tuple(
         random_number(8) for _ in range(len(outgoing.findall('.//ns5:stageInfo', ns))))
-    notification.purchase_objects = tuple(
+    notification.purchase_objects_sid = tuple(
         random_number(8) for _ in range(len(outgoing.findall('.//ns6:purchaseObject', ns))))
-    notification.drug_purchase_objects = tuple(
+    notification.drug_purchase_objects_sid = tuple(
         random_number(8) for _ in range(len(outgoing.findall('.//ns6:drugPurchaseObjectInfo', ns))))
     notification.drugs = tuple(
         random_number(8) for _ in range(len(outgoing.findall('.//ns6:drugInfo', ns))))
@@ -45,12 +45,6 @@ def ef_notification(outgoing_xml, send=True):
     child = ET.Element('{http://zakupki.gov.ru/oos/EPtypes/1}id')
     child.text = notification.id
     name_xml.insert(0, child)
-
-    notification.drug_external_sid = tuple(
-        el.text for el in root.findall('.//ns6:drugPurchaseObjectInfo/ns6:externalSid', ns))
-
-    notification.purchase_external_sid = tuple(
-        el.text for el in root.findall('.//ns6:purchaseObject/ns6:externalSid', ns))
 
     try:
         root.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text
@@ -82,7 +76,7 @@ def ef_notification(outgoing_xml, send=True):
             purchase_object.find('.//ns6:sid', ns).text
         except AttributeError:
             child = ET.Element('{http://zakupki.gov.ru/oos/common/1}sid')
-            child.text = notification.purchase_objects[i]
+            child.text = notification.purchase_objects_sid[i]
             purchase_object.insert(0, child)
 
     for i, drug_purchase_object in enumerate(root.findall('.//ns6:drugPurchaseObjectInfo', ns)):
@@ -90,7 +84,7 @@ def ef_notification(outgoing_xml, send=True):
             drug_purchase_object.find('.//ns6:sid', ns).text
         except AttributeError:
             child = ET.Element('{http://zakupki.gov.ru/oos/common/1}sid')
-            child.text = notification.drug_purchase_objects[i]
+            child.text = notification.drug_purchase_objects_sid[i]
             drug_purchase_object.insert(0, child)
 
     for i, drug in enumerate(root.findall('.//ns6:drugInfo', ns)):
@@ -113,6 +107,13 @@ def ef_notification(outgoing_xml, send=True):
             child_2 = ET.Element('{http://zakupki.gov.ru/oos/common/1}docDate')
             child_2.text = datetime.now().isoformat()[:-3] + '+03:00'
             attachment.insert(3, child_2)
+
+    # TODO Подумать как оптимизировать
+    notification.purchase_objects_external_sid = tuple(
+        el.text for el in root.findall('.//ns6:purchaseObject/ns6:externalSid', ns))
+
+    notification.drug_external_sid = tuple(
+        el.text for el in root.findall('.//ns6:drugPurchaseObjectInfo/ns6:externalSid', ns))
 
     xml = create_xml(root)
     validate_xsd(xml)
@@ -164,30 +165,30 @@ def ef_final_part_protocol(notification, send=True):
     b = template.find('.//ns5:notDrugProposalsInfo', ns)
     c = template.find('.//ns5:drugProposalsInfo', ns)
 
-    if len(notification.purchase_objects) > 0:
+    if len(notification.purchase_objects_sid) > 0:
         a.remove(c)
-        for _ in range(1, len(notification.purchase_objects)):
+        for _ in range(1, len(notification.purchase_objects_sid)):
             b.insert(0, copy.deepcopy(template.find('.//ns5:productInfo', ns)))
         for i, not_drug_proposals_info in enumerate(
                 template.findall('.//ns5:productInfo/ns5:sid', ns)):
             not_drug_proposals_info.text = random_number(8)
         for i, not_drug_proposals_info in enumerate(
                 template.findall('.//ns5:productInfo/ns5:notificationSid', ns)):
-            not_drug_proposals_info.text = notification.purchase_objects[i]
+            not_drug_proposals_info.text = notification.purchase_objects_sid[i]
         for i, not_drug_proposals_info in enumerate(
                 template.findall('.//ns5:productInfo/ns5:notificationExternalSId', ns)):
-            not_drug_proposals_info.text = notification.purchase_external_sid[i]
+            not_drug_proposals_info.text = notification.purchase_objects_external_sid[i]
 
     else:
         a.remove(b)
-        for _ in range(1, len(notification.drug_purchase_objects)):
+        for _ in range(1, len(notification.drug_purchase_objects_sid)):
             b.insert(0, copy.deepcopy(template.find('.//ns5:drugProductInfo', ns)))
         for i, drug_proposals_info in enumerate(
                 template.findall('.//ns5:drugProductInfo/ns5:sid', ns)):
             drug_proposals_info.text = random_number(8)
         for i, drug_proposals_info in enumerate(
                 template.findall('.//ns5:drugProductInfo/ns5:notificationSid', ns)):
-            drug_proposals_info.text = notification.drug_purchase_objects[i]
+            drug_proposals_info.text = notification.drug_purchase_objects_sid[i]
         for i, drug_proposals_info in enumerate(
                 template.findall('.//ns5:drugProductInfo/ns5:notificationExternalSId', ns)):
             drug_proposals_info.text = notification.drug_external_sid[i]

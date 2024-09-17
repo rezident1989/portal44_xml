@@ -13,9 +13,9 @@ class Notification:
     publish_in_eis: str = None
     stages: tuple = None
 
-    purchase_objects: tuple = None
-    purchase_external_sid: tuple = None
+    purchase_objects_sid: tuple = None
+    purchase_objects_external_sid: tuple = None
 
-    drug_purchase_objects: tuple = None
+    drug_purchase_objects_sid: tuple = None
     drug_external_sid: tuple = None
     drugs: tuple = None
