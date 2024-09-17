@@ -103,7 +103,7 @@ def test_folder(host: str) -> None:
     if count_xml > 0:
         while sum([i.count('.xml') for i in sftp.listdir(folder)]) != 0:
             time.sleep(1)
-            print(f'\rЖдем пока XML обработает КРОН: {count * "|"}', end=' ')
+            print(f'\rЖдем, пока XML обработает КРОН: {count * "|"}', end=' ')
             count += 1
         print(f'\rXML обработан за {count} сек!')
     else:

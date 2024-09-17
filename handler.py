@@ -3,6 +3,7 @@ import sys
 from actions.confirmation import confirmation
 from actions.contract.contract import contract
 from actions.contract.contract_procedure import contract_procedure
+from actions.draft_contract.cp_contract_sign import cp_contract_sign
 from actions.notification.ef_2020 import ef_notification, ef_submit_offers, ef_final_part_protocol
 from actions.tender_plan import tender_plan_2020
 from src.system_functions import clear_folder, get_type_xml, validate_xsd, get_path_xml, remove_file
@@ -11,6 +12,7 @@ from src.system_functions import clear_folder, get_type_xml, validate_xsd, get_p
 def handler():
     path = get_path_xml()
     clear_folder('incoming')
+    data = None
 
     validate_xsd(path)
     type_xml = get_type_xml(path)

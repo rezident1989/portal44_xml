@@ -154,21 +154,20 @@ def ef_final_part_protocol(notification, send=True):
     template.find('.//ns5:procedureDT', ns).text = notification.publish_in_eis
     template.find('.//ns5:signDT', ns).text = current_date_and_time()
 
-    try:
-        template.find(
-            './/ns5:productInfo/ns5:notificationExternalSId', ns).text = notification.purchase_objects[0]
-    except (AttributeError, IndexError):
-        a = template.find('.//ns5:drugProposalsInfo/..', ns)
-        b = template.find('.//ns5:drugProposalsInfo', ns)
-        a.remove(b)
+    a = template.find('.//ns5:proposalsInfo', ns)
+    b = template.find('.//ns5:notDrugProposalsInfo', ns)
+    c = template.find('.//ns5:drugProposalsInfo', ns)
 
-    try:
-        template.find('.//ns5:drugPurchaseObjectInfo/ns5:notificationExternalSId', ns).text = (
-            notification.drug_purchase_objects)[0]
-    except (AttributeError, IndexError):
-        a = template.find('.//ns5:notDrugProposalsInfo/..', ns)
-        b = template.find('.//ns5:notDrugProposalsInfo', ns)
+    if len(notification.purchase_objects) > 0:
+        a.remove(c)
+        a = template.find('.//ns5:productInfo/ns5:notificationExternalSId', ns)
+        a.text = notification.purchase_objects[0]
+
+    else:
         a.remove(b)
+        a = template.find('.//ns5:drugProductInfo/ns5:notificationExternalSId', ns)
+        a.text = notification.drug_purchase_objects[0]
+
 
     xml = create_xml(template)
     validate_xsd(xml)
