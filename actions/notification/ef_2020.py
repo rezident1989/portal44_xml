@@ -160,14 +160,19 @@ def ef_final_part_protocol(notification, send=True):
 
     if len(notification.purchase_objects) > 0:
         a.remove(c)
-        a = template.find('.//ns5:productInfo/ns5:notificationExternalSId', ns)
-        a.text = notification.purchase_objects[0]
+        for _ in range(1, len(notification.purchase_objects)):
+            b.insert(0, copy.deepcopy(template.find('.//ns5:productInfo', ns)))
+        for i, not_drug_proposals_info in enumerate(
+                template.findall('.//ns5:productInfo/ns5:notificationExternalSId', ns)):
+            not_drug_proposals_info.text = notification.purchase_objects[i]
 
     else:
         a.remove(b)
-        a = template.find('.//ns5:drugProductInfo/ns5:notificationExternalSId', ns)
-        a.text = notification.drug_purchase_objects[0]
-
+        for _ in range(1, len(notification.drug_purchase_objects)):
+            b.insert(0, copy.deepcopy(template.find('.//ns5:drugProductInfo', ns)))
+        for i, drug_proposals_info in enumerate(
+                template.findall('.//ns5:drugProductInfo/ns5:notificationExternalSId', ns)):
+            drug_proposals_info.text = notification.drug_purchase_objects[i]
 
     xml = create_xml(template)
     validate_xsd(xml)

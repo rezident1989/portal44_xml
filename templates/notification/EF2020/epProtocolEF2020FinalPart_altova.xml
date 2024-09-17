@@ -99,71 +99,71 @@
 				</cmn:commissionMembers>
 				<cmn:addInfo>a</cmn:addInfo>
 			</ep:commissionInfo>
-<!--			<ep:applicationsInfo>-->
-<!--				<ep:applicationInfo>-->
-<!--					<ep:commonInfo>-->
-<!--						<ep:appNumber>a</ep:appNumber>-->
-<!--						<ep:appDT>2001-12-17T09:30:47Z</ep:appDT>-->
-<!--						<ep:admissionResultsInfo>-->
-<!--							<ep:admissionResultInfo>-->
-<!--								<ep:commissionMemberInfo>-->
-<!--									<cmn:memberNumber>2</cmn:memberNumber>-->
-<!--									<cmn:nameInfo>-->
-<!--										<cmn:lastName>a</cmn:lastName>-->
-<!--										<cmn:firstName>a</cmn:firstName>-->
-<!--										<cmn:middleName>a</cmn:middleName>-->
-<!--									</cmn:nameInfo>-->
-<!--									<cmn:role>-->
-<!--										<cmn:code>a</cmn:code>-->
-<!--										<cmn:name>a</cmn:name>-->
-<!--										<cmn:rightVote>true</cmn:rightVote>-->
-<!--									</cmn:role>-->
-<!--									<cmn:powerOfAttorney>-->
-<!--										<cmn:uuid>a</cmn:uuid>-->
-<!--										<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>-->
-<!--										<cmn:docNum>a</cmn:docNum>-->
-<!--										<cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>-->
-<!--										<cmn:firstPOAInfo>-->
-<!--											<cmn:uuid>a</cmn:uuid>-->
-<!--											<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>-->
-<!--											<cmn:docNum>a</cmn:docNum>-->
-<!--											<cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>-->
-<!--										</cmn:firstPOAInfo>-->
-<!--										<cmn:login>a</cmn:login>-->
-<!--									</cmn:powerOfAttorney>-->
-<!--								</ep:commissionMemberInfo>-->
-<!--								<ep:admitted>true</ep:admitted>-->
-<!--							</ep:admissionResultInfo>-->
-<!--						</ep:admissionResultsInfo>-->
-<!--					</ep:commonInfo>-->
-<!--					<ep:finalPrice>0</ep:finalPrice>-->
-<!--					<ep:lastPriceOffer>-->
-<!--						<ep:price>0</ep:price>-->
-<!--						<ep:date>2001-12-17T09:30:47Z</ep:date>-->
-<!--						<ep:increaseInitialPrice>true</ep:increaseInitialPrice>-->
-<!--					</ep:lastPriceOffer>-->
-<!--					<ep:correspondenciesInfo>-->
-<!--						<ep:correspondenceInfo>-->
-<!--							<ep:compatible>true</ep:compatible>-->
-<!--							<ep:preferenseInfo>-->
-<!--								<cmn:preferenseRequirementInfo>-->
-<!--									<base:shortName>a</base:shortName>-->
-<!--									<base:name>a</base:name>-->
-<!--								</cmn:preferenseRequirementInfo>-->
-<!--								<cmn:prefValue>0</cmn:prefValue>-->
-<!--							</ep:preferenseInfo>-->
-<!--						</ep:correspondenceInfo>-->
-<!--						<ep:increaseContractPrice>0</ep:increaseContractPrice>-->
-<!--						<ep:subcontractorsAttractionVolume>0</ep:subcontractorsAttractionVolume>-->
-<!--					</ep:correspondenciesInfo>-->
-<!--					<ep:admittedInfo>-->
-<!--						<ep:appAdmittedInfo>-->
-<!--							<ep:admitted>true</ep:admitted>-->
-<!--							<ep:appRating>4096</ep:appRating>-->
-<!--						</ep:appAdmittedInfo>-->
-<!--					</ep:admittedInfo>-->
-<!--				</ep:applicationInfo>-->
-<!--			</ep:applicationsInfo>-->
+			<!--			<ep:applicationsInfo>-->
+			<!--				<ep:applicationInfo>-->
+			<!--					<ep:commonInfo>-->
+			<!--						<ep:appNumber>a</ep:appNumber>-->
+			<!--						<ep:appDT>2001-12-17T09:30:47Z</ep:appDT>-->
+			<!--						<ep:admissionResultsInfo>-->
+			<!--							<ep:admissionResultInfo>-->
+			<!--								<ep:commissionMemberInfo>-->
+			<!--									<cmn:memberNumber>2</cmn:memberNumber>-->
+			<!--									<cmn:nameInfo>-->
+			<!--										<cmn:lastName>a</cmn:lastName>-->
+			<!--										<cmn:firstName>a</cmn:firstName>-->
+			<!--										<cmn:middleName>a</cmn:middleName>-->
+			<!--									</cmn:nameInfo>-->
+			<!--									<cmn:role>-->
+			<!--										<cmn:code>a</cmn:code>-->
+			<!--										<cmn:name>a</cmn:name>-->
+			<!--										<cmn:rightVote>true</cmn:rightVote>-->
+			<!--									</cmn:role>-->
+			<!--									<cmn:powerOfAttorney>-->
+			<!--										<cmn:uuid>a</cmn:uuid>-->
+			<!--										<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>-->
+			<!--										<cmn:docNum>a</cmn:docNum>-->
+			<!--										<cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>-->
+			<!--										<cmn:firstPOAInfo>-->
+			<!--											<cmn:uuid>a</cmn:uuid>-->
+			<!--											<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>-->
+			<!--											<cmn:docNum>a</cmn:docNum>-->
+			<!--											<cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>-->
+			<!--										</cmn:firstPOAInfo>-->
+			<!--										<cmn:login>a</cmn:login>-->
+			<!--									</cmn:powerOfAttorney>-->
+			<!--								</ep:commissionMemberInfo>-->
+			<!--								<ep:admitted>true</ep:admitted>-->
+			<!--							</ep:admissionResultInfo>-->
+			<!--						</ep:admissionResultsInfo>-->
+			<!--					</ep:commonInfo>-->
+			<!--					<ep:finalPrice>0</ep:finalPrice>-->
+			<!--					<ep:lastPriceOffer>-->
+			<!--						<ep:price>0</ep:price>-->
+			<!--						<ep:date>2001-12-17T09:30:47Z</ep:date>-->
+			<!--						<ep:increaseInitialPrice>true</ep:increaseInitialPrice>-->
+			<!--					</ep:lastPriceOffer>-->
+			<!--					<ep:correspondenciesInfo>-->
+			<!--						<ep:correspondenceInfo>-->
+			<!--							<ep:compatible>true</ep:compatible>-->
+			<!--							<ep:preferenseInfo>-->
+			<!--								<cmn:preferenseRequirementInfo>-->
+			<!--									<base:shortName>a</base:shortName>-->
+			<!--									<base:name>a</base:name>-->
+			<!--								</cmn:preferenseRequirementInfo>-->
+			<!--								<cmn:prefValue>0</cmn:prefValue>-->
+			<!--							</ep:preferenseInfo>-->
+			<!--						</ep:correspondenceInfo>-->
+			<!--						<ep:increaseContractPrice>0</ep:increaseContractPrice>-->
+			<!--						<ep:subcontractorsAttractionVolume>0</ep:subcontractorsAttractionVolume>-->
+			<!--					</ep:correspondenciesInfo>-->
+			<!--					<ep:admittedInfo>-->
+			<!--						<ep:appAdmittedInfo>-->
+			<!--							<ep:admitted>true</ep:admitted>-->
+			<!--							<ep:appRating>4096</ep:appRating>-->
+			<!--						</ep:appAdmittedInfo>-->
+			<!--					</ep:admittedInfo>-->
+			<!--				</ep:applicationInfo>-->
+			<!--			</ep:applicationsInfo>-->
 			<!--            <ep:abandonedReason>-->
 			<!--                <base:code>a</base:code>-->
 			<!--                <base:name>a</base:name>-->
@@ -241,6 +241,108 @@
 				</ep:participantInfo>
 				<ep:proposalsInfo>
 					<ep:notificationVersionNumber>0</ep:notificationVersionNumber>
+					<ep:drugProposalsInfo>
+						<ep:drugProductInfo>
+							<ep:sid>2147483647</ep:sid>
+							<ep:externalSid>a</ep:externalSid>
+							<ep:notificationSid>2147483647</ep:notificationSid>
+							<ep:notificationExternalSId>a</ep:notificationExternalSId>
+							<ep:MNNInfoUsingReferenceInfo>
+								<ep:notificationSid>2147483647</ep:notificationSid>
+								<ep:MNNInfo>
+									<cmn:MNNExternalCode>a</cmn:MNNExternalCode>
+									<cmn:MNNName>a</cmn:MNNName>
+								</ep:MNNInfo>
+								<ep:nameDrugProduct>a</ep:nameDrugProduct>
+								<ep:OKPD2Info>
+									<base:OKPDCode>a</base:OKPDCode>
+									<base:OKPDName>a</base:OKPDName>
+								</ep:OKPD2Info>
+								<ep:KTRU>
+									<base:code>a</base:code>
+									<base:name>a</base:name>
+									<base:versionId>2147483647</base:versionId>
+									<base:versionNumber>0</base:versionNumber>
+								</ep:KTRU>
+								<ep:medicamentalFormInfo>
+									<ep:medicamentalFormName>a</ep:medicamentalFormName>
+								</ep:medicamentalFormInfo>
+								<ep:dosageInfo>
+									<ep:dosageName>a</ep:dosageName>
+									<ep:dosageOKEI>
+										<base:code>a</base:code>
+										<base:nationalCode>a</base:nationalCode>
+										<base:name>a</base:name>
+									</ep:dosageOKEI>
+									<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
+									<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
+								</ep:dosageInfo>
+								<ep:OKEIInfo>
+									<base:code>a</base:code>
+									<base:nationalCode>a</base:nationalCode>
+									<base:name>a</base:name>
+								</ep:OKEIInfo>
+								<ep:drugQuantity>0</ep:drugQuantity>
+								<ep:VATRate>18</ep:VATRate>
+								<ep:VATRateInfo>
+									<base:VATCode>a</base:VATCode>
+									<base:VATName>a</base:VATName>
+								</ep:VATRateInfo>
+								<ep:expirationDateCustomFormatInfo>
+									<cmn:expirationDateMonthYear>
+										<cmn:month>1</cmn:month>
+										<cmn:year>0000</cmn:year>
+									</cmn:expirationDateMonthYear>
+								</ep:expirationDateCustomFormatInfo>
+								<ep:isZNVLP>true</ep:isZNVLP>
+								<ep:basicUnit>true</ep:basicUnit>
+								<ep:tradeNamesInfoUsingReferenceInfo>
+									<ep:tradeNameInfo>
+										<ep:sid>2147483647</ep:sid>
+										<ep:notificationSid>2147483647</ep:notificationSid>
+										<ep:tradeInfo>
+											<cmn:positionTradeNameExternalCode>a</cmn:positionTradeNameExternalCode>
+											<cmn:tradeName>a</cmn:tradeName>
+										</ep:tradeInfo>
+										<ep:certificateNumber>a</ep:certificateNumber>
+										<ep:medicamentalFormInfo>
+											<ep:medicamentalFormName>a</ep:medicamentalFormName>
+										</ep:medicamentalFormInfo>
+										<ep:dosageInfo>
+											<ep:dosageName>a</ep:dosageName>
+											<ep:dosageOKEI>
+												<base:code>a</base:code>
+												<base:nationalCode>a</base:nationalCode>
+												<base:name>a</base:name>
+											</ep:dosageOKEI>
+											<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
+											<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
+										</ep:dosageInfo>
+										<ep:packagingInfo>
+											<ep:primaryPackagingInfo>
+												<ep:primaryPackagingName>a</ep:primaryPackagingName>
+											</ep:primaryPackagingInfo>
+											<ep:packaging1Quantity>1.1234567891</ep:packaging1Quantity>
+											<ep:packaging2Quantity>0</ep:packaging2Quantity>
+											<ep:sumaryPackagingQuantity>0</ep:sumaryPackagingQuantity>
+											<ep:completeness>a</ep:completeness>
+										</ep:packagingInfo>
+										<ep:consumerDrugQuantity>0</ep:consumerDrugQuantity>
+										<ep:consumerPackagingQuantity>123456789123456789</ep:consumerPackagingQuantity>
+										<ep:certificateKeeperName>a</ep:certificateKeeperName>
+										<ep:manufacturerInfo>
+											<ep:manufacturerOKSM>
+												<base:countryCode>a</base:countryCode>
+												<base:countryFullName>a</base:countryFullName>
+											</ep:manufacturerOKSM>
+											<ep:manufacturerName>a</ep:manufacturerName>
+										</ep:manufacturerInfo>
+									</ep:tradeNameInfo>
+								</ep:tradeNamesInfoUsingReferenceInfo>
+							</ep:MNNInfoUsingReferenceInfo>
+						</ep:drugProductInfo>
+						<ep:quantityUndefined>true</ep:quantityUndefined>
+					</ep:drugProposalsInfo>
 					<ep:notDrugProposalsInfo>
 						<ep:productInfo>
 							<ep:sid>2147483647</ep:sid>
@@ -464,289 +566,6 @@
 						</ep:parentProductInfo>
 						<ep:quantityUndefined>true</ep:quantityUndefined>
 					</ep:notDrugProposalsInfo>
-					<ep:drugProposalsInfo>
-						<ep:drugProductInfo>
-							<ep:sid>2147483647</ep:sid>
-							<ep:externalSid>a</ep:externalSid>
-							<ep:notificationSid>2147483647</ep:notificationSid>
-							<ep:notificationExternalSId>a</ep:notificationExternalSId>
-							<ep:MNNInfoUsingReferenceInfo>
-								<ep:notificationSid>2147483647</ep:notificationSid>
-								<ep:MNNInfo>
-									<cmn:MNNExternalCode>a</cmn:MNNExternalCode>
-									<cmn:MNNName>a</cmn:MNNName>
-								</ep:MNNInfo>
-								<ep:nameDrugProduct>a</ep:nameDrugProduct>
-								<ep:OKPD2Info>
-									<base:OKPDCode>a</base:OKPDCode>
-									<base:OKPDName>a</base:OKPDName>
-								</ep:OKPD2Info>
-								<ep:KTRU>
-									<base:code>a</base:code>
-									<base:name>a</base:name>
-									<base:versionId>2147483647</base:versionId>
-									<base:versionNumber>0</base:versionNumber>
-								</ep:KTRU>
-								<ep:medicamentalFormInfo>
-									<ep:medicamentalFormName>a</ep:medicamentalFormName>
-								</ep:medicamentalFormInfo>
-								<ep:dosageInfo>
-									<ep:dosageName>a</ep:dosageName>
-									<ep:dosageOKEI>
-										<base:code>a</base:code>
-										<base:nationalCode>a</base:nationalCode>
-										<base:name>a</base:name>
-									</ep:dosageOKEI>
-									<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
-									<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
-								</ep:dosageInfo>
-								<ep:OKEIInfo>
-									<base:code>a</base:code>
-									<base:nationalCode>a</base:nationalCode>
-									<base:name>a</base:name>
-								</ep:OKEIInfo>
-								<ep:drugQuantity>0</ep:drugQuantity>
-								<ep:VATRate>10</ep:VATRate>
-								<ep:VATRateInfo>
-									<base:VATCode>a</base:VATCode>
-									<base:VATName>a</base:VATName>
-								</ep:VATRateInfo>
-								<ep:expirationDateCustomFormatInfo>
-									<cmn:expirationDateMonthYear>
-										<cmn:month>1</cmn:month>
-										<cmn:year>0000</cmn:year>
-									</cmn:expirationDateMonthYear>
-								</ep:expirationDateCustomFormatInfo>
-								<ep:isZNVLP>true</ep:isZNVLP>
-								<ep:basicUnit>true</ep:basicUnit>
-								<ep:tradeNamesInfoUsingReferenceInfo>
-									<ep:tradeNameInfo>
-										<ep:sid>2147483647</ep:sid>
-										<ep:notificationSid>2147483647</ep:notificationSid>
-										<ep:tradeInfo>
-											<cmn:positionTradeNameExternalCode>a</cmn:positionTradeNameExternalCode>
-											<cmn:tradeName>a</cmn:tradeName>
-										</ep:tradeInfo>
-										<ep:certificateNumber>a</ep:certificateNumber>
-										<ep:medicamentalFormInfo>
-											<ep:medicamentalFormName>a</ep:medicamentalFormName>
-										</ep:medicamentalFormInfo>
-										<ep:dosageInfo>
-											<ep:dosageName>a</ep:dosageName>
-											<ep:dosageOKEI>
-												<base:code>a</base:code>
-												<base:nationalCode>a</base:nationalCode>
-												<base:name>a</base:name>
-											</ep:dosageOKEI>
-											<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
-											<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
-										</ep:dosageInfo>
-										<ep:packagingInfo>
-											<ep:primaryPackagingInfo>
-												<ep:primaryPackagingName>a</ep:primaryPackagingName>
-											</ep:primaryPackagingInfo>
-											<ep:packaging1Quantity>1.1234567891</ep:packaging1Quantity>
-											<ep:packaging2Quantity>0</ep:packaging2Quantity>
-											<ep:sumaryPackagingQuantity>0</ep:sumaryPackagingQuantity>
-											<ep:completeness>a</ep:completeness>
-										</ep:packagingInfo>
-										<ep:consumerDrugQuantity>0</ep:consumerDrugQuantity>
-										<ep:consumerPackagingQuantity>123456789123456789</ep:consumerPackagingQuantity>
-										<ep:certificateKeeperName>a</ep:certificateKeeperName>
-										<ep:manufacturerInfo>
-											<ep:manufacturerOKSM>
-												<base:countryCode>a</base:countryCode>
-												<base:countryFullName>a</base:countryFullName>
-											</ep:manufacturerOKSM>
-											<ep:manufacturerName>a</ep:manufacturerName>
-										</ep:manufacturerInfo>
-									</ep:tradeNameInfo>
-									<ep:tradeNameInfo>
-										<ep:sid>2147483647</ep:sid>
-										<ep:notificationSid>2147483647</ep:notificationSid>
-										<ep:tradeInfo>
-											<cmn:positionTradeNameExternalCode>a</cmn:positionTradeNameExternalCode>
-											<cmn:tradeName>a</cmn:tradeName>
-										</ep:tradeInfo>
-										<ep:certificateNumber>a</ep:certificateNumber>
-										<ep:medicamentalFormInfo>
-											<ep:medicamentalFormName>a</ep:medicamentalFormName>
-										</ep:medicamentalFormInfo>
-										<ep:dosageInfo>
-											<ep:dosageName>a</ep:dosageName>
-											<ep:dosageOKEI>
-												<base:code>a</base:code>
-												<base:nationalCode>a</base:nationalCode>
-												<base:name>a</base:name>
-											</ep:dosageOKEI>
-											<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
-											<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
-										</ep:dosageInfo>
-										<ep:packagingInfo>
-											<ep:primaryPackagingInfo>
-												<ep:primaryPackagingName>a</ep:primaryPackagingName>
-											</ep:primaryPackagingInfo>
-											<ep:packaging1Quantity>1.1234567891</ep:packaging1Quantity>
-											<ep:packaging2Quantity>0</ep:packaging2Quantity>
-											<ep:sumaryPackagingQuantity>0</ep:sumaryPackagingQuantity>
-											<ep:completeness>a</ep:completeness>
-										</ep:packagingInfo>
-										<ep:consumerDrugQuantity>0</ep:consumerDrugQuantity>
-										<ep:consumerPackagingQuantity>123456789123456789</ep:consumerPackagingQuantity>
-										<ep:certificateKeeperName>a</ep:certificateKeeperName>
-										<ep:manufacturerInfo>
-											<ep:manufacturerOKSM>
-												<base:countryCode>a</base:countryCode>
-												<base:countryFullName>a</base:countryFullName>
-											</ep:manufacturerOKSM>
-											<ep:manufacturerName>a</ep:manufacturerName>
-										</ep:manufacturerInfo>
-									</ep:tradeNameInfo>
-								</ep:tradeNamesInfoUsingReferenceInfo>
-							</ep:MNNInfoUsingReferenceInfo>
-						</ep:drugProductInfo>
-						<ep:drugProductInfo>
-							<ep:sid>2147483647</ep:sid>
-							<ep:externalSid>a</ep:externalSid>
-							<ep:notificationSid>2147483647</ep:notificationSid>
-							<ep:notificationExternalSId>a</ep:notificationExternalSId>
-							<ep:MNNInfoUsingReferenceInfo>
-								<ep:notificationSid>2147483647</ep:notificationSid>
-								<ep:MNNInfo>
-									<cmn:MNNExternalCode>a</cmn:MNNExternalCode>
-									<cmn:MNNName>a</cmn:MNNName>
-								</ep:MNNInfo>
-								<ep:nameDrugProduct>a</ep:nameDrugProduct>
-								<ep:OKPD2Info>
-									<base:OKPDCode>a</base:OKPDCode>
-									<base:OKPDName>a</base:OKPDName>
-								</ep:OKPD2Info>
-								<ep:KTRU>
-									<base:code>a</base:code>
-									<base:name>a</base:name>
-									<base:versionId>2147483647</base:versionId>
-									<base:versionNumber>0</base:versionNumber>
-								</ep:KTRU>
-								<ep:medicamentalFormInfo>
-									<ep:medicamentalFormName>a</ep:medicamentalFormName>
-								</ep:medicamentalFormInfo>
-								<ep:dosageInfo>
-									<ep:dosageName>a</ep:dosageName>
-									<ep:dosageOKEI>
-										<base:code>a</base:code>
-										<base:nationalCode>a</base:nationalCode>
-										<base:name>a</base:name>
-									</ep:dosageOKEI>
-									<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
-									<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
-								</ep:dosageInfo>
-								<ep:OKEIInfo>
-									<base:code>a</base:code>
-									<base:nationalCode>a</base:nationalCode>
-									<base:name>a</base:name>
-								</ep:OKEIInfo>
-								<ep:drugQuantity>0</ep:drugQuantity>
-								<ep:VATRate>n</ep:VATRate>
-								<ep:VATRateInfo>
-									<base:VATCode>a</base:VATCode>
-									<base:VATName>a</base:VATName>
-								</ep:VATRateInfo>
-								<ep:expirationDateCustomFormatInfo>
-									<cmn:expirationDateMonthYear>
-										<cmn:month>1</cmn:month>
-										<cmn:year>0000</cmn:year>
-									</cmn:expirationDateMonthYear>
-								</ep:expirationDateCustomFormatInfo>
-								<ep:isZNVLP>true</ep:isZNVLP>
-								<ep:basicUnit>true</ep:basicUnit>
-								<ep:tradeNamesInfoUsingReferenceInfo>
-									<ep:tradeNameInfo>
-										<ep:sid>2147483647</ep:sid>
-										<ep:notificationSid>2147483647</ep:notificationSid>
-										<ep:tradeInfo>
-											<cmn:positionTradeNameExternalCode>a</cmn:positionTradeNameExternalCode>
-											<cmn:tradeName>a</cmn:tradeName>
-										</ep:tradeInfo>
-										<ep:certificateNumber>a</ep:certificateNumber>
-										<ep:medicamentalFormInfo>
-											<ep:medicamentalFormName>a</ep:medicamentalFormName>
-										</ep:medicamentalFormInfo>
-										<ep:dosageInfo>
-											<ep:dosageName>a</ep:dosageName>
-											<ep:dosageOKEI>
-												<base:code>a</base:code>
-												<base:nationalCode>a</base:nationalCode>
-												<base:name>a</base:name>
-											</ep:dosageOKEI>
-											<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
-											<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
-										</ep:dosageInfo>
-										<ep:packagingInfo>
-											<ep:primaryPackagingInfo>
-												<ep:primaryPackagingName>a</ep:primaryPackagingName>
-											</ep:primaryPackagingInfo>
-											<ep:packaging1Quantity>1.1234567891</ep:packaging1Quantity>
-											<ep:packaging2Quantity>0</ep:packaging2Quantity>
-											<ep:sumaryPackagingQuantity>0</ep:sumaryPackagingQuantity>
-											<ep:completeness>a</ep:completeness>
-										</ep:packagingInfo>
-										<ep:consumerDrugQuantity>0</ep:consumerDrugQuantity>
-										<ep:consumerPackagingQuantity>123456789123456789</ep:consumerPackagingQuantity>
-										<ep:certificateKeeperName>a</ep:certificateKeeperName>
-										<ep:manufacturerInfo>
-											<ep:manufacturerOKSM>
-												<base:countryCode>a</base:countryCode>
-												<base:countryFullName>a</base:countryFullName>
-											</ep:manufacturerOKSM>
-											<ep:manufacturerName>a</ep:manufacturerName>
-										</ep:manufacturerInfo>
-									</ep:tradeNameInfo>
-									<ep:tradeNameInfo>
-										<ep:sid>2147483647</ep:sid>
-										<ep:notificationSid>2147483647</ep:notificationSid>
-										<ep:tradeInfo>
-											<cmn:positionTradeNameExternalCode>a</cmn:positionTradeNameExternalCode>
-											<cmn:tradeName>a</cmn:tradeName>
-										</ep:tradeInfo>
-										<ep:certificateNumber>a</ep:certificateNumber>
-										<ep:medicamentalFormInfo>
-											<ep:medicamentalFormName>a</ep:medicamentalFormName>
-										</ep:medicamentalFormInfo>
-										<ep:dosageInfo>
-											<ep:dosageName>a</ep:dosageName>
-											<ep:dosageOKEI>
-												<base:code>a</base:code>
-												<base:nationalCode>a</base:nationalCode>
-												<base:name>a</base:name>
-											</ep:dosageOKEI>
-											<ep:dosageValue>1234567891.1234567891</ep:dosageValue>
-											<ep:dosageGRLSValue>a</ep:dosageGRLSValue>
-										</ep:dosageInfo>
-										<ep:packagingInfo>
-											<ep:primaryPackagingInfo>
-												<ep:primaryPackagingName>a</ep:primaryPackagingName>
-											</ep:primaryPackagingInfo>
-											<ep:packaging1Quantity>1.1234567891</ep:packaging1Quantity>
-											<ep:packaging2Quantity>0</ep:packaging2Quantity>
-											<ep:sumaryPackagingQuantity>0</ep:sumaryPackagingQuantity>
-											<ep:completeness>a</ep:completeness>
-										</ep:packagingInfo>
-										<ep:consumerDrugQuantity>0</ep:consumerDrugQuantity>
-										<ep:consumerPackagingQuantity>123456789123456789</ep:consumerPackagingQuantity>
-										<ep:certificateKeeperName>a</ep:certificateKeeperName>
-										<ep:manufacturerInfo>
-											<ep:manufacturerOKSM>
-												<base:countryCode>a</base:countryCode>
-												<base:countryFullName>a</base:countryFullName>
-											</ep:manufacturerOKSM>
-											<ep:manufacturerName>a</ep:manufacturerName>
-										</ep:manufacturerInfo>
-									</ep:tradeNameInfo>
-								</ep:tradeNamesInfoUsingReferenceInfo>
-							</ep:MNNInfoUsingReferenceInfo>
-						</ep:drugProductInfo>
-						<ep:quantityUndefined>true</ep:quantityUndefined>
-					</ep:drugProposalsInfo>
 				</ep:proposalsInfo>
 			</ep:appParticipantInfo>
 			<ep:extPrintFormInfo>
