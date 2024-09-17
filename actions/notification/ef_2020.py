@@ -46,6 +46,12 @@ def ef_notification(outgoing_xml, send=True):
     child.text = notification.id
     name_xml.insert(0, child)
 
+    notification.drug_external_sid = tuple(
+        el.text for el in root.findall('.//ns6:drugPurchaseObjectInfo/ns6:externalSid', ns))
+
+    notification.purchase_external_sid = tuple(
+        el.text for el in root.findall('.//ns6:purchaseObject/ns6:externalSid', ns))
+
     try:
         root.find('.//ns5:commonInfo/ns5:purchaseNumber', ns).text
     except AttributeError:
@@ -163,16 +169,28 @@ def ef_final_part_protocol(notification, send=True):
         for _ in range(1, len(notification.purchase_objects)):
             b.insert(0, copy.deepcopy(template.find('.//ns5:productInfo', ns)))
         for i, not_drug_proposals_info in enumerate(
-                template.findall('.//ns5:productInfo/ns5:notificationExternalSId', ns)):
+                template.findall('.//ns5:productInfo/ns5:sid', ns)):
+            not_drug_proposals_info.text = random_number(8)
+        for i, not_drug_proposals_info in enumerate(
+                template.findall('.//ns5:productInfo/ns5:notificationSid', ns)):
             not_drug_proposals_info.text = notification.purchase_objects[i]
+        for i, not_drug_proposals_info in enumerate(
+                template.findall('.//ns5:productInfo/ns5:notificationExternalSId', ns)):
+            not_drug_proposals_info.text = notification.purchase_external_sid[i]
 
     else:
         a.remove(b)
         for _ in range(1, len(notification.drug_purchase_objects)):
             b.insert(0, copy.deepcopy(template.find('.//ns5:drugProductInfo', ns)))
         for i, drug_proposals_info in enumerate(
-                template.findall('.//ns5:drugProductInfo/ns5:notificationExternalSId', ns)):
+                template.findall('.//ns5:drugProductInfo/ns5:sid', ns)):
+            drug_proposals_info.text = random_number(8)
+        for i, drug_proposals_info in enumerate(
+                template.findall('.//ns5:drugProductInfo/ns5:notificationSid', ns)):
             drug_proposals_info.text = notification.drug_purchase_objects[i]
+        for i, drug_proposals_info in enumerate(
+                template.findall('.//ns5:drugProductInfo/ns5:notificationExternalSId', ns)):
+            drug_proposals_info.text = notification.drug_external_sid[i]
 
     xml = create_xml(template)
     validate_xsd(xml)
