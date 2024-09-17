@@ -38,6 +38,7 @@ def handler():
         confirmation(path)  # Пакет данных: Уведомление о результатах обработки информационного пакета
 
     elif type_xml == 'cpElectronicContract':
+        confirmation(path)
         cp_electronic_contract(path)  # Электронный контракт
         cp_contract_sign(path)  # Подписанный контракт
 
