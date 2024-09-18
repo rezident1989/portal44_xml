@@ -7,6 +7,7 @@ from actions.draft_contract.cp_contract_sign import cp_contract_sign
 from actions.draft_contract.cp_electronic_contract import cp_electronic_contract
 from actions.notification.ef_2020 import ef_notification, ef_submit_offers, ef_final_part_protocol
 from actions.tender_plan import tender_plan_2020
+from src.pickle_module import save_data, load_data
 from src.system_functions import clear_folder, get_type_xml, validate_xsd, get_path_xml, remove_file
 
 
@@ -25,6 +26,8 @@ def handler(send=True):
         data = ef_notification(path, send)  # Извещение о проведении ЭА20
         ef_submit_offers(data, send)  # Протокол подачи ценовых предложений ЭА20
         ef_final_part_protocol(data, send)  # Протокол подведения итогов определения поставщика
+        save_data(data, 'purchase')
+        print(load_data('purchase'))
 
     elif type_xml == 'contract':
         confirmation(path, send)
@@ -38,9 +41,10 @@ def handler(send=True):
         confirmation(path, send)  # Пакет данных: Уведомление о результатах обработки информационного пакета
 
     elif type_xml == 'cpElectronicContract':
-        confirmation(path, send)
-        cp_electronic_contract(path, send)  # Электронный контракт
-        cp_contract_sign(path, send)  # Подписанный контракт
+        purchase = load_data('purchase')
+        # confirmation(path, send)
+        # cp_electronic_contract(path, send)  # Электронный контракт
+        cp_contract_sign(path, purchase, send)  # Подписанный контракт
 
     else:
         print('Нет обработки для пакета:', type_xml)

@@ -2,7 +2,7 @@ import copy
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
-from data.data import Notification
+from data.data import Purchase
 from src.namespace import namespace as ns
 from src.system_functions import (open_xml, random_number, create_xml, validate_xsd, to_sent_to_sftp,
                                   get_server_address, current_year, current_date_and_time)
@@ -14,7 +14,7 @@ def ef_notification(outgoing_xml, send=True):
 
     outgoing = open_xml(outgoing_xml)
 
-    notification = Notification()
+    notification = Purchase()
 
     notification.server_address = f'{get_server_address(outgoing_xml)}'
     notification.schema_version = outgoing.find('.//ns1:data', ns).attrib
@@ -111,6 +111,8 @@ def ef_notification(outgoing_xml, send=True):
     notification.drug_external_sid = tuple(
         el.text for el in root.findall('.//ns6:drugPurchaseObjectInfo/ns6:externalSid', ns))
 
+    notification.purchase_code = root.find('.//ns5:purchaseCode', ns).text
+
     xml = create_xml(root)
     validate_xsd(xml)
     if send:
@@ -157,6 +159,12 @@ def ef_final_part_protocol(notification, send=True):
     template.find('.//ns5:procedureDT', ns).text = notification.publish_in_eis
     template.find('.//ns5:signDT', ns).text = current_date_and_time()
 
+    notification.purchase_protocol_sid = tuple(
+        random_number(8) for _ in range(len(notification.purchase_objects_sid)))
+
+    notification.drug_protocol_sid = tuple(
+        random_number(8) for _ in range(len(notification.drug_purchase_objects_sid)))
+
     a = template.find('.//ns5:proposalsInfo', ns)
     b = template.find('.//ns5:notDrugProposalsInfo', ns)
     c = template.find('.//ns5:drugProposalsInfo', ns)
@@ -167,7 +175,7 @@ def ef_final_part_protocol(notification, send=True):
             b.insert(0, copy.deepcopy(template.find('.//ns5:productInfo', ns)))
         for i, not_drug_proposals_info in enumerate(
                 template.findall('.//ns5:productInfo/ns5:sid', ns)):
-            not_drug_proposals_info.text = random_number(8)
+            not_drug_proposals_info.text = notification.purchase_protocol_sid[i]
         for i, not_drug_proposals_info in enumerate(
                 template.findall('.//ns5:productInfo/ns5:notificationSid', ns)):
             not_drug_proposals_info.text = notification.purchase_objects_sid[i]
@@ -181,7 +189,7 @@ def ef_final_part_protocol(notification, send=True):
             c.insert(0, copy.deepcopy(template.find('.//ns5:drugProductInfo', ns)))
         for i, drug_proposals_info in enumerate(
                 template.findall('.//ns5:drugProductInfo/ns5:sid', ns)):
-            drug_proposals_info.text = random_number(8)
+            drug_proposals_info.text = notification.drug_purchase_protocol_sid[i]
         for i, drug_proposals_info in enumerate(
                 template.findall('.//ns5:drugProductInfo/ns5:notificationSid', ns)):
             drug_proposals_info.text = notification.drug_purchase_objects_sid[i]
