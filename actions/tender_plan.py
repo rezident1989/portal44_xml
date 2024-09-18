@@ -6,7 +6,7 @@ from src.system_functions import open_xml, random_number, current_date_and_time_
     create_xml, validate_xsd, to_sent_to_sftp
 
 
-def tender_plan_2020(path_xml: str):
+def tender_plan_2020(path_xml: str, send=True):
     """Добавление или редактирование позиции (особой позиции) в опубликованный в ЕИС план-график"""
 
     server_address = get_server_address(path_xml)
@@ -63,4 +63,5 @@ def tender_plan_2020(path_xml: str):
 
     xml = create_xml(root)
     validate_xsd(xml)
-    to_sent_to_sftp(xml, server_address)
+    if send:
+        to_sent_to_sftp(xml, server_address)

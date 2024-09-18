@@ -6,7 +6,7 @@ from src.namespace import namespace as ns
 from src.system_functions import open_xml, random_number, create_xml, validate_xsd, to_sent_to_sftp, get_server_address
 
 
-def contract(outgoing_xml):
+def contract(outgoing_xml, send=True):
     """Публикация и редактирование контракта"""
 
     a = get_server_address(outgoing_xml)
@@ -97,4 +97,5 @@ def contract(outgoing_xml):
 
     xml = create_xml(main)
     validate_xsd(xml)
-    to_sent_to_sftp(xml, a)
+    if send:
+        to_sent_to_sftp(xml, a)

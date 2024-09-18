@@ -6,7 +6,7 @@ from src.namespace import namespace as ns
 from src.system_functions import open_xml, random_number, get_server_address, create_xml, validate_xsd, to_sent_to_sftp
 
 
-def contract_procedure(outgoing_xml):
+def contract_procedure(outgoing_xml, send=True):
     """Исполнение контракта
     finalStageExecution = 'true' - контракт исполниться
     isEDIBased = 'true' - электронное актирование
@@ -63,4 +63,5 @@ def contract_procedure(outgoing_xml):
 
     xml = create_xml(main)
     validate_xsd(xml)
-    to_sent_to_sftp(xml, b)
+    if send:
+        to_sent_to_sftp(xml, b)

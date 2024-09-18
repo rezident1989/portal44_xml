@@ -63,12 +63,13 @@ def clear_folder(folder: str) -> None:
         os.remove(os.path.abspath(os.path.join(f'{folder}', file)))
 
 
-def remove_file(file: str, folder: str) -> None:
+def remove_file(file: str, folder: str, send=True) -> None:
     """Переместить в папку"""
-    if os.path.isdir(folder) is not True:
-        os.makedirs(folder)
-    a = file.split('\\')[-1:][0]
-    os.replace(file, f'{folder}\\{a}')
+    if send:
+        if os.path.isdir(folder) is not True:
+            os.makedirs(folder)
+        a = file.split('\\')[-1:][0]
+        os.replace(file, f'{folder}\\{a}')
 
 
 def to_sent_to_sftp(path: str, host: str) -> None:
