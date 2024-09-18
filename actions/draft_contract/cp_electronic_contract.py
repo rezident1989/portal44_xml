@@ -1,17 +1,13 @@
-import copy
 import xml.etree.ElementTree as ET
 
 from src.namespace import namespace as ns
-from src.system_functions import open_xml, random_number, create_xml, to_sent_to_sftp, get_server_address
+from src.system_functions import open_xml, random_number, create_xml, to_sent_to_sftp, get_server_address, validate_xsd
 
 
 def cp_electronic_contract(outgoing_xml, send=True):
     """Электронный контракт"""
 
-    outgoing = open_xml(outgoing_xml)
-
-    root = copy.deepcopy(outgoing.find('.//ns1:data', ns))
-    root.tag = f'{{http://zakupki.gov.ru/oos/export/1}}cpElectronicContract'
+    root = open_xml(outgoing_xml)
 
     for i, stage in enumerate(root.findall('.//ns7:stageInfo', ns)):
         try:
@@ -38,6 +34,6 @@ def cp_electronic_contract(outgoing_xml, send=True):
             drug_purchase_object.insert(0, child)
 
     xml = create_xml(root)
-
+    validate_xsd(xml)
     if send:
         to_sent_to_sftp(xml, f'{get_server_address(outgoing_xml)}')

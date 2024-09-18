@@ -27,7 +27,6 @@ def handler(send=True):
         ef_submit_offers(data, send)  # Протокол подачи ценовых предложений ЭА20
         ef_final_part_protocol(data, send)  # Протокол подведения итогов определения поставщика
         save_data(data, 'purchase')
-        print(load_data('purchase'))
 
     elif type_xml == 'contract':
         confirmation(path, send)
@@ -42,8 +41,8 @@ def handler(send=True):
 
     elif type_xml == 'cpElectronicContract':
         purchase = load_data('purchase')
-        # confirmation(path, send)
-        # cp_electronic_contract(path, send)  # Электронный контракт
+        confirmation(path, send)
+        cp_electronic_contract(path, send)  # Электронный контракт
         cp_contract_sign(path, purchase, send)  # Подписанный контракт
 
     else:

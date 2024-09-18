@@ -139,7 +139,7 @@ def get_server_address(path: str) -> str:
 
 def validate_xsd(path: str, version='14_2') -> None:
     """Валидация схемы"""
-    if 'outgoing' in path:
+    if 'outgoing' in path or 'CpElectronicContract' in path:
         schema_path = f'src\\schemes\\{version}\\fcsIntegration.xsd'
     else:
         schema_path = f'src\\schemes\\{version}\\fcsExport.xsd'
