@@ -178,7 +178,7 @@ def ef_final_part_protocol(notification, send=True):
     else:
         a.remove(b)
         for _ in range(1, len(notification.drug_purchase_objects_sid)):
-            b.insert(0, copy.deepcopy(template.find('.//ns5:drugProductInfo', ns)))
+            c.insert(0, copy.deepcopy(template.find('.//ns5:drugProductInfo', ns)))
         for i, drug_proposals_info in enumerate(
                 template.findall('.//ns5:drugProductInfo/ns5:sid', ns)):
             drug_proposals_info.text = random_number(8)
