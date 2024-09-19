@@ -37,3 +37,29 @@ def cp_electronic_contract(outgoing_xml, send=True):
     validate_xsd(xml)
     if send:
         to_sent_to_sftp(xml, f'{get_server_address(outgoing_xml)}')
+
+
+def cp_electronic_contract_eis(outgoing_xml, data, send=True):
+    """Электронный контракт"""
+
+    root = open_xml(outgoing_xml)
+
+    for i, stage in enumerate(root.findall('.//ns7:stageInfo', ns)):
+        stage.find('.//ns7:sid', ns).text = random_number(8)
+
+    for i, purchase_object in enumerate(root.findall('.//ns7:productInfo', ns)):
+        purchase_object.find('.//ns7:sid', ns).text = random_number(8)
+
+    for i, drug_purchase_object in enumerate(root.findall('.//ns7:drugProductInfo', ns)):
+        drug_purchase_object.find('.//ns7:sid', ns).text = random_number(8)
+
+    root.find('.//ns7:purchaseNumber', ns).text = data.purchase_number
+    root.find('.//ns7:purchaseCode', ns).text = data.purchase_code
+    root.find('.//ns7:protocolObjectSid', ns).text = data.purchase_protocol_sid[0]
+    root.find('.//ns7:purchaseObjectSid', ns).text = data.purchase_objects_sid[0]
+    root.find('.//ns7:purchaseObjectExternalSid', ns).text = data.purchase_objects_external_sid[0]
+
+    xml = create_xml(root)
+    validate_xsd(xml)
+    if send:
+        to_sent_to_sftp(xml, f'{get_server_address(outgoing_xml)}')

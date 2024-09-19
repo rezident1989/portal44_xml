@@ -4,7 +4,7 @@ from actions.confirmation import confirmation
 from actions.contract.contract import contract
 from actions.contract.contract_procedure import contract_procedure
 from actions.draft_contract.cp_contract_sign import cp_contract_sign
-from actions.draft_contract.cp_electronic_contract import cp_electronic_contract
+from actions.draft_contract.cp_electronic_contract import cp_electronic_contract, cp_electronic_contract_eis
 from actions.notification.ef_2020 import ef_notification, ef_submit_offers, ef_final_part_protocol
 from actions.tender_plan import tender_plan_2020
 from src.pickle_module import save_data, load_data
@@ -39,6 +39,11 @@ def handler(send=True):
     elif type_xml == 'cpContractProject':
         confirmation(path, send)  # Пакет данных: Уведомление о результатах обработки информационного пакета
 
+    elif '10_CpElectronicContract' in path:
+        purchase = load_data('purchase')
+        cp_electronic_contract_eis(path, purchase, send)  # Электронный контракт ЕИС
+        cp_contract_sign(path, purchase, send)  # Подписанный контракт
+
     elif type_xml == 'cpElectronicContract':
         purchase = load_data('purchase')
         confirmation(path, send)
@@ -54,4 +59,4 @@ def handler(send=True):
 
 
 if __name__ == '__main__':
-    handler(send=True)
+    handler(send=False)

@@ -99,71 +99,71 @@
                 </cmn:commissionMembers>
                 <cmn:addInfo>a</cmn:addInfo>
             </ep:commissionInfo>
-            <!--			<ep:applicationsInfo>-->
-            <!--				<ep:applicationInfo>-->
-            <!--					<ep:commonInfo>-->
-            <!--						<ep:appNumber>a</ep:appNumber>-->
-            <!--						<ep:appDT>2001-12-17T09:30:47Z</ep:appDT>-->
-            <!--						<ep:admissionResultsInfo>-->
-            <!--							<ep:admissionResultInfo>-->
-            <!--								<ep:commissionMemberInfo>-->
-            <!--									<cmn:memberNumber>2</cmn:memberNumber>-->
-            <!--									<cmn:nameInfo>-->
-            <!--										<cmn:lastName>a</cmn:lastName>-->
-            <!--										<cmn:firstName>a</cmn:firstName>-->
-            <!--										<cmn:middleName>a</cmn:middleName>-->
-            <!--									</cmn:nameInfo>-->
-            <!--									<cmn:role>-->
-            <!--										<cmn:code>a</cmn:code>-->
-            <!--										<cmn:name>a</cmn:name>-->
-            <!--										<cmn:rightVote>true</cmn:rightVote>-->
-            <!--									</cmn:role>-->
-            <!--									<cmn:powerOfAttorney>-->
-            <!--										<cmn:uuid>a</cmn:uuid>-->
-            <!--										<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>-->
-            <!--										<cmn:docNum>a</cmn:docNum>-->
-            <!--										<cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>-->
-            <!--										<cmn:firstPOAInfo>-->
-            <!--											<cmn:uuid>a</cmn:uuid>-->
-            <!--											<cmn:storageText>https://zakupki.gov.ru</cmn:storageText>-->
-            <!--											<cmn:docNum>a</cmn:docNum>-->
-            <!--											<cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>-->
-            <!--										</cmn:firstPOAInfo>-->
-            <!--										<cmn:login>a</cmn:login>-->
-            <!--									</cmn:powerOfAttorney>-->
-            <!--								</ep:commissionMemberInfo>-->
-            <!--								<ep:admitted>true</ep:admitted>-->
-            <!--							</ep:admissionResultInfo>-->
-            <!--						</ep:admissionResultsInfo>-->
-            <!--					</ep:commonInfo>-->
-            <!--					<ep:finalPrice>0</ep:finalPrice>-->
-            <!--					<ep:lastPriceOffer>-->
-            <!--						<ep:price>0</ep:price>-->
-            <!--						<ep:date>2001-12-17T09:30:47Z</ep:date>-->
-            <!--						<ep:increaseInitialPrice>true</ep:increaseInitialPrice>-->
-            <!--					</ep:lastPriceOffer>-->
-            <!--					<ep:correspondenciesInfo>-->
-            <!--						<ep:correspondenceInfo>-->
-            <!--							<ep:compatible>true</ep:compatible>-->
-            <!--							<ep:preferenseInfo>-->
-            <!--								<cmn:preferenseRequirementInfo>-->
-            <!--									<base:shortName>a</base:shortName>-->
-            <!--									<base:name>a</base:name>-->
-            <!--								</cmn:preferenseRequirementInfo>-->
-            <!--								<cmn:prefValue>0</cmn:prefValue>-->
-            <!--							</ep:preferenseInfo>-->
-            <!--						</ep:correspondenceInfo>-->
-            <!--						<ep:increaseContractPrice>0</ep:increaseContractPrice>-->
-            <!--						<ep:subcontractorsAttractionVolume>0</ep:subcontractorsAttractionVolume>-->
-            <!--					</ep:correspondenciesInfo>-->
-            <!--					<ep:admittedInfo>-->
-            <!--						<ep:appAdmittedInfo>-->
-            <!--							<ep:admitted>true</ep:admitted>-->
-            <!--							<ep:appRating>4096</ep:appRating>-->
-            <!--						</ep:appAdmittedInfo>-->
-            <!--					</ep:admittedInfo>-->
-            <!--				</ep:applicationInfo>-->
-            <!--			</ep:applicationsInfo>-->
+            <ep:applicationsInfo>
+                <ep:applicationInfo>
+                    <ep:commonInfo>
+                        <ep:appNumber>777</ep:appNumber>
+                        <ep:appDT>2001-12-17T09:30:47Z</ep:appDT>
+                        <ep:admissionResultsInfo>
+                            <ep:admissionResultInfo>
+                                <ep:commissionMemberInfo>
+                                    <cmn:memberNumber>2</cmn:memberNumber>
+                                    <cmn:nameInfo>
+                                        <cmn:lastName>a</cmn:lastName>
+                                        <cmn:firstName>a</cmn:firstName>
+                                        <cmn:middleName>a</cmn:middleName>
+                                    </cmn:nameInfo>
+                                    <cmn:role>
+                                        <cmn:code>a</cmn:code>
+                                        <cmn:name>a</cmn:name>
+                                        <cmn:rightVote>true</cmn:rightVote>
+                                    </cmn:role>
+                                    <cmn:powerOfAttorney>
+                                        <cmn:uuid>a</cmn:uuid>
+                                        <cmn:storageText>https://zakupki.gov.ru</cmn:storageText>
+                                        <cmn:docNum>a</cmn:docNum>
+                                        <cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>
+                                        <cmn:firstPOAInfo>
+                                            <cmn:uuid>a</cmn:uuid>
+                                            <cmn:storageText>https://zakupki.gov.ru</cmn:storageText>
+                                            <cmn:docNum>a</cmn:docNum>
+                                            <cmn:createDate>2001-12-17T09:30:47Z</cmn:createDate>
+                                        </cmn:firstPOAInfo>
+                                        <cmn:login>a</cmn:login>
+                                    </cmn:powerOfAttorney>
+                                </ep:commissionMemberInfo>
+                                <ep:admitted>true</ep:admitted>
+                            </ep:admissionResultInfo>
+                        </ep:admissionResultsInfo>
+                    </ep:commonInfo>
+                    <!--                    <ep:finalPrice>0</ep:finalPrice>-->
+                    <!--                    <ep:lastPriceOffer>-->
+                    <!--                        <ep:price>0</ep:price>-->
+                    <!--                        <ep:date>2001-12-17T09:30:47Z</ep:date>-->
+                    <!--                        <ep:increaseInitialPrice>true</ep:increaseInitialPrice>-->
+                    <!--                    </ep:lastPriceOffer>-->
+                    <!--                    <ep:correspondenciesInfo>-->
+                    <!--                        <ep:correspondenceInfo>-->
+                    <!--                            <ep:compatible>true</ep:compatible>-->
+                    <!--                            <ep:preferenseInfo>-->
+                    <!--                                <cmn:preferenseRequirementInfo>-->
+                    <!--                                    <base:shortName>a</base:shortName>-->
+                    <!--                                    <base:name>a</base:name>-->
+                    <!--                                </cmn:preferenseRequirementInfo>-->
+                    <!--                                <cmn:prefValue>0</cmn:prefValue>-->
+                    <!--                            </ep:preferenseInfo>-->
+                    <!--                        </ep:correspondenceInfo>-->
+                    <!--                        <ep:increaseContractPrice>0</ep:increaseContractPrice>-->
+                    <!--                        <ep:subcontractorsAttractionVolume>0</ep:subcontractorsAttractionVolume>-->
+                    <!--                    </ep:correspondenciesInfo>-->
+                    <ep:admittedInfo>
+                        <ep:appAdmittedInfo>
+                            <ep:admitted>true</ep:admitted>
+                            <ep:appRating>1</ep:appRating>
+                        </ep:appAdmittedInfo>
+                    </ep:admittedInfo>
+                </ep:applicationInfo>
+            </ep:applicationsInfo>
             <!--            <ep:abandonedReason>-->
             <!--                <base:code>a</base:code>-->
             <!--                <base:name>a</base:name>-->
