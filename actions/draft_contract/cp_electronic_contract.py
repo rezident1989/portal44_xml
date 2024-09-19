@@ -42,7 +42,7 @@ def cp_electronic_contract(outgoing_xml, send=True):
 def cp_electronic_contract_eis(outgoing_xml, data, send=True):
     """Электронный контракт"""
 
-    root = open_xml(outgoing_xml)
+    root = open_xml("templates/draft_contract/10_CpElectronicContract.xml")
 
     for i, stage in enumerate(root.findall('.//ns7:stageInfo', ns)):
         stage.find('.//ns7:sid', ns).text = random_number(8)

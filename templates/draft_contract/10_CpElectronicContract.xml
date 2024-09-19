@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by IMC GBU (IMC GBU) -->
+<ns0:cpElectronicContract xmlns:ns0="http://zakupki.gov.ru/oos/integration/1" xmlns:ns1="http://zakupki.gov.ru/oos/CPtypes/1" xmlns:ns2="http://zakupki.gov.ru/oos/common/1" xmlns:ns3="http://zakupki.gov.ru/oos/base/1">
+	<ns0:index>
+		<ns0:id>173546c2-9d26-7cb4-8d64-c6381a623221</ns0:id>
+		<ns0:sender>VSRZ_IMC</ns0:sender>
+		<ns0:receiver>OOC</ns0:receiver>
+		<ns0:createDateTime>2024-09-18T17:59:04+03:00</ns0:createDateTime>
+		<ns0:objectType>CT</ns0:objectType>
+		<ns0:indexNum>1</ns0:indexNum>
+		<ns0:signature type="CAdES-BES"/>
+		<ns0:mode>TEST</ns0:mode>
+	</ns0:index>
+	<ns0:data schemeVersion="14.2">
+		<ns1:mainDocInfo>
+			<ns1:id>99685205</ns1:id>
+		</ns1:mainDocInfo>
+		<ns1:customerInfo>
+			<ns2:regNum>01722000019</ns2:regNum>
+			<ns2:consRegistryNum>40200108</ns2:consRegistryNum>
+			<ns2:fullName>КОМИТЕТ ПО ЗДРАВООХРАНЕНИЮ</ns2:fullName>
+			<ns2:shortName>КОМИТЕТ ПО ЗДРАВООХРАНЕНИЮ</ns2:shortName>
+			<ns2:INN>7808043833</ns2:INN>
+			<ns2:KPP>784101001</ns2:KPP>
+			<ns1:OKOPFInfo>
+				<ns3:code>75204</ns3:code>
+				<ns3:singularName>Государственное казенное учреждение субъекта Российской Федерации</ns3:singularName>
+			</ns1:OKOPFInfo>
+			<ns1:contactPersonInfo>
+				<ns2:lastName>Фамилия должностного лица:</ns2:lastName>
+				<ns2:firstName>Имя должностного лица:</ns2:firstName>
+				<ns2:middleName>Отчество должностного лица:</ns2:middleName>
+			</ns1:contactPersonInfo>
+			<ns1:email>test@mail.ru</ns1:email>
+			<ns1:contactPhone>7-911-12345678</ns1:contactPhone>
+		</ns1:customerInfo>
+		<ns1:participantInfo>
+			<ns1:legalEntityRFInfo>
+				<ns1:fullName>Общества с ограниченной ответственностью "Конкорд СПб"</ns1:fullName>
+				<ns1:shortName>ООО "Конкорд СПб"</ns1:shortName>
+				<ns1:OGRN>1087847005410</ns1:OGRN>
+				<ns1:INN>7814426055</ns1:INN>
+				<ns1:KPP>780501001</ns1:KPP>
+				<ns1:factAddress>198216, Муниципальные образования Города Санкт-Петербурга (города федерального значения), Москва, Пискаревка, Ленинский пр., 140, лит. И, оф.411А, 40000000</ns1:factAddress>
+				<ns1:postAddress>-</ns1:postAddress>
+				<ns1:email>konkord@mail.ru</ns1:email>
+				<ns1:contactPhone>7-812-3035347</ns1:contactPhone>
+			</ns1:legalEntityRFInfo>
+		</ns1:participantInfo>
+		<ns1:foundationInfo>
+			<ns1:placingWay>
+				<ns3:code>EAP20</ns3:code>
+				<ns3:name>Электронный аукцион</ns3:name>
+			</ns1:placingWay>
+			<ns1:purchaseCode>242780804383378410100100990110123242</ns1:purchaseCode>
+			<ns1:purchaseNumber>2440456396402349141</ns1:purchaseNumber>
+			<ns1:protocolInfo>
+				<ns1:name>Протокол подведения итогов определения поставщика с информацией об участниках</ns1:name>
+				<ns1:number>a</ns1:number>
+				<ns1:publishDTInEIS>2001-12-17T12:30:47+03:00</ns1:publishDTInEIS>
+			</ns1:protocolInfo>
+		</ns1:foundationInfo>
+		<ns1:contractSubjectInfo>
+			<ns1:contractSubject>Для теста ЭЗакК</ns1:contractSubject>
+			<ns1:productsInfo>
+				<ns1:productsInfoElectronicContract>
+					<ns1:productInfo>
+						<ns1:sid>31116178</ns1:sid>
+						<ns1:protocolObjectSid>73937593</ns1:protocolObjectSid>
+						<ns1:purchaseObjectSid>51673700</ns1:purchaseObjectSid>
+						<ns1:purchaseObjectExternalSid>15282594</ns1:purchaseObjectExternalSid>
+						<ns1:indexNum>1</ns1:indexNum>
+						<ns1:name>Плоды цитрусовых культур</ns1:name>
+						<ns1:OKPD2Info>
+							<ns3:OKPDCode>01.23</ns3:OKPDCode>
+							<ns3:OKPDName>Плоды цитрусовых культур</ns3:OKPDName>
+						</ns1:OKPD2Info>
+						<ns1:type>PRODUCT</ns1:type>
+						<ns1:sum>1001.00</ns1:sum>
+						<ns1:OKEIInfo>
+							<ns3:code>073</ns3:code>
+							<ns3:nationalCode>ФУТ2</ns3:nationalCode>
+							<ns3:name>Квадратный фут (0,092903 м2)</ns3:name>
+						</ns1:OKEIInfo>
+						<ns1:quantity>1</ns1:quantity>
+						<ns1:price>1001.00</ns1:price>
+						<ns1:originCountryInfo>
+							<ns3:countryCode>036</ns3:countryCode>
+							<ns3:countryFullName>АВСТРАЛИЯ</ns3:countryFullName>
+						</ns1:originCountryInfo>
+						<ns1:VATRateInfo>
+							<ns3:VATCode>R0</ns3:VATCode>
+							<ns3:VATName>0%</ns3:VATName>
+						</ns1:VATRateInfo>
+					</ns1:productInfo>
+				</ns1:productsInfoElectronicContract>
+			</ns1:productsInfo>
+		</ns1:contractSubjectInfo>
+		<ns1:contractConditionsInfo>
+			<ns1:contractExecutionTermsInfo>
+				<ns1:notRelativeTermsInfo>
+					<ns1:startDate>2024-10-28</ns1:startDate>
+					<ns1:endDate>2024-10-31</ns1:endDate>
+				</ns1:notRelativeTermsInfo>
+			</ns1:contractExecutionTermsInfo>
+			<ns1:stagesInfo>
+				<ns1:stageInfo>
+					<ns1:sid>26943071</ns1:sid>
+					<ns1:externalSid>17352143</ns1:externalSid>
+					<ns1:purchaseStageSid>84168165</ns1:purchaseStageSid>
+					<ns1:purchaseStageExternalSid>267353</ns1:purchaseStageExternalSid>
+					<ns1:termsInfo>
+						<ns1:notRelativeTermsInfo>
+							<ns1:startDate>2024-10-28</ns1:startDate>
+							<ns1:endDate>2024-10-31</ns1:endDate>
+						</ns1:notRelativeTermsInfo>
+					</ns1:termsInfo>
+					<ns1:paymentsSumInfo>
+						<ns1:paymentsSum>1001.00</ns1:paymentsSum>
+						<ns1:budgetFinancingsInfo>
+							<ns1:KBK>81604109950096170242</ns1:KBK>
+							<ns1:paymentYearsInfo>
+								<ns1:paymentYearInfo>
+									<ns1:paymentYear>2024</ns1:paymentYear>
+									<ns1:paymentSum>1001.00</ns1:paymentSum>
+								</ns1:paymentYearInfo>
+							</ns1:paymentYearsInfo>
+						</ns1:budgetFinancingsInfo>
+					</ns1:paymentsSumInfo>
+				</ns1:stageInfo>
+			</ns1:stagesInfo>
+			<ns1:deliveryPlaceInfo>
+				<ns1:byKLADRInfo>
+					<ns1:deliveryPlace>Место поставки товаров:
+Поставщик осуществляет поставку товара на склад Исполнителя услуг по приемке, хранению, доставке и отпуску лекарственных препаратов и медицинских изделий, с которым Комитетом по здравоохранению  заключен контракт по итогам проведения конкурсных процедур (далее – Грузополучатель) по адресу: Санкт-Петербург, 5-й Предпортовый проезд, д.19, ОАО «Центральная фармацевтическая база Санкт-Петербурга».
+Место поставки товаров:
+Поставщик осуществляет поставку товара на склад Исполнителя услуг по приемке, хранению, доставке и отпуску лекарственных препаратов и медицинских изделий, с которым Комитетом по здравоохранению  заключен контракт по итогам проведения конкурсных процедур (далее – Грузополучатель) по адресу: Санкт-Петербург, 5-й Предпортовый проезд, д.19, ОАО «Центральная фармацевтическая база Санкт-Петербурга».</ns1:deliveryPlace>
+				</ns1:byKLADRInfo>
+			</ns1:deliveryPlaceInfo>
+		</ns1:contractConditionsInfo>
+		<ns1:contractFinancingInfo>
+			<ns1:financingSourcesInfo>
+				<ns1:budgetFinancingsInfo>
+					<ns1:budgetInfo>
+						<ns3:code>72020112</ns3:code>
+						<ns3:name>Бюджет Санкт-Петербурга</ns3:name>
+					</ns1:budgetInfo>
+					<ns1:budgetLevel>20</ns1:budgetLevel>
+					<ns1:OKTMOInfo>
+						<ns3:code>40000000</ns3:code>
+						<ns3:name>муниципальный округ Дворцовый округ</ns3:name>
+					</ns1:OKTMOInfo>
+				</ns1:budgetFinancingsInfo>
+			</ns1:financingSourcesInfo>
+			<ns1:contractPriceInfo>
+				<ns1:priceType>P</ns1:priceType>
+				<ns1:price>1001.00</ns1:price>
+				<ns1:priceVAT>0.00</ns1:priceVAT>
+				<ns1:currencyInfo>
+					<ns3:code>RUB</ns3:code>
+					<ns3:name>Российский рубль</ns3:name>
+				</ns1:currencyInfo>
+			</ns1:contractPriceInfo>
+			<ns1:paymentProcedureInfo>
+				<ns1:holdCashCondition>false</ns1:holdCashCondition>
+				<ns1:amountsReducedByTaxes>false</ns1:amountsReducedByTaxes>
+			</ns1:paymentProcedureInfo>
+			<ns1:paymentsInfo>
+				<ns1:paymentYearsInfo>
+					<ns1:paymentYearInfo>
+						<ns1:paymentYear>2024</ns1:paymentYear>
+						<ns1:paymentSum>1001.00</ns1:paymentSum>
+					</ns1:paymentYearInfo>
+					<ns1:paymentsSum>1001.00</ns1:paymentsSum>
+				</ns1:paymentYearsInfo>
+			</ns1:paymentsInfo>
+		</ns1:contractFinancingInfo>
+		<ns1:attachmentsInfo>
+			<ns1:attachmentInfo>
+				<ns1:fileName>Тестовый_документ[9].docx</ns1:fileName>
+				<ns1:content>UEsDBBQABgAIAAAAIQDfpNJsWgEAACAFAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC0
+lMtuwjAQRfeV+g+Rt1Vi6KKqKgKLPpYtUukHGHsCVv2Sx7z+vhMCUVUBkQpsIiUz994zVsaD0dqa
+bAkRtXcl6xc9loGTXmk3K9nX5C1/ZBkm4ZQw3kHJNoBsNLy9GUw2ATAjtcOSzVMKT5yjnIMVWPgA
+jiqVj1Ykeo0zHoT8FjPg973eA5feJXApT7UHGw5eoBILk7LXNX1uSCIYZNlz01hnlUyEYLQUiep8
+6dSflHyXUJBy24NzHfCOGhg/mFBXjgfsdB90NFEryMYipndhqYuvfFRcebmwpCxO2xzg9FWlJbT6
+2i1ELwGRztyaoq1Yod2e/ygHpo0BvDxF49sdDymR4BoAO+dOhBVMP69G8cu8E6Si3ImYGrg8Rmvd
+CZFoA6F59s/m2NqciqTOcfQBaaPjP8ber2ytzmngADHp039dm0jWZ88H9W2gQB3I5tv7bfgDAAD/
+/wMAUEsDBBQABgAIAAAAIQAekRq37wAAAE4CAAALAAgCX3JlbHMvLnJlbHMgogQCKKAAAgAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArJLBasMw
+DEDvg/2D0b1R2sEYo04vY9DbGNkHCFtJTBPb2GrX/v082NgCXelhR8vS05PQenOcRnXglF3wGpZV
+DYq9Cdb5XsNb+7x4AJWFvKUxeNZw4gyb5vZm/cojSSnKg4tZFYrPGgaR+IiYzcAT5SpE9uWnC2ki
+Kc/UYySzo55xVdf3mH4zoJkx1dZqSFt7B6o9Rb6GHbrOGX4KZj+xlzMtkI/C3rJdxFTqk7gyjWop
+9SwabDAvJZyRYqwKGvC80ep6o7+nxYmFLAmhCYkv+3xmXBJa/ueK5hk/Nu8hWbRf4W8bnF1B8wEA
+AP//AwBQSwMEFAAGAAgAAAAhANZks1H0AAAAMQMAABwACAF3b3JkL19yZWxzL2RvY3VtZW50Lnht
+bC5yZWxzIKIEASigAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArJLLasMwEEX3hf6DmH0t
+O31QQuRsSiHb1v0ARR4/qCwJzfThv69ISevQYLrwcq6Yc8+ANtvPwYp3jNR7p6DIchDojK971yp4
+qR6v7kEQa1dr6x0qGJFgW15ebJ7Qak5L1PWBRKI4UtAxh7WUZDocNGU+oEsvjY+D5jTGVgZtXnWL
+cpXndzJOGVCeMMWuVhB39TWIagz4H7Zvmt7ggzdvAzo+UyE/cP+MzOk4SlgdW2QFkzBLRJDnRVZL
+itAfi2Myp1AsqsCjxanAYZ6rv12yntMu/rYfxu+wmHO4WdKh8Y4rvbcTj5/oKCFPPnr5BQAA//8D
+AFBLAwQUAAYACAAAACEAsI2vm5kCAAB9BwAAEQAAAHdvcmQvZG9jdW1lbnQueG1spJVbb9MwFIDf
+kfgPUd43J916WbR20jY28YA0MXhGruMmpvFFttus/AwEDyBAYjzyZ/KTOHaSpjA0tetLfDk+37nZ
+J6dnd7wIllQbJsU4jA+jMKCCyJSJbBy+fXN1MAoDY7FIcSEFHYcrasKzyfNnp2WSSrLgVNgAEMIk
+pSLjMLdWJQgZklOOzSFnREsjZ/aQSI7kbMYIRaXUKepFceRnSktCjQF7F1gssQkbHLnbjpZqXIKy
+Ax4jkmNt6V3HiHeG9NEJGv0L4g9Dk4oKEM6k5tjCUmeIYz1fqAPgKmzZlBXMrgAZDVqMHIcLLZIG
+cbB2xakktSvN0GrobezWKpdNObxFpGkBPkhhcqbWOeVPpYEwbyHLx4JY8qI9V6r4eL8LcVlXpQNu
+435TSl7Unj9OjKMtKuIQa41tXPjbZusJx0x0hp+Umo3kxv3dAL0HgIGhuyH6DQKZFe+eRqmy/ap8
+reVCdTS2H+2lmK9Zrl/twGpuy+YNNvs5c5tjBU+Zk+RlJqTG0wI8gtoHUL7AVyBwryScQDedynTl
+RhWUCXTj9PU4jKLzq7g3Gobt1iWd4UVhnaR/MewPe63kZmPLQ260G94TkC9xMQ4JPGWqQzQ5RWvp
+VMq5a1m3FnodHGQpUBxRYA5+vruW55jMnU539oVI1ye9wJPspLqvPlc/4fuj+lj9rr4E1SeYfq1+
+Vd9A8L26d3att65rH5yeocTe6P8E7GPIbj+ACF5cHJ+4HlomOcwHo6NRbVplr7BTtlK5M0fHPhss
+yyFBo76PZCqtlbyTFnQGwngYxR5HcUqhww6jkVvOpLQby2xh/bIJlMjCwK5RmND6jN+Gn+C1Zi4p
+BRP0hlkCTh4NvBJqI/TTusCo+29O/gAAAP//AwBQSwMEFAAGAAgAAAAhAFS2Y7tNBgAAwhoAABUA
+AAB3b3JkL3RoZW1lL3RoZW1lMS54bWzsWd2K20YUvi/0HYTuHcu25J8l3mDLdtNmNwnZTUoux9JY
+mnikMZrx7poQCJur3rQU0tKLBtre9KKULjSloTT0FZxnWEho04fozMiyNfa4m3QdCCU2WPPznTPf
+nDPzjWRdvHQUYeMAJhSRuGmWLlimAWOP+CgOmubN/V6hbhqUgdgHmMSwaU4gNS9tv//eRbDFQhhB
+g9vHdAs0zZCx0VaxSD3eDOgFMoIx7xuQJAKMV5Og6CfgkPuNcLFsWdViBFBsGjGIuNvpd9Nfpr9P
+T4xrgwHyoLmd+e9i/hMzKho8nOwJ7zAz+vbZ8fRk+nT6eHry7D4vP+XXz6StPyyJC51QFyfGAcBN
+kw/tk8N9eMRMAwPKeEfTtOTHLG5fLM6NMFtjm7Pryc/MbmbgD8vSLgn6c0Pbduxqa+5fAjBbxXVr
+3Wq3OvcnAcDz+MxTLnms0260O84MmwOlRY3vTq1TKSn4nP/KCr7liK+Cl6C0aK/gez13EcMcKC06
+mpjUyq6t4CUoLVZX8DWr1bFrCl6CQozi4QracqoVN5vtHDIg+LIW3nDsXq08gy9QxdxqS+1j9qpr
+LwJ3SNLjBjLZgKHYYJMRHACP27kAo36CjB0UhHwhjkBMKG+2ylbPqvBf8bVlSUYIbEGQs06bPLrS
+JPgZ1EvQiDXNj7hXMwd5/uTJ6fHj0+NfTx88OD3+aTb2qt1lEAd5u5fff/73o/vGXz9/8/LhF3o8
+zeNf/PjJi9/++Df3TKH15cmLxyfPv/r0zx8eauCtBPTz8H0UQWpchYfGDRLxCWoGgP3k9Sz2Q4Dy
+Fq04oCAGwkaD7rJQQV+dAAw0uDZU43gr4fKhA34wvqMQ3guTMUMa4JUwUoC7hOA2SbRzuiLGykdh
+HAf6wZNxHncDgAPd2O5SlrvjEd8HSOfSDaFC8zrmKQcBjCEzRB8ZQqgxu42QEtdd5CWEkgEzbiOj
+DZA2JPuor6ymhdFlFPG8THQEeb6V2OzeMtoE69x34IGK5HsDYJ1LiJUwfgDGDERaxiDCeeQOYKGO
+5N4k8ZSAU8YzHUBMjK4PKdXZXEsmCt0rXGb0ad/Fk0hFJgwNdcgdQEge2SFDNwTRSMsZxWEe+yEd
+8iUKjOuEaUkQdYeIOs8DiNem+xaCSrrP3ts3uQzpF4joGSe6LQGJuh8neACgdF5c0vUIxWeK/JK8
+O29O3rmIPv/6kV5zNyDpeuB5xLyVIO1uWpbwdbhl4XZJ4qO3X7c7YBxfh3yraKDvZPudbP/vZXvd
+ft68WC/0Wd7YZ7fv0k30yvfyA4TxHptguEOl0lM+Xb/HG2VFOpk/SoxCXpwNr+CCBMiykRD2MWLh
+XghGfNiSHCGgM9cBNUaE8rNCNmt9iw48jnaJn7aWStnTKzcAbNHOz5qsnZ9MLG2t1haPaXP3shbI
+x+uMgLB9HRK5wVQSFQ2JWtZ4Bgk5s42waGhY1IX7tSzkZZYVvh8NIP4LceyUEV9/AENf5Cm1z7K7
+8UyvC6Y67bJmeg3BdTOZVkjklptKIrcMQ+DD5eYN57qxSKlCT4RilUat/iZyLURlSRtwrNaMQ77n
+Kg5344FR0xzwu0RejEbcHxU6CnAQN02PzQL9X5RllFDWATRMYbIrnX+EGEwMjCK+1vNpwPGCW6lc
+E3N8S8k1rLcvcvKSTzIcDKDH1rQsqrwvdaLtPSdYVMiYk94L/UOjj8fJDcAD5dRKIoA+omweTR8l
+ucW9iOKSXM22ovKv2mKLAjwKwexEyYt5CpflOZ3cPCTT5Vmp9dlk+oFI0rlP3bONREdONNccIOLU
+1OvHmzvkc6wWuq+wSqV7WesamdatOyXOfyDkqC0GU6gJxhpqi1aV2gZvCHLDzZfmujNi06fB8qoV
+B0R2nylrK68zSP8OX/kdfvs6xoxKqvCIPzO42R/PqRLI1kxdjpgxTlDTvGs5LdstO27Bqjvdgl2x
+rULdaVUKLceplLpOyeq0y/d4UFgYlZx07B5/vsGT2Qsb2b7y0ibKbrsveCQqEvkupiiN5UubUll5
+aZO+qzH2Rb9pIB6Zu9Vyr1FptKuFRqXVK9iddr3QcKvtQqfq1jq9juvUG717pnEgwXar4trVbr1Q
+Lbluwa5agn69UajZ5XLLrrXqXbt1bxZrPvPsmoVX8tr+BwAA//8DAFBLAwQUAAYACAAAACEA50zp
+gN8DAABpCgAAEQAAAHdvcmQvc2V0dGluZ3MueG1stFbdbts2FL4fsHcwdD3HlizZiVanaO14TRGv
+Q+Q+ACVSNhH+gaTsuMPefYeUGDlNVrgr6huT5zt/PPzOod68feRssCfaUCnmUXwxjgZEVBJTsZ1H
+nzer4WU0MBYJjJgUZB4diYneXv/6y5tDboi1oGYG4EKYnFfzaGetykcjU+0IR+ZCKiIArKXmyMJW
+b0cc6YdGDSvJFbK0pIza4ygZj6dR50bOo0aLvHMx5LTS0sjaOpNc1jWtSPcXLPQ5cVuTpawaToT1
+EUeaMMhBCrOjygRv/P96A3AXnOy/dYg9Z0HvEI/POO5BavxkcU56zkBpWRFj4II4CwlS0QdOXzh6
+in0BsbsjeldgHo/96jTz7PscJC8cTA35PhdZ52Jkjpw8BkeGnVOSFrqjpUa6JVxXD17lt1shNSoZ
+pAN1GcDRBj676BpY/kVKPjjkiugKrhpaZDyORg6AAsu6sMgSgI0ijPmeqRhB4PaQbzXiwPYg8TaY
+1KhhdoPKwkoFSnsE2c/Gly1c7ZBGlSW6UKgCbwsprJYs6GH5p7QL6BwNF9tZ+D7qV0Xbk2AhEIfz
+POuztcTEZdZoen7hnYGPHmenIb8OJGGGaIrJxtWxsEdGVpB8Qb+QdwJ/bIyl4NF32w9k8K0EiHCR
+P8HNb46KrAiyDZTpJwXzN7FiVK2p1lLfCgzc+GnBaF0TDQEocG0N9KFaHnydPxCEYXT/YNzRKY3g
+IcAmLO6ltEEVOmY2mS5nbaYO7ZHxcryaLl5Dsklyc/XuVWQxy2bJa8h/x1lm6fJy2uXcZcpzN3j/
+0mHlaDfgrcUC8VJTNFi70TxyGqV+eE9FwEsCI4KcIkVTBnA4bAHDEWMr6MsA+P7nOaZGLUnt12yN
+9Lb322noV6UwAz4++XIzheg/tGxUix40Ui2dgkqcpp0lFfaO8iA3TVkEKwFD7QRqBP60175OfXkO
+uQVa+La8Q55eXlc3w/vPHf2YLhx1yBop1TKw3MbziNHtzsaONBZ2GF5wvym3SYclHktazG9Q5U4G
+2t2ilyVBdqI3CbJJL0uDLO1lWZBlvWwaZFMn20HvaxjED9AMYenktWRMHgj+0OMvRG0RzA4psmzn
+NNBLtoJucJvBPieP8AoQTC18GCmKOXp0j0LiadlpM3SUjX2m6zCnrJ57wMii0IbPjD3Fv8rFvR8V
+BToWR172z8JvbeKMGhgdCl4QK3XAfvdYnOZYVrfQSbDy8unVZXqTJjctnPmXx26A5A9w7/ekfo8M
+wR0WTLPW9O9ZnKQ32TQbJmmSDtN4lQyv0ulsOFldLWcr+M1usn+6Jg3fiNf/AgAA//8DAFBLAwQU
+AAYACAAAACEA5uZP4LoBAAA8BQAAEgAAAHdvcmQvZm9udFRhYmxlLnhtbNySz2rjMBDG7wt9B6F7
+Y9mJ066pU9i0gYVlD0v7AIoi22L1x2iUuHn7HclOegiF5tLD2iCkb0Y/z3yeh8c3o8lBelDO1jSf
+MUqkFW6nbFvT15fN7T0lELjdce2srOlRAn1c3Xx7GKrG2QAE71uojKhpF0JfZRmIThoOM9dLi8HG
+ecMDHn2bGe7/7vtb4UzPg9oqrcIxKxhb0gnjP0NxTaOEfHJib6QN6X7mpUais9CpHk604TO0wfld
+752QANiz0SPPcGXPmHxxATJKeAeuCTNsZqooofB6ztLO6HdAeR2guAAsQV6HKCdEBkcj3ygxovrZ
+Wuf5ViMJWyJYFUlgupp+Jhkqyw2G11yrrVcp0HPrQOYYO3BdU1awDStxje+CzeNKs5goOu5BRkhK
+XK9HueFG6eNJhUEBjIFeBdGd9AP3KpY2hkC1GNjDltX0ecFY8bzZ0FHJkcxQWdz9mJQCixqf75My
+PyssKiJx0jEfOSJxzjn4zWx04MKJF2UkkN9yIH+c4fYDRwq2RCdK9CM6M7/KEZ+4VzkS+79w5O6+
+/BJHptkgv1TbhQ8nJM7Ffzoh0wZW/wAAAP//AwBQSwMEFAAGAAgAAAAhAJN21kkYAQAAQAIAABQA
+AAB3b3JkL3dlYlNldHRpbmdzLnhtbJTRwUoDMRAG4LvgO4Tc22yLLbJ0WxCpeBFBfYA0nW2DmUzI
+pG7r0zuuVREv7S2TZD7mZ2aLPQb1Bpk9xUaPhpVWEB2tfdw0+uV5ObjWiouNaxsoQqMPwHoxv7yY
+dXUHqycoRX6yEiVyja7R21JSbQy7LaDlISWI8thSRlukzBuDNr/u0sARJlv8ygdfDmZcVVN9ZPIp
+CrWtd3BLbocQS99vMgQRKfLWJ/7WulO0jvI6ZXLALHkwfHloffxhRlf/IPQuE1NbhhLmOFFPSfuo
+6k8YfoHJecD4HzBlOI+YHAnDB4S9Vujq+02kbFdBJImkZCrVw3ouK6VUPPp3WFK+ydQxZPN5bUOg
+7vHhTgrzZ+/zDwAAAP//AwBQSwMEFAAGAAgAAAAhADFgo7NsAQAAwgIAABAACAFkb2NQcm9wcy9h
+cHAueG1sIKIEASigAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnFLLbsIwELxX6j9EuYMD
+B1qhxagCVT30gUQKZ8vZJFYd27INgr/vhkCaqrf6tDPrHc2ODctTo5Mj+qCsWaSTcZYmaKQtlKkW
+6Wf+PHpMkxCFKYS2BhfpGUO65Pd3sPHWoY8KQ0ISJizSOkY3ZyzIGhsRxtQ21Cmtb0Qk6Ctmy1JJ
+XFt5aNBENs2yGcNTRFNgMXK9YNopzo/xv6KFla2/sMvPjvQ45Ng4LSLy93ZSA+sJyG0UOlcN8ozo
+HsBGVBj4BFhXwN76IvApsK6AVS28kJGi45MZsAGEJ+e0kiJSpvxNSW+DLWPycTGatOPAhleAzG9R
+HryK59bEEMKrMp2NriBbXlReuPrqrUewlULjitbmpdABgf0QsLKNE4bkWF+R3lf4dLldtzFcR36T
+gx33KtZbJ2Tr5WG47aABW2KxIPu9g56AF3oJr1t5mjUVFrc7fxttfrvuS1K044zOJbAbR2v3f4V/
+AwAA//8DAFBLAwQUAAYACAAAACEAz6c8MqYBAAA3AwAAEQAIAWRvY1Byb3BzL2NvcmUueG1sIKIE
+ASigAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnJLBTtwwEIbvlXiHyPesk92lLVE2SIA4
+FalSt2rFzdjDYkgcyzaEfYe+Qqs+wqoICUHhGcwbMUl2s0RwQJwyM//vL+MZp9uXRR5cgLGyVBMS
+DyISgOKlkGo2Id+n++FnEljHlGB5qWBC5mDJdrbxIeU64aWBr6bUYJwEGyBJ2YTrCTlxTieUWn4C
+BbMDdCgUj0tTMIepmVHN+BmbAR1G0UdagGOCOUZrYKg7IlkiBe+Q+tzkDUBwCjkUoJyl8SCma68D
+U9hXDzTKM2ch3VzDq9aV2LkvreyMVVUNqlFjxf5j+vPgy7fmqqFU9aw4kCwVPHHS5ZCldB1iZM+P
+ToG7ttwlGHMDzJUm83/9g//vF/4ev//8IvB//N3jL39Vh7/9jb/F+h3q16je+0UDWh2u13IG86o0
+wuIvehnaBFhupHa47LaBXgHdObPuALd/LEHszN/Ry0tGjTVwIesXlm02ji5Nl+tq+wcR4JiTdikr
+5cdod2+6T7JhNByF0SiMx9PoUzIeJ1F0WF+hd34NLJYNvJG4lWxu9YkrQDvF/lPPngAAAP//AwBQ
+SwMEFAAGAAgAAAAhAL3BkTcpCwAAL3AAAA8AAAB3b3JkL3N0eWxlcy54bWy8nV1z27oRhu870//A
+0VV74cjyZ+I5yhnbiWtP4xyfyG6uIRKSUIOEyo/Y6q8vAFIS5SUoLrj1lS1R+wDEixfAgqT02++v
+sQx+8TQTKhkPRh8OBwFPQhWJZD4ePD3eHHwcBFnOkohJlfDxYMWzwe+f//qX314usnwleRZoQJJd
+xOF4sMjz5cVwmIULHrPsg1ryRB+cqTRmuX6ZzocxS5+L5UGo4iXLxVRIka+GR4eHZ4MKk3ahqNlM
+hPyLCouYJ7mNH6ZcaqJKsoVYZmvaSxfai0qjZapCnmX6pGNZ8mImkg1mdAJAsQhTlalZ/kGfTFUj
+i9Lho0P7Xyy3gFMc4AgAzjKOQ5xWiGG2ivnrIIjDi7t5olI2lZqkTynQtQosePBZqxmp8AufsULm
+mXmZPqTVy+qV/XOjkjwLXi5YFgrxqGuhUbHQ1NvLJBMDfYSzLL/MBGs8uDD/NB4Js7z29pWIxGBo
+Ssz+qw/+YnI8ODpav3NtarDznmTJfP1eWhz8eKrXZDzgycHTxLw11dzxgKUHk0sTOKxOrPxbO93l
+21e24CULhS2HzXKuO+ro7NBApTC+ODr9tH7xozAtzIpcVYVYQPl3gx2CFtf9V/fmSWkqfZTPvqnw
+mUeTXB8YD2xZ+s2nu4dUqFQbZzz4ZMvUb054LG5FFPGk9sFkISL+c8GTp4xH2/f/vLGdv3ojVEWi
+/z8+H9leILPo62vIl8ZK+mjCjCbfTYA0ny7EtnAb/p81bFQp0RS/4MyMJ8HoLcJWH4U4MhFZ7Wyb
+mcWbc7efQhV0/F4FnbxXQafvVdDZexV0/l4FfXyvgizm/1mQSCL+WhoRFgOo+zgON6I5DrOhOQ4v
+oTkOq6A5DiegOY6OjuY4+jGa4+imCE6uQlcvrHX2Y0dvb+funyP8uPunBD/u/hnAj7t/wPfj7h/f
+/bj7h3M/7v7R24+7f7DGc8ulVnCnbZbkvV02UypPVM6DnL/2p7FEs2ySRcMzkx5PSU6SAFOObNVE
+3JsWMvt6fw+xJvWfz3OTzgVqFszEvEh1bt634jz5xaXOkgMWRZpHCEx5XqSOFvHp0ymf8ZQnIafs
+2HRQkwkGSRFPCfrmks3JWDyJiJtvTSQZFDYdWufPC2MSQdCpYxamqn/VFCMbH76JrH9bGUhwVUjJ
+iVjfabqYZfXPDSymf2pgMf0zA4vpnxjUNKNqoopG1FIVjajBKhpRu5X9k6rdKhpRu1U0onaraP3b
+7VHk0g7x9VXHqPve3bVUZlu8dz0mYp4wvQDoP91Ue6bBA0vZPGXLRWB2pZux9XPGlnOlolXwSDGn
+bUhU63rbRa71WYuk6N+gOzQqc214RPba8IgMtuH1t9i9XiabBdotTT4zKaZ5o2ktqZNpJ0wW5YK2
+v9tY3r+HbQ1wI9KMzAbNWIIe/N0sZ42cFCPftpb9K7Zl9bfV21GJtHoVkqCWUoXPNMPw7WrJU52W
+Pfcm3Sgp1QuP6IiTPFVlX6tb/shK0snyX+PlgmXC5ko7iO5T/fqCenDPlr1P6EEykdDo9vUgZkIG
+dCuI28f7b8GjWpo00zQMDfBK5bmKyZjVTuDffvLp32kqeKmT4GRFdLaXRNtDFnYtCCaZkqQiIpJe
+ZopEkMyhlvdPvpoqlkY0tIeUl/ew5JyIOGHxslx0EHhLj4svevwhWA1Z3r9YKsy+EJWpHklgtW3D
+rJj+m4f9h7rvKiDZGfqjyO3+o13q2mg6XP9lwg6u/xLBqqmnB9N/CU52B9f/ZHdwVCd7LVmWCecl
+VG8e1emuedTn2z/5q3hKqnRWSLoGXAPJWnANJGtCJYs4ySjP2PIIT9jyqM+XsMtYHsGWnOX9IxUR
+mRgWRqWEhVHJYGFUGlgYqQD979CpwfrfplOD9b9Xp4QRLQFqMKp+Rjr9E13lqcGo+pmFUfUzC6Pq
+ZxZG1c+OvwR8NtOLYLoppoak6nM1JN1Ek+Q8XqqUpSsi5FfJ54xgg7SkPaRqZh5uUEl5EzcB0uxR
+S8LFdomjEvknn5JVzbAo60WwI8qkVIpob2074djI3XvX9oXZJzl6V+FBspAvlIx46jgnd6zOlyfl
+Yxlvq2+r0Wnb85uYL/Jgstjs9tcxZ4d7I9cJ+07Y/gKb2vxs/TxLU9g9j0QRrysKH6Y4O+4ebHv0
+TvDJ/uDtSmIn8rRjJCzzbH/kdpW8E3neMRKW+bFjpPXpTmSbH76w9LmxI5y39Z9NjufofOdtvWgT
+3FhsW0faRDZ1wfO2XrRjleAyDM3VAqhON8+447uZxx2PcZGbgrGTm9LZV25Em8F+8F/CzOyYQdOW
+t7l7Aoz7dhHdaeT8s1Dlvv3OBafuD3Xd6YVTkvGgkXPc/cLVzijjbsfOw40b0XnccSM6D0BuRKeR
+yBmOGpLclM5jkxvReZByI9CjFZwRcKMVjMeNVjDeZ7SCFJ/RqscqwI3ovBxwI9BGhQi0UXusFNwI
+lFFBuJdRIQVtVIhAGxUi0EaFCzCcUWE8zqgw3seokOJjVEhBGxUi0EaFCLRRIQJtVIhAG9Vzbe8M
+9zIqpKCNChFoo0IE2qh2vdjDqDAeZ1QY72NUSPExKqSgjQoRaKNCBNqoEIE2KkSgjQoRKKOCcC+j
+QgraqBCBNipEoI1aPmrob1QYjzMqjPcxKqT4GBVS0EaFCLRRIQJtVIhAGxUi0EaFCJRRQbiXUSEF
+bVSIQBsVItBGtRcLexgVxuOMCuN9jAopPkaFFLRRIQJtVIhAGxUi0EaFCLRRIQJlVBDuZVRIQRsV
+ItBGhYi2/lldonTdZj/C73o679jvfumqqtSP+qPcddRxd9S6Vm5W92cRrpR6DhofPDy2+UY3iJhK
+oewWteOyep1rb4lAXfj847r9CZ86veeXLlXPQthrpgB+0jUS7KmctHX5eiRI8k7aeno9Eqw6T9pG
+33okmAZP2gZd68v1TSl6OgLBbcNMLXjkCG8brWvhsInbxuhaIGzhtpG5FggbuG08rgWeBmZwfht9
+2rGdzjb3lwJCW3esEc7dhLZuCbVaD8fQGF1FcxO6qucmdJXRTUDp6cTghXWj0Aq7UX5SQ5thpfY3
+qpuAlRoSvKQGGH+pIcpbaojykxoOjFipIQErtf/g7CZ4SQ0w/lJDlLfUEOUnNZzKsFJDAlZqSMBK
+3XNCdmL8pYYob6khyk9quLjDSg0JWKkhASs1JHhJDTD+UkOUt9QQ5Sc1yJLRUkMCVmpIwEoNCV5S
+A4y/1BDlLTVEtUltd1F2pEYpXAvHLcJqgbgJuRaIG5xrgR7ZUi3aM1uqETyzJajVWnNctlQXzU3o
+qp6b0FVGNwGlpxODF9aNQivsRvlJjcuWmqT2N6qbgJUaly05pcZlS61S47KlVqlx2ZJbaly21CQ1
+Lltqktp/cHYTvKTGZUutUuOypVapcdmSW2pcttQkNS5bapIaly01Sd1zQnZi/KXGZUutUuOyJbfU
+uGypSWpcttQkNS5bapIaly05pcZlS61S47KlVqlx2ZJbaly21CQ1LltqkhqXLTVJjcuWnFLjsqVW
+qXHZUqvUjmxp+LLzA0yGbX/fTH84Xy25+Q7u2gMzUfkdpNVFQPvBu2g8YPY3lEwlgurXqKqfTrJ1
+ra4VloXZGFhKuNDFhNUXJ7lKOQTFOL4T1Ra7Pdf1p6u2217zLD+3c32ztZa5adu2GpY/JgUbolTF
+Va9PVTfbVzFdjaksf5RL/3OXRBrwUv0gVVnB6JWVKH38mkt5z8pPq6X7o5LP8vLo6NA+FP/m+LT8
+fjdnfGoHAidguFuZ8mX1w2COZi6/8b26Qu1q6qOGpra3SvRt5W291v9ln/8HAAD//wMAUEsBAi0A
+FAAGAAgAAAAhAN+k0mxaAQAAIAUAABMAAAAAAAAAAAAAAAAAAAAAAFtDb250ZW50X1R5cGVzXS54
+bWxQSwECLQAUAAYACAAAACEAHpEat+8AAABOAgAACwAAAAAAAAAAAAAAAACTAwAAX3JlbHMvLnJl
+bHNQSwECLQAUAAYACAAAACEA1mSzUfQAAAAxAwAAHAAAAAAAAAAAAAAAAACzBgAAd29yZC9fcmVs
+cy9kb2N1bWVudC54bWwucmVsc1BLAQItABQABgAIAAAAIQCwja+bmQIAAH0HAAARAAAAAAAAAAAA
+AAAAAOkIAAB3b3JkL2RvY3VtZW50LnhtbFBLAQItABQABgAIAAAAIQBUtmO7TQYAAMIaAAAVAAAA
+AAAAAAAAAAAAALELAAB3b3JkL3RoZW1lL3RoZW1lMS54bWxQSwECLQAUAAYACAAAACEA50zpgN8D
+AABpCgAAEQAAAAAAAAAAAAAAAAAxEgAAd29yZC9zZXR0aW5ncy54bWxQSwECLQAUAAYACAAAACEA
+5uZP4LoBAAA8BQAAEgAAAAAAAAAAAAAAAAA/FgAAd29yZC9mb250VGFibGUueG1sUEsBAi0AFAAG
+AAgAAAAhAJN21kkYAQAAQAIAABQAAAAAAAAAAAAAAAAAKRgAAHdvcmQvd2ViU2V0dGluZ3MueG1s
+UEsBAi0AFAAGAAgAAAAhADFgo7NsAQAAwgIAABAAAAAAAAAAAAAAAAAAcxkAAGRvY1Byb3BzL2Fw
+cC54bWxQSwECLQAUAAYACAAAACEAz6c8MqYBAAA3AwAAEQAAAAAAAAAAAAAAAAAVHAAAZG9jUHJv
+cHMvY29yZS54bWxQSwECLQAUAAYACAAAACEAvcGRNykLAAAvcAAADwAAAAAAAAAAAAAAAADyHgAA
+d29yZC9zdHlsZXMueG1sUEsFBgAAAAALAAsAwQIAAEgqAAAAAA==
+</ns1:content>
+			</ns1:attachmentInfo>
+		</ns1:attachmentsInfo>
+	</ns0:data>
+</ns0:cpElectronicContract>
