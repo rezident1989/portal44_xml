@@ -41,14 +41,14 @@ def handler(send=True):
 
     elif '10_CpElectronicContract' in path:
         purchase = load_data('purchase')
-        cp_electronic_contract_eis(path, purchase, send)  # Электронный контракт ЕИС
-        cp_contract_sign(path, purchase, send)  # Подписанный контракт
+        cp_electronic_contract_eis(purchase, send)  # Электронный контракт ЕИС
+        cp_contract_sign(purchase, send)  # Подписанный контракт
 
     elif type_xml == 'cpElectronicContract':
         purchase = load_data('purchase')
         confirmation(path, send)
         cp_electronic_contract(path, send)  # Электронный контракт
-        cp_contract_sign(path, purchase, send)  # Подписанный контракт
+        cp_contract_sign(purchase, send)  # Подписанный контракт
 
     else:
         print('Нет обработки для пакета:', type_xml)
@@ -59,4 +59,4 @@ def handler(send=True):
 
 
 if __name__ == '__main__':
-    handler(send=False)
+    handler(send=True)

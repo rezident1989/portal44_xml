@@ -39,7 +39,7 @@ def cp_electronic_contract(outgoing_xml, send=True):
         to_sent_to_sftp(xml, f'{get_server_address(outgoing_xml)}')
 
 
-def cp_electronic_contract_eis(outgoing_xml, data, send=True):
+def cp_electronic_contract_eis(data, send=True):
     """Электронный контракт"""
 
     root = open_xml("templates/draft_contract/10_CpElectronicContract.xml")
@@ -62,4 +62,4 @@ def cp_electronic_contract_eis(outgoing_xml, data, send=True):
     xml = create_xml(root)
     validate_xsd(xml)
     if send:
-        to_sent_to_sftp(xml, f'{get_server_address(outgoing_xml)}')
+        to_sent_to_sftp(xml, f'{data.server_address}')
