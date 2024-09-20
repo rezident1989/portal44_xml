@@ -46,6 +46,7 @@ def handler(send=True):
 
     elif type_xml == 'cpContractProject':
         confirmation(path, send)  # Пакет данных: Уведомление о результатах обработки информационного пакета
+        pass
 
     elif '10_CpElectronicContract' in path:
         purchase = load_data('purchase')
