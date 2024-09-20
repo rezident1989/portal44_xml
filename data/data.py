@@ -4,6 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class Purchase:
 
+    id: str = None
     schema_version: dict = None
     server_address: str = None
     purchase_number: str = None
@@ -23,3 +24,5 @@ class Purchase:
 
     purchase_protocol_sid: tuple = None
     drug_protocol_sid: tuple = None
+
+    placing_way_cod: str = None

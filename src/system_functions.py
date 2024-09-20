@@ -115,7 +115,7 @@ def test_folder(host: str) -> None:
             count += 1
         print(f'\rXML обработан за {count} сек!')
     else:
-        print('XML не отравлен или или для не нужна обработка!')
+        print('XML отправлен на сервер, без очереди')
 
     if sftp:
         sftp.close()

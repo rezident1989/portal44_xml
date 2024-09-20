@@ -115,6 +115,7 @@ def notification(outgoing_xml, type_notification, send=True):
         el.text for el in root.findall('.//ns6:drugPurchaseObjectInfo/ns6:externalSid', ns))
 
     data.purchase_code = root.find('.//ns5:purchaseCode', ns).text
+    data.placing_way_cod = root.find('.//ns5:placingWay/ns8:code', ns).text
 
     xml = create_xml(root)
     validate_xsd(xml)
