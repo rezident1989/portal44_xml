@@ -15,7 +15,7 @@ def ezt_notification(outgoing_xml):
     purchase_number = f'24{random_number(17)}'
 
     tree = open_xml(outgoing_xml)
-    template = open_xml("templates/notification/EZT2020/epNotificationEZT2020.xml")
+    template = open_xml("templates/protocols/EZT2020/epNotificationEZT2020.xml")
 
     template.find('.//ns5:id', ns).text = random_number(8)
     template.find('.//ns5:externalId', ns).text = tree.find('.//ns5:externalId', ns).text
